@@ -54,106 +54,56 @@ public class Player : MonoBehaviour
         IsDead = this.Hp.Select(x => transform.position.y <= -5 || x <= 0).ToReactiveProperty();
     }
 
-    private void Start()
+    public void Run(float Horizontal)
     {
-/*        UpdateAsObservables();
-        FixedUpdateAsObservables();
-        ObserveEveryValueChangeds();*/
+        Rigidbody2D.velocity = new Vector2(Horizontal * MaxSpeed, Rigidbody2D.velocity.y);
     }
 
-    void FixedUpdateAsObservables ()
+    public void Dash(float Horizontal, bool shift)
     {
-       this.FixedUpdateAsObservable()
-           .Subscribe(_ =>
-           {
-               if ((bool)Physics2D.Linecast(this.transform.position, new Vector2(this.transform.position.x, this.transform.position.y - 0.539f), WhatIsGround))
-               {
-                   IsGrounded.Value = true;
-               }
-               else
-               {
-                   IsGrounded.Value = false;
-               }
-           });
-    }
-
-    void UpdateAsObservables ()
-    {
-        this.UpdateAsObservable()
-            .Subscribe(_ => Die());
-    }
-
-    void ObserveEveryValueChangeds ()
-    {
-        this.ObserveEveryValueChanged(x => x.Hp.Value)
-            .Subscribe(_ => StartCoroutine(BecomeInvincible()));
-
-        this.ObserveEveryValueChanged(x => x.Hp.Value)
-            .Where(x => Hp.Value == 4)
-            .Subscribe(_ => Destroy(GameObject.Find("hp5")));
-
-        this.ObserveEveryValueChanged(x => x.Hp.Value)
-            .Where(x => Hp.Value == 3)
-            .Subscribe(_ => Destroy(GameObject.Find("hp4")));
-
-        this.ObserveEveryValueChanged(x => x.Hp.Value)
-            .Where(x => Hp.Value == 2)
-            .Subscribe(_ => Destroy(GameObject.Find("hp3")));
-
-        this.ObserveEveryValueChanged(x => x.Hp.Value)
-            .Where(x => Hp.Value == 1)
-            .Subscribe(_ => Destroy(GameObject.Find("hp2")));
-
-        this.ObserveEveryValueChanged(x => x.Hp.Value)
-            .Where(x => Hp.Value == 0)
-            .Subscribe(_ => Destroy(GameObject.Find("hp1")));
-    }
-
-    public void Dash(float direction, bool shift)
-    {
-        if ((shift && ((direction < 0) || (direction > 0))) && !IsDashing.Value)
+        if ((shift && ((Horizontal < 0) || (Horizontal > 0))) && !IsDashing.Value)
         {
-            StartCoroutine(DashCoroutine(direction, shift));
+            StartCoroutine(DashCoroutine(Horizontal, shift));
         }
     }
 
-    public IEnumerator DashCoroutine(float direction, bool shift)
+    public IEnumerator DashCoroutine(float Horizontal, bool shift)
     {
         IsDashing.Value = true;
 
         //right backdash
-        if (FacingRight.Value && ((direction < 0) && shift))
+        if (FacingRight.Value && ((Horizontal < 0) && shift))
         {
             for (int i = 0; i < 5; i++)
             {
-                Rigidbody2D.velocity = new Vector2(direction * (DashSpeed - i * 2), Rigidbody2D.velocity.y);
+                Rigidbody2D.velocity = new Vector2(Horizontal * (DashSpeed - i * 2), Rigidbody2D.velocity.y);
                 yield return null;
             }
         }
         //right frontdash
-        else if (FacingRight.Value && ((direction > 0) && shift))
+        else if (FacingRight.Value && ((Horizontal > 0) && shift))
         {
             for (int i = 0; i < 5; i++)
             {
-                Rigidbody2D.velocity = new Vector2(direction * (DashSpeed - i * 2), Rigidbody2D.velocity.y);
+                Rigidbody2D.velocity = new Vector2(Horizontal * (DashSpeed - i * 2), Rigidbody2D.velocity.y);
                 yield return null;
             }
         }
         //left frontdash
-        else if (!FacingRight.Value && ((direction < 0) && shift))
+        else if (!FacingRight.Value && ((Horizontal < 0) && shift))
         {
             for (int i = 0; i < 5; i++)
             {
-                Rigidbody2D.velocity = new Vector2(direction * (DashSpeed - i * 2), Rigidbody2D.velocity.y);
+                Rigidbody2D.velocity = new Vector2(Horizontal * (DashSpeed - i * 2), Rigidbody2D.velocity.y);
                 yield return null;
             }
         }
         //left backdash
-        else if (!FacingRight.Value && ((direction > 0) && shift))
+        else if (!FacingRight.Value && ((Horizontal > 0) && shift))
         {
             for (int i = 0; i < 5; i++)
             {
-                Rigidbody2D.velocity = new Vector2(direction * (DashSpeed - i * 2), Rigidbody2D.velocity.y);
+                Rigidbody2D.velocity = new Vector2(Horizontal * (DashSpeed - i * 2), Rigidbody2D.velocity.y);
                 yield return null;
             }
         }
@@ -168,28 +118,18 @@ public class Player : MonoBehaviour
         yield return null;
     }
 
-    public void TurnAround(float direction)
+    public void TurnAround(float Horizontal)
     {
-        if ((direction > 0 && !FacingRight.Value) || (direction < 0 && FacingRight.Value))
+        if ((Horizontal > 0 && !FacingRight.Value) || (Horizontal < 0 && FacingRight.Value))
         {
             Flip();
         }
     }
 
-    public void Run(float direction)
-    {
-        //only control the player if grounded or airControl is turned on
-        if (IsGrounded.Value || AirControl)
-        {
-            // Move the character
-            Rigidbody2D.velocity = new Vector2(direction * MaxSpeed, Rigidbody2D.velocity.y);
-        }
-    }
-
-    public void Jump(bool jump)
+    public void Jump()
     {
         // If the player should jump...
-        if ((bool)Physics2D.Linecast(this.transform.position, new Vector2(this.transform.position.x, this.transform.position.y - 0.539f), /*ground*/WhatIsGround) && jump)
+        if ((bool)Physics2D.Linecast(this.transform.position, new Vector2(this.transform.position.x, this.transform.position.y - 0.539f), /*ground*/WhatIsGround))
         {
             // Add a vertical force to the player.
             Rigidbody2D.AddForce(new Vector2(0f, JumpForce));
