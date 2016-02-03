@@ -3,16 +3,22 @@ using System.Collections;
 using UniRx;
 using UniRx.Triggers;
 
-[RequireComponent(typeof(Player))]
+[RequireComponent(typeof(PlayerState))]
+[RequireComponent(typeof(PlayerConfig))]
+[RequireComponent(typeof(PlayerMovement))]
 [RequireComponent(typeof(Key))]
 public class PlayerPresenter : MonoBehaviour
 {
-    Player Player;
+    PlayerState PlayerState;
+    PlayerConfig PlayerConfig;
+    PlayerMovement PlayerMovement;
     Key Key;
 
     void Awake()
     {
-        Player = GetComponent<Player>();
+        PlayerState = GetComponent<PlayerState>();
+        PlayerConfig = GetComponent<PlayerConfig>();
+        PlayerMovement = GetComponent<PlayerMovement>();
         Key = GetComponent<Key>();
     }
 
@@ -24,10 +30,10 @@ public class PlayerPresenter : MonoBehaviour
     private void UpdateAsObservables()
     {
         this.UpdateAsObservable()
-            .Subscribe(_ => Player.Run(Key.Horizontal));
+            .Subscribe(_ => PlayerMovement.Run(Key.Horizontal));
 
         this.UpdateAsObservable()
             .Where(x => Key.Vertical == 1)
-            .Subscribe(_ => Player.Jump());
+            .Subscribe(_ => PlayerMovement.Jump());
     }
 }

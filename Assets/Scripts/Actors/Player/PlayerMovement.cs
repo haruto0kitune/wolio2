@@ -1,59 +1,8 @@
 ﻿using UnityEngine;
-using UniRx;
-using UniRx.Triggers;
 using System.Collections;
-using System.Linq;
 
-public class Player : MonoBehaviour
+public class PlayerMovement : MonoBehaviour
 {
-    [InspectorDisplay]
-    public IntReactiveProperty Hp;
-
-    public ReactiveProperty<bool> IsDead;
-    public ReactiveProperty<bool> IsGrounded;
-    public ReactiveProperty<bool> IsDashing;
-    public ReactiveProperty<bool> IsTouchingWall;
-    public ReactiveProperty<bool> FacingRight;
-
-    [SerializeField]
-    private GameObject ShotPrefab;
-    private GameObject Shot;
-
-    private Transform GroundCheck;    // A position marking where to check if the player is grounded.
-    private Rigidbody2D Rigidbody2D;
-
-    const float k_GroundedRadius = .2f; // Radius of the overlap circle to determine if grounded
-    
-    private int shotwait = 0;
-
-    [SerializeField]
-    private float MaxSpeed = 10f;                    // The fastest the player can travel in the x axis.
-    [SerializeField]
-    private float KnockBackSpeed = 3f;
-    [SerializeField]
-    private float DashSpeed = 10f;                    
-    [SerializeField]
-    private float JumpForce = 400f;                  // Amount of force added when the player jumps.
-    [SerializeField]
-    private bool AirControl = false;                 // Whether or not a player can steer while jumping;
-    [SerializeField]
-    private LayerMask WhatIsGround;                  // A mask determining what is ground to the character
-
-    private void Awake()
-    {
-        GroundCheck = transform.Find("GroundCheck");
-        Rigidbody2D = GetComponent<Rigidbody2D>();
-        ShotPrefab = Resources.Load("Prefab/fireball") as GameObject;
-
-        IsDead = new ReactiveProperty<bool>(false);
-        IsGrounded = new ReactiveProperty<bool>(false);
-        IsDashing = new ReactiveProperty<bool>(false);
-        IsTouchingWall = new ReactiveProperty<bool>(false);
-        FacingRight = new ReactiveProperty<bool>(true);
-
-        IsDead = this.Hp.Select(x => transform.position.y <= -5 || x <= 0).ToReactiveProperty();
-    }
-
     public void Run(float Horizontal)
     {
         Rigidbody2D.velocity = new Vector2(Horizontal * MaxSpeed, Rigidbody2D.velocity.y);
@@ -136,20 +85,9 @@ public class Player : MonoBehaviour
         }
     }
 
-    public void FireBall()
-    {
-        if (shotwait == 8)
-        {
-            Shot = Instantiate(ShotPrefab, transform.position, transform.rotation) as GameObject;
-            shotwait = 0;
-        }
-
-        shotwait++;
-    }
-
     public void Die()
     {
-        if((transform.position.y <= -5 || Hp.Value <= 0))
+        if ((transform.position.y <= -5 || Hp.Value <= 0))
         {
             Debug.Log(this.IsDead.Value);
         }
@@ -160,20 +98,20 @@ public class Player : MonoBehaviour
         int left = -1;
         int right = 1;
 
-        if ( FacingRight.Value ) 
+        if (FacingRight.Value)
         {
             Rigidbody2D.velocity = new Vector2(left * KnockBackSpeed, Rigidbody2D.velocity.y);
         }
-        else if ( !FacingRight.Value )
+        else if (!FacingRight.Value)
         {
             Rigidbody2D.velocity = new Vector2(right * KnockBackSpeed, Rigidbody2D.velocity.y);
         }
-        
+
     }
 
     public IEnumerator WallKickJump()
     {
-        
+
         Flip();
 
         Rigidbody2D.velocity = new Vector2(0.0f, 0.0f);
@@ -192,7 +130,7 @@ public class Player : MonoBehaviour
         gameObject.layer = LayerMask.NameToLayer("Invincible");
 
         // Invincible frames.
-        for(int i = 0;i < 36;i++)
+        for (int i = 0; i < 36; i++)
         {
             for (int j = 0; j < 5; j++)
             {
