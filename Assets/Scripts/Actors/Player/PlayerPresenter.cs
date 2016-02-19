@@ -24,16 +24,16 @@ public class PlayerPresenter : MonoBehaviour
 
     private void Start()
     {
-        UpdateAsObservables();
+        FixedUpdateAsObservables();
     }
 
-    private void UpdateAsObservables()
+    private void FixedUpdateAsObservables()
     {
-        this.UpdateAsObservable()
-            .Subscribe(_ => PlayerMovement.Run(Key.Horizontal));
+        this.FixedUpdateAsObservable()
+            .Subscribe(_ => PlayerMovement.Run(Key.Horizontal, PlayerConfig.MaxSpeed));
 
-        this.UpdateAsObservable()
+        this.FixedUpdateAsObservable()
             .Where(x => Key.Vertical == 1)
-            .Subscribe(_ => PlayerMovement.Jump());
+            .Subscribe(_ => PlayerMovement.Jump(PlayerConfig.JumpForce, PlayerConfig.WhatIsGround));
     }
 }
