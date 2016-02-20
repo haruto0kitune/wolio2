@@ -5,6 +5,7 @@ public class PlayerMovement : MonoBehaviour
 {
     public void Run(float Horizontal, float MaxSpeed)
     {
+        GetComponent<Animator>().SetBool("IsRunning", true);
         TurnAround(Horizontal);
         GetComponent<Rigidbody2D>().velocity = new Vector2(Horizontal * MaxSpeed, GetComponent<Rigidbody2D>().velocity.y);
     }

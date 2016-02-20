@@ -29,8 +29,17 @@ public class PlayerPresenter : MonoBehaviour
 
     private void FixedUpdateAsObservables()
     {
+        Key.Horizontal
+            .Where(x => x != 0)
+            .Subscribe(_ => GetComponent<Animator>().SetBool("IsRunning", true));
+
+        Key.Horizontal
+            .Where(x => x == 0)
+            .Subscribe(_ => GetComponent<Animator>().SetBool("IsRunning", false));
+
         this.FixedUpdateAsObservable()
-            .Subscribe(_ => PlayerMovement.Run(Key.Horizontal, PlayerConfig.MaxSpeed));
+            .Where(x => GetComponent<Animator>().GetBool("IsRunning"))
+            .Subscribe(_ => PlayerMovement.Run(Key.Horizontal.Value, PlayerConfig.MaxSpeed));
 
         this.FixedUpdateAsObservable()
             .Where(x => Key.Vertical == 1)
