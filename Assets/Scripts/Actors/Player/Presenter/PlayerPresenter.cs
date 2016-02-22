@@ -13,6 +13,8 @@ public class PlayerPresenter : MonoBehaviour
     PlayerConfig PlayerConfig;
     PlayerMotion PlayerMotion;
     Key Key;
+    Animator Animator;
+    Rigidbody2D Rigidbody2D;
 
     void Awake()
     {
@@ -20,6 +22,8 @@ public class PlayerPresenter : MonoBehaviour
         PlayerConfig = GetComponent<PlayerConfig>();
         PlayerMotion = GetComponent<PlayerMotion>();
         Key = GetComponent<Key>();
+        Animator = GetComponent<Animator>();
+        Rigidbody2D = GetComponent<Rigidbody2D>();
     }
 
     private void Start()
@@ -29,16 +33,21 @@ public class PlayerPresenter : MonoBehaviour
 
     private void FixedUpdateAsObservables()
     {
+        Key.Horizontal
+            .Where(x => (x > 0 & !(PlayerState.FacingRight.Value)) | (x < 0 & PlayerState.FacingRight.Value))
+            .Subscribe(_ => PlayerMotion.Turn());
+
         this.FixedUpdateAsObservable()
-            .Where(x => GetComponent<Animator>().GetBool("IsRunning"))
+            .Where(x => Animator.GetBool("IsRunning"))
             .Subscribe(_ => PlayerMotion.Run(Key.Horizontal.Value, PlayerConfig.MaxSpeed));
 
         this.FixedUpdateAsObservable()
-            .Where(x => !GetComponent<Animator>().GetBool("IsRunning"))
-            .Subscribe(_ => GetComponent<Rigidbody2D>().velocity = new Vector2(0, GetComponent<Rigidbody2D>().velocity.y));
+            .Where(x => !Animator.GetBool("IsRunning"))
+            .Subscribe(_ => Rigidbody2D.velocity = new Vector2(0, Rigidbody2D.velocity.y));
 
         this.FixedUpdateAsObservable()
             .Where(x => Key.Vertical == 1)
-            .Subscribe(_ => PlayerMotion.Jump(PlayerConfig.JumpForce, PlayerConfig.WhatIsGround));
+            .Where(x => PlayerState.IsGrounded.Value)
+            .Subscribe(_ => PlayerMotion.Jump(PlayerConfig.JumpForce));
     }
 }

@@ -189,6 +189,33 @@ SpriteRenderer:
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
+--- !u!1 &308184061
+GameObject:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  serializedVersion: 4
+  m_Component:
+  - 4: {fileID: 308184062}
+  m_Layer: 0
+  m_Name: GroundCheck
+  m_TagString: Untagged
+  m_Icon: {fileID: 5721338939258241955, guid: 0000000000000000d000000000000000, type: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &308184062
+Transform:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 308184061}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0.042, y: -0.604, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 529925492}
+  m_RootOrder: 0
 --- !u!1 &369721908
 GameObject:
   m_ObjectHideFlags: 0
@@ -1075,6 +1102,14 @@ Prefab:
     - target: {fileID: 5014832, guid: d45bdab02b1db69459c8f864f6875de6, type: 2}
       propertyPath: m_IsKinematic
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 435324, guid: d45bdab02b1db69459c8f864f6875de6, type: 2}
+      propertyPath: m_LocalScale.x
+      value: -1
+      objectReference: {fileID: 0}
+    - target: {fileID: 11416222, guid: d45bdab02b1db69459c8f864f6875de6, type: 2}
+      propertyPath: JumpForce
+      value: 600
       objectReference: {fileID: 0}
     m_RemovedComponents:
     - {fileID: 11433242, guid: d45bdab02b1db69459c8f864f6875de6, type: 2}

@@ -10,11 +10,6 @@ public class Stand : StateMachineBehaviour
         animator.GetComponent<Key>()
             .Horizontal
             .Where(x => x != 0)
-            .Subscribe(_ => animator.GetComponent<PlayerMotion>().Turn());
-
-        animator.GetComponent<Key>()
-            .Horizontal
-            .Where(x => x != 0)
             .Subscribe(_ => animator.SetBool("IsRunning", true));
     }
 }

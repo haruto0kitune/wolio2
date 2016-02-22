@@ -14,14 +14,22 @@ public class PlayerState : MonoBehaviour
     public ReactiveProperty<bool> IsTouchingWall;
     public ReactiveProperty<bool> FacingRight;
 
+    private Transform GroundCheck;
+    private PlayerConfig PlayerConfig;
+
     void Awake()
     {
+        GroundCheck = transform.Find("GroundCheck");
+        PlayerConfig = GetComponent<PlayerConfig>();
+
         IsDead = new ReactiveProperty<bool>(false);
         IsGrounded = new ReactiveProperty<bool>(false);
         IsDashing = new ReactiveProperty<bool>(false);
         IsTouchingWall = new ReactiveProperty<bool>(false);
         FacingRight = new ReactiveProperty<bool>(true);
 
-        IsDead = this.Hp.Select(x => transform.position.y <= -5 || x <= 0).ToReactiveProperty();
+        IsGrounded = this.ObserveEveryValueChanged(x => (bool)Physics2D.Linecast(transform.position, GroundCheck.position, PlayerConfig.WhatIsGround)).ToReactiveProperty();
+        IsDead = Hp.Select(x => transform.position.y <= -5 || x <= 0).ToReactiveProperty();
+        FacingRight = GetComponent<SpriteRenderer>().ObserveEveryValueChanged(x => x.flipX).ToReactiveProperty();
     }
 }
