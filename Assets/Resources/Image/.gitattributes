@@ -1,1 +1,2 @@
 *.png filter=lfs diff=lfs merge=lfs -text
+.\FragileBlock.png filter=lfs diff=lfs merge=lfs -text
