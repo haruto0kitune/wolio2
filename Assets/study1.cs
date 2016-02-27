@@ -8,16 +8,12 @@ public class study1 : MonoBehaviour {
     // Use this for initialization
     void Start()
     {
-        var source = new Subject<int>();
+        var source1 = new Subject<int>();
+        var source2 = new Subject<string>();
 
-        source.Subscribe(_ => Debug.Log("one:"+_));
-        source.Subscribe(_ => Debug.Log("two:"+_));
+        source1.Zip(source2, (a, b) => b).Subscribe(_ => Debug.Log(_));
 
-        source.OnNext(1);
-
-        source.Dispose();
-
-        source.OnNext(2);
-        source.OnNext(3);
+        source1.OnNext(1);
+       // source2.OnNext("hello");
     }
 }
