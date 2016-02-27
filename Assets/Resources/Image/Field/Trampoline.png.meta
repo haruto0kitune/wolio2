@@ -1,6 +1,6 @@
 fileFormatVersion: 2
 guid: cddf3a852d61fac40a33e6ceb8a3dfaf
-timeCreated: 1456468344
+timeCreated: 1456562509
 licenseType: Free
 TextureImporter:
   fileIDToRecycleName:
@@ -82,85 +82,15 @@ TextureImporter:
         x: 40
         y: 0
         width: 40
-        height: 35
-      alignment: 7
-      pivot: {x: 0.5, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline:
-      - - {x: -20, y: 35}
-        - {x: -20, y: 0}
-        - {x: 20, y: 0}
-        - {x: 20, y: 35}
-    - name: Trampoline_2
-      rect:
-        serializedVersion: 2
-        x: 80
-        y: 0
-        width: 40
-        height: 32
-      alignment: 7
-      pivot: {x: 0.5, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline:
-      - - {x: -20, y: 32}
-        - {x: -20, y: 0}
-        - {x: 20, y: 0}
-        - {x: 20, y: 32}
-    - name: Trampoline_3
-      rect:
-        serializedVersion: 2
-        x: 120
-        y: 0
-        width: 40
         height: 30
       alignment: 7
       pivot: {x: 0.5, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
-      outline:
-      - - {x: -20, y: 40}
-        - {x: -20, y: 0}
-        - {x: 20, y: 0}
-        - {x: 20, y: 40}
-        - {x: -20, y: 40}
-        - {x: -20, y: 0}
-        - {x: 20, y: 0}
-        - {x: 20, y: 40}
-        - {x: -20, y: 40}
-        - {x: -20, y: 0}
-        - {x: 20, y: 0}
-        - {x: 20, y: 40}
-        - {x: -20, y: 40}
-        - {x: -20, y: 0}
-        - {x: 20, y: 0}
-        - {x: 20, y: 40}
-      - - {x: -20, y: 40}
-        - {x: -20, y: 0}
-        - {x: 20, y: 0}
-        - {x: 20, y: 40}
-        - {x: -20, y: 40}
-        - {x: -20, y: 0}
-        - {x: 20, y: 0}
-        - {x: 20, y: 40}
-        - {x: -20, y: 40}
-        - {x: -20, y: 0}
-        - {x: 20, y: 0}
-        - {x: 20, y: 40}
-      - - {x: -20, y: 40}
-        - {x: -20, y: 0}
-        - {x: 20, y: 0}
-        - {x: 20, y: 40}
-        - {x: -20, y: 40}
-        - {x: -20, y: 0}
-        - {x: 20, y: 0}
-        - {x: 20, y: 40}
-      - - {x: -20, y: 40}
-        - {x: -20, y: 0}
-        - {x: 20, y: 0}
-        - {x: 20, y: 40}
-    - name: Trampoline_4
+      outline: []
+    - name: Trampoline_2
       rect:
         serializedVersion: 2
-        x: 160
+        x: 80
         y: 0
         width: 40
         height: 40
@@ -172,10 +102,10 @@ TextureImporter:
         - {x: -20, y: 0}
         - {x: 20, y: 0}
         - {x: 20, y: 40}
-    - name: Trampoline_5
+    - name: Trampoline_3
       rect:
         serializedVersion: 2
-        x: 200
+        x: 120
         y: 0
         width: 40
         height: 37
@@ -191,70 +121,10 @@ TextureImporter:
         - {x: -20, y: 0}
         - {x: 20, y: 0}
         - {x: 20, y: 37}
-    - name: Trampoline_6
+    - name: Trampoline_4
       rect:
         serializedVersion: 2
-        x: 240
-        y: 0
-        width: 40
-        height: 40
-      alignment: 7
-      pivot: {x: 0.5, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline:
-      - - {x: -20, y: 40}
-        - {x: -20, y: 0}
-        - {x: 20, y: 0}
-        - {x: 20, y: 40}
-    - name: Trampoline_7
-      rect:
-        serializedVersion: 2
-        x: 280
-        y: 0
-        width: 40
-        height: 38
-      alignment: 7
-      pivot: {x: 0.5, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline:
-      - - {x: -20, y: 38}
-        - {x: -20, y: 0}
-        - {x: 20, y: 0}
-        - {x: 20, y: 38}
-    - name: Trampoline_8
-      rect:
-        serializedVersion: 2
-        x: 320
-        y: 0
-        width: 40
-        height: 40
-      alignment: 7
-      pivot: {x: 0.5, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline:
-      - - {x: -20, y: 40}
-        - {x: -20, y: 0}
-        - {x: 20, y: 0}
-        - {x: 20, y: 40}
-    - name: Trampoline_9
-      rect:
-        serializedVersion: 2
-        x: 360
-        y: 0
-        width: 40
-        height: 39
-      alignment: 7
-      pivot: {x: 0.5, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline:
-      - - {x: -20, y: 39}
-        - {x: -20, y: 0}
-        - {x: 20, y: 0}
-        - {x: 20, y: 39}
-    - name: Trampoline_10
-      rect:
-        serializedVersion: 2
-        x: 400
+        x: 160
         y: 0
         width: 40
         height: 40
