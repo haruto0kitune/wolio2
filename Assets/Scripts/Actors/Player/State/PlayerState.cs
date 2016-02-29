@@ -12,6 +12,8 @@ public class PlayerState : MonoBehaviour
     public ReactiveProperty<bool> IsGrounded;
     public ReactiveProperty<bool> IsDashing;
     public ReactiveProperty<bool> IsTouchingWall;
+    public ReactiveProperty<bool> IsClimbing;
+    public ReactiveProperty<bool> IsClimbable;
     public ReactiveProperty<bool> FacingRight;
 
     private Transform GroundCheck;
@@ -26,6 +28,8 @@ public class PlayerState : MonoBehaviour
         IsGrounded = new ReactiveProperty<bool>(false);
         IsDashing = new ReactiveProperty<bool>(false);
         IsTouchingWall = new ReactiveProperty<bool>(false);
+        IsClimbing = new ReactiveProperty<bool>(false);
+        IsClimbable = new ReactiveProperty<bool>(false);
         FacingRight = new ReactiveProperty<bool>(true);
 
         IsGrounded = this.ObserveEveryValueChanged(x => (bool)Physics2D.Linecast(transform.position, GroundCheck.position, PlayerConfig.WhatIsGround)).ToReactiveProperty();

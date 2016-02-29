@@ -7,8 +7,7 @@ using UniRx.Triggers;
 public class Key : MonoBehaviour
 {
     public ReactiveProperty<float> Horizontal;
-    //public float Horizontal;
-    public float Vertical;
+    public ReactiveProperty<float> Vertical;
 
     public bool A;
     public bool S;
@@ -22,6 +21,7 @@ public class Key : MonoBehaviour
     private void Awake()
     {
         Horizontal = new ReactiveProperty<float>();
+        Vertical = new ReactiveProperty<float>();
     }
 
     private void Start()
@@ -35,7 +35,7 @@ public class Key : MonoBehaviour
             .Subscribe(_ => Horizontal.Value = CrossPlatformInputManager.GetAxisRaw("Horizontal"));
 
         this.UpdateAsObservable()
-            .Subscribe(_ => Vertical = CrossPlatformInputManager.GetAxisRaw("Vertical"));
+            .Subscribe(_ => Vertical.Value = CrossPlatformInputManager.GetAxisRaw("Vertical"));
 
         this.UpdateAsObservable()
             .Subscribe(_ => A = CrossPlatformInputManager.GetButton("A"));

@@ -29,13 +29,38 @@ public class PlayerPresenter : MonoBehaviour
     private void Start()
     {
         FixedUpdateAsObservables();
+        OnTriggerStay2DAsObservables();
     }
 
     private void FixedUpdateAsObservables()
     {
-        Key.Horizontal
+        this.FixedUpdateAsObservable()
+            .SelectMany(x => Key.Horizontal)
             .Where(x => (x > 0 & !(PlayerState.FacingRight.Value)) | (x < 0 & PlayerState.FacingRight.Value))
             .Subscribe(_ => PlayerMotion.Turn());
+
+        this.FixedUpdateAsObservable()
+            .Zip(Key.Vertical, (a, b) => b)
+            .Where(x => x == 1) 
+            .Where(x => PlayerState.IsGrounded.Value)
+            .Where(x => !PlayerState.IsClimbable.Value)
+            .Subscribe(_ => PlayerMotion.Jump(PlayerConfig.JumpForce));
+
+        this.FixedUpdateAsObservable()
+            .Zip(Key.Vertical, (a, b) => b)
+            .Where(x => PlayerState.IsClimbable.Value)
+            .Where(x => x == 1 | x == -1)
+            .Subscribe(_ => 
+            {
+                Rigidbody2D.isKinematic = true;
+                PlayerMotion.Climb(_, /*PlayerConfig.MaxSpeed*/2);
+            });
+
+        this.FixedUpdateAsObservable()
+            .Zip(Key.Vertical, (a, b) => b)
+            .Where(x => PlayerState.IsClimbable.Value)
+            .Where(x => x != 1 & x != -1)
+            .Subscribe(_ => Rigidbody2D.velocity = Vector2.zero);
 
         this.FixedUpdateAsObservable()
             .Where(x => Animator.GetBool("IsRunning"))
@@ -44,10 +69,23 @@ public class PlayerPresenter : MonoBehaviour
         this.FixedUpdateAsObservable()
             .Where(x => !Animator.GetBool("IsRunning"))
             .Subscribe(_ => Rigidbody2D.velocity = new Vector2(0, Rigidbody2D.velocity.y));
+    }
 
-        this.FixedUpdateAsObservable()
-            .Where(x => Key.Vertical == 1)
-            .Where(x => PlayerState.IsGrounded.Value)
-            .Subscribe(_ => PlayerMotion.Jump(PlayerConfig.JumpForce));
+    private void OnTriggerStay2DAsObservables()
+    {
+        this.OnTriggerEnter2DAsObservable()
+            .Where(x => x.gameObject.tag == "Ladder")
+            .Subscribe(_ =>
+            {
+                PlayerState.IsClimbable.Value = true;
+            });
+
+        this.OnTriggerExit2DAsObservable()
+            .Where(x => x.gameObject.tag == "Ladder")
+            .Subscribe(_ => 
+            {
+                Rigidbody2D.isKinematic = false;
+                PlayerState.IsClimbable.Value = false;
+            });
     }
 }
