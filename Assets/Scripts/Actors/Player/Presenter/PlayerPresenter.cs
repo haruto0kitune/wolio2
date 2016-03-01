@@ -49,12 +49,29 @@ public class PlayerPresenter : MonoBehaviour
         this.FixedUpdateAsObservable()
             .Zip(Key.Vertical, (a, b) => b)
             .Where(x => PlayerState.IsClimbable.Value)
-            .Where(x => x == 1 | x == -1)
+            .Where(x => x == 1)
             .Subscribe(_ => 
             {
                 Rigidbody2D.isKinematic = true;
-                PlayerMotion.Climb(_, /*PlayerConfig.MaxSpeed*/2);
+                PlayerMotion.Climb(_, PlayerConfig.MaxSpeed);
             });
+
+        this.FixedUpdateAsObservable()
+            .Zip(Key.Vertical, (a, b) => b)
+            .Where(x => PlayerState.IsClimbable.Value)
+            .Where(x => !PlayerState.IsGrounded.Value)
+            .Zip(Key.Vertical, (a, b) => b)
+            .Where(x => x == -1)
+            .Subscribe(_ => 
+            {
+                Rigidbody2D.isKinematic = true;
+                PlayerMotion.Climb(_, PlayerConfig.MaxSpeed);
+            });
+
+        this.FixedUpdateAsObservable()
+            .Zip(PlayerState.IsGrounded, (a, b) => b)
+            .Where(x => x)
+            .Subscribe(_ => Rigidbody2D.isKinematic = false);
 
         this.FixedUpdateAsObservable()
             .Zip(Key.Vertical, (a, b) => b)
