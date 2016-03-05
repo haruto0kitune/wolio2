@@ -32,8 +32,8 @@ public class PlayerState : MonoBehaviour
         IsClimbable = new ReactiveProperty<bool>(false);
         FacingRight = new ReactiveProperty<bool>(true);
 
-        this.UpdateAsObservable()
-            .Subscribe(_ => Debug.Log(IsGrounded.Value));
+        //this.UpdateAsObservable()
+        //    .Subscribe(_ => Debug.Log(IsClimbable.Value));
         IsGrounded = this.ObserveEveryValueChanged(x => (bool)Physics2D.Linecast(transform.position, GroundCheck.position, PlayerConfig.WhatIsGround)).ToReactiveProperty();
         IsDead = Hp.Select(x => transform.position.y <= -5 || x <= 0).ToReactiveProperty();
         FacingRight = GetComponent<SpriteRenderer>().ObserveEveryValueChanged(x => x.flipX).ToReactiveProperty();
