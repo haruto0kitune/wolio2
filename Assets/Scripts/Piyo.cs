@@ -3,6 +3,8 @@ using System.Collections;
 using UniRx;
 using UniRx.Triggers;
 
+#pragma warning disable 414
+
 public class Piyo : MonoBehaviour
 {
     [SerializeField]

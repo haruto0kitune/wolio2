@@ -12,6 +12,8 @@ public partial class PlayerPresenter : MonoBehaviour
             .Where(x => x == 1) 
             .Where(x => PlayerState.IsGrounded.Value)
             .Where(x => !PlayerState.IsClimbable.Value)
+            .Where(x => !PlayerState.IsClimbing.Value)
+            .Do(x => Debug.Log("Jump"))
             .Subscribe(_ => PlayerMotion.Jump(PlayerConfig.JumpForce));
     }
 }

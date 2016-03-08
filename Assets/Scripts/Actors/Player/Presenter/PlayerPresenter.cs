@@ -3,10 +3,10 @@ using System.Collections;
 using UniRx;
 using UniRx.Triggers;
 
+[RequireComponent(typeof(Key))]
 [RequireComponent(typeof(PlayerState))]
 [RequireComponent(typeof(PlayerConfig))]
 [RequireComponent(typeof(PlayerMotion))]
-[RequireComponent(typeof(Key))]
 public partial class PlayerPresenter : MonoBehaviour
 {
     PlayerState PlayerState;
