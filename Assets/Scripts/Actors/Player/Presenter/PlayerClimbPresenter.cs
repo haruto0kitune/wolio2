@@ -15,6 +15,10 @@ public partial class PlayerPresenter : MonoBehaviour
             .Where(x => x.gameObject.tag == "Ladder")
             .Subscribe(_ => PlayerState.IsClimbable.Value = false);
 
+        this.OnTriggerExit2DAsObservable()
+            .Where(x => x.gameObject.tag == "Ladder")
+            .Subscribe(_ => PlayerState.IsClimbing.Value = false);
+
         this.UpdateAsObservable()
             .Select(x => PlayerState.IsClimbable.Value && Key.Vertical.Value != 0)
             .Where(x => x)
@@ -27,19 +31,16 @@ public partial class PlayerPresenter : MonoBehaviour
 
         this.FixedUpdateAsObservable()
             .Where(x => PlayerState.IsClimbing.Value)
-            .Subscribe(_ => Rigidbody2D.isKinematic = true);
+            .Subscribe(_ => Rigidbody2D.gravityScale = 0f);
 
         this.FixedUpdateAsObservable()
             .Where(x => !PlayerState.IsClimbing.Value)
-            .Subscribe(_ => Rigidbody2D.isKinematic = false);
+            .Subscribe(_ => Rigidbody2D.gravityScale = PlayerConfig.GravityScaleStore);
 
         this.FixedUpdateAsObservable()
-            .Where(x => !PlayerState.IsClimbable.Value)
-            .Subscribe(_ => Rigidbody2D.isKinematic = false);
-
-        this.FixedUpdateAsObservable()
-            .Where(x => !PlayerState.IsClimbable.Value)
-            .Subscribe(_ => PlayerState.IsClimbing.Value = false);
+            .Where(x => PlayerState.IsClimbing.Value)
+            .Where(x => Key.Vertical.Value == 0)
+            .Subscribe(_ => Rigidbody2D.velocity = Vector2.zero); 
 
         this.FixedUpdateAsObservable()
             .Where(x => PlayerState.IsClimbing.Value)

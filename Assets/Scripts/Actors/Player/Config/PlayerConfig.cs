@@ -11,4 +11,5 @@ public class PlayerConfig : MonoBehaviour
     public LayerMask WhatIsGround;                  // A mask determining what is ground to the character
     public int shotwait = 0;
     const float k_GroundedRadius = .2f; // Radius of the overlap circle to determine if grounded
+    public float GravityScaleStore = 5f;
 }
