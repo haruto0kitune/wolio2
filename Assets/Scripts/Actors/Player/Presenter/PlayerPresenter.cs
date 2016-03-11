@@ -32,5 +32,6 @@ public partial class PlayerPresenter : MonoBehaviour
         RunPresenter();
         JumpPresenter();
         ClimbPresenter();
+        DamagePresenter();
     }
 }

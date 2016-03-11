@@ -9,6 +9,9 @@ TagManager:
   - Ground
   - Hard Platform
   - CanClimbDownLadder
+  - FallingSplinter
+  - SplinterRange
+  - Splinter
   layers:
   - Default
   - TransparentFX
