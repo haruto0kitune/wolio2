@@ -16,5 +16,10 @@ public partial class PlayerPresenter : MonoBehaviour
             .Where(x => x.gameObject.tag == "Splinter")
             .Subscribe(_ => Destroy(this.gameObject))
             .AddTo(this.gameObject);
+
+        this.OnTriggerEnter2DAsObservable()
+            .Where(x => x.gameObject.tag == "Fireball")
+            .Subscribe(_ => Destroy(this.gameObject))
+            .AddTo(this.gameObject);
     }
 }

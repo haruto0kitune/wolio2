@@ -12,6 +12,8 @@ TagManager:
   - FallingSplinter
   - SplinterRange
   - Splinter
+  - Fireball
+  - Gun
   layers:
   - Default
   - TransparentFX
