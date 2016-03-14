@@ -5,11 +5,9 @@ using UniRx.Triggers;
 
 public class FallingSplinter : MonoBehaviour
 {
-    void Awake()
-    {
-    }
-
     void Start()
     {
+        this.OnBecameInvisibleAsObservable()
+            .Subscribe(_ => Destroy(this.gameObject));
     }
 }

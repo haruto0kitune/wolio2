@@ -17,5 +17,8 @@ public class Fireball : MonoBehaviour
     {
         this.FixedUpdateAsObservable()
             .Subscribe(_ => Rigidbody2D.velocity = Speed);
+
+        this.OnBecameInvisibleAsObservable()
+            .Subscribe(_ => Destroy(this.gameObject));
     }
 }
