@@ -5,6 +5,12 @@ public partial class PlayerMotion : MonoBehaviour
 {
     public void Run(float Horizontal, float MaxSpeed)
     {
-        GetComponent<Rigidbody2D>().velocity = new Vector2(Horizontal * MaxSpeed, GetComponent<Rigidbody2D>().velocity.y);
+        PlayerState.IsRunning.Value = true;
+        Rigidbody2D.velocity = new Vector2(Horizontal * MaxSpeed, Rigidbody2D.velocity.y);
+    }
+
+    public void ExitRun()
+    {
+        PlayerState.IsRunning.Value = false;
     }
 }

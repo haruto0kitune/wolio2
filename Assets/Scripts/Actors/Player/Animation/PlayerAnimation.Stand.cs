@@ -10,8 +10,20 @@ public partial class PlayerAnimation : MonoBehaviour
         ObservableStateMachineTrigger
             .OnStateUpdateAsObservable()
             .Where(x => x.StateInfo.IsName("Base Layer.Stand"))
-            .SelectMany(x => Key.Horizontal)
-            .Where(x => x != 0)
+            .Where(x => Key.Horizontal.Value != 0 && Key.Vertical.Value == 0)
             .Subscribe(_ => Animator.SetBool("IsRunning", true));
+
+        ObservableStateMachineTrigger
+            .OnStateUpdateAsObservable()
+            .Where(x => x.StateInfo.IsName("Base Layer.Stand"))
+            .SelectMany(x => Key.Vertical)
+            .Where(x => x == 1)
+            .Subscribe(_ => Animator.SetBool("IsJumping", true));
+
+        ObservableStateMachineTrigger
+            .OnStateUpdateAsObservable()
+            .Where(x => x.StateInfo.IsName("Base Layer.Stand"))
+            .Where(x => Key.Vertical.Value == -1)
+            .Subscribe(_ => Animator.SetBool("IsCrouching", true));
     }
 }

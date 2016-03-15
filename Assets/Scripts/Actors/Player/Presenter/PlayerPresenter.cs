@@ -15,6 +15,7 @@ public partial class PlayerPresenter : MonoBehaviour
     Key Key;
     Animator Animator;
     Rigidbody2D Rigidbody2D;
+    SpriteRenderer SpriteRenderer;
 
     void Awake()
     {
@@ -24,6 +25,7 @@ public partial class PlayerPresenter : MonoBehaviour
         Key = GetComponent<Key>();
         Animator = GetComponent<Animator>();
         Rigidbody2D = GetComponent<Rigidbody2D>();
+        SpriteRenderer = GetComponent<SpriteRenderer>();
     }
 
     private void Start()
@@ -33,5 +35,7 @@ public partial class PlayerPresenter : MonoBehaviour
         JumpPresenter();
         ClimbPresenter();
         DamagePresenter();
+        CrouchPresenter();
+        CreepPresenter();
     }
 }

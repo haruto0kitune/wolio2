@@ -22,7 +22,10 @@ public partial class PlayerPresenter : MonoBehaviour
         this.OnTriggerEnter2DAsObservable()
             .Where(x => PlayerState.IsClimbing.Value)
             .Where(x => x.gameObject.tag == "Hard Platform")
-            .Subscribe(_ => transform.position = new Vector2(transform.position.x, GetComponent<SpriteRenderer>().bounds.size.y + 0.3f));
+            .Subscribe(_ =>
+            {
+                transform.position = new Vector2(transform.position.x, _.gameObject.transform.position.y + _.gameObject.GetComponent<SpriteRenderer>().bounds.extents.y + SpriteRenderer.bounds.extents.y);
+            });
 
         this.OnTriggerStay2DAsObservable()
             .Where(x => x.gameObject.tag == "CanClimbDownLadder")

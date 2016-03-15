@@ -5,6 +5,6 @@ public partial class PlayerMotion : MonoBehaviour
 {
     public void Turn()
     {
-        GetComponent<Utility>().Flip();
+        Utility.Flip();
     }
 }

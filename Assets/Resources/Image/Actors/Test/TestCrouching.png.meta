@@ -1,6 +1,6 @@
 fileFormatVersion: 2
 guid: 90a7497a55a594a44828dabcb21ac413
-timeCreated: 1457955708
+timeCreated: 1458019966
 licenseType: Free
 TextureImporter:
   fileIDToRecycleName:
@@ -63,13 +63,14 @@ TextureImporter:
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline:
-      - - {x: 16, y: 14}
-        - {x: -8, y: 14}
-        - {x: -22, y: -23}
-        - {x: -22, y: -40}
-        - {x: 13, y: -40}
-        - {x: 23, y: -9}
-        - {x: 23, y: 8}
+      - - {x: -19, y: 14}
+        - {x: -23, y: 9}
+        - {x: -23, y: -27}
+        - {x: -14, y: -40}
+        - {x: 22, y: -40}
+        - {x: 22, y: -36}
+        - {x: 19, y: -22}
+        - {x: 8, y: 14}
     - name: TestCrouching_1
       rect:
         serializedVersion: 2
@@ -81,13 +82,14 @@ TextureImporter:
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline:
-      - - {x: 16, y: 14}
-        - {x: -8, y: 14}
-        - {x: -22, y: -23}
-        - {x: -22, y: -40}
-        - {x: 13, y: -40}
-        - {x: 23, y: -9}
-        - {x: 23, y: 8}
+      - - {x: -19, y: 14}
+        - {x: -23, y: 9}
+        - {x: -23, y: -27}
+        - {x: -14, y: -40}
+        - {x: 22, y: -40}
+        - {x: 22, y: -36}
+        - {x: 19, y: -22}
+        - {x: 8, y: 14}
     outline: []
   spritePackingTag: 
   userData: 
