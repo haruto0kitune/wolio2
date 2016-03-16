@@ -13,7 +13,7 @@ public class PlayerConfig : MonoBehaviour
     public int shotwait = 0;
     const float k_GroundedRadius = .2f; // Radius of the overlap circle to determine if grounded
     public float GravityScaleStore = 5f;
-    public const float FallVelocityLimit = -10f;
+    public const float FallVelocityLimit = -6f;
     public Vector2 RightCrouchColliderOffset;
     public Vector2 RightCrouchColliderSize;
     public Vector2 LeftCrouchColliderOffset;

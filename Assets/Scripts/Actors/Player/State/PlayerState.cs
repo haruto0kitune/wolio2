@@ -29,19 +29,6 @@ public class PlayerState : MonoBehaviour
     private Rigidbody2D Rigidbody2D;
     private BoxCollider2D BoxCollider2D;
 
-    //debug
-    [SerializeField]
-    private Text Text1;
-    [SerializeField]
-    private Text Text2;
-    [SerializeField]
-    private Text Text3;
-    [SerializeField]
-    private Text Text4;
-    [SerializeField]
-    private Text Text5;
-    //
-
     void Awake()
     {
         GroundCheck = transform.Find("GroundCheck");
@@ -71,12 +58,6 @@ public class PlayerState : MonoBehaviour
 
     void Start()
     {
-        IsClimbable.SubscribeToText(Text1);
-        IsClimbing.SubscribeToText(Text2);
-        this.ObserveEveryValueChanged(x => Rigidbody2D.velocity.x).SubscribeToText(Text3);
-        this.ObserveEveryValueChanged(x => Rigidbody2D.velocity.y).SubscribeToText(Text4);
-        IsCrouching.SubscribeToText(Text5);
-
         // Fall velocity limit
         this.ObserveEveryValueChanged(x => Rigidbody2D.velocity.y)
             .Where(x => x <= -6)

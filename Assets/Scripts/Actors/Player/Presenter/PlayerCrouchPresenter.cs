@@ -11,11 +11,8 @@ public partial class PlayerPresenter : MonoBehaviour
             .Where(x => !PlayerState.IsClimbable.Value)
             .Where(x => !PlayerState.IsClimbing.Value)
             .Where(x => PlayerState.IsGrounded.Value)
-            .Where(x => Key.Vertical.Value == -1)
+            .Where(x => Key.Vertical.Value == -1 && Key.Horizontal.Value == 0)
             .Subscribe(_ => PlayerMotion.Crouch());
-
-        this.UpdateAsObservable()
-            .Subscribe(_ => Debug.Log(Physics2D.OverlapCircle(PlayerState.CeilingCheck.position, 0.1f, PlayerConfig.WhatIsGround)));
 
         this.FixedUpdateAsObservable()
             .Where(x => Key.Vertical.Value == 0)
