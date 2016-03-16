@@ -14,9 +14,12 @@ public partial class PlayerPresenter : MonoBehaviour
             .Where(x => Key.Vertical.Value == -1)
             .Subscribe(_ => PlayerMotion.Crouch());
 
+        this.UpdateAsObservable()
+            .Subscribe(_ => Debug.Log(Physics2D.OverlapCircle(PlayerState.CeilingCheck.position, 0.1f, PlayerConfig.WhatIsGround)));
+
         this.FixedUpdateAsObservable()
             .Where(x => Key.Vertical.Value == 0)
-            .Where(x => !Physics2D.OverlapCircle(PlayerState.CeilingCheck.position, 0.01f))
+            .Where(x => Physics2D.OverlapCircle(PlayerState.CeilingCheck.position, 0.1f, PlayerConfig.WhatIsGround) == null)
             .Subscribe(_ => PlayerMotion.ExitCrouch());
     }
 }

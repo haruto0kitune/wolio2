@@ -9,6 +9,7 @@ public partial class PlayerAnimation : MonoBehaviour
     private ObservableStateMachineTrigger ObservableStateMachineTrigger;
     private Key Key;
     private PlayerState PlayerState;
+    private PlayerConfig PlayerConfig;
 
     void Awake()
     {
@@ -16,6 +17,7 @@ public partial class PlayerAnimation : MonoBehaviour
         ObservableStateMachineTrigger = Animator.GetBehaviour<ObservableStateMachineTrigger>();
         Key = GetComponent<Key>();
         PlayerState = GetComponent<PlayerState>();
+        PlayerConfig = GetComponent<PlayerConfig>();
     }
 
     void Start()
