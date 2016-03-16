@@ -15,7 +15,7 @@ public partial class PlayerPresenter : MonoBehaviour
 
         this.FixedUpdateAsObservable()
             .Where(x => PlayerState.IsCreeping.Value)
-            .Where(x => Key.Horizontal.Value == 0)
+            .Where(x => Key.Horizontal.Value == 0 || Key.Vertical.Value == 0)
             .Subscribe(_ => PlayerMotion.ExitCreep());
     }
 }
