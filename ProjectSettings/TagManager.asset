@@ -14,6 +14,8 @@ TagManager:
   - Splinter
   - Fireball
   - Gun
+  - Enemy
+  - CrouchingLightAttack
   layers:
   - Default
   - TransparentFX

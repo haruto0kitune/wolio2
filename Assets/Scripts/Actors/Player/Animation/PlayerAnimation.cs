@@ -27,5 +27,8 @@ public partial class PlayerAnimation : MonoBehaviour
         Jump();
         Crouch();
         Creep();
+        CrouchingLightAttack();
+        CrouchingMiddleAttack();
+        CrouchingHighAttack();
     }
 }

@@ -20,5 +20,23 @@ public partial class PlayerAnimation : MonoBehaviour
             .Where(x => x.StateInfo.IsName("Base Layer.Crouch"))
             .Where(x => Key.Horizontal.Value != 0 && Key.Vertical.Value == -1)
             .Subscribe(_ => Animator.SetBool("IsCreeping", true));
+
+        ObservableStateMachineTrigger
+            .OnStateUpdateAsObservable()
+            .Where(x => x.StateInfo.IsName("Base Layer.Crouch"))
+            .Where(x => Key.Z)
+            .Subscribe(_ => Animator.SetBool("IsCrouchingLightAttack", true));
+
+        ObservableStateMachineTrigger
+            .OnStateUpdateAsObservable()
+            .Where(x => x.StateInfo.IsName("Base Layer.Crouch"))
+            .Where(x => Key.X)
+            .Subscribe(_ => Animator.SetBool("IsCrouchingMiddleAttack", true));
+
+        ObservableStateMachineTrigger
+            .OnStateUpdateAsObservable()
+            .Where(x => x.StateInfo.IsName("Base Layer.Crouch"))
+            .Where(x => Key.C)
+            .Subscribe(_ => Animator.SetBool("IsCrouchingHighAttack", true));
     }
 }

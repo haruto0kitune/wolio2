@@ -47,13 +47,13 @@ public class Key : MonoBehaviour
             .Subscribe(_ => D = CrossPlatformInputManager.GetButton("D"));
 
         this.UpdateAsObservable()
-            .Subscribe(_ => Z = CrossPlatformInputManager.GetButton("Z"));
+            .Subscribe(_ => Z = CrossPlatformInputManager.GetButtonDown("Z"));
 
         this.UpdateAsObservable()
-            .Subscribe(_ => X = CrossPlatformInputManager.GetButton("X"));
+            .Subscribe(_ => X = CrossPlatformInputManager.GetButtonDown("X"));
 
         this.UpdateAsObservable()
-            .Subscribe(_ => C = CrossPlatformInputManager.GetButton("C"));
+            .Subscribe(_ => C = CrossPlatformInputManager.GetButtonDown("C"));
 
         this.UpdateAsObservable()
             .Subscribe(_ => Space = CrossPlatformInputManager.GetButton("Space"));

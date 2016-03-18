@@ -14,3 +14,8 @@ Left Creep Collider Offset
 X -0.1664087 Y -0.2863665
 Left Creep Collider Size
 X 0.6020749 Y 0.2052152
+
+Crouching Light Attack Right Offset
+X 0.2429385 Y -0.1280639
+Crouching Light Attack Size
+X 0.2515338 Y 0.1315695 
