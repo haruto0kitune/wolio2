@@ -19,3 +19,24 @@ Crouching Light Attack Right Offset
 X 0.2429385 Y -0.1280639
 Crouching Light Attack Size
 X 0.2515338 Y 0.1315695 
+Crouching Middle Attack Offset
+X  0.3111792 Y -0.3366216 
+Crouching Middle Attack Size
+X  0.279411 Y 0.07978642 
+Crouching High Attack Offset
+X  0.436434 Y -0.364021
+Crouching High Attack Size
+X  0.5299196 Y 0.02498758
+
+Standing Light Attack Offset
+X 0.1095207 Y 0.03352177
+Standing Light Attack Size
+X 0.2048863 Y 0.04506044
+Standing Middle Attack Offset
+X 0.1529124 Y -0.05826771
+Standing Middle Attack Size
+X 0.291669 Y 0.1685592
+Standing High Attack Offset
+X 0.2463715 Y -0.02989638
+Standing High Attack Size
+X 0.3116956 Y 0.1451947

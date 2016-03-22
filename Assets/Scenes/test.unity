@@ -3654,7 +3654,7 @@ GameObject:
   - 58: {fileID: 1241014496}
   - 50: {fileID: 1241014495}
   - 114: {fileID: 1241014494}
-  m_Layer: 0
+  m_Layer: 12
   m_Name: Piyo (1)
   m_TagString: Enemy
   m_Icon: {fileID: 0}
@@ -4071,6 +4071,18 @@ Prefab:
     - target: {fileID: 6116720, guid: aac78e40511bf4c4a8c81a4722c22f25, type: 2}
       propertyPath: m_Size.y
       value: 0.6594872
+      objectReference: {fileID: 0}
+    - target: {fileID: 192356, guid: aac78e40511bf4c4a8c81a4722c22f25, type: 2}
+      propertyPath: m_Layer
+      value: 11
+      objectReference: {fileID: 0}
+    - target: {fileID: 141398, guid: aac78e40511bf4c4a8c81a4722c22f25, type: 2}
+      propertyPath: m_Layer
+      value: 11
+      objectReference: {fileID: 0}
+    - target: {fileID: 147978, guid: aac78e40511bf4c4a8c81a4722c22f25, type: 2}
+      propertyPath: m_Layer
+      value: 11
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: aac78e40511bf4c4a8c81a4722c22f25, type: 2}
@@ -5331,7 +5343,7 @@ GameObject:
   - 58: {fileID: 1838357789}
   - 50: {fileID: 1838357788}
   - 114: {fileID: 1838357791}
-  m_Layer: 0
+  m_Layer: 12
   m_Name: Piyo
   m_TagString: Enemy
   m_Icon: {fileID: 0}
@@ -5345,7 +5357,7 @@ Transform:
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 1838357786}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 3.976, y: 0.931, z: 0}
+  m_LocalPosition: {x: 3.943, y: 1.211, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 268908513}
@@ -5362,7 +5374,7 @@ Rigidbody2D:
   m_LinearDrag: 0
   m_AngularDrag: 0.05
   m_GravityScale: 1
-  m_IsKinematic: 0
+  m_IsKinematic: 1
   m_Interpolate: 0
   m_SleepingMode: 1
   m_CollisionDetection: 0

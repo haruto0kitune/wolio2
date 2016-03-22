@@ -38,5 +38,10 @@ public partial class PlayerPresenter : MonoBehaviour
         CrouchPresenter();
         CreepPresenter();
         CrouchingLightAttackPresenter();
+        CrouchingMiddleAttackPresenter();
+        CrouchingHighAttackPresenter();
+        StandingLightAttackPresenter();
+        StandingMiddleAttackPresenter();
+        StandingHighAttackPresenter();
     }
 }

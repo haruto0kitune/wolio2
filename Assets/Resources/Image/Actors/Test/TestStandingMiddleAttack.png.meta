@@ -1,0 +1,119 @@
+fileFormatVersion: 2
+guid: d2075911946133c49bae4be22a9ad509
+timeCreated: 1458462449
+licenseType: Free
+TextureImporter:
+  fileIDToRecycleName:
+    21300000: TestStandingMiddleAttack_0
+    21300002: TestStandingMiddleAttack_1
+  serializedVersion: 2
+  mipmaps:
+    mipMapMode: 0
+    enableMipMap: 0
+    linearTexture: 0
+    correctGamma: 0
+    fadeOut: 0
+    borderMipMap: 0
+    mipMapFadeDistanceStart: 1
+    mipMapFadeDistanceEnd: 3
+  bumpmap:
+    convertToNormalMap: 0
+    externalNormalMap: 0
+    heightScale: 0.25
+    normalMapFilter: 0
+  isReadable: 0
+  grayScaleToAlpha: 0
+  generateCubemap: 0
+  cubemapConvolution: 0
+  cubemapConvolutionSteps: 7
+  cubemapConvolutionExponent: 1.5
+  seamlessCubemap: 0
+  textureFormat: -3
+  maxTextureSize: 2048
+  textureSettings:
+    filterMode: 0
+    aniso: 16
+    mipBias: -1
+    wrapMode: 1
+  nPOTScale: 0
+  lightmap: 0
+  rGBM: 0
+  compressionQuality: 50
+  allowsAlphaSplitting: 0
+  spriteMode: 2
+  spriteExtrude: 1
+  spriteMeshType: 1
+  alignment: 0
+  spritePivot: {x: 0.5, y: 0.5}
+  spriteBorder: {x: 0, y: 0, z: 0, w: 0}
+  spritePixelsToUnits: 100
+  alphaIsTransparency: 1
+  textureType: 8
+  buildTargetSettings: []
+  spriteSheet:
+    sprites:
+    - name: TestStandingMiddleAttack_0
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 0
+        width: 80
+        height: 80
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline:
+      - - {x: 27, y: 5}
+        - {x: 13, y: -3}
+        - {x: -2, y: 31}
+        - {x: -12, y: 40}
+        - {x: -35, y: 40}
+        - {x: -37, y: 36}
+        - {x: -37, y: -3}
+        - {x: -29, y: -29}
+        - {x: -25, y: -26}
+        - {x: -22, y: -17}
+        - {x: -21, y: -13}
+        - {x: -20, y: -24}
+        - {x: -18, y: -26}
+        - {x: -15, y: -25}
+        - {x: -3, y: -40}
+        - {x: 2, y: -40}
+        - {x: 28, y: -3}
+        - {x: 30, y: 0}
+        - {x: 30, y: 4}
+    - name: TestStandingMiddleAttack_1
+      rect:
+        serializedVersion: 2
+        x: 80
+        y: 0
+        width: 80
+        height: 80
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline:
+      - - {x: 27, y: 5}
+        - {x: 13, y: -3}
+        - {x: -2, y: 31}
+        - {x: -12, y: 40}
+        - {x: -35, y: 40}
+        - {x: -37, y: 36}
+        - {x: -37, y: -3}
+        - {x: -29, y: -29}
+        - {x: -25, y: -26}
+        - {x: -22, y: -17}
+        - {x: -21, y: -13}
+        - {x: -20, y: -24}
+        - {x: -18, y: -26}
+        - {x: -15, y: -25}
+        - {x: -3, y: -40}
+        - {x: 2, y: -40}
+        - {x: 28, y: -3}
+        - {x: 30, y: 0}
+        - {x: 30, y: 4}
+    outline: []
+  spritePackingTag: 
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 

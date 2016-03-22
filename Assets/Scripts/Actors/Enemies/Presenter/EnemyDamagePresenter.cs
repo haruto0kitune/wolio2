@@ -10,5 +10,25 @@ public partial class EnemyPresenter : MonoBehaviour
         this.OnTriggerEnter2DAsObservable()
             .Where(x => x.gameObject.tag == "CrouchingLightAttack")
             .Subscribe(_ => Destroy(this.gameObject));
+
+        this.OnTriggerEnter2DAsObservable()
+            .Where(x => x.gameObject.tag == "CrouchingMiddleAttack")
+            .Subscribe(_ => Destroy(this.gameObject));
+
+        this.OnTriggerEnter2DAsObservable()
+            .Where(x => x.gameObject.tag == "CrouchingHighAttack")
+            .Subscribe(_ => Destroy(this.gameObject));
+
+        this.OnTriggerEnter2DAsObservable()
+            .Where(x => x.gameObject.tag == "StandingLightAttack")
+            .Subscribe(_ => Destroy(this.gameObject));
+
+        this.OnTriggerEnter2DAsObservable()
+            .Where(x => x.gameObject.tag == "StandingMiddleAttack")
+            .Subscribe(_ => Destroy(this.gameObject));
+
+        this.OnTriggerEnter2DAsObservable()
+            .Where(x => x.gameObject.tag == "StandingHighAttack")
+            .Subscribe(_ => Destroy(this.gameObject));
     }
 }

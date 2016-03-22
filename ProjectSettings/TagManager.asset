@@ -16,6 +16,11 @@ TagManager:
   - Gun
   - Enemy
   - CrouchingLightAttack
+  - CrouchingMiddleAttack
+  - CrouchingHighAttack
+  - StandingLightAttack
+  - StandingMiddleAttack
+  - StandingHighAttack
   layers:
   - Default
   - TransparentFX
@@ -27,9 +32,9 @@ TagManager:
   - 
   - Ground
   - Soft Platform
-  - Ladder
   - 
-  - 
+  - Player
+  - Enemy
   - 
   - 
   - 

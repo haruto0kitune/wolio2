@@ -30,5 +30,8 @@ public partial class PlayerAnimation : MonoBehaviour
         CrouchingLightAttack();
         CrouchingMiddleAttack();
         CrouchingHighAttack();
+        StandingLightAttack();
+        StandingMiddleAttack();
+        StandingHighAttack();
     }
 }
