@@ -25,20 +25,21 @@ public partial class PlayerMotion : MonoBehaviour
 
         StandingHighAttackBounds.isTrigger = true;
 
-        for(var i = 0;i < 10;i++)
+        for(var i = 0;i < 3;i++)
         {
             if (PlayerState.FacingRight.Value)
             {
-                transform.position = new Vector2(transform.position.x + 0.1f, transform.position.y);
+                Rigidbody2D.velocity = new Vector2(6f, Rigidbody2D.velocity.y);
             }
             else
             {
-                transform.position = new Vector2(transform.position.x + -0.1f, transform.position.y);
+                Rigidbody2D.velocity = new Vector2(-6f, Rigidbody2D.velocity.y);
             }
 
             yield return null;
         }
 
+        Rigidbody2D.velocity = new Vector2(0f, Rigidbody2D.velocity.y);
         Destroy(_GameObject);
     }
 }

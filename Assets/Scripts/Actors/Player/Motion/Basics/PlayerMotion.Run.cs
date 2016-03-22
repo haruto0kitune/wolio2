@@ -12,5 +12,6 @@ public partial class PlayerMotion : MonoBehaviour
     public void ExitRun()
     {
         PlayerState.IsRunning.Value = false;
+        Rigidbody2D.velocity = new Vector2(0f, Rigidbody2D.velocity.y);
     }
 }

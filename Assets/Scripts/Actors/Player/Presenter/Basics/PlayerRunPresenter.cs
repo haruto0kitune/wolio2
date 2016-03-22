@@ -13,13 +13,8 @@ public partial class PlayerPresenter : MonoBehaviour
             .Where(x => Key.Horizontal.Value != 0)
             .Subscribe(_ => PlayerMotion.Run(Key.Horizontal.Value, PlayerConfig.MaxSpeed));
 
-        this.FixedUpdateAsObservable()
-            .Where(x => Key.Horizontal.Value == 0)
-            .Subscribe(_ => Rigidbody2D.velocity = new Vector2(0, Rigidbody2D.velocity.y));
-
-        this.UpdateAsObservable()
-            .Where(x => PlayerState.IsRunning.Value)
-            .Where(x => Key.Horizontal.Value == 0)
-            .Subscribe(_ => PlayerMotion.ExitRun());
+        Key.Horizontal
+            .Where(x => x == 0)
+            .Subscribe(_ => PlayerMotion.ExitRun()); 
     }
 }
