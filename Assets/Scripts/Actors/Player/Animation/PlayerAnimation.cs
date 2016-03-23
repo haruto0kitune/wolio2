@@ -22,16 +22,39 @@ public partial class PlayerAnimation : MonoBehaviour
 
     void Start()
     {
+        Basics();
+        StandingAttacks();
+        CrouchingAttacks();
+        JumpingAttacks();
+    }
+
+    void Basics()
+    {
         Stand();
         Run();
         Jump();
         Crouch();
         Creep();
-        CrouchingLightAttack();
-        CrouchingMiddleAttack();
-        CrouchingHighAttack();
+    }
+
+    void StandingAttacks()
+    {
         StandingLightAttack();
         StandingMiddleAttack();
         StandingHighAttack();
+    }
+
+    void CrouchingAttacks()
+    {
+        CrouchingLightAttack();
+        CrouchingMiddleAttack();
+        CrouchingHighAttack();
+    }
+
+    void JumpingAttacks()
+    {
+        JumpingLightAttack();
+        JumpingMiddleAttack();
+        JumpingHighAttack();
     }
 }

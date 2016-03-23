@@ -21,6 +21,9 @@ TagManager:
   - StandingLightAttack
   - StandingMiddleAttack
   - StandingHighAttack
+  - JumpingLightAttack
+  - JumpingMiddleAttack
+  - JumpingHighAttack
   layers:
   - Default
   - TransparentFX

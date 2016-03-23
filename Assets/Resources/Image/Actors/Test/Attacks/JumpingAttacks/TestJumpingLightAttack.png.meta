@@ -1,0 +1,133 @@
+fileFormatVersion: 2
+guid: 180f7bf130c53894d94d8459b74fe5c1
+timeCreated: 1458717371
+licenseType: Free
+TextureImporter:
+  fileIDToRecycleName:
+    21300000: TestJampingLightAttack_0
+    21300002: TestJampingLightAttack_1
+    21300004: TestJampingLightAttack_2
+    21300006: TestJampingLightAttack_3
+  serializedVersion: 2
+  mipmaps:
+    mipMapMode: 0
+    enableMipMap: 0
+    linearTexture: 0
+    correctGamma: 0
+    fadeOut: 0
+    borderMipMap: 0
+    mipMapFadeDistanceStart: 1
+    mipMapFadeDistanceEnd: 3
+  bumpmap:
+    convertToNormalMap: 0
+    externalNormalMap: 0
+    heightScale: 0.25
+    normalMapFilter: 0
+  isReadable: 0
+  grayScaleToAlpha: 0
+  generateCubemap: 0
+  cubemapConvolution: 0
+  cubemapConvolutionSteps: 7
+  cubemapConvolutionExponent: 1.5
+  seamlessCubemap: 0
+  textureFormat: -3
+  maxTextureSize: 2048
+  textureSettings:
+    filterMode: 0
+    aniso: 16
+    mipBias: -1
+    wrapMode: 1
+  nPOTScale: 0
+  lightmap: 0
+  rGBM: 0
+  compressionQuality: 50
+  allowsAlphaSplitting: 0
+  spriteMode: 2
+  spriteExtrude: 1
+  spriteMeshType: 1
+  alignment: 0
+  spritePivot: {x: 0.5, y: 0.5}
+  spriteBorder: {x: 0, y: 0, z: 0, w: 0}
+  spritePixelsToUnits: 100
+  alphaIsTransparency: 1
+  textureType: 8
+  buildTargetSettings: []
+  spriteSheet:
+    sprites:
+    - name: TestJampingLightAttack_0
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 0
+        width: 80
+        height: 80
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline:
+      - - {x: -40, y: 31}
+        - {x: -40, y: -20}
+        - {x: -36, y: -25}
+        - {x: 0, y: -33}
+        - {x: 29, y: -33}
+        - {x: 31, y: -31}
+        - {x: 32, y: -29}
+        - {x: 32, y: 31}
+    - name: TestJampingLightAttack_1
+      rect:
+        serializedVersion: 2
+        x: 80
+        y: 0
+        width: 80
+        height: 80
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline:
+      - - {x: -40, y: 31}
+        - {x: -40, y: -20}
+        - {x: -36, y: -25}
+        - {x: 0, y: -33}
+        - {x: 29, y: -33}
+        - {x: 31, y: -31}
+        - {x: 32, y: -29}
+        - {x: 32, y: 31}
+    - name: TestJampingLightAttack_2
+      rect:
+        serializedVersion: 2
+        x: 160
+        y: 0
+        width: 80
+        height: 80
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline:
+      - - {x: 40, y: -30}
+        - {x: 40, y: 13}
+        - {x: 35, y: 33}
+        - {x: -17, y: 33}
+        - {x: -40, y: 26}
+        - {x: -40, y: -30}
+    - name: TestJampingLightAttack_3
+      rect:
+        serializedVersion: 2
+        x: 240
+        y: 0
+        width: 80
+        height: 80
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline:
+      - - {x: 40, y: -30}
+        - {x: 40, y: 13}
+        - {x: 35, y: 33}
+        - {x: -17, y: 33}
+        - {x: -40, y: 26}
+        - {x: -40, y: -30}
+    outline: []
+  spritePackingTag: 
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 

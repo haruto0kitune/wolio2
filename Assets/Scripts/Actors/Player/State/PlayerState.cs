@@ -25,6 +25,9 @@ public class PlayerState : MonoBehaviour
     public ReactiveProperty<bool> IsStandingLightAttack;
     public ReactiveProperty<bool> IsStandingMiddleAttack;
     public ReactiveProperty<bool> IsStandingHighAttack;
+    public ReactiveProperty<bool> IsJumpingLightAttack;
+    public ReactiveProperty<bool> IsJumpingMiddleAttack;
+    public ReactiveProperty<bool> IsJumpingHighAttack;
     public ReactiveProperty<bool> FacingRight;
 
     public Transform GroundCheck;
@@ -63,6 +66,9 @@ public class PlayerState : MonoBehaviour
         IsStandingLightAttack = new ReactiveProperty<bool>(false);
         IsStandingMiddleAttack = new ReactiveProperty<bool>(false);
         IsStandingHighAttack = new ReactiveProperty<bool>(false);
+        IsJumpingLightAttack = new ReactiveProperty<bool>(false);
+        IsJumpingMiddleAttack = new ReactiveProperty<bool>(false);
+        IsJumpingHighAttack = new ReactiveProperty<bool>(false);
         FacingRight = new ReactiveProperty<bool>(true);
 
         IsGrounded = this.ObserveEveryValueChanged(x => (bool)Physics2D.Linecast(GroundCheck.position, GroundCheck.position, PlayerConfig.WhatIsGround)).ToReactiveProperty();
@@ -73,6 +79,9 @@ public class PlayerState : MonoBehaviour
         IsStandingLightAttack = this.ObserveEveryValueChanged(x => Animator.GetBool("IsStandingLightAttack")).ToReactiveProperty();
         IsStandingMiddleAttack = this.ObserveEveryValueChanged(x => Animator.GetBool("IsStandingMiddleAttack")).ToReactiveProperty();
         IsStandingHighAttack = this.ObserveEveryValueChanged(x => Animator.GetBool("IsStandingHighAttack")).ToReactiveProperty();
+        IsJumpingLightAttack = this.ObserveEveryValueChanged(x => Animator.GetBool("IsJumpingLightAttack")).ToReactiveProperty();
+        IsJumpingMiddleAttack = this.ObserveEveryValueChanged(x => Animator.GetBool("IsJumpingMiddleAttack")).ToReactiveProperty();
+        IsJumpingHighAttack = this.ObserveEveryValueChanged(x => Animator.GetBool("IsJumpingHighAttack")).ToReactiveProperty();
         FacingRight = SpriteRenderer.ObserveEveryValueChanged(x => x.flipX).ToReactiveProperty();
     }
 
