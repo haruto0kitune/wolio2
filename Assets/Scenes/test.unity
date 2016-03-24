@@ -3758,6 +3758,7 @@ GameObject:
   - 58: {fileID: 1241014496}
   - 50: {fileID: 1241014495}
   - 114: {fileID: 1241014494}
+  - 95: {fileID: 1241014498}
   m_Layer: 12
   m_Name: Piyo (1)
   m_TagString: Enemy
@@ -3849,6 +3850,23 @@ SpriteRenderer:
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
+--- !u!95 &1241014498
+Animator:
+  serializedVersion: 3
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1241014492}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: 5b65a2d342d5221458ed93bbd73ef8e9, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
 --- !u!1001 &1265922275
 Prefab:
   m_ObjectHideFlags: 0
@@ -5447,6 +5465,7 @@ GameObject:
   - 58: {fileID: 1838357789}
   - 50: {fileID: 1838357788}
   - 114: {fileID: 1838357791}
+  - 95: {fileID: 1838357792}
   m_Layer: 12
   m_Name: Piyo
   m_TagString: Enemy
@@ -5538,6 +5557,23 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 105e77e877cbdb342a346e7e93ec57eb, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!95 &1838357792
+Animator:
+  serializedVersion: 3
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1838357786}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 0}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
 --- !u!4 &1867458542 stripped
 Transform:
   m_PrefabParentObject: {fileID: 418598, guid: 22cec0eebabc04d4db2ca1654ceef887, type: 2}
