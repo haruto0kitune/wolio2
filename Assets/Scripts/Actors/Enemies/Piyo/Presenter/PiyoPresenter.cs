@@ -1,7 +1,7 @@
 ﻿using UnityEngine;
 using System.Collections;
 
-public partial class EnemyPresenter : MonoBehaviour
+public partial class PiyoPresenter : MonoBehaviour
 {
     void Start()
     {

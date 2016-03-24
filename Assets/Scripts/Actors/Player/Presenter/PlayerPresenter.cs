@@ -65,5 +65,6 @@ public partial class PlayerPresenter : MonoBehaviour
     {
         JumpingLightAttackPresenter();
         JumpingMiddleAttackPresenter();
+        JumpingHighAttackPresenter();
     }
 }

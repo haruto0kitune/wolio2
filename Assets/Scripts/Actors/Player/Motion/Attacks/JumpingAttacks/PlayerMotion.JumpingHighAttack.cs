@@ -11,16 +11,21 @@ public partial class PlayerMotion : MonoBehaviour
         _GameObject.transform.position = transform.position;
 
         var JumpingHighAttackBounds = _GameObject.AddComponent<BoxCollider2D>();
+        var JumpingHighAttackBounds2 = _GameObject.AddComponent<BoxCollider2D>();
 
         if (PlayerState.FacingRight.Value)
         {
-            JumpingHighAttackBounds.offset = new Vector2(0.436434f, -0.364021f);
-            JumpingHighAttackBounds.size = new Vector2(0.5299196f, 0.02498758f);
+            JumpingHighAttackBounds.offset = new Vector2(0.03010678f, -0.3378794f);
+            JumpingHighAttackBounds.size = new Vector2(0.5696427f, 0.08597362f);
+            JumpingHighAttackBounds2.offset = new Vector2(0.2714231f, -0.2464964f);
+            JumpingHighAttackBounds2.size = new Vector2(0.1574482f, 0.1962221f);
         }
         else
         {
-            JumpingHighAttackBounds.offset = new Vector2(-0.436434f, -0.364021f);
-            JumpingHighAttackBounds.size = new Vector2(0.5299196f, 0.02498758f);
+            JumpingHighAttackBounds.offset = new Vector2(-0.03010678f, -0.3378794f);
+            JumpingHighAttackBounds.size = new Vector2(0.5696427f, 0.08597362f);
+            JumpingHighAttackBounds2.offset = new Vector2(-0.2714231f, -0.2464964f);
+            JumpingHighAttackBounds2.size = new Vector2(0.1574482f, 0.1962221f);
         }
 
         JumpingHighAttackBounds.isTrigger = true;

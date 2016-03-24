@@ -3,7 +3,7 @@ using System.Collections;
 using UniRx;
 using UniRx.Triggers;
 
-public partial class EnemyPresenter : MonoBehaviour
+public partial class PiyoPresenter : MonoBehaviour
 {
     void DamagePresenter()
     {
