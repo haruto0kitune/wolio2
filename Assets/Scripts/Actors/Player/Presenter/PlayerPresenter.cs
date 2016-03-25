@@ -13,7 +13,6 @@ public partial class PlayerPresenter : MonoBehaviour
     PlayerConfig PlayerConfig;
     PlayerMotion PlayerMotion;
     Key Key;
-    Animator Animator;
     Rigidbody2D Rigidbody2D;
     SpriteRenderer SpriteRenderer;
 
@@ -23,7 +22,6 @@ public partial class PlayerPresenter : MonoBehaviour
         PlayerConfig = GetComponent<PlayerConfig>();
         PlayerMotion = GetComponent<PlayerMotion>();
         Key = GetComponent<Key>();
-        Animator = GetComponent<Animator>();
         Rigidbody2D = GetComponent<Rigidbody2D>();
         SpriteRenderer = GetComponent<SpriteRenderer>();
     }

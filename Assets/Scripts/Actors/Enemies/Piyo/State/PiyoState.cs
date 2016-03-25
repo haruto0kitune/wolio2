@@ -14,6 +14,8 @@ public class PiyoState : MonoBehaviour
 
     void Awake()
     {
+        SpriteRenderer = GetComponent<SpriteRenderer>();
+
         FacingRight = SpriteRenderer.ObserveEveryValueChanged(x => x.flipX).ToReactiveProperty();
         Direction = FacingRight.Select(x => x ? 1f : -1f).ToReactiveProperty(-1f);
     }

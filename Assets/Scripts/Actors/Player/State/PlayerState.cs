@@ -33,10 +33,8 @@ public class PlayerState : MonoBehaviour
     public Transform GroundCheck;
     public Transform CeilingCheck;
     private PlayerConfig PlayerConfig;
-    private Key Key;
     private SpriteRenderer SpriteRenderer;
     private Rigidbody2D Rigidbody2D;
-    private BoxCollider2D BoxCollider2D;
     private Animator Animator;
 
     void Awake()
@@ -44,10 +42,8 @@ public class PlayerState : MonoBehaviour
         GroundCheck = transform.Find("GroundCheck");
         CeilingCheck = transform.Find("CeilingCheck");
         PlayerConfig = GetComponent<PlayerConfig>();
-        Key = GetComponent<Key>();
         SpriteRenderer = GetComponent<SpriteRenderer>();
         Rigidbody2D = GetComponent<Rigidbody2D>();
-        BoxCollider2D = GetComponent<BoxCollider2D>();
         Animator = GetComponent<Animator>();
 
         IsDead = new ReactiveProperty<bool>(false);
