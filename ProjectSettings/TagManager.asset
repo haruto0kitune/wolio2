@@ -15,15 +15,16 @@ TagManager:
   - Fireball
   - Gun
   - Enemy
-  - CrouchingLightAttack
-  - CrouchingMiddleAttack
-  - CrouchingHighAttack
-  - StandingLightAttack
-  - StandingMiddleAttack
-  - StandingHighAttack
-  - JumpingLightAttack
-  - JumpingMiddleAttack
-  - JumpingHighAttack
+  - Attacks/CrouchingAttacks/CrouchingLightAttack
+  - Attacks/CrouchingAttacks/CrouchingMiddleAttack
+  - Attacks/CrouchingAttacks/CrouchingHighAttack
+  - Attacks/StandingAttacks/StandingLightAttack
+  - Attacks/StandingAttacks/StandingMiddleAttack
+  - Attacks/StandingAttacks/StandingHighAttack
+  - Attacks/JumpingAttacks/JumpingLightAttack
+  - Attacks/JumpingAttacks/JumpingMiddleAttack
+  - Attacks/JumpingAttacks/JumpingHighAttack
+  - Block
   layers:
   - Default
   - TransparentFX

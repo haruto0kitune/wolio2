@@ -29,19 +29,19 @@ public partial class PlayerAnimation : MonoBehaviour
         ObservableStateMachineTrigger
             .OnStateUpdateAsObservable()
             .Where(x => x.StateInfo.IsName("Base Layer.Stand"))
-            .Where(x => Key.A)
+            .Where(x => Key.Z)
             .Subscribe(_ => Animator.SetBool("IsStandingLightAttack", true));
 
         ObservableStateMachineTrigger
             .OnStateUpdateAsObservable()
             .Where(x => x.StateInfo.IsName("Base Layer.Stand"))
-            .Where(x => Key.S)
+            .Where(x => Key.X)
             .Subscribe(_ => Animator.SetBool("IsStandingMiddleAttack", true));
 
         ObservableStateMachineTrigger
             .OnStateUpdateAsObservable()
             .Where(x => x.StateInfo.IsName("Base Layer.Stand"))
-            .Where(x => Key.D)
+            .Where(x => Key.C)
             .Subscribe(_ => Animator.SetBool("IsStandingHighAttack", true));
     }
 }

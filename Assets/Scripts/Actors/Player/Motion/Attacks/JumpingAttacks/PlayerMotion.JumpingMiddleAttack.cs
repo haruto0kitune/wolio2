@@ -6,7 +6,7 @@ public partial class PlayerMotion : MonoBehaviour
     public IEnumerator JumpingMiddleAttack()
     {
         var _GameObject = new GameObject();
-        _GameObject.tag = "JumpingMiddleAttack";
+        _GameObject.tag = "Attacks/JumpingAttacks/JumpingMiddleAttack";
         _GameObject.transform.parent = transform;
         _GameObject.transform.position = transform.position;
 

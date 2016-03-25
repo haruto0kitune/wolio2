@@ -8,39 +8,39 @@ public partial class PiyoPresenter : MonoBehaviour
     void DamagePresenter()
     {
         this.OnTriggerEnter2DAsObservable()
-            .Where(x => x.gameObject.tag == "CrouchingLightAttack")
+            .Where(x => x.gameObject.tag == "Attacks/CrouchingAttacks/CrouchingLightAttack")
             .Subscribe(_ => Destroy(this.gameObject));
 
         this.OnTriggerEnter2DAsObservable()
-            .Where(x => x.gameObject.tag == "CrouchingMiddleAttack")
+            .Where(x => x.gameObject.tag == "Attacks/CrouchingAttacks/CrouchingMiddleAttack")
             .Subscribe(_ => Destroy(this.gameObject));
 
         this.OnTriggerEnter2DAsObservable()
-            .Where(x => x.gameObject.tag == "CrouchingHighAttack")
+            .Where(x => x.gameObject.tag == "Attacks/CrouchingAttacks/CrouchingHighAttack")
             .Subscribe(_ => Destroy(this.gameObject));
 
         this.OnTriggerEnter2DAsObservable()
-            .Where(x => x.gameObject.tag == "StandingLightAttack")
+            .Where(x => x.gameObject.tag == "Attacks/StandingAttacks/StandingLightAttack")
             .Subscribe(_ => Destroy(this.gameObject));
 
         this.OnTriggerEnter2DAsObservable()
-            .Where(x => x.gameObject.tag == "StandingMiddleAttack")
+            .Where(x => x.gameObject.tag == "Attacks/StandingAttacks/StandingMiddleAttack")
             .Subscribe(_ => Destroy(this.gameObject));
 
         this.OnTriggerEnter2DAsObservable()
-            .Where(x => x.gameObject.tag == "StandingHighAttack")
+            .Where(x => x.gameObject.tag == "Attacks/StandingAttacks/StandingHighAttack")
             .Subscribe(_ => Destroy(this.gameObject));
 
         this.OnTriggerEnter2DAsObservable()
-            .Where(x => x.gameObject.tag == "JumpingLightAttack")
+            .Where(x => x.gameObject.tag == "Attacks/JumpingAttacks/JumpingLightAttack")
             .Subscribe(_ => Destroy(this.gameObject));
 
         this.OnTriggerEnter2DAsObservable()
-            .Where(x => x.gameObject.tag == "JumpingMiddleAttack")
+            .Where(x => x.gameObject.tag == "Attacks/JumpingAttacks/JumpingMiddleAttack")
             .Subscribe(_ => Destroy(this.gameObject));
 
         this.OnTriggerEnter2DAsObservable()
-            .Where(x => x.gameObject.tag == "JumpingHighAttack")
+            .Where(x => x.gameObject.tag == "Attacks/JumpingAttacks/JumpingHighAttack")
             .Subscribe(_ => Destroy(this.gameObject));
     }
 }

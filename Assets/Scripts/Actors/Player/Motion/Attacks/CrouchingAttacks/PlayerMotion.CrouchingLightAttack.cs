@@ -6,7 +6,7 @@ public partial class PlayerMotion : MonoBehaviour
     public IEnumerator CrouchingLightAttack()
     {
         var _GameObject = new GameObject();
-        _GameObject.tag = "CrouchingLightAttack";
+        _GameObject.tag = "Attacks/CrouchingAttacks/CrouchingLightAttack";
         _GameObject.transform.parent = transform;
         _GameObject.transform.position = transform.position;
 

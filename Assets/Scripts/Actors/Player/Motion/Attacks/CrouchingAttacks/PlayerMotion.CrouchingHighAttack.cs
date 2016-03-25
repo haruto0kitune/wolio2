@@ -6,7 +6,7 @@ public partial class PlayerMotion : MonoBehaviour
     public IEnumerator CrouchingHighAttack()
     {
         var _GameObject = new GameObject();
-        _GameObject.tag = "CrouchingHighAttack";
+        _GameObject.tag = "Attacks/CrouchingAttacks/CrouchingHighAttack";
         _GameObject.transform.parent = transform;
         _GameObject.transform.position = transform.position;
 

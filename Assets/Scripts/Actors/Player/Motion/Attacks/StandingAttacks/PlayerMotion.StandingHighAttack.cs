@@ -6,7 +6,7 @@ public partial class PlayerMotion : MonoBehaviour
     public IEnumerator StandingHighAttack()
     {
         var _GameObject = new GameObject();
-        _GameObject.tag = "StandingHighAttack";
+        _GameObject.tag = "Attacks/StandingAttacks/StandingHighAttack";
         _GameObject.transform.parent = transform;
         _GameObject.transform.position = transform.position;
 
