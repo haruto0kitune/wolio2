@@ -8,6 +8,7 @@ public partial class PiyoPresenter : MonoBehaviour
     void RunPresenter()
     {
         this.FixedUpdateAsObservable()
-            .Subscribe(_ => PiyoMotion.Run);
+            .Do(x => Debug.Log("PiyoState.Direction: "+PiyoState.Direction.Value))
+            .Subscribe(_ => PiyoMotion.Run(PiyoConfig.Speed, PiyoState.Direction.Value));
     }
 }
