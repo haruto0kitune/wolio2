@@ -11,6 +11,7 @@ public partial class PlayerMotion : MonoBehaviour
         _GameObject.transform.position = transform.position;
 
         var JumpingLightAttackBounds = _GameObject.AddComponent<BoxCollider2D>();
+        JumpingLightAttackBounds.isTrigger = true;
 
         if (PlayerState.FacingRight.Value)
         {

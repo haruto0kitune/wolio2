@@ -12,6 +12,8 @@ public partial class PlayerMotion : MonoBehaviour
 
         var JumpingHighAttackBounds = _GameObject.AddComponent<BoxCollider2D>();
         var JumpingHighAttackBounds2 = _GameObject.AddComponent<BoxCollider2D>();
+        JumpingHighAttackBounds.isTrigger = true;
+        JumpingHighAttackBounds2.isTrigger = true;
 
         if (PlayerState.FacingRight.Value)
         {

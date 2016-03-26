@@ -11,6 +11,7 @@ public partial class PlayerMotion : MonoBehaviour
         _GameObject.transform.position = transform.position;
 
         var JumpingMiddleAttackBounds = _GameObject.AddComponent<BoxCollider2D>();
+        JumpingMiddleAttackBounds.isTrigger = true;
 
         if (PlayerState.FacingRight.Value)
         {

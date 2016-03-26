@@ -11,6 +11,7 @@ public partial class PlayerMotion : MonoBehaviour
         _GameObject.transform.position = transform.position;
 
         var CrouchingLightAttackBounds = _GameObject.AddComponent<BoxCollider2D>();
+        CrouchingLightAttackBounds.isTrigger = true;
 
         if (PlayerState.FacingRight.Value)
         {

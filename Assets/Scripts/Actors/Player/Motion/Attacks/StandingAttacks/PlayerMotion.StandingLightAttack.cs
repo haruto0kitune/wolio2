@@ -11,6 +11,7 @@ public partial class PlayerMotion : MonoBehaviour
         _GameObject.transform.position = transform.position;
 
         var StandingLightAttackBounds = _GameObject.AddComponent<BoxCollider2D>();
+        StandingLightAttackBounds.isTrigger = true;
 
         if (PlayerState.FacingRight.Value)
         {
