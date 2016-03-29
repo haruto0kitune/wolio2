@@ -661,6 +661,7 @@ GameObject:
   - 50: {fileID: 332172704}
   - 58: {fileID: 332172703}
   - 114: {fileID: 332172705}
+  - 61: {fileID: 332172706}
   m_Layer: 12
   m_Name: FlyingPiyo
   m_TagString: Enemy
@@ -832,6 +833,20 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: fe24cbc6744416543b336c33b0cb4fcb, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!61 &332172706
+BoxCollider2D:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 332172694}
+  m_Enabled: 1
+  m_Density: 1
+  m_Material: {fileID: 0}
+  m_IsTrigger: 1
+  m_UsedByEffector: 0
+  m_Offset: {x: -0.7874255, y: -1.2709758}
+  serializedVersion: 2
+  m_Size: {x: 0.09145689, y: 0.5164976}
 --- !u!4 &345201849 stripped
 Transform:
   m_PrefabParentObject: {fileID: 418598, guid: 22cec0eebabc04d4db2ca1654ceef887, type: 2}
@@ -4258,6 +4273,10 @@ Prefab:
     - target: {fileID: 5098402, guid: aac78e40511bf4c4a8c81a4722c22f25, type: 2}
       propertyPath: m_Constraints
       value: 4
+      objectReference: {fileID: 0}
+    - target: {fileID: 6116720, guid: aac78e40511bf4c4a8c81a4722c22f25, type: 2}
+      propertyPath: m_Enabled
+      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: aac78e40511bf4c4a8c81a4722c22f25, type: 2}
