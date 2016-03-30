@@ -1,0 +1,126 @@
+fileFormatVersion: 2
+guid: 0f27de8748717bd4681b4998c3a1b780
+timeCreated: 1459325640
+licenseType: Free
+TextureImporter:
+  fileIDToRecycleName:
+    21300000: TestCrouchingDamage_0
+    21300002: TestCrouchingDamage_1
+    21300004: TestCrouchingDamage_2
+  serializedVersion: 2
+  mipmaps:
+    mipMapMode: 0
+    enableMipMap: 0
+    linearTexture: 0
+    correctGamma: 0
+    fadeOut: 0
+    borderMipMap: 0
+    mipMapFadeDistanceStart: 1
+    mipMapFadeDistanceEnd: 3
+  bumpmap:
+    convertToNormalMap: 0
+    externalNormalMap: 0
+    heightScale: 0.25
+    normalMapFilter: 0
+  isReadable: 0
+  grayScaleToAlpha: 0
+  generateCubemap: 0
+  cubemapConvolution: 0
+  cubemapConvolutionSteps: 7
+  cubemapConvolutionExponent: 1.5
+  seamlessCubemap: 0
+  textureFormat: -3
+  maxTextureSize: 2048
+  textureSettings:
+    filterMode: 0
+    aniso: 16
+    mipBias: -1
+    wrapMode: 1
+  nPOTScale: 0
+  lightmap: 0
+  rGBM: 0
+  compressionQuality: 50
+  allowsAlphaSplitting: 0
+  spriteMode: 2
+  spriteExtrude: 1
+  spriteMeshType: 1
+  alignment: 0
+  spritePivot: {x: 0.5, y: 0.5}
+  spriteBorder: {x: 0, y: 0, z: 0, w: 0}
+  spritePixelsToUnits: 100
+  alphaIsTransparency: 1
+  textureType: 8
+  buildTargetSettings: []
+  spriteSheet:
+    sprites:
+    - name: TestCrouchingDamage_0
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 0
+        width: 80
+        height: 80
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline:
+      - - {x: 21, y: -37}
+        - {x: 25, y: -37}
+        - {x: 32, y: -36}
+        - {x: 32, y: 7}
+        - {x: 21, y: 14}
+        - {x: 2, y: 14}
+        - {x: -7, y: 4}
+        - {x: -4, y: -9}
+        - {x: 3, y: -15}
+        - {x: -15, y: -24}
+        - {x: -15, y: -33}
+        - {x: -12, y: -40}
+        - {x: 22, y: -40}
+    - name: TestCrouchingDamage_1
+      rect:
+        serializedVersion: 2
+        x: 80
+        y: 0
+        width: 80
+        height: 80
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline:
+      - - {x: -9, y: 12}
+        - {x: -11, y: 8}
+        - {x: -11, y: -37}
+        - {x: -8, y: -40}
+        - {x: 31, y: -40}
+        - {x: 31, y: 12}
+    - name: TestCrouchingDamage_2
+      rect:
+        serializedVersion: 2
+        x: 160
+        y: 0
+        width: 80
+        height: 80
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline:
+      - - {x: 21, y: -37}
+        - {x: 25, y: -37}
+        - {x: 28, y: -36}
+        - {x: 32, y: -33}
+        - {x: 32, y: -30}
+        - {x: 34, y: -20}
+        - {x: 34, y: 9}
+        - {x: 32, y: 12}
+        - {x: 8, y: 12}
+        - {x: -6, y: 4}
+        - {x: -11, y: -20}
+        - {x: -11, y: -37}
+        - {x: -8, y: -40}
+        - {x: 22, y: -40}
+    outline: []
+  spritePackingTag: 
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
