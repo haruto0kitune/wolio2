@@ -43,5 +43,11 @@ public partial class PlayerAnimation : MonoBehaviour
             .Where(x => x.StateInfo.IsName("Base Layer.Stand"))
             .Where(x => Key.C)
             .Subscribe(_ => Animator.SetBool("IsStandingHighAttack", true));
+
+        ObservableStateMachineTrigger
+            .OnStateUpdateAsObservable()
+            .Where(x => x.StateInfo.IsName("Base Layer.Stand"))
+            .Where(x => Key.LeftShift)
+            .Subscribe(_ => Animator.SetBool("IsStandingGuard", true));
     }
 }

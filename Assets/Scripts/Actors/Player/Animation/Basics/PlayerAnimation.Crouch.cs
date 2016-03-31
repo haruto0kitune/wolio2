@@ -38,5 +38,11 @@ public partial class PlayerAnimation : MonoBehaviour
             .Where(x => x.StateInfo.IsName("Base Layer.Crouch"))
             .Where(x => Key.C)
             .Subscribe(_ => Animator.SetBool("IsCrouchingHighAttack", true));
+
+        ObservableStateMachineTrigger
+            .OnStateUpdateAsObservable()
+            .Where(x => x.StateInfo.IsName("Base Layer.Crouch"))
+            .Where(x => Key.LeftShift && (Key.Vertical.Value == -1f))
+            .Subscribe(_ => Animator.SetBool("IsCrouchingGuard", true));
     }
 }

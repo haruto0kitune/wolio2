@@ -15,6 +15,7 @@ public class Key : MonoBehaviour
     public bool Z;
     public bool X;
     public bool C;
+    public bool LeftShift;
 
     public bool Space;
 
@@ -54,6 +55,9 @@ public class Key : MonoBehaviour
 
         this.UpdateAsObservable()
             .Subscribe(_ => C = CrossPlatformInputManager.GetButtonDown("C"));
+
+        this.UpdateAsObservable()
+            .Subscribe(_ => LeftShift = CrossPlatformInputManager.GetButton("LeftShift"));
 
         this.UpdateAsObservable()
             .Subscribe(_ => Space = CrossPlatformInputManager.GetButton("Space"));

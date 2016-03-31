@@ -26,6 +26,7 @@ public partial class PlayerAnimation : MonoBehaviour
         StandingAttacks();
         CrouchingAttacks();
         JumpingAttacks();
+        Guards();
     }
 
     void Basics()
@@ -56,5 +57,12 @@ public partial class PlayerAnimation : MonoBehaviour
         JumpingLightAttack();
         JumpingMiddleAttack();
         JumpingHighAttack();
+    }
+
+    void Guards()
+    {
+        StandingGuard();
+        CrouchingGuard();
+        JumpingGuard();
     }
 }
