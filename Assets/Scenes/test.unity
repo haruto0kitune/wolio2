@@ -4684,6 +4684,20 @@ SpriteRenderer:
 GameObject:
   m_PrefabParentObject: {fileID: 147978, guid: aac78e40511bf4c4a8c81a4722c22f25, type: 2}
   m_PrefabInternal: {fileID: 1355066871}
+--- !u!61 &1464809451
+BoxCollider2D:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1464809438}
+  m_Enabled: 0
+  m_Density: 1
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_UsedByEffector: 0
+  m_Offset: {x: -0.0024616718, y: 0.009845734}
+  serializedVersion: 2
+  m_Size: {x: 0.30279326, y: 0.8196913}
 --- !u!1001 &1468721147
 Prefab:
   m_ObjectHideFlags: 0

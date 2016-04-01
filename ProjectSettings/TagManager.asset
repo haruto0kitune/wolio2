@@ -26,6 +26,15 @@ TagManager:
   - Attacks/JumpingAttacks/JumpingHighAttack
   - Block
   - Wall
+  - Guards/StandingGuard
+  - Guards/CrouchingGuard
+  - Guards/JumpingGuard
+  - Damages/StandingDamage
+  - Damages/CrouchingDamage
+  - Damages/JumpingDamage
+  - AttackLevel/1
+  - AttackLevel/2
+  - AttackLevel/3
   layers:
   - Default
   - TransparentFX
