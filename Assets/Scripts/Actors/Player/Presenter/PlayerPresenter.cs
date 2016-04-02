@@ -33,6 +33,7 @@ public partial class PlayerPresenter : MonoBehaviour
         CrouchingAttacks();
         JumpingAttacks();
         Guards();
+        KnockBacks();
     }
 
     void Basics()
@@ -70,5 +71,10 @@ public partial class PlayerPresenter : MonoBehaviour
     void Guards()
     {
         StandingGuardPresenter();
+    }
+
+    void KnockBacks()
+    {
+        StandingGuardBackPresenter();
     }
 }

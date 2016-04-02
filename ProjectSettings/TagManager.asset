@@ -35,6 +35,9 @@ TagManager:
   - AttackLevel/1
   - AttackLevel/2
   - AttackLevel/3
+  - KnockBacks/GuardBacks/StandingGuardBack
+  - KnockBacks/GuardBacks/CrouchingGuardBack
+  - KnockBacks/GuardBacks/JumpingGuardBack
   layers:
   - Default
   - TransparentFX

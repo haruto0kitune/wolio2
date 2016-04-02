@@ -1,0 +1,4 @@
+Piyo Attack Collider Offset
+X 0.0003633499 Y -0.001955032
+Piyo Attack Colliser Size
+X 0.3855008 Y 0.3837207
