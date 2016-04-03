@@ -10,6 +10,15 @@ public partial class PlayerMotion : MonoBehaviour
     SpriteRenderer SpriteRenderer;
     PlayerConfig PlayerConfig;
     PlayerState PlayerState;
+    GameObject _StandingLightAttack;
+    GameObject _StandingMiddleAttack;
+    GameObject _StandingHighAttack;
+    GameObject _CrouchingLightAttack;
+    GameObject _CrouchingMiddleAttack;
+    GameObject _CrouchingHighAttack;
+    GameObject _JumpingLightAttack;
+    GameObject _JumpingMiddleAttack;
+    GameObject _JumpingHighAttack;
 
     void Awake()
     {
@@ -20,5 +29,14 @@ public partial class PlayerMotion : MonoBehaviour
         SpriteRenderer = GetComponent<SpriteRenderer>();
         PlayerConfig = GetComponent<PlayerConfig>();
         PlayerState = GetComponent<PlayerState>();
+        _StandingLightAttack = GameObject.Find("StandingLightAttack");
+        _StandingMiddleAttack = GameObject.Find("StandingMiddleAttack");
+        _StandingHighAttack = GameObject.Find("StandingHighAttack");
+        _CrouchingLightAttack = GameObject.Find("CrouchingLightAttack");
+        _CrouchingMiddleAttack = GameObject.Find("CrouchingMiddleAttack");
+        _CrouchingHighAttack = GameObject.Find("CrouchingHighAttack");
+        _JumpingLightAttack = GameObject.Find("JumpingLightAttack");
+        _JumpingMiddleAttack = GameObject.Find("JumpingMiddleAttack");
+        _JumpingHighAttack = GameObject.Find("JumpingHighAttack");
     }
 }

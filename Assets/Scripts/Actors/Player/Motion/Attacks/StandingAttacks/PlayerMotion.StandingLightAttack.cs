@@ -5,32 +5,33 @@ public partial class PlayerMotion : MonoBehaviour
 {
     public IEnumerator StandingLightAttack()
     {
-        var _GameObject = new GameObject();
+        _StandingLightAttack.SetActive(true); 
+        /*var _GameObject = new GameObject();
         _GameObject.tag = "Attacks/StandingAttacks/StandingLightAttack";
         _GameObject.transform.parent = transform;
         _GameObject.transform.position = transform.position;
 
         var StandingLightAttackBounds = _GameObject.AddComponent<BoxCollider2D>();
-        StandingLightAttackBounds.isTrigger = true;
+        StandingLightAttackBounds.isTrigger = true;*/
 
         if (PlayerState.FacingRight.Value)
         {
-            StandingLightAttackBounds.offset = new Vector2(0.1095207f, 0.03352177f);
-            StandingLightAttackBounds.size = new Vector2(0.2048863f, 0.04506044f);
+            /*StandingLightAttackBounds.offset = new Vector2(0.1095207f, 0.03352177f);
+            StandingLightAttackBounds.size = new Vector2(0.2048863f, 0.04506044f);*/
+            _StandingLightAttack.GetComponent<BoxCollider2D>().offset = new Vector2(_StandingLightAttack.GetComponent<BoxCollider2D>().offset.x, _StandingLightAttack.GetComponent<BoxCollider2D>().offset.y);
+            _StandingLightAttack.GetComponent<BoxCollider2D>().size = new Vector2(_StandingLightAttack.GetComponent<BoxCollider2D>().size.x, _StandingLightAttack.GetComponent<BoxCollider2D>().size.y);
         }
         else
         {
-            StandingLightAttackBounds.offset = new Vector2(-0.1095207f, 0.03352177f);
-            StandingLightAttackBounds.size = new Vector2(0.2048863f, 0.04506044f);
+            _StandingLightAttack.GetComponent<BoxCollider2D>().offset = new Vector2(_StandingLightAttack.GetComponent<BoxCollider2D>().offset.x * -1f, _StandingLightAttack.GetComponent<BoxCollider2D>().offset.y);
+            _StandingLightAttack.GetComponent<BoxCollider2D>().size = new Vector2(_StandingLightAttack.GetComponent<BoxCollider2D>().size.x, _StandingLightAttack.GetComponent<BoxCollider2D>().size.y);
         }
-
-        StandingLightAttackBounds.isTrigger = true;
 
         for(var i = 0;i < 3;i++)
         {
             yield return null;
         }
 
-        Destroy(_GameObject);
+        _StandingLightAttack.SetActive(false);
     }
 }
