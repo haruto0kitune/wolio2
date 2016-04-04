@@ -131,33 +131,6 @@ Prefab:
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 22cec0eebabc04d4db2ca1654ceef887, type: 2}
   m_IsPrefabParent: 0
---- !u!1 &48792566
-GameObject:
-  m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 0}
-  serializedVersion: 4
-  m_Component:
-  - 4: {fileID: 48792567}
-  m_Layer: 11
-  m_Name: CrouchingHighAttack
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!4 &48792567
-Transform:
-  m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 0}
-  m_GameObject: {fileID: 48792566}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_Children: []
-  m_Father: {fileID: 840068055}
-  m_RootOrder: 2
 --- !u!1 &85829388
 GameObject:
   m_ObjectHideFlags: 0
@@ -233,12 +206,6 @@ Prefab:
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 2976d5b37a990854f929a52ff6a98bdd, type: 2}
   m_IsPrefabParent: 0
---- !u!114 &98482835 stripped
-MonoBehaviour:
-  m_PrefabParentObject: {fileID: 11466690, guid: 631a53319fe23c94e9788cc66228b4c0,
-    type: 2}
-  m_PrefabInternal: {fileID: 350406345}
-  m_Script: {fileID: 708705254, guid: f5f67c52d1564df4a8936ccd202a3bd8, type: 3}
 --- !u!4 &150497145 stripped
 Transform:
   m_PrefabParentObject: {fileID: 418598, guid: 22cec0eebabc04d4db2ca1654ceef887, type: 2}
@@ -414,33 +381,6 @@ SpriteRenderer:
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
---- !u!1 &229893289
-GameObject:
-  m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 0}
-  serializedVersion: 4
-  m_Component:
-  - 4: {fileID: 229893290}
-  m_Layer: 11
-  m_Name: JumpingHighAttack
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!4 &229893290
-Transform:
-  m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 0}
-  m_GameObject: {fileID: 229893289}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_Children: []
-  m_Father: {fileID: 283945967}
-  m_RootOrder: 2
 --- !u!1 &236920312
 GameObject:
   m_ObjectHideFlags: 0
@@ -677,48 +617,6 @@ Transform:
   - {fileID: 332172697}
   m_Father: {fileID: 1734839811}
   m_RootOrder: 2
---- !u!1 &273125186
-GameObject:
-  m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 0}
-  serializedVersion: 4
-  m_Component:
-  - 4: {fileID: 273125187}
-  - 61: {fileID: 273125188}
-  m_Layer: 11
-  m_Name: StandingLightAttack
-  m_TagString: AttackLevel/1
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!4 &273125187
-Transform:
-  m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 0}
-  m_GameObject: {fileID: 273125186}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_Children: []
-  m_Father: {fileID: 833227336}
-  m_RootOrder: 0
---- !u!61 &273125188
-BoxCollider2D:
-  m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 0}
-  m_GameObject: {fileID: 273125186}
-  m_Enabled: 1
-  m_Density: 1
-  m_Material: {fileID: 0}
-  m_IsTrigger: 1
-  m_UsedByEffector: 0
-  m_Offset: {x: 0.1095207, y: 0.03352177}
-  serializedVersion: 2
-  m_Size: {x: 0.2048863, y: 0.04506044}
 --- !u!1001 &276020471
 Prefab:
   m_ObjectHideFlags: 0
@@ -781,36 +679,6 @@ Prefab:
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 5b0be34a1bdd14646bea4af5665ef78a, type: 2}
   m_IsPrefabParent: 0
---- !u!1 &283945966
-GameObject:
-  m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 0}
-  serializedVersion: 4
-  m_Component:
-  - 4: {fileID: 283945967}
-  m_Layer: 11
-  m_Name: JumpingAttacks
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!4 &283945967
-Transform:
-  m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 0}
-  m_GameObject: {fileID: 283945966}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_Children:
-  - {fileID: 2104571647}
-  - {fileID: 1039239640}
-  - {fileID: 229893290}
-  m_Father: {fileID: 1479197699}
-  m_RootOrder: 2
 --- !u!4 &328620981 stripped
 Transform:
   m_PrefabParentObject: {fileID: 472794, guid: 7e4733219325f204ab5d78daadf39d8f, type: 2}
@@ -2932,103 +2800,10 @@ SpriteRenderer:
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
---- !u!1 &833227335
-GameObject:
-  m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 0}
-  serializedVersion: 4
-  m_Component:
-  - 4: {fileID: 833227336}
-  m_Layer: 11
-  m_Name: StandingAttacks
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!4 &833227336
-Transform:
-  m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 0}
-  m_GameObject: {fileID: 833227335}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_Children:
-  - {fileID: 273125187}
-  - {fileID: 2007781102}
-  - {fileID: 1956882770}
-  m_Father: {fileID: 1479197699}
-  m_RootOrder: 0
 --- !u!4 &837509765 stripped
 Transform:
   m_PrefabParentObject: {fileID: 431898, guid: 5b0be34a1bdd14646bea4af5665ef78a, type: 2}
   m_PrefabInternal: {fileID: 276020471}
---- !u!1 &840068054
-GameObject:
-  m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 0}
-  serializedVersion: 4
-  m_Component:
-  - 4: {fileID: 840068055}
-  m_Layer: 11
-  m_Name: CrouchingAttacks
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!4 &840068055
-Transform:
-  m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 0}
-  m_GameObject: {fileID: 840068054}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_Children:
-  - {fileID: 1196694282}
-  - {fileID: 870714702}
-  - {fileID: 48792567}
-  m_Father: {fileID: 1479197699}
-  m_RootOrder: 1
---- !u!1 &870714701
-GameObject:
-  m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 0}
-  serializedVersion: 4
-  m_Component:
-  - 4: {fileID: 870714702}
-  m_Layer: 11
-  m_Name: CrouchingMiddleAttack
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!4 &870714702
-Transform:
-  m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 0}
-  m_GameObject: {fileID: 870714701}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_Children: []
-  m_Father: {fileID: 840068055}
-  m_RootOrder: 1
---- !u!114 &875997001 stripped
-MonoBehaviour:
-  m_PrefabParentObject: {fileID: 11430634, guid: 631a53319fe23c94e9788cc66228b4c0,
-    type: 2}
-  m_PrefabInternal: {fileID: 350406345}
-  m_Script: {fileID: 708705254, guid: f5f67c52d1564df4a8936ccd202a3bd8, type: 3}
 --- !u!1001 &890923650
 Prefab:
   m_ObjectHideFlags: 0
@@ -3571,33 +3346,6 @@ SpriteRenderer:
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
---- !u!1 &1039239639
-GameObject:
-  m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 0}
-  serializedVersion: 4
-  m_Component:
-  - 4: {fileID: 1039239640}
-  m_Layer: 11
-  m_Name: JumpingMiddleAttack
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!4 &1039239640
-Transform:
-  m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 0}
-  m_GameObject: {fileID: 1039239639}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_Children: []
-  m_Father: {fileID: 283945967}
-  m_RootOrder: 1
 --- !u!1001 &1050811351
 Prefab:
   m_ObjectHideFlags: 0
@@ -3871,33 +3619,6 @@ Transform:
   - {fileID: 612170138}
   m_Father: {fileID: 723504207}
   m_RootOrder: 4
---- !u!1 &1196694281
-GameObject:
-  m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 0}
-  serializedVersion: 4
-  m_Component:
-  - 4: {fileID: 1196694282}
-  m_Layer: 11
-  m_Name: CrouchingLightAttack
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!4 &1196694282
-Transform:
-  m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 0}
-  m_GameObject: {fileID: 1196694281}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_Children: []
-  m_Father: {fileID: 840068055}
-  m_RootOrder: 0
 --- !u!4 &1201353240 stripped
 Transform:
   m_PrefabParentObject: {fileID: 418598, guid: 22cec0eebabc04d4db2ca1654ceef887, type: 2}
@@ -4209,12 +3930,6 @@ SpriteRenderer:
 Transform:
   m_PrefabParentObject: {fileID: 472794, guid: 7e4733219325f204ab5d78daadf39d8f, type: 2}
   m_PrefabInternal: {fileID: 1813777302}
---- !u!114 &1335071290 stripped
-MonoBehaviour:
-  m_PrefabParentObject: {fileID: 11491276, guid: 631a53319fe23c94e9788cc66228b4c0,
-    type: 2}
-  m_PrefabInternal: {fileID: 350406345}
-  m_Script: {fileID: 708705254, guid: f5f67c52d1564df4a8936ccd202a3bd8, type: 3}
 --- !u!4 &1336481676 stripped
 Transform:
   m_PrefabParentObject: {fileID: 418598, guid: 22cec0eebabc04d4db2ca1654ceef887, type: 2}
@@ -4272,100 +3987,44 @@ Prefab:
   m_Modification:
     m_TransformParent: {fileID: 1734839811}
     m_Modifications:
-    - target: {fileID: 469604, guid: aac78e40511bf4c4a8c81a4722c22f25, type: 2}
+    - target: {fileID: 493660, guid: 1665c5ce479006740b4a051a2bb59dd1, type: 2}
       propertyPath: m_LocalPosition.x
       value: 3.51
       objectReference: {fileID: 0}
-    - target: {fileID: 469604, guid: aac78e40511bf4c4a8c81a4722c22f25, type: 2}
+    - target: {fileID: 493660, guid: 1665c5ce479006740b4a051a2bb59dd1, type: 2}
       propertyPath: m_LocalPosition.y
       value: 1.29
       objectReference: {fileID: 0}
-    - target: {fileID: 469604, guid: aac78e40511bf4c4a8c81a4722c22f25, type: 2}
+    - target: {fileID: 493660, guid: 1665c5ce479006740b4a051a2bb59dd1, type: 2}
       propertyPath: m_LocalPosition.z
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 469604, guid: aac78e40511bf4c4a8c81a4722c22f25, type: 2}
+    - target: {fileID: 493660, guid: 1665c5ce479006740b4a051a2bb59dd1, type: 2}
       propertyPath: m_LocalRotation.x
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 469604, guid: aac78e40511bf4c4a8c81a4722c22f25, type: 2}
+    - target: {fileID: 493660, guid: 1665c5ce479006740b4a051a2bb59dd1, type: 2}
       propertyPath: m_LocalRotation.y
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 469604, guid: aac78e40511bf4c4a8c81a4722c22f25, type: 2}
+    - target: {fileID: 493660, guid: 1665c5ce479006740b4a051a2bb59dd1, type: 2}
       propertyPath: m_LocalRotation.z
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 469604, guid: aac78e40511bf4c4a8c81a4722c22f25, type: 2}
+    - target: {fileID: 493660, guid: 1665c5ce479006740b4a051a2bb59dd1, type: 2}
       propertyPath: m_LocalRotation.w
       value: 1
       objectReference: {fileID: 0}
-    - target: {fileID: 469604, guid: aac78e40511bf4c4a8c81a4722c22f25, type: 2}
+    - target: {fileID: 493660, guid: 1665c5ce479006740b4a051a2bb59dd1, type: 2}
       propertyPath: m_RootOrder
       value: 1
       objectReference: {fileID: 0}
-    - target: {fileID: 147978, guid: aac78e40511bf4c4a8c81a4722c22f25, type: 2}
+    - target: {fileID: 177406, guid: 1665c5ce479006740b4a051a2bb59dd1, type: 2}
       propertyPath: m_Name
       value: Test
       objectReference: {fileID: 0}
-    - target: {fileID: 11470352, guid: aac78e40511bf4c4a8c81a4722c22f25, type: 2}
-      propertyPath: Text1
-      value: 
-      objectReference: {fileID: 1982675711}
-    - target: {fileID: 11470352, guid: aac78e40511bf4c4a8c81a4722c22f25, type: 2}
-      propertyPath: Text2
-      value: 
-      objectReference: {fileID: 428212586}
-    - target: {fileID: 11470352, guid: aac78e40511bf4c4a8c81a4722c22f25, type: 2}
-      propertyPath: Text3
-      value: 
-      objectReference: {fileID: 875997001}
-    - target: {fileID: 11470352, guid: aac78e40511bf4c4a8c81a4722c22f25, type: 2}
-      propertyPath: Text4
-      value: 
-      objectReference: {fileID: 1335071290}
-    - target: {fileID: 11470352, guid: aac78e40511bf4c4a8c81a4722c22f25, type: 2}
-      propertyPath: Text5
-      value: 
-      objectReference: {fileID: 98482835}
-    - target: {fileID: 6116720, guid: aac78e40511bf4c4a8c81a4722c22f25, type: 2}
-      propertyPath: m_Offset.x
-      value: -0.0010983944
-      objectReference: {fileID: 0}
-    - target: {fileID: 6116720, guid: aac78e40511bf4c4a8c81a4722c22f25, type: 2}
-      propertyPath: m_Size.x
-      value: 0.2614943
-      objectReference: {fileID: 0}
-    - target: {fileID: 6116720, guid: aac78e40511bf4c4a8c81a4722c22f25, type: 2}
-      propertyPath: m_Offset.y
-      value: 0.07115042
-      objectReference: {fileID: 0}
-    - target: {fileID: 6116720, guid: aac78e40511bf4c4a8c81a4722c22f25, type: 2}
-      propertyPath: m_Size.y
-      value: 0.6594872
-      objectReference: {fileID: 0}
-    - target: {fileID: 192356, guid: aac78e40511bf4c4a8c81a4722c22f25, type: 2}
-      propertyPath: m_Layer
-      value: 11
-      objectReference: {fileID: 0}
-    - target: {fileID: 141398, guid: aac78e40511bf4c4a8c81a4722c22f25, type: 2}
-      propertyPath: m_Layer
-      value: 11
-      objectReference: {fileID: 0}
-    - target: {fileID: 147978, guid: aac78e40511bf4c4a8c81a4722c22f25, type: 2}
-      propertyPath: m_Layer
-      value: 11
-      objectReference: {fileID: 0}
-    - target: {fileID: 5098402, guid: aac78e40511bf4c4a8c81a4722c22f25, type: 2}
-      propertyPath: m_Constraints
-      value: 4
-      objectReference: {fileID: 0}
-    - target: {fileID: 6116720, guid: aac78e40511bf4c4a8c81a4722c22f25, type: 2}
-      propertyPath: m_Enabled
-      value: 1
-      objectReference: {fileID: 0}
     m_RemovedComponents: []
-  m_ParentPrefab: {fileID: 100100000, guid: aac78e40511bf4c4a8c81a4722c22f25, type: 2}
+  m_ParentPrefab: {fileID: 100100000, guid: 1665c5ce479006740b4a051a2bb59dd1, type: 2}
   m_IsPrefabParent: 0
 --- !u!1001 &1371414854
 Prefab:
@@ -4768,22 +4427,8 @@ SpriteRenderer:
   m_FlipY: 0
 --- !u!1 &1464809438 stripped
 GameObject:
-  m_PrefabParentObject: {fileID: 147978, guid: aac78e40511bf4c4a8c81a4722c22f25, type: 2}
+  m_PrefabParentObject: {fileID: 177406, guid: 1665c5ce479006740b4a051a2bb59dd1, type: 2}
   m_PrefabInternal: {fileID: 1355066871}
---- !u!61 &1464809451
-BoxCollider2D:
-  m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 0}
-  m_GameObject: {fileID: 1464809438}
-  m_Enabled: 0
-  m_Density: 1
-  m_Material: {fileID: 0}
-  m_IsTrigger: 0
-  m_UsedByEffector: 0
-  m_Offset: {x: -0.0024616718, y: 0.009845734}
-  serializedVersion: 2
-  m_Size: {x: 0.30279326, y: 0.8196913}
 --- !u!1001 &1468721147
 Prefab:
   m_ObjectHideFlags: 0
@@ -4850,36 +4495,6 @@ Prefab:
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 5b0be34a1bdd14646bea4af5665ef78a, type: 2}
   m_IsPrefabParent: 0
---- !u!1 &1479197698
-GameObject:
-  m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 0}
-  serializedVersion: 4
-  m_Component:
-  - 4: {fileID: 1479197699}
-  m_Layer: 11
-  m_Name: NormalAttacks
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!4 &1479197699
-Transform:
-  m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 0}
-  m_GameObject: {fileID: 1479197698}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_Children:
-  - {fileID: 833227336}
-  - {fileID: 840068055}
-  - {fileID: 283945967}
-  m_Father: {fileID: 1949780790}
-  m_RootOrder: 2
 --- !u!1 &1487338265
 GameObject:
   m_ObjectHideFlags: 0
@@ -5807,35 +5422,8 @@ Prefab:
   m_IsPrefabParent: 0
 --- !u!4 &1949780790 stripped
 Transform:
-  m_PrefabParentObject: {fileID: 469604, guid: aac78e40511bf4c4a8c81a4722c22f25, type: 2}
+  m_PrefabParentObject: {fileID: 493660, guid: 1665c5ce479006740b4a051a2bb59dd1, type: 2}
   m_PrefabInternal: {fileID: 1355066871}
---- !u!1 &1956882769
-GameObject:
-  m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 0}
-  serializedVersion: 4
-  m_Component:
-  - 4: {fileID: 1956882770}
-  m_Layer: 11
-  m_Name: StandingHighAttack
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!4 &1956882770
-Transform:
-  m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 0}
-  m_GameObject: {fileID: 1956882769}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_Children: []
-  m_Father: {fileID: 833227336}
-  m_RootOrder: 2
 --- !u!114 &1982675711 stripped
 MonoBehaviour:
   m_PrefabParentObject: {fileID: 11430998, guid: 631a53319fe23c94e9788cc66228b4c0,
@@ -5874,33 +5462,6 @@ Transform:
   - {fileID: 1505416669}
   m_Father: {fileID: 723504207}
   m_RootOrder: 7
---- !u!1 &2007781101
-GameObject:
-  m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 0}
-  serializedVersion: 4
-  m_Component:
-  - 4: {fileID: 2007781102}
-  m_Layer: 11
-  m_Name: StandingMiddleAttack
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!4 &2007781102
-Transform:
-  m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 0}
-  m_GameObject: {fileID: 2007781101}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_Children: []
-  m_Father: {fileID: 833227336}
-  m_RootOrder: 1
 --- !u!1 &2074393009
 GameObject:
   m_ObjectHideFlags: 0
@@ -6005,33 +5566,6 @@ Prefab:
 Transform:
   m_PrefabParentObject: {fileID: 455670, guid: 75343d6a1ea04014999c100f8fc4fe87, type: 2}
   m_PrefabInternal: {fileID: 946367038}
---- !u!1 &2104571646
-GameObject:
-  m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 0}
-  serializedVersion: 4
-  m_Component:
-  - 4: {fileID: 2104571647}
-  m_Layer: 11
-  m_Name: JumpingLightAttack
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!4 &2104571647
-Transform:
-  m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 0}
-  m_GameObject: {fileID: 2104571646}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_Children: []
-  m_Father: {fileID: 283945967}
-  m_RootOrder: 0
 --- !u!1001 &2129566497
 Prefab:
   m_ObjectHideFlags: 0

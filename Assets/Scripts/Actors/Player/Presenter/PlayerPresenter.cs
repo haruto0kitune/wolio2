@@ -49,7 +49,6 @@ public partial class PlayerPresenter : MonoBehaviour
 
     void StandingAttacks()
     {
-        StandingLightAttackPresenter();
         StandingMiddleAttackPresenter();
         StandingHighAttackPresenter();
     }
