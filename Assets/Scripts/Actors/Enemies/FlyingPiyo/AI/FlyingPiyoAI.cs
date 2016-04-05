@@ -29,17 +29,7 @@ public class FlyingPiyoAI : MonoBehaviour
         this.FixedUpdateAsObservable()
             .Where(x => FrontCheck())
             .Subscribe(_ => FlyingPiyoMotion.Turn());
-
-        this.OnTriggerEnter2DAsObservable()
-            .Where(x => x.gameObject.tag == "Player")
-            .Where(x => !FlyingPiyoState.IsAttacking.Value)
-            .Do(x => FlyingPiyoState.IsAttacking.Value = true)
-            .Subscribe(_ => 
-            {
-                StartCoroutine(FlyingPiyoMotion.Attacks());
-                Debug.Log("Attack!");
-            });
-    }
+   }
     
     bool FrontCheck()
     {

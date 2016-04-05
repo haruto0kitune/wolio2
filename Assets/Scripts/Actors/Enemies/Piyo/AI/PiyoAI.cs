@@ -24,11 +24,6 @@ public class PiyoAI : MonoBehaviour
             .Subscribe(_ => PiyoMotion.Turn());
     }
 
-    void Attack()
-    {
-
-    }
-
     bool FrontCheck()
     {
         var isWall = default(bool);
