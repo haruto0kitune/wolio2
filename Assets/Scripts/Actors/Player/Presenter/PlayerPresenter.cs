@@ -29,9 +29,6 @@ public partial class PlayerPresenter : MonoBehaviour
     private void Start()
     {
         Basics();
-        StandingAttacks();
-        CrouchingAttacks();
-        JumpingAttacks();
         Guards();
         KnockBacks();
     }
@@ -45,26 +42,6 @@ public partial class PlayerPresenter : MonoBehaviour
         DamagePresenter();
         CrouchPresenter();
         CreepPresenter();
-    }
-
-    void StandingAttacks()
-    {
-        StandingMiddleAttackPresenter();
-        StandingHighAttackPresenter();
-    }
-
-    void CrouchingAttacks()
-    {
-        CrouchingLightAttackPresenter();
-        CrouchingMiddleAttackPresenter();
-        CrouchingHighAttackPresenter();
-    }
-
-    void JumpingAttacks()
-    {
-        JumpingLightAttackPresenter();
-        JumpingMiddleAttackPresenter();
-        JumpingHighAttackPresenter();
     }
 
     void Guards()
