@@ -18,7 +18,6 @@ public partial class PiyoPresenter : MonoBehaviour
 
     void Start()
     {
-        DamagePresenter();
         RunPresenter();
     }
 }
