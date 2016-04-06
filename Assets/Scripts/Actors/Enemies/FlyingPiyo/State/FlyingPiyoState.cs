@@ -7,7 +7,6 @@ public class FlyingPiyoState : MonoBehaviour
 {
     public Transform WallCheck;
     private SpriteRenderer SpriteRenderer;
-    private BoxCollider2D BoxCollider2D;
 
     public IntReactiveProperty Hp;
 
@@ -19,7 +18,6 @@ public class FlyingPiyoState : MonoBehaviour
     {
         WallCheck = gameObject.transform.Find("WallCheck");
         SpriteRenderer = GetComponent<SpriteRenderer>();
-        BoxCollider2D = GetComponent<BoxCollider2D>();
 
         FacingRight = SpriteRenderer.ObserveEveryValueChanged(x => x.flipX).ToReactiveProperty();
         Direction = FacingRight.Select(x => x ? 1f : -1f).ToReactiveProperty(-1f);

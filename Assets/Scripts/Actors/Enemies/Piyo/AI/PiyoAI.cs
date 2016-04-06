@@ -8,13 +8,11 @@ public class PiyoAI : MonoBehaviour
 {
     PiyoState PiyoState;
     PiyoMotion PiyoMotion;
-    PiyoConfig PiyoConfig;
  
     void Awake()
     {
         PiyoMotion = GetComponent<PiyoMotion>();
         PiyoState = GetComponent<PiyoState>();
-        PiyoConfig = GetComponent<PiyoConfig>();
     }
 
     void Start()

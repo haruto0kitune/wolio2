@@ -5,6 +5,6 @@ public partial class FlyingPiyoMotion : MonoBehaviour
 {
     public void Turn()
     {
-        Utility.Flip();
+        Utility.Flip(SpriteRenderer);
     }
 }
