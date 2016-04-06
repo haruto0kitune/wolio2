@@ -39,13 +39,10 @@ public class FlyingPiyoJumpingAttack : MonoBehaviour
         var FlyingPiyoInitialPositionY = transform.position.y;
 
         // Get unit vector of the direction of player 
-        var Actor = Player.transform.parent;
-        Player.transform.parent = transform;
-        var UnitVectorInTheDirectionOfPlayer = Player.transform.localPosition.normalized;
-        Player.transform.parent = Actor;
+        var UnitVector = Utility.GetUnitVector(gameObject, Player);
 
         // Charge Player
-        Rigidbody2D.velocity = UnitVectorInTheDirectionOfPlayer * 3;
+        Rigidbody2D.velocity = UnitVector * 3;
 
         while (transform.position.y >= Player.transform.position.y)
         {
