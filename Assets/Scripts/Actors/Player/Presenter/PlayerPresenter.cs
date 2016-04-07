@@ -29,8 +29,6 @@ public partial class PlayerPresenter : MonoBehaviour
     private void Start()
     {
         Basics();
-        Guards();
-        KnockBacks();
     }
 
     void Basics()
@@ -42,15 +40,5 @@ public partial class PlayerPresenter : MonoBehaviour
         DamagePresenter();
         CrouchPresenter();
         CreepPresenter();
-    }
-
-    void Guards()
-    {
-        StandingGuardPresenter();
-    }
-
-    void KnockBacks()
-    {
-        StandingGuardBackPresenter();
     }
 }
