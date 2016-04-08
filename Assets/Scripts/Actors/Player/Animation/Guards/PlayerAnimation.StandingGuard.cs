@@ -11,6 +11,7 @@ public partial class PlayerAnimation : MonoBehaviour
             .OnStateUpdateAsObservable()
             .Where(x => x.StateInfo.IsName("Base Layer.StandingGuard"))
             .Where(x => !Key.LeftShift || !PlayerState.IsGrounded.Value)
+            .Do(x => Animator.SetBool("IsStanding", true))
             .Subscribe(_ => Animator.SetBool("IsStandingGuard", false));
 
         ObservableStateMachineTrigger

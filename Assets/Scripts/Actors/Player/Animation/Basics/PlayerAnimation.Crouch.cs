@@ -13,6 +13,7 @@ public partial class PlayerAnimation : MonoBehaviour
             .SelectMany(x => Key.Vertical)
             .Where(x => x == 0)
             .Where(x => Physics2D.OverlapCircle(PlayerState.CeilingCheck.position, 0.1f, PlayerConfig.WhatIsGround) == null)
+            .Do(x => Animator.SetBool("IsStanding", true))
             .Subscribe(_ => Animator.SetBool("IsCrouching", false));
 
         ObservableStateMachineTrigger

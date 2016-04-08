@@ -38,6 +38,7 @@ TagManager:
   - KnockBacks/GuardBacks/StandingGuardBack
   - KnockBacks/GuardBacks/CrouchingGuardBack
   - KnockBacks/GuardBacks/JumpingGuardBack
+  - HurtBox
   layers:
   - Default
   - TransparentFX

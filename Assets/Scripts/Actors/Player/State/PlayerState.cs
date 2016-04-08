@@ -21,6 +21,7 @@ public class PlayerState : MonoBehaviour
     public ReactiveProperty<bool> IsDashing;
     public ReactiveProperty<bool> IsRunning;
     public ReactiveProperty<bool> IsJumping;
+    public ReactiveProperty<bool> IsStanding;
     public ReactiveProperty<bool> IsCrouching;
     public ReactiveProperty<bool> IsCreeping;
     public ReactiveProperty<bool> IsTouchingWall;
@@ -60,14 +61,15 @@ public class PlayerState : MonoBehaviour
 
         IsGrounded = this.ObserveEveryValueChanged(x => (bool)Physics2D.Linecast(GroundCheck.position, GroundCheck.position, PlayerConfig.WhatIsGround)).ToReactiveProperty();
         IsDead = Hp.Select(x => transform.position.y <= -5 || x <= 0).ToReactiveProperty();
-        IsDashing = new ReactiveProperty<bool>(false);
-        IsRunning = new ReactiveProperty<bool>(false);
-        IsJumping = new ReactiveProperty<bool>(false);
-        IsCrouching = new ReactiveProperty<bool>(false);
-        IsCreeping = new ReactiveProperty<bool>(false);
-        IsTouchingWall = new ReactiveProperty<bool>(false);
-        IsClimbing = new ReactiveProperty<bool>(false);
-        IsClimbable = new ReactiveProperty<bool>(false);
+        IsDashing = new ReactiveProperty<bool>();
+        IsRunning = new ReactiveProperty<bool>();
+        IsJumping = new ReactiveProperty<bool>();
+        IsStanding = this.ObserveEveryValueChanged(x => Animator.GetBool("IsStanding")).ToReactiveProperty();
+        IsCrouching = this.ObserveEveryValueChanged(x => Animator.GetBool("IsCrouching")).ToReactiveProperty();
+        IsCreeping = this.ObserveEveryValueChanged(x => Animator.GetBool("IsCreeping")).ToReactiveProperty();
+        IsTouchingWall = new ReactiveProperty<bool>();
+        IsClimbing = new ReactiveProperty<bool>();
+        IsClimbable = new ReactiveProperty<bool>();
         IsStandingLightAttack = this.ObserveEveryValueChanged(x => Animator.GetBool("IsStandingLightAttack")).ToReactiveProperty();
         IsStandingMiddleAttack = this.ObserveEveryValueChanged(x => Animator.GetBool("IsStandingMiddleAttack")).ToReactiveProperty();
         IsStandingHighAttack = this.ObserveEveryValueChanged(x => Animator.GetBool("IsStandingHighAttack")).ToReactiveProperty();
@@ -83,12 +85,12 @@ public class PlayerState : MonoBehaviour
         IsStandingDamage = this.ObserveEveryValueChanged(x => Animator.GetBool("IsStandingDamage")).ToReactiveProperty();
         IsCrouchingDamage = this.ObserveEveryValueChanged(x => Animator.GetBool("IsCrouchingDamage")).ToReactiveProperty();
         IsJumpingDamage = this.ObserveEveryValueChanged(x => Animator.GetBool("IsJumpingDamage")).ToReactiveProperty();
-        IsStandingHitBack = new ReactiveProperty<bool>(false);
-        IsCrouchingHitBack = new ReactiveProperty<bool>(false);
-        IsJumpingHitBack = new ReactiveProperty<bool>(false);
-        IsStandingGuardBack = new ReactiveProperty<bool>(false);
-        IsCrouchingGuardBack = new ReactiveProperty<bool>(false);
-        IsJumpingGuardBack = new ReactiveProperty<bool>(false);
+        IsStandingHitBack = new ReactiveProperty<bool>();
+        IsCrouchingHitBack = new ReactiveProperty<bool>();
+        IsJumpingHitBack = new ReactiveProperty<bool>();
+        IsStandingGuardBack = new ReactiveProperty<bool>();
+        IsCrouchingGuardBack = new ReactiveProperty<bool>();
+        IsJumpingGuardBack = new ReactiveProperty<bool>();
         FacingRight = SpriteRenderer.ObserveEveryValueChanged(x => x.flipX).ToReactiveProperty();
     }
 

@@ -12,6 +12,7 @@ public partial class PlayerAnimation : MonoBehaviour
             .Where(x => x.StateInfo.IsName("Base Layer.Jump"))
             .SelectMany(x => PlayerState.IsGrounded)
             .Where(x => x)
+            .Do(x => Animator.SetBool("IsStanding", true))
             .Subscribe(_ => Animator.SetBool("IsJumping", false));
 
         ObservableStateMachineTrigger

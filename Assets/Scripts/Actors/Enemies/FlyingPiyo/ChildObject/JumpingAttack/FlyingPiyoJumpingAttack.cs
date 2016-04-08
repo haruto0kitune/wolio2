@@ -11,6 +11,9 @@ public class FlyingPiyoJumpingAttack : MonoBehaviour
     FlyingPiyoState FlyingPiyoState;
     FlyingPiyoSearchBox FlyingPiyoSearchBox;
 
+    Vector2 InitialPosition;
+    float SpeedY;
+
     void Awake()
     {
         Player = GameObject.Find("Test");
@@ -18,11 +21,14 @@ public class FlyingPiyoJumpingAttack : MonoBehaviour
         BoxCollider2D = GetComponent<BoxCollider2D>();
         FlyingPiyoState = GameObject.Find("FlyingPiyo").GetComponent<FlyingPiyoState>();
         FlyingPiyoSearchBox = GameObject.Find("FlyingPiyo").GetComponentInChildren<FlyingPiyoSearchBox>();
+
+        InitialPosition = GameObject.Find("FlyingPiyo").transform.position;
     }
 
     void Start()
     {
-        FlyingPiyoSearchBox.FoundPlayer
+        this.FixedUpdateAsObservable()
+            .ObserveEveryValueChanged(x => FlyingPiyoSearchBox.FoundPlayer.Value)
             .Where(x => x)
             .Where(x => !FlyingPiyoState.IsAttacking.Value)
             .Do(x => FlyingPiyoState.IsAttacking.Value = true)
@@ -32,7 +38,7 @@ public class FlyingPiyoJumpingAttack : MonoBehaviour
     public IEnumerator Attack()
     {
         // Start JumpingAttack
-        BoxCollider2D.enabled = true;
+        Physics2D.IgnoreLayerCollision(LayerMask.NameToLayer("Default"), LayerMask.NameToLayer("Enemy"), true);
         FlyingPiyoState.IsAttacking.Value = true;
 
         // Cache current coordinate of Y
@@ -52,7 +58,7 @@ public class FlyingPiyoJumpingAttack : MonoBehaviour
         // Go back initial altitude
         float SpeedY = 1f;
 
-        while (transform.position.y <= FlyingPiyoInitialPositionY)
+        while (transform.position.y <= InitialPosition.y)
         {
             Rigidbody2D.velocity = new Vector2(3f, SpeedY);
             SpeedY += 0.5f;
@@ -60,9 +66,9 @@ public class FlyingPiyoJumpingAttack : MonoBehaviour
         }
 
         // Finish Jumping Attack
-        transform.position = new Vector3(transform.position.x, FlyingPiyoInitialPositionY);
         Rigidbody2D.velocity = new Vector2(3f, 0f);
+        Physics2D.IgnoreLayerCollision(LayerMask.NameToLayer("Default"), LayerMask.NameToLayer("Enemy"), false);
+        transform.position = new Vector2(transform.position.x, InitialPosition.y);
         FlyingPiyoState.IsAttacking.Value = false;
-        BoxCollider2D.enabled = false;
     }
 }

@@ -7,7 +7,7 @@ public partial class PlayerMotion : MonoBehaviour
 {
     public void Crouch()
     {
-        PlayerState.IsCrouching.Value = true;
+        //PlayerState.IsCrouching.Value = true;
 
         if (SpriteRenderer.flipX)
         {
@@ -25,7 +25,7 @@ public partial class PlayerMotion : MonoBehaviour
 
     public void ExitCrouch()
     {
-        PlayerState.IsCrouching.Value = false;
+        //PlayerState.IsCrouching.Value = false;
 
         BoxCollider2D.offset = PlayerConfig.BoxCollider2DInitialOffset;
         BoxCollider2D.size = PlayerConfig.BoxCollider2DInitialSize;

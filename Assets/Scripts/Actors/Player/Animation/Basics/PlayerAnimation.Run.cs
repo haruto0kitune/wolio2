@@ -11,6 +11,7 @@ public partial class PlayerAnimation : MonoBehaviour
             .OnStateUpdateAsObservable()
             .Where(x => x.StateInfo.IsName("Base Layer.Run"))
             .Where(x => Key.Horizontal.Value == 0)
+            .Do(x => Animator.SetBool("IsStanding", true))
             .Subscribe(_ => Animator.SetBool("IsRunning", false));
 
 
@@ -19,6 +20,7 @@ public partial class PlayerAnimation : MonoBehaviour
             .Where(x => x.StateInfo.IsName("Base Layer.Run"))
             .SelectMany(x => Key.Vertical)
             .Where(x => x == 1)
+            .Do(x => Animator.SetBool("IsRunning", false))
             .Subscribe(_ => Animator.SetBool("IsJumping", true));
     }
 }
