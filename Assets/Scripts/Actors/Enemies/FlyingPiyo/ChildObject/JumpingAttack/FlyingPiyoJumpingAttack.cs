@@ -6,23 +6,25 @@ using UniRx.Triggers;
 public class FlyingPiyoJumpingAttack : MonoBehaviour
 { 
     GameObject Player;
+    GameObject FlyingPiyo;
     Rigidbody2D Rigidbody2D;
     BoxCollider2D BoxCollider2D;
     FlyingPiyoState FlyingPiyoState;
     FlyingPiyoSearchBox FlyingPiyoSearchBox;
 
     Vector2 InitialPosition;
-    float SpeedY;
+    //float SpeedY;
 
     void Awake()
     {
         Player = GameObject.Find("Test");
-        Rigidbody2D = GameObject.Find("FlyingPiyo").GetComponent<Rigidbody2D>();
+        FlyingPiyo = transform.parent.gameObject;
+        Rigidbody2D = FlyingPiyo.GetComponent<Rigidbody2D>();
         BoxCollider2D = GetComponent<BoxCollider2D>();
-        FlyingPiyoState = GameObject.Find("FlyingPiyo").GetComponent<FlyingPiyoState>();
-        FlyingPiyoSearchBox = GameObject.Find("FlyingPiyo").GetComponentInChildren<FlyingPiyoSearchBox>();
+        FlyingPiyoState = FlyingPiyo.GetComponent<FlyingPiyoState>();
+        FlyingPiyoSearchBox = FlyingPiyo.GetComponentInChildren<FlyingPiyoSearchBox>();
 
-        InitialPosition = GameObject.Find("FlyingPiyo").transform.position;
+        InitialPosition = FlyingPiyo.transform.position;
     }
 
     void Start()
@@ -38,19 +40,20 @@ public class FlyingPiyoJumpingAttack : MonoBehaviour
     public IEnumerator Attack()
     {
         // Start JumpingAttack
+        BoxCollider2D.enabled = true;
         Physics2D.IgnoreLayerCollision(LayerMask.NameToLayer("Default"), LayerMask.NameToLayer("Enemy"), true);
         FlyingPiyoState.IsAttacking.Value = true;
 
         // Cache current coordinate of Y
-        var FlyingPiyoInitialPositionY = transform.position.y;
+        var FlyingPiyoInitialPositionY = FlyingPiyo.transform.position.y;
 
         // Get unit vector of the direction of player 
-        var UnitVector = Utility.GetUnitVector(gameObject, Player);
+        var UnitVector = Utility.GetUnitVector(FlyingPiyo, Player);
 
         // Charge Player
         Rigidbody2D.velocity = UnitVector * 3;
 
-        while (transform.position.y >= Player.transform.position.y)
+        while (FlyingPiyo.transform.position.y >= Player.transform.position.y)
         {
             yield return null;
         }
@@ -58,17 +61,30 @@ public class FlyingPiyoJumpingAttack : MonoBehaviour
         // Go back initial altitude
         float SpeedY = 1f;
 
-        while (transform.position.y <= InitialPosition.y)
+        while (FlyingPiyo.transform.position.y <= InitialPosition.y)
         {
-            Rigidbody2D.velocity = new Vector2(3f, SpeedY);
-            SpeedY += 0.5f;
+            if (FlyingPiyoState.FacingRight.Value)
+            {
+                Rigidbody2D.velocity = new Vector2(3f, SpeedY);
+            }
+            else
+            {
+                Rigidbody2D.velocity = new Vector2(-3f, SpeedY);
+            }
+
+            if (SpeedY <= 3f)
+            {
+                SpeedY += 0.5f;
+            }
+
             yield return null;
         }
 
         // Finish Jumping Attack
         Rigidbody2D.velocity = new Vector2(3f, 0f);
         Physics2D.IgnoreLayerCollision(LayerMask.NameToLayer("Default"), LayerMask.NameToLayer("Enemy"), false);
-        transform.position = new Vector2(transform.position.x, InitialPosition.y);
+        FlyingPiyo.transform.position = new Vector2(FlyingPiyo.transform.position.x, InitialPosition.y);
         FlyingPiyoState.IsAttacking.Value = false;
+        BoxCollider2D.enabled = false;
     }
 }

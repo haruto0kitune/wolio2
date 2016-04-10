@@ -55,14 +55,14 @@ TagManager:
   - Enemy
   - Enemy/HurtBox
   - Player/HitBox
-  - 
-  - 
-  - 
-  - 
-  - 
-  - 
-  - 
-  - 
+  - Player/Attacks/Low
+  - Player/Attacks/Overhead
+  - Player/Attacks/High
+  - Enemy/Attacks/Low
+  - Enemy/Attacks/Overhead
+  - Enemy/Attacks/High
+  - Player/Guard
+  - Enemy/Guard
   - 
   - 
   - 

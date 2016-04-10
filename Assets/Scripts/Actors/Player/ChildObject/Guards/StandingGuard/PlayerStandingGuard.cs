@@ -19,6 +19,10 @@ public class PlayerStandingGuard : MonoBehaviour
         PlayerState.IsStandingGuard
             .Where(x => x)
             .Subscribe(_ => StartCoroutine(StandingGuard()));
+
+        this.OnTriggerEnter2DAsObservable()
+            .Where(x => x.gameObject.tag == "AttackLevel/1")
+            .Subscribe(_ => Physics2D.IgnoreLayerCollision(LayerMask.NameToLayer("Default"), LayerMask.NameToLayer("Enemy"), true));
     }
 
     public IEnumerator StandingGuard()

@@ -1,7 +1,6 @@
 ﻿using UnityEngine;
 using System.Collections;
 
-
 public static class Utility
 {
     public static void Flip(this SpriteRenderer _SpriteRenderer)
@@ -17,5 +16,15 @@ public static class Utility
         Target.transform.parent = TargetParent;
 
         return UnitVector;
+    }
+
+    public static float DegToRad(float Degree)
+    {
+        return Degree * Mathf.PI / 180; 
+    }
+
+    public static int RadToDeg(float Radian)
+    {
+        return (int)(Radian * 180 / Mathf.PI);
     }
 }

@@ -46,6 +46,7 @@ public class PlayerStandingGuardBack : MonoBehaviour
             yield return null;
         }
 
+        Physics2D.IgnoreLayerCollision(LayerMask.NameToLayer("Default"), LayerMask.NameToLayer("Default"), false);
         Rigidbody2D.velocity = VelocityStore;
         BoxCollider2D.enabled = true;
         PlayerState.IsStandingGuardBack.Value = false;
