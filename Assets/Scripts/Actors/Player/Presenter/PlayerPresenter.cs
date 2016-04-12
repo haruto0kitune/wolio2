@@ -40,5 +40,6 @@ public partial class PlayerPresenter : MonoBehaviour
         DamagePresenter();
         CrouchPresenter();
         CreepPresenter();
+        AirMovePresenter();
     }
 }

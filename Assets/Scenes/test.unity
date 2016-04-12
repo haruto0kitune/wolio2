@@ -128,6 +128,10 @@ Prefab:
       propertyPath: m_Name
       value: Splinter (10)
       objectReference: {fileID: 0}
+    - target: {fileID: 185422, guid: 22cec0eebabc04d4db2ca1654ceef887, type: 2}
+      propertyPath: m_Layer
+      value: 0
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 22cec0eebabc04d4db2ca1654ceef887, type: 2}
   m_IsPrefabParent: 0
@@ -425,7 +429,6 @@ GameObject:
   - 61: {fileID: 150007672}
   - 58: {fileID: 150007671}
   - 50: {fileID: 150007670}
-  - 61: {fileID: 150007669}
   m_Layer: 11
   m_Name: Test
   m_TagString: Player
@@ -448,23 +451,9 @@ Transform:
   - {fileID: 376762604}
   - {fileID: 1619355873}
   - {fileID: 1695042606}
+  - {fileID: 1953580993}
   m_Father: {fileID: 1734839811}
   m_RootOrder: 1
---- !u!61 &150007669
-BoxCollider2D:
-  m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 6127150, guid: 1665c5ce479006740b4a051a2bb59dd1,
-    type: 2}
-  m_PrefabInternal: {fileID: 0}
-  m_GameObject: {fileID: 150007667}
-  m_Enabled: 0
-  m_Density: 1
-  m_Material: {fileID: 0}
-  m_IsTrigger: 0
-  m_UsedByEffector: 0
-  m_Offset: {x: -0.0024616718, y: 0.009845734}
-  serializedVersion: 2
-  m_Size: {x: 0.30279326, y: 0.8196913}
 --- !u!50 &150007670
 Rigidbody2D:
   serializedVersion: 2
@@ -495,9 +484,9 @@ CircleCollider2D:
   m_Material: {fileID: 6200000, guid: 3626fe8e008014f6bbd19bb72937b311, type: 2}
   m_IsTrigger: 0
   m_UsedByEffector: 0
-  m_Offset: {x: 0, y: -0.257}
+  m_Offset: {x: 0, y: -0.29}
   serializedVersion: 2
-  m_Radius: 0.13742793
+  m_Radius: 0.12045026
 --- !u!61 &150007672
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -716,6 +705,10 @@ Prefab:
       propertyPath: m_TagString
       value: Wall
       objectReference: {fileID: 0}
+    - target: {fileID: 163120, guid: 7e4733219325f204ab5d78daadf39d8f, type: 2}
+      propertyPath: m_Layer
+      value: 23
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 7e4733219325f204ab5d78daadf39d8f, type: 2}
   m_IsPrefabParent: 0
@@ -762,6 +755,10 @@ Prefab:
       propertyPath: m_Name
       value: Splinter (4)
       objectReference: {fileID: 0}
+    - target: {fileID: 185422, guid: 22cec0eebabc04d4db2ca1654ceef887, type: 2}
+      propertyPath: m_Layer
+      value: 0
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 22cec0eebabc04d4db2ca1654ceef887, type: 2}
   m_IsPrefabParent: 0
@@ -775,7 +772,7 @@ GameObject:
   - 4: {fileID: 217475499}
   - 212: {fileID: 217475501}
   - 61: {fileID: 217475500}
-  m_Layer: 8
+  m_Layer: 0
   m_Name: ground1 (2)
   m_TagString: Ground
   m_Icon: {fileID: 0}
@@ -983,6 +980,10 @@ Prefab:
       propertyPath: m_Name
       value: Splinter (6)
       objectReference: {fileID: 0}
+    - target: {fileID: 185422, guid: 22cec0eebabc04d4db2ca1654ceef887, type: 2}
+      propertyPath: m_Layer
+      value: 0
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 22cec0eebabc04d4db2ca1654ceef887, type: 2}
   m_IsPrefabParent: 0
@@ -1024,6 +1025,10 @@ Prefab:
     - target: {fileID: 477350, guid: a8f8a64f9665d3143b221c82cab8dd6d, type: 2}
       propertyPath: m_RootOrder
       value: 4
+      objectReference: {fileID: 0}
+    - target: {fileID: 129728, guid: a8f8a64f9665d3143b221c82cab8dd6d, type: 2}
+      propertyPath: m_Layer
+      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: a8f8a64f9665d3143b221c82cab8dd6d, type: 2}
@@ -1070,6 +1075,10 @@ Prefab:
     - target: {fileID: 163120, guid: 7e4733219325f204ab5d78daadf39d8f, type: 2}
       propertyPath: m_TagString
       value: Wall
+      objectReference: {fileID: 0}
+    - target: {fileID: 163120, guid: 7e4733219325f204ab5d78daadf39d8f, type: 2}
+      propertyPath: m_Layer
+      value: 23
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 7e4733219325f204ab5d78daadf39d8f, type: 2}
@@ -1162,6 +1171,18 @@ Prefab:
       propertyPath: m_TagString
       value: Hard Platform
       objectReference: {fileID: 0}
+    - target: {fileID: 157412, guid: 5b0be34a1bdd14646bea4af5665ef78a, type: 2}
+      propertyPath: m_Layer
+      value: 8
+      objectReference: {fileID: 0}
+    - target: {fileID: 6109300, guid: 5b0be34a1bdd14646bea4af5665ef78a, type: 2}
+      propertyPath: m_Enabled
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 6173204, guid: 5b0be34a1bdd14646bea4af5665ef78a, type: 2}
+      propertyPath: m_Enabled
+      value: 1
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 5b0be34a1bdd14646bea4af5665ef78a, type: 2}
   m_IsPrefabParent: 0
@@ -1247,7 +1268,7 @@ Transform:
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 344937692}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -0.034, y: -0.41, z: 0}
+  m_LocalPosition: {x: 0, y: -0.4155, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 150007668}
@@ -1316,7 +1337,7 @@ GameObject:
   - 61: {fileID: 353311434}
   - 114: {fileID: 353311433}
   - 61: {fileID: 353311432}
-  m_Layer: 8
+  m_Layer: 0
   m_Name: FragileBlock (12)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1453,7 +1474,7 @@ GameObject:
   m_Component:
   - 4: {fileID: 356886959}
   - 212: {fileID: 356886960}
-  m_Layer: 10
+  m_Layer: 0
   m_Name: Ladder (2)
   m_TagString: Ladder
   m_Icon: {fileID: 0}
@@ -1517,7 +1538,7 @@ GameObject:
   - 61: {fileID: 360855774}
   - 114: {fileID: 360855773}
   - 61: {fileID: 360855772}
-  m_Layer: 8
+  m_Layer: 0
   m_Name: FragileBlock (2)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1777,7 +1798,7 @@ GameObject:
   - 61: {fileID: 400947006}
   - 114: {fileID: 400947005}
   - 61: {fileID: 400947004}
-  m_Layer: 8
+  m_Layer: 0
   m_Name: FragileBlock (11)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1919,7 +1940,7 @@ GameObject:
   - 61: {fileID: 410765034}
   - 114: {fileID: 410765033}
   - 61: {fileID: 410765032}
-  m_Layer: 8
+  m_Layer: 0
   m_Name: FragileBlock (7)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -2212,6 +2233,10 @@ Prefab:
       propertyPath: m_Name
       value: Splinter (1)
       objectReference: {fileID: 0}
+    - target: {fileID: 185422, guid: 22cec0eebabc04d4db2ca1654ceef887, type: 2}
+      propertyPath: m_Layer
+      value: 0
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 22cec0eebabc04d4db2ca1654ceef887, type: 2}
   m_IsPrefabParent: 0
@@ -2241,7 +2266,7 @@ GameObject:
   - 61: {fileID: 547338732}
   - 114: {fileID: 547338731}
   - 61: {fileID: 547338730}
-  m_Layer: 8
+  m_Layer: 0
   m_Name: FragileBlock (8)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -2378,7 +2403,7 @@ GameObject:
   m_Component:
   - 4: {fileID: 559588076}
   - 212: {fileID: 559588077}
-  m_Layer: 10
+  m_Layer: 0
   m_Name: Ladder
   m_TagString: Ladder
   m_Icon: {fileID: 0}
@@ -2509,7 +2534,7 @@ GameObject:
   - 61: {fileID: 627075810}
   - 114: {fileID: 627075809}
   - 61: {fileID: 627075808}
-  m_Layer: 8
+  m_Layer: 0
   m_Name: FragileBlock (13)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -2646,7 +2671,7 @@ GameObject:
   m_Component:
   - 4: {fileID: 1398612025}
   - 61: {fileID: 628679762}
-  m_Layer: 10
+  m_Layer: 0
   m_Name: Ladders
   m_TagString: Ladder
   m_Icon: {fileID: 0}
@@ -2729,7 +2754,7 @@ GameObject:
   - 61: {fileID: 670743961}
   - 114: {fileID: 670743960}
   - 61: {fileID: 670743959}
-  m_Layer: 8
+  m_Layer: 0
   m_Name: FragileBlock
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -2865,7 +2890,7 @@ GameObject:
   serializedVersion: 4
   m_Component:
   - 4: {fileID: 678259232}
-  m_Layer: 8
+  m_Layer: 0
   m_Name: FragileBlocks
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -2942,6 +2967,10 @@ Prefab:
       propertyPath: m_Name
       value: Splinter (13)
       objectReference: {fileID: 0}
+    - target: {fileID: 185422, guid: 22cec0eebabc04d4db2ca1654ceef887, type: 2}
+      propertyPath: m_Layer
+      value: 0
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 22cec0eebabc04d4db2ca1654ceef887, type: 2}
   m_IsPrefabParent: 0
@@ -2987,6 +3016,10 @@ Prefab:
     - target: {fileID: 185422, guid: 22cec0eebabc04d4db2ca1654ceef887, type: 2}
       propertyPath: m_Name
       value: Splinter (14)
+      objectReference: {fileID: 0}
+    - target: {fileID: 185422, guid: 22cec0eebabc04d4db2ca1654ceef887, type: 2}
+      propertyPath: m_Layer
+      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 22cec0eebabc04d4db2ca1654ceef887, type: 2}
@@ -3043,7 +3076,7 @@ GameObject:
   - 61: {fileID: 752879773}
   - 114: {fileID: 752879772}
   - 61: {fileID: 752879771}
-  m_Layer: 8
+  m_Layer: 0
   m_Name: FragileBlock (6)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -3440,6 +3473,10 @@ Prefab:
       propertyPath: m_Name
       value: HardPlatform (2)
       objectReference: {fileID: 0}
+    - target: {fileID: 157412, guid: 5b0be34a1bdd14646bea4af5665ef78a, type: 2}
+      propertyPath: m_Layer
+      value: 8
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 5b0be34a1bdd14646bea4af5665ef78a, type: 2}
   m_IsPrefabParent: 0
@@ -3461,7 +3498,7 @@ GameObject:
   - 61: {fileID: 819353566}
   - 114: {fileID: 819353565}
   - 61: {fileID: 819353564}
-  m_Layer: 8
+  m_Layer: 0
   m_Name: FragileBlock (15)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -3656,6 +3693,10 @@ Prefab:
       propertyPath: m_IsActive
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 164756, guid: d450591fb3d3ba449bd2a7c8ffe8f561, type: 2}
+      propertyPath: m_Layer
+      value: 0
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: d450591fb3d3ba449bd2a7c8ffe8f561, type: 2}
   m_IsPrefabParent: 0
@@ -3748,6 +3789,10 @@ Prefab:
       propertyPath: Direction.x
       value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: 170160, guid: 75343d6a1ea04014999c100f8fc4fe87, type: 2}
+      propertyPath: m_Layer
+      value: 0
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 75343d6a1ea04014999c100f8fc4fe87, type: 2}
   m_IsPrefabParent: 0
@@ -3801,6 +3846,10 @@ Prefab:
     - target: {fileID: 170160, guid: 75343d6a1ea04014999c100f8fc4fe87, type: 2}
       propertyPath: m_Name
       value: Gun (1)
+      objectReference: {fileID: 0}
+    - target: {fileID: 170160, guid: 75343d6a1ea04014999c100f8fc4fe87, type: 2}
+      propertyPath: m_Layer
+      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 75343d6a1ea04014999c100f8fc4fe87, type: 2}
@@ -3857,7 +3906,7 @@ GameObject:
   m_Component:
   - 4: {fileID: 983118541}
   - 61: {fileID: 983118542}
-  m_Layer: 8
+  m_Layer: 0
   m_Name: Grounds
   m_TagString: Ground
   m_Icon: {fileID: 0}
@@ -3903,7 +3952,7 @@ GameObject:
   - 4: {fileID: 991274250}
   - 212: {fileID: 991274252}
   - 61: {fileID: 991274251}
-  m_Layer: 8
+  m_Layer: 0
   m_Name: ground1
   m_TagString: Ground
   m_Icon: {fileID: 0}
@@ -4094,7 +4143,7 @@ GameObject:
   - 61: {fileID: 1002533107}
   - 114: {fileID: 1002533106}
   - 61: {fileID: 1002533105}
-  m_Layer: 8
+  m_Layer: 0
   m_Name: FragileBlock (5)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -4231,7 +4280,7 @@ GameObject:
   m_Component:
   - 4: {fileID: 1004615646}
   - 212: {fileID: 1004615647}
-  m_Layer: 10
+  m_Layer: 0
   m_Name: Ladder (1)
   m_TagString: Ladder
   m_Icon: {fileID: 0}
@@ -4319,6 +4368,14 @@ Prefab:
     - target: {fileID: 478068, guid: 67e5f9f79fca7e047b331d099f461358, type: 2}
       propertyPath: m_RootOrder
       value: 8
+      objectReference: {fileID: 0}
+    - target: {fileID: 157468, guid: 67e5f9f79fca7e047b331d099f461358, type: 2}
+      propertyPath: m_Layer
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 132882, guid: 67e5f9f79fca7e047b331d099f461358, type: 2}
+      propertyPath: m_Layer
+      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 67e5f9f79fca7e047b331d099f461358, type: 2}
@@ -4408,6 +4465,10 @@ Prefab:
       propertyPath: m_Name
       value: Splinter (15)
       objectReference: {fileID: 0}
+    - target: {fileID: 185422, guid: 22cec0eebabc04d4db2ca1654ceef887, type: 2}
+      propertyPath: m_Layer
+      value: 0
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 22cec0eebabc04d4db2ca1654ceef887, type: 2}
   m_IsPrefabParent: 0
@@ -4429,7 +4490,7 @@ GameObject:
   - 61: {fileID: 1082136369}
   - 114: {fileID: 1082136368}
   - 61: {fileID: 1082136367}
-  m_Layer: 8
+  m_Layer: 0
   m_Name: FragileBlock (1)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -4619,7 +4680,7 @@ GameObject:
   serializedVersion: 4
   m_Component:
   - 4: {fileID: 1109348981}
-  m_Layer: 0
+  m_Layer: 23
   m_Name: Walls
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -4846,6 +4907,10 @@ Prefab:
       propertyPath: m_Name
       value: Splinter (7)
       objectReference: {fileID: 0}
+    - target: {fileID: 185422, guid: 22cec0eebabc04d4db2ca1654ceef887, type: 2}
+      propertyPath: m_Layer
+      value: 0
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 22cec0eebabc04d4db2ca1654ceef887, type: 2}
   m_IsPrefabParent: 0
@@ -4896,6 +4961,10 @@ Prefab:
       propertyPath: m_TagString
       value: Wall
       objectReference: {fileID: 0}
+    - target: {fileID: 163120, guid: 7e4733219325f204ab5d78daadf39d8f, type: 2}
+      propertyPath: m_Layer
+      value: 23
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 7e4733219325f204ab5d78daadf39d8f, type: 2}
   m_IsPrefabParent: 0
@@ -4917,7 +4986,7 @@ GameObject:
   - 61: {fileID: 1294680997}
   - 114: {fileID: 1294680996}
   - 61: {fileID: 1294680995}
-  m_Layer: 8
+  m_Layer: 0
   m_Name: FragileBlock (9)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -5096,6 +5165,10 @@ Prefab:
       propertyPath: m_Name
       value: Splinter (9)
       objectReference: {fileID: 0}
+    - target: {fileID: 185422, guid: 22cec0eebabc04d4db2ca1654ceef887, type: 2}
+      propertyPath: m_Layer
+      value: 0
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 22cec0eebabc04d4db2ca1654ceef887, type: 2}
   m_IsPrefabParent: 0
@@ -5142,6 +5215,10 @@ Prefab:
       propertyPath: m_Name
       value: Splinter (12)
       objectReference: {fileID: 0}
+    - target: {fileID: 185422, guid: 22cec0eebabc04d4db2ca1654ceef887, type: 2}
+      propertyPath: m_Layer
+      value: 0
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 22cec0eebabc04d4db2ca1654ceef887, type: 2}
   m_IsPrefabParent: 0
@@ -5159,7 +5236,7 @@ GameObject:
   - 61: {fileID: 1394986770}
   - 114: {fileID: 1394986769}
   - 61: {fileID: 1394986768}
-  m_Layer: 8
+  m_Layer: 0
   m_Name: FragileBlock (3)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -5317,7 +5394,7 @@ GameObject:
   - 114: {fileID: 1413396046}
   - 61: {fileID: 1413396045}
   - 61: {fileID: 1413396044}
-  m_Layer: 8
+  m_Layer: 0
   m_Name: Trampoline
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -5470,6 +5547,10 @@ Prefab:
       propertyPath: m_TagString
       value: Wall
       objectReference: {fileID: 0}
+    - target: {fileID: 163120, guid: 7e4733219325f204ab5d78daadf39d8f, type: 2}
+      propertyPath: m_Layer
+      value: 23
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 7e4733219325f204ab5d78daadf39d8f, type: 2}
   m_IsPrefabParent: 0
@@ -5487,7 +5568,7 @@ GameObject:
   - 4: {fileID: 1454653987}
   - 212: {fileID: 1454653989}
   - 61: {fileID: 1454653988}
-  m_Layer: 8
+  m_Layer: 0
   m_Name: ground1 (1)
   m_TagString: Ground
   m_Icon: {fileID: 0}
@@ -5615,6 +5696,10 @@ Prefab:
       propertyPath: m_Name
       value: HardPlatform (1)
       objectReference: {fileID: 0}
+    - target: {fileID: 157412, guid: 5b0be34a1bdd14646bea4af5665ef78a, type: 2}
+      propertyPath: m_Layer
+      value: 8
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 5b0be34a1bdd14646bea4af5665ef78a, type: 2}
   m_IsPrefabParent: 0
@@ -5626,7 +5711,7 @@ GameObject:
   serializedVersion: 4
   m_Component:
   - 4: {fileID: 1487338266}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: HardPlatforms
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -5865,6 +5950,10 @@ Prefab:
       propertyPath: m_Name
       value: Splinter (11)
       objectReference: {fileID: 0}
+    - target: {fileID: 185422, guid: 22cec0eebabc04d4db2ca1654ceef887, type: 2}
+      propertyPath: m_Layer
+      value: 0
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 22cec0eebabc04d4db2ca1654ceef887, type: 2}
   m_IsPrefabParent: 0
@@ -6064,6 +6153,10 @@ Prefab:
       propertyPath: m_RootOrder
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 185422, guid: 22cec0eebabc04d4db2ca1654ceef887, type: 2}
+      propertyPath: m_Layer
+      value: 0
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 22cec0eebabc04d4db2ca1654ceef887, type: 2}
   m_IsPrefabParent: 0
@@ -6110,6 +6203,10 @@ Prefab:
       propertyPath: m_Name
       value: Splinter (3)
       objectReference: {fileID: 0}
+    - target: {fileID: 185422, guid: 22cec0eebabc04d4db2ca1654ceef887, type: 2}
+      propertyPath: m_Layer
+      value: 0
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 22cec0eebabc04d4db2ca1654ceef887, type: 2}
   m_IsPrefabParent: 0
@@ -6150,7 +6247,7 @@ GameObject:
   m_Component:
   - 4: {fileID: 1702648807}
   - 212: {fileID: 1702648808}
-  m_Layer: 10
+  m_Layer: 0
   m_Name: Ladder (4)
   m_TagString: Ladder
   m_Icon: {fileID: 0}
@@ -6214,7 +6311,7 @@ GameObject:
   - 61: {fileID: 1716313738}
   - 114: {fileID: 1716313737}
   - 61: {fileID: 1716313736}
-  m_Layer: 8
+  m_Layer: 0
   m_Name: FragileBlock (4)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -6458,7 +6555,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 1750327709}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 05001bcfbe4a29642a096054696209ed, type: 3}
+  m_Script: {fileID: 11500000, guid: d859a2352c2014744863ce957dec1804, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
 --- !u!1 &1763576188
@@ -6561,7 +6658,7 @@ GameObject:
   - 61: {fileID: 1799086726}
   - 114: {fileID: 1799086725}
   - 61: {fileID: 1799086724}
-  m_Layer: 8
+  m_Layer: 0
   m_Name: FragileBlock (10)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -6766,6 +6863,10 @@ Prefab:
       propertyPath: m_TagString
       value: Wall
       objectReference: {fileID: 0}
+    - target: {fileID: 163120, guid: 7e4733219325f204ab5d78daadf39d8f, type: 2}
+      propertyPath: m_Layer
+      value: 23
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 7e4733219325f204ab5d78daadf39d8f, type: 2}
   m_IsPrefabParent: 0
@@ -6781,6 +6882,60 @@ Transform:
 Transform:
   m_PrefabParentObject: {fileID: 418598, guid: 22cec0eebabc04d4db2ca1654ceef887, type: 2}
   m_PrefabInternal: {fileID: 1340587778}
+--- !u!1 &1876353494
+GameObject:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  serializedVersion: 4
+  m_Component:
+  - 4: {fileID: 1876353495}
+  - 61: {fileID: 1876353497}
+  - 114: {fileID: 1876353496}
+  m_Layer: 11
+  m_Name: WallKickJump
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &1876353495
+Transform:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1876353494}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 1953580993}
+  m_RootOrder: 0
+--- !u!114 &1876353496
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1876353494}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d859a2352c2014744863ce957dec1804, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!61 &1876353497
+BoxCollider2D:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1876353494}
+  m_Enabled: 1
+  m_Density: 1
+  m_Material: {fileID: 0}
+  m_IsTrigger: 1
+  m_UsedByEffector: 0
+  m_Offset: {x: 0.0021207333, y: 0.08695626}
+  serializedVersion: 2
+  m_Size: {x: 0.2746566, y: 0.6309663}
 --- !u!1001 &1878201257
 Prefab:
   m_ObjectHideFlags: 0
@@ -6823,6 +6978,10 @@ Prefab:
     - target: {fileID: 185422, guid: 22cec0eebabc04d4db2ca1654ceef887, type: 2}
       propertyPath: m_Name
       value: Splinter (8)
+      objectReference: {fileID: 0}
+    - target: {fileID: 185422, guid: 22cec0eebabc04d4db2ca1654ceef887, type: 2}
+      propertyPath: m_Layer
+      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 22cec0eebabc04d4db2ca1654ceef887, type: 2}
@@ -6869,6 +7028,10 @@ Prefab:
     - target: {fileID: 11422686, guid: 75343d6a1ea04014999c100f8fc4fe87, type: 2}
       propertyPath: Speed.x
       value: 4
+      objectReference: {fileID: 0}
+    - target: {fileID: 170160, guid: 75343d6a1ea04014999c100f8fc4fe87, type: 2}
+      propertyPath: m_Layer
+      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 75343d6a1ea04014999c100f8fc4fe87, type: 2}
@@ -6920,9 +7083,41 @@ Prefab:
       propertyPath: m_TagString
       value: Wall
       objectReference: {fileID: 0}
+    - target: {fileID: 163120, guid: 7e4733219325f204ab5d78daadf39d8f, type: 2}
+      propertyPath: m_Layer
+      value: 23
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 7e4733219325f204ab5d78daadf39d8f, type: 2}
   m_IsPrefabParent: 0
+--- !u!1 &1953580992
+GameObject:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  serializedVersion: 4
+  m_Component:
+  - 4: {fileID: 1953580993}
+  m_Layer: 11
+  m_Name: Basics
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &1953580993
+Transform:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1953580992}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children:
+  - {fileID: 1876353495}
+  m_Father: {fileID: 150007668}
+  m_RootOrder: 5
 --- !u!114 &1982675711 stripped
 MonoBehaviour:
   m_PrefabParentObject: {fileID: 11430998, guid: 631a53319fe23c94e9788cc66228b4c0,
@@ -7007,6 +7202,10 @@ Prefab:
     - target: {fileID: 163120, guid: 7e4733219325f204ab5d78daadf39d8f, type: 2}
       propertyPath: m_TagString
       value: Wall
+      objectReference: {fileID: 0}
+    - target: {fileID: 163120, guid: 7e4733219325f204ab5d78daadf39d8f, type: 2}
+      propertyPath: m_Layer
+      value: 23
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 7e4733219325f204ab5d78daadf39d8f, type: 2}
@@ -7111,6 +7310,10 @@ Prefab:
     - target: {fileID: 185422, guid: 22cec0eebabc04d4db2ca1654ceef887, type: 2}
       propertyPath: m_Name
       value: Splinter (5)
+      objectReference: {fileID: 0}
+    - target: {fileID: 185422, guid: 22cec0eebabc04d4db2ca1654ceef887, type: 2}
+      propertyPath: m_Layer
+      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 22cec0eebabc04d4db2ca1654ceef887, type: 2}
@@ -7217,6 +7420,10 @@ Prefab:
     - target: {fileID: 185422, guid: 22cec0eebabc04d4db2ca1654ceef887, type: 2}
       propertyPath: m_Name
       value: Splinter (2)
+      objectReference: {fileID: 0}
+    - target: {fileID: 185422, guid: 22cec0eebabc04d4db2ca1654ceef887, type: 2}
+      propertyPath: m_Layer
+      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 22cec0eebabc04d4db2ca1654ceef887, type: 2}

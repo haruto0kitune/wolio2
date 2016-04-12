@@ -20,11 +20,27 @@ public static class Utility
 
     public static float DegToRad(float Degree)
     {
-        return Degree * Mathf.PI / 180; 
+        return Degree * Mathf.Deg2Rad;
     }
 
     public static int RadToDeg(float Radian)
     {
-        return (int)(Radian * 180 / Mathf.PI);
+        return (int)(Radian * Mathf.Rad2Deg);
+    }
+
+    public static Vector2 PolarToRectangular2D(int Angle, float Radius)
+    {
+        var x = Mathf.Ceil(Radius * Mathf.Cos(DegToRad(Angle)));
+        var y = Mathf.Ceil(Radius * Mathf.Sin(DegToRad(Angle)));
+
+        return new Vector2(x, y);
+    }
+
+    public static Vector2 RectangularToPolar2D(float x, float y)
+    {
+        var r = Mathf.Sqrt(Mathf.Pow(x, 2) + Mathf.Pow(y, 2));
+        var Theta = Mathf.Atan2(y, x) * Mathf.Rad2Deg; 
+
+        return new Vector2(r, Theta);
     }
 }

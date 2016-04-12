@@ -63,7 +63,7 @@ public class PlayerState : MonoBehaviour
         IsDead = Hp.Select(x => transform.position.y <= -5 || x <= 0).ToReactiveProperty();
         IsDashing = new ReactiveProperty<bool>();
         IsRunning = new ReactiveProperty<bool>();
-        IsJumping = new ReactiveProperty<bool>();
+        IsJumping = this.ObserveEveryValueChanged(x => Animator.GetBool("IsJumping")).ToReactiveProperty();
         IsStanding = this.ObserveEveryValueChanged(x => Animator.GetBool("IsStanding")).ToReactiveProperty();
         IsCrouching = this.ObserveEveryValueChanged(x => Animator.GetBool("IsCrouching")).ToReactiveProperty();
         IsCreeping = this.ObserveEveryValueChanged(x => Animator.GetBool("IsCreeping")).ToReactiveProperty();
@@ -100,5 +100,20 @@ public class PlayerState : MonoBehaviour
         this.ObserveEveryValueChanged(x => Rigidbody2D.velocity.y)
             .Where(x => x <= -6)
             .Subscribe(_ => Rigidbody2D.velocity = new Vector2(Rigidbody2D.velocity.x, PlayerConfig.FallVelocityLimit));
+
+        // Speed limit
+        this.ObserveEveryValueChanged(x => Rigidbody2D.velocity.x)
+            .Where(x => x >= 10 | x <= -10)
+            .Subscribe(_ =>
+            {
+                if (Rigidbody2D.velocity.x >= 10)
+                {
+                    Rigidbody2D.velocity = new Vector2(10f, Rigidbody2D.velocity.y);
+                }
+                else if (Rigidbody2D.velocity.x <= -10)
+                {
+                    Rigidbody2D.velocity = new Vector2(-10f, Rigidbody2D.velocity.y);
+                }
+            });
     }
 }
