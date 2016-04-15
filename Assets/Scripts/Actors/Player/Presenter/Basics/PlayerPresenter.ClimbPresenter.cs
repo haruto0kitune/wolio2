@@ -13,11 +13,11 @@ public partial class PlayerPresenter : MonoBehaviour
 
         this.OnTriggerExit2DAsObservable()
             .Where(x => x.gameObject.tag == "Ladder")
-            .Subscribe(_ => PlayerState.IsClimbable.Value = false);
-
-        this.OnTriggerExit2DAsObservable()
-            .Where(x => x.gameObject.tag == "Ladder")
-            .Subscribe(_ => PlayerState.IsClimbing.Value = false);
+            .Subscribe(_ =>
+            {
+                PlayerState.IsClimbable.Value = false;
+                PlayerState.IsClimbing.Value = false;
+            });
 
         this.OnTriggerEnter2DAsObservable()
             .Where(x => PlayerState.IsClimbing.Value)

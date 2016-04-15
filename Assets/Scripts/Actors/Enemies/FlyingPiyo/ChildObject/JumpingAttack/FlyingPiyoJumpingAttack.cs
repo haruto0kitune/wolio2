@@ -54,7 +54,7 @@ public class FlyingPiyoJumpingAttack : MonoBehaviour
         var FlyingPiyoInitialPositionY = FlyingPiyo.transform.position.y;
 
         // Get unit vector of the direction of player 
-        var UnitVector = Utility.GetUnitVector(FlyingPiyo, Player);
+        var UnitVector = (Vector2)Utility.GetUnitVector(FlyingPiyo, Player);
 
         // Charge Player
         Rigidbody2D.velocity = UnitVector * 3;

@@ -14,23 +14,15 @@ public class FlyingPiyoAI : MonoBehaviour
     FlyingPiyoMotion FlyingPiyoMotion;
     FlyingPiyoConfig FlyingPiyoConfig;
 
-    Vector2 InitialPoisiton;
- 
     void Awake()
     {
         FlyingPiyoMotion = GetComponent<FlyingPiyoMotion>();
         FlyingPiyoState = GetComponent<FlyingPiyoState>();
         FlyingPiyoConfig = GetComponent<FlyingPiyoConfig>();
-
-        InitialPoisiton = transform.position;
     }
 
     void Start()
     {
-        this.UpdateAsObservable()
-            .Where(x => !FlyingPiyoState.IsAttacking.Value)
-            .Subscribe(_ => transform.position = new Vector2(transform.position.x, InitialPoisiton.y));
-
         this.FixedUpdateAsObservable()
             .Where(x => !FlyingPiyoState.IsAttacking.Value)
             .Subscribe(_ => FlyingPiyoMotion.Fly(FlyingPiyoConfig.Speed, FlyingPiyoState.Direction.Value));
