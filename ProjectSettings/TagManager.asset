@@ -64,7 +64,7 @@ TagManager:
   - Player/Guard
   - Enemy/Guard
   - Field
-  - 
+  - Player/HurtBox
   - 
   - 
   - 

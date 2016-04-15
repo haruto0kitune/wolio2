@@ -3,26 +3,19 @@ using System.Collections;
 using UniRx;
 using UniRx.Triggers;
 
-public class Fireball : MonoBehaviour
+public class PiyoHitBox : MonoBehaviour
 {
-    Rigidbody2D Rigidbody2D;
-    public Vector2 Speed { get; set; }
+    GameObject Piyo;
     PlayerState PlayerState;
 
     void Awake()
     {
-        Rigidbody2D = GetComponent<Rigidbody2D>();
+        Piyo = GameObject.Find("Piyo");
         PlayerState = GameObject.Find("Test").GetComponent<PlayerState>();
     }
 
     void Start()
     {
-        this.FixedUpdateAsObservable()
-            .Subscribe(_ => Rigidbody2D.velocity = Speed);
-
-        this.OnBecameInvisibleAsObservable()
-            .Subscribe(_ => Destroy(this.gameObject));
-
         this.OnTriggerEnter2DAsObservable()
             .Where(x => x.gameObject.tag == "HurtBox" && x.gameObject.layer == LayerMask.NameToLayer("Player/HurtBox"))
             .Subscribe(_ => PlayerState.Hp.Value--);

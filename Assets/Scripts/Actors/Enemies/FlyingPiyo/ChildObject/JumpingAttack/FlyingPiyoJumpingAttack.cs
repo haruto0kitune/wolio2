@@ -11,6 +11,7 @@ public class FlyingPiyoJumpingAttack : MonoBehaviour
     BoxCollider2D BoxCollider2D;
     FlyingPiyoState FlyingPiyoState;
     FlyingPiyoSearchBox FlyingPiyoSearchBox;
+    PlayerState PlayerState;
 
     Vector2 InitialPosition;
     //float SpeedY;
@@ -23,6 +24,7 @@ public class FlyingPiyoJumpingAttack : MonoBehaviour
         BoxCollider2D = GetComponent<BoxCollider2D>();
         FlyingPiyoState = FlyingPiyo.GetComponent<FlyingPiyoState>();
         FlyingPiyoSearchBox = FlyingPiyo.GetComponentInChildren<FlyingPiyoSearchBox>();
+        PlayerState = GameObject.Find("Test").GetComponent<PlayerState>();
 
         InitialPosition = FlyingPiyo.transform.position;
     }
@@ -35,6 +37,10 @@ public class FlyingPiyoJumpingAttack : MonoBehaviour
             .Where(x => !FlyingPiyoState.IsAttacking.Value)
             .Do(x => FlyingPiyoState.IsAttacking.Value = true)
             .Subscribe(_ => StartCoroutine(Attack()));
+
+        this.OnTriggerEnter2DAsObservable()
+            .Where(x => x.gameObject.tag == "HurtBox" && x.gameObject.layer == LayerMask.NameToLayer("Player/HurtBox"))
+            .Subscribe(_ => PlayerState.Hp.Value--);
     }
 
     public IEnumerator Attack()

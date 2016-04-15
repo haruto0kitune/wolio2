@@ -23,6 +23,8 @@ public class PlayerDebugInformation : MonoBehaviour
     private Text Text4;
     [SerializeField]
     private Text Text5;
+    [SerializeField]
+    private Text Text6;
      
     void Awake()
     {
@@ -36,5 +38,6 @@ public class PlayerDebugInformation : MonoBehaviour
         this.ObserveEveryValueChanged(x => Rigidbody2D.velocity.x).SubscribeToText(Text3);
         this.ObserveEveryValueChanged(x => Rigidbody2D.velocity.y).SubscribeToText(Text4);
         PlayerState.IsCrouching.SubscribeToText(Text5);
+        PlayerState.Hp.SubscribeToText(Text6);
     }
 }

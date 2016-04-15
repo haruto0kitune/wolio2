@@ -59,8 +59,9 @@ public class PlayerState : MonoBehaviour
         Rigidbody2D = GetComponent<Rigidbody2D>();
         Animator = GetComponent<Animator>();
 
+        //Hp = new IntReactiveProperty();
         IsGrounded = this.ObserveEveryValueChanged(x => (bool)Physics2D.Linecast(GroundCheck.position, GroundCheck.position, PlayerConfig.WhatIsGround)).ToReactiveProperty();
-        IsDead = Hp.Select(x => transform.position.y <= -5 || x <= 0).ToReactiveProperty();
+        IsDead = Hp.Select(x => x <= 0).ToReactiveProperty();
         IsDashing = new ReactiveProperty<bool>();
         IsRunning = new ReactiveProperty<bool>();
         IsJumping = this.ObserveEveryValueChanged(x => Animator.GetBool("IsJumping")).ToReactiveProperty();
@@ -115,5 +116,8 @@ public class PlayerState : MonoBehaviour
                     Rigidbody2D.velocity = new Vector2(-10f, Rigidbody2D.velocity.y);
                 }
             });
+
+        // Kill Player
+        IsDead.Where(x => x).Subscribe(_ => Destroy(gameObject));
     }
 }
