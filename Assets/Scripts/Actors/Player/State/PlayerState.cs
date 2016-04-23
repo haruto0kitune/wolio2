@@ -104,20 +104,24 @@ public class PlayerState : MonoBehaviour
 
         // Speed limit
         this.ObserveEveryValueChanged(x => Rigidbody2D.velocity.x)
-            .Where(x => x >= 10 | x <= -10)
+            .Where(x => IsJumping.Value)
+            .Where(x => x >= 5 | x <= -5)
             .Subscribe(_ =>
             {
-                if (Rigidbody2D.velocity.x >= 10)
+                if (Rigidbody2D.velocity.x >= 5)
                 {
-                    Rigidbody2D.velocity = new Vector2(10f, Rigidbody2D.velocity.y);
+                    Rigidbody2D.velocity = new Vector2(5f, Rigidbody2D.velocity.y);
                 }
-                else if (Rigidbody2D.velocity.x <= -10)
+                else if (Rigidbody2D.velocity.x <= -5)
                 {
-                    Rigidbody2D.velocity = new Vector2(-10f, Rigidbody2D.velocity.y);
+                    Rigidbody2D.velocity = new Vector2(-5f, Rigidbody2D.velocity.y);
                 }
             });
 
         // Kill Player
         IsDead.Where(x => x).Subscribe(_ => Destroy(gameObject));
+        
+        // When Player land, velocity reset.
+        IsGrounded.Where(x => x).Subscribe(_ => Rigidbody2D.velocity = Vector2.zero);
     }
 }

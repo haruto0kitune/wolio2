@@ -25,6 +25,10 @@ public class PlayerConfig : MonoBehaviour
     public Vector2 BoxCollider2DInitialOffset { get; set; }
     public Vector2 BoxCollider2DInitialSize { get; set; }
 
+    public int StandingLightAttackStartup;
+    public int StandingLightAttackActive;
+    public int StandingLightAttackRecovery;
+
     void Start()
     {
         BoxCollider2DInitialOffset = GetComponent<BoxCollider2D>().offset;

@@ -34,7 +34,8 @@ public partial class PlayerAnimation : MonoBehaviour
         ObservableStateMachineTrigger
             .OnStateUpdateAsObservable()
             .Where(x => x.StateInfo.IsName("Base Layer.Stand"))
-            .Where(x => Key.Z)
+            .Where(x => !x.StateInfo.IsName("Base Layer.StandingLightAttack"))
+            //.Where(x => Key.Z)
             .Do(x => Animator.SetBool("IsStanding", false))
             .Subscribe(_ => Animator.SetBool("IsStandingLightAttack", true));
 

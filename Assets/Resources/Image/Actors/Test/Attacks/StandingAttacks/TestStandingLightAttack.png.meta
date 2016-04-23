@@ -1,11 +1,13 @@
 fileFormatVersion: 2
 guid: ac0f0572ee762c949b15e9a95cd3d1c7
-timeCreated: 1458462434
+timeCreated: 1461404908
 licenseType: Free
 TextureImporter:
   fileIDToRecycleName:
     21300000: TestStandingLightAttack_0
     21300002: TestStandingLightAttack_1
+    21300004: TestStandingLightAttack_2
+    21300006: TestStandingLightAttack_3
   serializedVersion: 2
   mipmaps:
     mipMapMode: 0
@@ -63,14 +65,15 @@ TextureImporter:
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline:
-      - - {x: -12, y: 40}
-        - {x: -16, y: 35}
-        - {x: -16, y: -22}
-        - {x: -3, y: -40}
-        - {x: 21, y: -40}
-        - {x: 23, y: -32}
-        - {x: 23, y: 29}
-        - {x: 20, y: 40}
+      - - {x: -13, y: 40}
+        - {x: -23, y: 24}
+        - {x: -23, y: 4}
+        - {x: -22, y: 1}
+        - {x: -2, y: -40}
+        - {x: 3, y: -40}
+        - {x: 16, y: 15}
+        - {x: 16, y: 39}
+        - {x: 14, y: 40}
     - name: TestStandingLightAttack_1
       rect:
         serializedVersion: 2
@@ -82,14 +85,55 @@ TextureImporter:
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline:
-      - - {x: -12, y: 40}
-        - {x: -16, y: 35}
-        - {x: -16, y: -22}
-        - {x: -3, y: -40}
-        - {x: 21, y: -40}
-        - {x: 23, y: -32}
-        - {x: 23, y: 29}
-        - {x: 20, y: 40}
+      - - {x: -13, y: 40}
+        - {x: -23, y: 24}
+        - {x: -23, y: 4}
+        - {x: -22, y: 1}
+        - {x: -2, y: -40}
+        - {x: 3, y: -40}
+        - {x: 16, y: 15}
+        - {x: 16, y: 39}
+        - {x: 14, y: 40}
+    - name: TestStandingLightAttack_2
+      rect:
+        serializedVersion: 2
+        x: 160
+        y: 0
+        width: 80
+        height: 80
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline:
+      - - {x: -13, y: 40}
+        - {x: -23, y: 24}
+        - {x: -23, y: 4}
+        - {x: -22, y: 1}
+        - {x: -2, y: -40}
+        - {x: 3, y: -40}
+        - {x: 16, y: 15}
+        - {x: 16, y: 39}
+        - {x: 14, y: 40}
+    - name: TestStandingLightAttack_3
+      rect:
+        serializedVersion: 2
+        x: 240
+        y: 0
+        width: 80
+        height: 80
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline:
+      - - {x: -13, y: 40}
+        - {x: -23, y: 24}
+        - {x: -23, y: 4}
+        - {x: -22, y: 1}
+        - {x: -2, y: -40}
+        - {x: 3, y: -40}
+        - {x: 16, y: 15}
+        - {x: 16, y: 39}
+        - {x: 14, y: 40}
     outline: []
   spritePackingTag: 
   userData: 

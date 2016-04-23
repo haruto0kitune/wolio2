@@ -12,6 +12,9 @@ public partial class PlayerAnimation : MonoBehaviour
              .Where(x => x.StateInfo.IsName("Base Layer.StandingLightAttack"))
              .Where(x => x.StateInfo.normalizedTime >= 1)
              .Do(x => Animator.SetBool("IsStanding", true))
-             .Subscribe(_ => Animator.SetBool("IsStandingLightAttack", false));
+             .Subscribe(_ =>
+             {
+                 Animator.SetBool("IsStandingLightAttack", false);
+             });
     }
 }
