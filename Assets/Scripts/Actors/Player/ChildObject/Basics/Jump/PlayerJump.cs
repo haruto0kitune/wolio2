@@ -3,7 +3,7 @@ using System.Collections;
 using UniRx;
 using UniRx.Triggers;
 
-public class PlayerCrouchingHighAttack : MonoBehaviour
+public class PlayerJump : MonoBehaviour
 {
     PlayerState PlayerState;
     BoxCollider2D BoxCollider2D;
@@ -16,20 +16,12 @@ public class PlayerCrouchingHighAttack : MonoBehaviour
 
     void Start()
     {
-        PlayerState.IsCrouchingHighAttack
+        PlayerState.IsJumping
             .Where(x => x)
-            .Subscribe(_ => StartCoroutine(Attack()));
-    }
+            .Subscribe(_ => BoxCollider2D.enabled = true);
 
-    public IEnumerator Attack()
-    {
-        BoxCollider2D.enabled = true;
-
-        for (var i = 0; i < 3; i++)
-        {
-            yield return null;
-        }
-
-        BoxCollider2D.enabled = false;
+        PlayerState.IsJumping
+            .Where(x => !x)
+            .Subscribe(_ => BoxCollider2D.enabled = false);
     }
 }

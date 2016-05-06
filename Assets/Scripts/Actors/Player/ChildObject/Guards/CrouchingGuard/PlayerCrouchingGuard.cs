@@ -19,10 +19,6 @@ public class PlayerCrouchingGuard : MonoBehaviour
         PlayerState.IsCrouchingGuard
             .Where(x => x)
             .Subscribe(_ => StartCoroutine(CrouchingGuard()));
-
-        PlayerState.FacingRight
-            .Skip(1)
-            .Subscribe(_ => BoxCollider2D.offset = new Vector2(BoxCollider2D.offset.x * -1f, BoxCollider2D.offset.y));
     }
 
     public IEnumerator CrouchingGuard()

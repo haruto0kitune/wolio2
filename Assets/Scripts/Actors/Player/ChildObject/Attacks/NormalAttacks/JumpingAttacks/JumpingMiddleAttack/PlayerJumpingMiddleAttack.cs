@@ -19,9 +19,6 @@ public class PlayerJumpingMiddleAttack : MonoBehaviour
         PlayerState.IsJumpingMiddleAttack
             .Where(x => x)
             .Subscribe(_ => StartCoroutine(Attack()));
-
-        PlayerState.FacingRight
-            .Subscribe(_ => BoxCollider2D.offset = new Vector2(BoxCollider2D.offset.x * -1f, BoxCollider2D.offset.y));
     }
 
     public IEnumerator Attack()

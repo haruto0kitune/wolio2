@@ -3,9 +3,10 @@ using System.Collections;
 
 public static class Utility
 {
-    public static void Flip(this SpriteRenderer _SpriteRenderer)
+    public static void Flip(Transform _Transform)
     {
-        _SpriteRenderer.flipX = !_SpriteRenderer.flipX;
+        _Transform.localScale = new Vector2(_Transform.localScale.x * -1, _Transform.localScale.y);
+        //_SpriteRenderer.flipX = !_SpriteRenderer.flipX;
     }
 
     public static Vector3 GetUnitVector(GameObject Source, GameObject Target)

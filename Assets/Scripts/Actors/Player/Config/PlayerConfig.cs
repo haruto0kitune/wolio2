@@ -14,16 +14,6 @@ public class PlayerConfig : MonoBehaviour
     const float k_GroundedRadius = .2f; // Radius of the overlap circle to determine if grounded
     public float GravityScaleStore = 5f;
     public const float FallVelocityLimit = -6f;
-    public Vector2 RightCrouchColliderOffset;
-    public Vector2 RightCrouchColliderSize;
-    public Vector2 LeftCrouchColliderOffset;
-    public Vector2 LeftCrouchColliderSize;
-    public Vector2 RightCreepColliderOffset;
-    public Vector2 RightCreepColliderSize;
-    public Vector2 LeftCreepColliderOffset;
-    public Vector2 LeftCreepColliderSize;
-    public Vector2 BoxCollider2DInitialOffset { get; set; }
-    public Vector2 BoxCollider2DInitialSize { get; set; }
 
     public int StandingLightAttackStartup;
     public int StandingLightAttackActive;
@@ -31,7 +21,5 @@ public class PlayerConfig : MonoBehaviour
 
     void Start()
     {
-        BoxCollider2DInitialOffset = GetComponent<BoxCollider2D>().offset;
-        BoxCollider2DInitialSize = GetComponent<BoxCollider2D>().size;
     }
 }

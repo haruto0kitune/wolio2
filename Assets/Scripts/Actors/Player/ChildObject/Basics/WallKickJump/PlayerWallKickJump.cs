@@ -8,7 +8,7 @@ public class PlayerWallKickJump : MonoBehaviour
     GameObject Player;
     Rigidbody2D PlayerRigidbody2D;
     PlayerState PlayerState;
-    PlayerMotion PlayerMotion;
+    PlayerMover PlayerMotion;
     Key Key;
 
     void Awake()
@@ -16,15 +16,14 @@ public class PlayerWallKickJump : MonoBehaviour
         Player = GameObject.Find("Test");
         PlayerRigidbody2D = Player.GetComponent<Rigidbody2D>();
         PlayerState = Player.GetComponent<PlayerState>();
-        PlayerMotion = Player.GetComponent<PlayerMotion>();
+        PlayerMotion = Player.GetComponent<PlayerMover>();
         Key = Player.GetComponent<Key>();
     }
 
     void Start()
     {
         //Player
-        this
-            .OnTriggerStay2DAsObservable()
+        this.OnTriggerStay2DAsObservable()
             .Where(x => x.gameObject.layer == LayerMask.NameToLayer("Field"))
             .Where(x => PlayerState.IsJumping.Value)
             .Where(x => Key.Vertical.Value == 1f)

@@ -19,7 +19,8 @@ public class FlyingPiyoState : MonoBehaviour
         WallCheck = gameObject.transform.Find("WallCheck");
         SpriteRenderer = GetComponent<SpriteRenderer>();
 
-        FacingRight = SpriteRenderer.ObserveEveryValueChanged(x => x.flipX).ToReactiveProperty();
+        //FacingRight = SpriteRenderer.ObserveEveryValueChanged(x => x.flipX).ToReactiveProperty();
+        FacingRight = transform.ObserveEveryValueChanged(x => x.localScale.x).Select(x => x == -1).ToReactiveProperty();
         Direction = FacingRight.Select(x => x ? 1f : -1f).ToReactiveProperty(-1f);
         IsAttacking = new ReactiveProperty<bool>();
     }

@@ -63,7 +63,7 @@ public class PlayerState : MonoBehaviour
         IsGrounded = this.ObserveEveryValueChanged(x => (bool)Physics2D.Linecast(GroundCheck.position, GroundCheck.position, PlayerConfig.WhatIsGround)).ToReactiveProperty();
         IsDead = Hp.Select(x => x <= 0).ToReactiveProperty();
         IsDashing = new ReactiveProperty<bool>();
-        IsRunning = new ReactiveProperty<bool>();
+        IsRunning = this.ObserveEveryValueChanged(x => Animator.GetBool("IsRunning")).ToReactiveProperty();
         IsJumping = this.ObserveEveryValueChanged(x => Animator.GetBool("IsJumping")).ToReactiveProperty();
         IsStanding = this.ObserveEveryValueChanged(x => Animator.GetBool("IsStanding")).ToReactiveProperty();
         IsCrouching = this.ObserveEveryValueChanged(x => Animator.GetBool("IsCrouching")).ToReactiveProperty();
@@ -92,7 +92,8 @@ public class PlayerState : MonoBehaviour
         IsStandingGuardBack = new ReactiveProperty<bool>();
         IsCrouchingGuardBack = new ReactiveProperty<bool>();
         IsJumpingGuardBack = new ReactiveProperty<bool>();
-        FacingRight = SpriteRenderer.ObserveEveryValueChanged(x => x.flipX).ToReactiveProperty();
+        //FacingRight = SpriteRenderer.ObserveEveryValueChanged(x => x.flipX).ToReactiveProperty();
+        FacingRight = transform.ObserveEveryValueChanged(x => x.localScale.x).Select(x => x == -1).ToReactiveProperty();
     }
 
     void Start()
