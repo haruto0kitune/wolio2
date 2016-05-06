@@ -1,5 +1,7 @@
 ﻿using UnityEngine;
 using System.Collections;
+using UniRx;
+using UniRx.Triggers;
 
 public class slanting_move_block : MonoBehaviour
 {
@@ -9,11 +11,30 @@ public class slanting_move_block : MonoBehaviour
     private float volume = 100;
     [SerializeField]
     private string direction = "left";
+    private Transform Parent;
 
     // Use this for initialization
     void Start()
     {
-        StartCoroutine("Move");
+        StartCoroutine(Move());
+
+        // Move with block
+        this.OnTriggerEnter2DAsObservable()
+            .ThrottleFirstFrame(1)
+            .Where(x => x.gameObject.tag == "Player" || x.gameObject.tag == "Enemy")
+            .Subscribe(_ =>
+            {
+                Parent = _.gameObject.transform.parent;
+                _.gameObject.transform.parent = transform;
+            });
+
+        this.OnTriggerExit2DAsObservable()
+            .ThrottleFirstFrame(1)
+            .Where(x => x.gameObject.tag == "Player" || x.gameObject.tag == "Enemy")
+            .Subscribe(_ =>
+            {
+                _.gameObject.transform.parent = Parent;
+            });
     }
 
     IEnumerator Move()

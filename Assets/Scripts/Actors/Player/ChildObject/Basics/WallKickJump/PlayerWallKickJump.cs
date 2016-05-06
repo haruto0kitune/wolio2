@@ -27,7 +27,6 @@ public class PlayerWallKickJump : MonoBehaviour
             .OnTriggerStay2DAsObservable()
             .Where(x => x.gameObject.layer == LayerMask.NameToLayer("Field"))
             .Where(x => PlayerState.IsJumping.Value)
-            .Do(x => Debug.Log("WallKick"))
             .Where(x => Key.Vertical.Value == 1f)
             .Subscribe(_ => WallKickJump(60, 10));
     }

@@ -6,9 +6,15 @@ public class ConstantVelocity2D : MonoBehaviour
 {
     [SerializeField]
     private Vector2 velocity;
+    private Rigidbody2D Rigidbody2D;
 
-    void Update()
+    void Awake()
     {
-        GetComponent<Rigidbody2D>().velocity = velocity;
+        Rigidbody2D = GetComponent<Rigidbody2D>();
+    }
+
+    void Start()
+    {
+        Rigidbody2D.velocity = velocity;
     }
 }
