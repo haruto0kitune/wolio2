@@ -5,8 +5,7 @@ public static class Utility
 {
     public static void Flip(Transform _Transform)
     {
-        _Transform.localScale = new Vector2(_Transform.localScale.x * -1, _Transform.localScale.y);
-        //_SpriteRenderer.flipX = !_SpriteRenderer.flipX;
+        _Transform.localScale = new Vector3(_Transform.localScale.x * -1, _Transform.localScale.y, _Transform.localScale.z);
     }
 
     public static Vector3 GetUnitVector(GameObject Source, GameObject Target)
