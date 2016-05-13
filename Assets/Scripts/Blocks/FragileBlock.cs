@@ -3,31 +3,34 @@ using System.Collections;
 using UniRx;
 using UniRx.Triggers;
 
-public class FragileBlock : MonoBehaviour
+namespace Wolio
 {
-    Animator Animator;
-
-    void Awake()
+    public class FragileBlock : MonoBehaviour
     {
-        Animator = GetComponent<Animator>();
-    }
+        Animator Animator;
 
-    void Start()
-    {
-        this.OnTriggerEnter2DAsObservable()
-            .Where(x => x.gameObject.tag == "Player")
-            .DelayFrame(60)
-            .Do(x => Animator.SetBool("Touched", true))
-            .Do(x =>
-            {
-                var Colliders = GetComponents<BoxCollider2D>();
-                foreach(var Col in Colliders)
+        void Awake()
+        {
+            Animator = GetComponent<Animator>();
+        }
+
+        void Start()
+        {
+            this.OnTriggerEnter2DAsObservable()
+                .Where(x => x.gameObject.tag == "Player")
+                .DelayFrame(60)
+                .Do(x => Animator.SetBool("Touched", true))
+                .Do(x =>
                 {
-                    Destroy(Col);
-                }
-            })
-            .DelayFrame(24)
-            .Subscribe(_ => Destroy(gameObject))
-            .AddTo(gameObject);
+                    var Colliders = GetComponents<BoxCollider2D>();
+                    foreach (var Col in Colliders)
+                    {
+                        Destroy(Col);
+                    }
+                })
+                .DelayFrame(24)
+                .Subscribe(_ => Destroy(gameObject))
+                .AddTo(gameObject);
+        }
     }
 }

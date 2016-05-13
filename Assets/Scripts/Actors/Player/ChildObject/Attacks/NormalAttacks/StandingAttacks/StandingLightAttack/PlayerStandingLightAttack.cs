@@ -3,55 +3,58 @@ using System.Collections;
 using UniRx;
 using UniRx.Triggers;
 
-public class PlayerStandingLightAttack : MonoBehaviour
+namespace Wolio.Actor.Player
 {
-    PlayerState PlayerState;
-    BoxCollider2D BoxCollider2D;
-    [SerializeField]
-    int Startup;
-    [SerializeField]
-    int Active;
-    [SerializeField]
-    int Recovery;
-
-    void Awake()
+    public class PlayerStandingLightAttack : MonoBehaviour
     {
-        PlayerState = GameObject.Find("Test").GetComponent<PlayerState>();
-        BoxCollider2D = GetComponent<BoxCollider2D>();
-    }
+        PlayerState PlayerState;
+        BoxCollider2D BoxCollider2D;
+        [SerializeField]
+        int Startup;
+        [SerializeField]
+        int Active;
+        [SerializeField]
+        int Recovery;
 
-    void Start()
-    {
-        PlayerState.IsStandingLightAttack
-            .Where(x => x)
-            .Subscribe(_ => StartCoroutine(Attack()));
-    }
-
-    public IEnumerator Attack()
-    {
-        // Startup
-        for (int i = 0; i < Startup; i++)
+        void Awake()
         {
-            Debug.Log("Startup: " + i);
-            yield return null;
+            PlayerState = GameObject.Find("Test").GetComponent<PlayerState>();
+            BoxCollider2D = GetComponent<BoxCollider2D>();
         }
 
-        // Active
-        BoxCollider2D.enabled = true;
-
-        for (var i = 0; i < Active ; i++)
+        void Start()
         {
-            Debug.Log("Active: " + i);
-            yield return null;
+            PlayerState.IsStandingLightAttack
+                .Where(x => x)
+                .Subscribe(_ => StartCoroutine(Attack()));
         }
 
-        BoxCollider2D.enabled = false;
-
-        // Recovery
-        for (int i = 0; i < Recovery; i++)
+        public IEnumerator Attack()
         {
-            Debug.Log("Recovery: " + i);
-            yield return null;
+            // Startup
+            for (int i = 0; i < Startup; i++)
+            {
+                Debug.Log("Startup: " + i);
+                yield return null;
+            }
+
+            // Active
+            BoxCollider2D.enabled = true;
+
+            for (var i = 0; i < Active; i++)
+            {
+                Debug.Log("Active: " + i);
+                yield return null;
+            }
+
+            BoxCollider2D.enabled = false;
+
+            // Recovery
+            for (int i = 0; i < Recovery; i++)
+            {
+                Debug.Log("Recovery: " + i);
+                yield return null;
+            }
         }
     }
 }

@@ -2,29 +2,33 @@
 using System.Collections;
 using UniRx;
 using UniRx.Triggers;
+using Wolio.Actor.Player;
 
-public class Fireball : MonoBehaviour
+namespace Wolio.Weapons
 {
-    Rigidbody2D Rigidbody2D;
-    public Vector2 Speed { get; set; }
-    PlayerState PlayerState;
-
-    void Awake()
+    public class Fireball : MonoBehaviour
     {
-        Rigidbody2D = GetComponent<Rigidbody2D>();
-        PlayerState = GameObject.Find("Test").GetComponent<PlayerState>();
-    }
+        Rigidbody2D Rigidbody2D;
+        public Vector2 Speed;
+        PlayerState PlayerState;
 
-    void Start()
-    {
-        this.FixedUpdateAsObservable()
-            .Subscribe(_ => Rigidbody2D.velocity = Speed);
+        void Awake()
+        {
+            Rigidbody2D = GetComponent<Rigidbody2D>();
+            PlayerState = GameObject.Find("Test").GetComponent<PlayerState>();
+        }
 
-        this.OnBecameInvisibleAsObservable()
-            .Subscribe(_ => Destroy(this.gameObject));
+        void Start()
+        {
+            this.FixedUpdateAsObservable()
+                .Subscribe(_ => Rigidbody2D.velocity = Speed);
 
-        this.OnTriggerEnter2DAsObservable()
-            .Where(x => x.gameObject.tag == "HurtBox" && x.gameObject.layer == LayerMask.NameToLayer("Player/HurtBox"))
-            .Subscribe(_ => PlayerState.Hp.Value--);
+            this.OnBecameInvisibleAsObservable()
+                .Subscribe(_ => Destroy(this.gameObject));
+
+            this.OnTriggerEnter2DAsObservable()
+                .Where(x => x.gameObject.tag == "HurtBox" && x.gameObject.layer == LayerMask.NameToLayer("Player/HurtBox"))
+                .Subscribe(_ => PlayerState.Hp.Value--);
+        }
     }
 }

@@ -3,18 +3,21 @@ using System.Collections;
 using UniRx;
 using UniRx.Triggers;
 
-public class MainCamera : MonoBehaviour
+namespace Wolio
 {
-    GameObject Player;
-
-    void Awake()
+    public class MainCamera : MonoBehaviour
     {
-        Player = GameObject.Find("Test");
-    }
+        GameObject Player;
 
-    void Start()
-    {
-        this.ObserveEveryValueChanged(x => Player.transform.position)
-            .Subscribe(_ => transform.position = (Vector2)_);        
+        void Awake()
+        {
+            Player = GameObject.Find("Test");
+        }
+
+        void Start()
+        {
+            this.ObserveEveryValueChanged(x => Player.transform.position)
+                .Subscribe(_ => transform.position = (Vector2)_);
+        }
     }
 }

@@ -3,25 +3,28 @@ using System.Collections;
 using UniRx;
 using UniRx.Triggers;
 
-public class PlayerCrouch : MonoBehaviour
+namespace Wolio.Actor.Player
 {
-    PlayerState PlayerState;
-    BoxCollider2D BoxCollider2D;
-
-    void Awake()
+    public class PlayerCrouch : MonoBehaviour
     {
-        PlayerState = GameObject.Find("Test").GetComponent<PlayerState>();
-        BoxCollider2D = GetComponent<BoxCollider2D>();
-    }
+        PlayerState PlayerState;
+        BoxCollider2D BoxCollider2D;
 
-    void Start()
-    {
-        PlayerState.IsCrouching
-            .Where(x => x)
-            .Subscribe(_ => BoxCollider2D.enabled = true);
+        void Awake()
+        {
+            PlayerState = GameObject.Find("Test").GetComponent<PlayerState>();
+            BoxCollider2D = GetComponent<BoxCollider2D>();
+        }
 
-        PlayerState.IsCrouching
-            .Where(x => !x)
-            .Subscribe(_ => BoxCollider2D.enabled = false);
+        void Start()
+        {
+            PlayerState.IsCrouching
+                .Where(x => x)
+                .Subscribe(_ => BoxCollider2D.enabled = true);
+
+            PlayerState.IsCrouching
+                .Where(x => !x)
+                .Subscribe(_ => BoxCollider2D.enabled = false);
+        }
     }
 }

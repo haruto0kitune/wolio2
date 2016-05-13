@@ -2,6 +2,7 @@
 using System.Collections;
 using UniRx;
 using UniRx.Triggers;
+using Wolio.Actor.Player;
 
 public class FlyingPiyoJumpingAttack : MonoBehaviour
 { 

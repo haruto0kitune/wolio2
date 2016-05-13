@@ -3,51 +3,54 @@ using System.Collections;
 using UniRx;
 using UniRx.Triggers;
 
-public class PlayerCrouchingGuardBack : MonoBehaviour
+namespace Wolio.Actor.Player
 {
-    PlayerState PlayerState;
-    Rigidbody2D Rigidbody2D;
-    BoxCollider2D BoxCollider2D;
-
-    void Awake()
+    public class PlayerCrouchingGuardBack : MonoBehaviour
     {
-        PlayerState = GameObject.Find("Test").GetComponent<PlayerState>();
-        Rigidbody2D = GameObject.Find("Test").GetComponent<Rigidbody2D>();
-        BoxCollider2D = transform.parent.GetComponent<BoxCollider2D>();
-    }
+        PlayerState PlayerState;
+        Rigidbody2D Rigidbody2D;
+        BoxCollider2D BoxCollider2D;
 
-    void Start()
-    {
-        transform.parent.OnTriggerEnter2DAsObservable()
-            .Where(x => PlayerState.IsCrouchingGuard.Value)
-            .Where(x => !PlayerState.IsCrouchingGuardBack.Value)
-            .Where(x => x.gameObject.tag == "AttackLevel/1")
-            .Subscribe(_ => StartCoroutine(CrouchingGuardBack()));
-    }
-
-    public IEnumerator CrouchingGuardBack()
-    {
-        PlayerState.IsCrouchingGuardBack.Value = true;
-        BoxCollider2D.enabled = false;
-
-        var VelocityStore = Rigidbody2D.velocity;
-
-        if (PlayerState.FacingRight.Value)
+        void Awake()
         {
-            Rigidbody2D.velocity = new Vector2(-2f, Rigidbody2D.velocity.y);
-        }
-        else
-        {
-            Rigidbody2D.velocity = new Vector2(2f, Rigidbody2D.velocity.y);
+            PlayerState = GameObject.Find("Test").GetComponent<PlayerState>();
+            Rigidbody2D = GameObject.Find("Test").GetComponent<Rigidbody2D>();
+            BoxCollider2D = transform.parent.GetComponent<BoxCollider2D>();
         }
 
-        for (int i = 0; i < 3; i++)
+        void Start()
         {
-            yield return null;
+            transform.parent.OnTriggerEnter2DAsObservable()
+                .Where(x => PlayerState.IsCrouchingGuard.Value)
+                .Where(x => !PlayerState.IsCrouchingGuardBack.Value)
+                .Where(x => x.gameObject.tag == "AttackLevel/1")
+                .Subscribe(_ => StartCoroutine(CrouchingGuardBack()));
         }
 
-        Rigidbody2D.velocity = VelocityStore;
-        BoxCollider2D.enabled = true;
-        PlayerState.IsCrouchingGuardBack.Value = false;
+        public IEnumerator CrouchingGuardBack()
+        {
+            PlayerState.IsCrouchingGuardBack.Value = true;
+            BoxCollider2D.enabled = false;
+
+            var VelocityStore = Rigidbody2D.velocity;
+
+            if (PlayerState.FacingRight.Value)
+            {
+                Rigidbody2D.velocity = new Vector2(-2f, Rigidbody2D.velocity.y);
+            }
+            else
+            {
+                Rigidbody2D.velocity = new Vector2(2f, Rigidbody2D.velocity.y);
+            }
+
+            for (int i = 0; i < 3; i++)
+            {
+                yield return null;
+            }
+
+            Rigidbody2D.velocity = VelocityStore;
+            BoxCollider2D.enabled = true;
+            PlayerState.IsCrouchingGuardBack.Value = false;
+        }
     }
 }

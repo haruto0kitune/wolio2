@@ -4,75 +4,78 @@ using UnityStandardAssets.CrossPlatformInput;
 using UniRx;
 using UniRx.Triggers;
 
-public class Key : MonoBehaviour
+namespace Wolio.Actor.Player
 {
-    public ReactiveProperty<float> Horizontal;
-    public ReactiveProperty<float> Vertical;
-
-    public bool A;
-    public bool S;
-    public bool D;
-    public bool Z;
-    public bool X;
-    public bool C;
-    public bool LeftShift;
-
-    public bool Space;
-
-    public ReactiveProperty<bool> IsAvailable;
-
-    private void Awake()
+    public class Key : MonoBehaviour
     {
-        Horizontal = new ReactiveProperty<float>();
-        Vertical = new ReactiveProperty<float>();
-        IsAvailable = new ReactiveProperty<bool>(true);
-    }
+        public ReactiveProperty<float> Horizontal;
+        public ReactiveProperty<float> Vertical;
 
-    private void Start()
-    {
-        UpdateAsObservables();
-    }
+        public bool A;
+        public bool S;
+        public bool D;
+        public bool Z;
+        public bool X;
+        public bool C;
+        public bool LeftShift;
 
-    private void UpdateAsObservables()
-    {
-        this.UpdateAsObservable()
-            .Where(x => IsAvailable.Value)
-            .Subscribe(_ => Horizontal.Value = CrossPlatformInputManager.GetAxisRaw("Horizontal"));
+        public bool Space;
 
-        this.UpdateAsObservable()
-            .Where(x => IsAvailable.Value)
-            .Subscribe(_ => Vertical.Value = CrossPlatformInputManager.GetAxisRaw("Vertical"));
+        public ReactiveProperty<bool> IsAvailable;
 
-        this.UpdateAsObservable()
-            .Where(x => IsAvailable.Value)
-            .Subscribe(_ => A = CrossPlatformInputManager.GetButtonDown("A"));
+        private void Awake()
+        {
+            Horizontal = new ReactiveProperty<float>();
+            Vertical = new ReactiveProperty<float>();
+            IsAvailable = new ReactiveProperty<bool>(true);
+        }
 
-        this.UpdateAsObservable()
-            .Where(x => IsAvailable.Value)
-            .Subscribe(_ => S = CrossPlatformInputManager.GetButtonDown("S"));
+        private void Start()
+        {
+            UpdateAsObservables();
+        }
 
-        this.UpdateAsObservable()
-            .Where(x => IsAvailable.Value)
-            .Subscribe(_ => D = CrossPlatformInputManager.GetButtonDown("D"));
+        private void UpdateAsObservables()
+        {
+            this.UpdateAsObservable()
+                .Where(x => IsAvailable.Value)
+                .Subscribe(_ => Horizontal.Value = CrossPlatformInputManager.GetAxisRaw("Horizontal"));
 
-        this.UpdateAsObservable()
-            .Where(x => IsAvailable.Value)
-            .Subscribe(_ => Z = CrossPlatformInputManager.GetButtonDown("Z"));
+            this.UpdateAsObservable()
+                .Where(x => IsAvailable.Value)
+                .Subscribe(_ => Vertical.Value = CrossPlatformInputManager.GetAxisRaw("Vertical"));
 
-        this.UpdateAsObservable()
-            .Where(x => IsAvailable.Value)
-            .Subscribe(_ => X = CrossPlatformInputManager.GetButtonDown("X"));
+            this.UpdateAsObservable()
+                .Where(x => IsAvailable.Value)
+                .Subscribe(_ => A = CrossPlatformInputManager.GetButtonDown("A"));
 
-        this.UpdateAsObservable()
-            .Where(x => IsAvailable.Value)
-            .Subscribe(_ => C = CrossPlatformInputManager.GetButtonDown("C"));
+            this.UpdateAsObservable()
+                .Where(x => IsAvailable.Value)
+                .Subscribe(_ => S = CrossPlatformInputManager.GetButtonDown("S"));
 
-        this.UpdateAsObservable()
-            .Where(x => IsAvailable.Value)
-            .Subscribe(_ => LeftShift = CrossPlatformInputManager.GetButton("LeftShift"));
+            this.UpdateAsObservable()
+                .Where(x => IsAvailable.Value)
+                .Subscribe(_ => D = CrossPlatformInputManager.GetButtonDown("D"));
 
-        this.UpdateAsObservable()
-            .Where(x => IsAvailable.Value)
-            .Subscribe(_ => Space = CrossPlatformInputManager.GetButton("Space"));
+            this.UpdateAsObservable()
+                .Where(x => IsAvailable.Value)
+                .Subscribe(_ => Z = CrossPlatformInputManager.GetButtonDown("Z"));
+
+            this.UpdateAsObservable()
+                .Where(x => IsAvailable.Value)
+                .Subscribe(_ => X = CrossPlatformInputManager.GetButtonDown("X"));
+
+            this.UpdateAsObservable()
+                .Where(x => IsAvailable.Value)
+                .Subscribe(_ => C = CrossPlatformInputManager.GetButtonDown("C"));
+
+            this.UpdateAsObservable()
+                .Where(x => IsAvailable.Value)
+                .Subscribe(_ => LeftShift = CrossPlatformInputManager.GetButton("LeftShift"));
+
+            this.UpdateAsObservable()
+                .Where(x => IsAvailable.Value)
+                .Subscribe(_ => Space = CrossPlatformInputManager.GetButton("Space"));
+        }
     }
 }
