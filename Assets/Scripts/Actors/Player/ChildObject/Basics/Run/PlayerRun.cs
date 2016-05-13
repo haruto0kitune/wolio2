@@ -20,14 +20,6 @@ namespace Wolio.Actor.Player
 
         void Start()
         {
-            this.UpdateAsObservable()
-                .Where(x => BoxCollider2D.enabled == true || CircleCollider2D.enabled == true)
-                .Subscribe(_ =>
-                {
-                    Debug.Log(BoxCollider2D.enabled);
-                    Debug.Log(CircleCollider2D.enabled);
-                });
-
             PlayerState.IsRunning
                 .Where(x => x)
                 .Subscribe(_ =>
