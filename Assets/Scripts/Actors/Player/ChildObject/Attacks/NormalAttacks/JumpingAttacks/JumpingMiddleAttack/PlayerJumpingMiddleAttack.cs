@@ -3,7 +3,7 @@ using System.Collections;
 using UniRx;
 using UniRx.Triggers;
 
-namespace Wolio.Actor.Player
+namespace Wolio.Actor.Player.Attacks.NormalAttacks.JumpingAttacks
 {
     public class PlayerJumpingMiddleAttack : MonoBehaviour
     {

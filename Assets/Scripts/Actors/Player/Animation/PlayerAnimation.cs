@@ -36,6 +36,7 @@ namespace Wolio.Actor.Player
                     Animator.SetBool("IsStanding", false);
                     Animator.SetBool("IsRunning", true);
                 });
+
             #endregion
             #region Stand->Jump
             ObservableStateMachineTrigger
