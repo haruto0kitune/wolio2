@@ -228,6 +228,48 @@ SpriteRenderer:
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
+--- !u!1 &53885949
+GameObject:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  serializedVersion: 4
+  m_Component:
+  - 4: {fileID: 53885950}
+  - 61: {fileID: 53885951}
+  m_Layer: 24
+  m_Name: JumpingHighAttackHurtBox
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &53885950
+Transform:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 53885949}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 901744536}
+  m_RootOrder: 1
+--- !u!61 &53885951
+BoxCollider2D:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 53885949}
+  m_Enabled: 0
+  m_Density: 1
+  m_Material: {fileID: 0}
+  m_IsTrigger: 1
+  m_UsedByEffector: 0
+  m_Offset: {x: 0.0011405945, y: 0.0006672144}
+  serializedVersion: 2
+  m_Size: {x: 0.3120284, y: 0.8590417}
 --- !u!1 &57592882
 GameObject:
   m_ObjectHideFlags: 0
@@ -255,7 +297,8 @@ Transform:
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
-  m_Children: []
+  m_Children:
+  - {fileID: 693951925}
   m_Father: {fileID: 477518369}
   m_RootOrder: 3
 --- !u!58 &57592884
@@ -329,6 +372,48 @@ Transform:
   - {fileID: 723504207}
   m_Father: {fileID: 2074393010}
   m_RootOrder: 1
+--- !u!1 &129510089
+GameObject:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  serializedVersion: 4
+  m_Component:
+  - 4: {fileID: 129510090}
+  - 61: {fileID: 129510091}
+  m_Layer: 14
+  m_Name: StandingLightAttackHitBox
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &129510090
+Transform:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 129510089}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 747744268}
+  m_RootOrder: 0
+--- !u!61 &129510091
+BoxCollider2D:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 129510089}
+  m_Enabled: 0
+  m_Density: 1
+  m_Material: {fileID: 0}
+  m_IsTrigger: 1
+  m_UsedByEffector: 0
+  m_Offset: {x: -0.1095207, y: 0.03352177}
+  serializedVersion: 2
+  m_Size: {x: 0.2048863, y: 0.04506044}
 --- !u!1 &150007667
 GameObject:
   m_ObjectHideFlags: 0
@@ -339,7 +424,6 @@ GameObject:
   - 4: {fileID: 150007668}
   - 212: {fileID: 150007676}
   - 95: {fileID: 150007675}
-  - 114: {fileID: 150007674}
   - 114: {fileID: 150007673}
   - 114: {fileID: 150007672}
   - 114: {fileID: 150007671}
@@ -367,7 +451,6 @@ Transform:
   - {fileID: 477518369}
   - {fileID: 1966504324}
   - {fileID: 29732162}
-  - {fileID: 1435002032}
   m_Father: {fileID: 1734839811}
   m_RootOrder: 1
 --- !u!114 &150007669
@@ -462,18 +545,6 @@ MonoBehaviour:
   C: 0
   LeftShift: 0
   Space: 0
---- !u!114 &150007674
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 11426738, guid: 1665c5ce479006740b4a051a2bb59dd1,
-    type: 2}
-  m_PrefabInternal: {fileID: 0}
-  m_GameObject: {fileID: 150007667}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: e882312c5d3833d479f687c2356464f2, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!95 &150007675
 Animator:
   serializedVersion: 3
@@ -519,7 +590,7 @@ SpriteRenderer:
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 0
   m_SortingOrder: 0
-  m_Sprite: {fileID: 21300000, guid: 69338b1acf093614fbee0651ff305569, type: 3}
+  m_Sprite: {fileID: 21300002, guid: 69338b1acf093614fbee0651ff305569, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
@@ -527,6 +598,90 @@ SpriteRenderer:
 Transform:
   m_PrefabParentObject: {fileID: 418598, guid: 22cec0eebabc04d4db2ca1654ceef887, type: 2}
   m_PrefabInternal: {fileID: 1611175273}
+--- !u!1 &150919249
+GameObject:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  serializedVersion: 4
+  m_Component:
+  - 4: {fileID: 150919250}
+  - 61: {fileID: 150919251}
+  m_Layer: 14
+  m_Name: CrouchingMiddleAttackHitBox
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &150919250
+Transform:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 150919249}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 355783775}
+  m_RootOrder: 0
+--- !u!61 &150919251
+BoxCollider2D:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 150919249}
+  m_Enabled: 0
+  m_Density: 1
+  m_Material: {fileID: 0}
+  m_IsTrigger: 1
+  m_UsedByEffector: 0
+  m_Offset: {x: -0.3111792, y: -0.3366216}
+  serializedVersion: 2
+  m_Size: {x: 0.279411, y: 0.07978642}
+--- !u!1 &162160614
+GameObject:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  serializedVersion: 4
+  m_Component:
+  - 4: {fileID: 162160615}
+  - 61: {fileID: 162160616}
+  m_Layer: 24
+  m_Name: CreepHurtBox
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &162160615
+Transform:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 162160614}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 250975775}
+  m_RootOrder: 0
+--- !u!61 &162160616
+BoxCollider2D:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 162160614}
+  m_Enabled: 0
+  m_Density: 1
+  m_Material: {fileID: 0}
+  m_IsTrigger: 1
+  m_UsedByEffector: 0
+  m_Offset: {x: -0.16640878, y: -0.2745632}
+  serializedVersion: 2
+  m_Size: {x: 0.6492875, y: 0.22882143}
 --- !u!1001 &164418016
 Prefab:
   m_ObjectHideFlags: 0
@@ -577,6 +732,48 @@ Prefab:
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 9c70b6c86a5a34649ad6d6a7aacb5a8c, type: 2}
   m_IsPrefabParent: 0
+--- !u!1 &164716941
+GameObject:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  serializedVersion: 4
+  m_Component:
+  - 4: {fileID: 164716942}
+  - 61: {fileID: 164716943}
+  m_Layer: 14
+  m_Name: CrouchingHighAttackHitBox
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &164716942
+Transform:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 164716941}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 1031319410}
+  m_RootOrder: 0
+--- !u!61 &164716943
+BoxCollider2D:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 164716941}
+  m_Enabled: 0
+  m_Density: 1
+  m_Material: {fileID: 0}
+  m_IsTrigger: 1
+  m_UsedByEffector: 0
+  m_Offset: {x: -0.436434, y: -0.364021}
+  serializedVersion: 2
+  m_Size: {x: 0.5299196, y: 0.02498758}
 --- !u!1001 &172467017
 Prefab:
   m_ObjectHideFlags: 0
@@ -744,6 +941,90 @@ SpriteRenderer:
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
+--- !u!1 &210644825
+GameObject:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  serializedVersion: 4
+  m_Component:
+  - 4: {fileID: 210644826}
+  - 61: {fileID: 210644827}
+  m_Layer: 0
+  m_Name: CrouchingGuardHurtBox
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &210644826
+Transform:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 210644825}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 1173234715}
+  m_RootOrder: 1
+--- !u!61 &210644827
+BoxCollider2D:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 210644825}
+  m_Enabled: 0
+  m_Density: 1
+  m_Material: {fileID: 0}
+  m_IsTrigger: 1
+  m_UsedByEffector: 0
+  m_Offset: {x: -0.05012536, y: -0.12300861}
+  serializedVersion: 2
+  m_Size: {x: 0.41938096, y: 0.53192997}
+--- !u!1 &214892090
+GameObject:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  serializedVersion: 4
+  m_Component:
+  - 4: {fileID: 214892091}
+  - 61: {fileID: 214892092}
+  m_Layer: 24
+  m_Name: CrouchHurtBox
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &214892091
+Transform:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 214892090}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 1776473513}
+  m_RootOrder: 0
+--- !u!61 &214892092
+BoxCollider2D:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 214892090}
+  m_Enabled: 0
+  m_Density: 1
+  m_Material: {fileID: 0}
+  m_IsTrigger: 1
+  m_UsedByEffector: 0
+  m_Offset: {x: -0.055114985, y: -0.13897145}
+  serializedVersion: 2
+  m_Size: {x: 0.34665662, y: 0.5000044}
 --- !u!1 &217475498
 GameObject:
   m_ObjectHideFlags: 0
@@ -1166,7 +1447,8 @@ Transform:
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
-  m_Children: []
+  m_Children:
+  - {fileID: 162160615}
   m_Father: {fileID: 477518369}
   m_RootOrder: 1
 --- !u!61 &250975776
@@ -1196,6 +1478,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5da584efe252d4e478c5d89c62343d0b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  CreepSpeed: 0
 --- !u!1001 &255491385
 Prefab:
   m_ObjectHideFlags: 0
@@ -1275,6 +1558,48 @@ Transform:
   - {fileID: 1185111893}
   m_Father: {fileID: 1734839811}
   m_RootOrder: 2
+--- !u!1 &273526838
+GameObject:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  serializedVersion: 4
+  m_Component:
+  - 4: {fileID: 273526839}
+  - 61: {fileID: 273526840}
+  m_Layer: 14
+  m_Name: CrouchingLightAttackHitBox
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &273526839
+Transform:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 273526838}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 1169188514}
+  m_RootOrder: 0
+--- !u!61 &273526840
+BoxCollider2D:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 273526838}
+  m_Enabled: 0
+  m_Density: 1
+  m_Material: {fileID: 0}
+  m_IsTrigger: 1
+  m_UsedByEffector: 0
+  m_Offset: {x: -0.3007493, y: -0.13978517}
+  serializedVersion: 2
+  m_Size: {x: 0.17823356, y: 0.17823318}
 --- !u!1001 &276020471
 Prefab:
   m_ObjectHideFlags: 0
@@ -1783,7 +2108,7 @@ GameObject:
   - 4: {fileID: 355783775}
   - 61: {fileID: 355783777}
   - 114: {fileID: 355783776}
-  m_Layer: 14
+  m_Layer: 15
   m_Name: CrouchingMiddleAttack
   m_TagString: AttackLevel/2
   m_Icon: {fileID: 0}
@@ -1799,7 +2124,9 @@ Transform:
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
-  m_Children: []
+  m_Children:
+  - {fileID: 150919250}
+  - {fileID: 716554071}
   m_Father: {fileID: 562877374}
   m_RootOrder: 1
 --- !u!114 &355783776
@@ -1814,6 +2141,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: bea630aafea3f024db69e99a744c9f8b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  Startup: 9
+  Active: 3
+  Recovery: 18
 --- !u!61 &355783777
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -1824,11 +2154,11 @@ BoxCollider2D:
   m_Enabled: 0
   m_Density: 1
   m_Material: {fileID: 0}
-  m_IsTrigger: 1
+  m_IsTrigger: 0
   m_UsedByEffector: 0
-  m_Offset: {x: -0.3111792, y: -0.3366216}
+  m_Offset: {x: -0.05174255, y: -0.14403}
   serializedVersion: 2
-  m_Size: {x: 0.279411, y: 0.07978642}
+  m_Size: {x: 0.3061886, y: 0.4898874}
 --- !u!1 &356886958
 GameObject:
   m_ObjectHideFlags: 0
@@ -1888,6 +2218,48 @@ SpriteRenderer:
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
+--- !u!1 &357397308
+GameObject:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  serializedVersion: 4
+  m_Component:
+  - 4: {fileID: 357397309}
+  - 61: {fileID: 357397310}
+  m_Layer: 14
+  m_Name: JumpingMiddleAttackHitBox
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &357397309
+Transform:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 357397308}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 782293145}
+  m_RootOrder: 0
+--- !u!61 &357397310
+BoxCollider2D:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 357397308}
+  m_Enabled: 0
+  m_Density: 1
+  m_Material: {fileID: 0}
+  m_IsTrigger: 1
+  m_UsedByEffector: 0
+  m_Offset: {x: -0.2073791, y: 0.1646836}
+  serializedVersion: 2
+  m_Size: {x: 0.1819281, y: 0.2103918}
 --- !u!1 &360855770
 GameObject:
   m_ObjectHideFlags: 0
@@ -2030,6 +2402,48 @@ SpriteRenderer:
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
+--- !u!1 &362911791
+GameObject:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  serializedVersion: 4
+  m_Component:
+  - 4: {fileID: 362911792}
+  - 61: {fileID: 362911793}
+  m_Layer: 21
+  m_Name: StandingGuardHurtBox
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &362911792
+Transform:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 362911791}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 2123435720}
+  m_RootOrder: 1
+--- !u!61 &362911793
+BoxCollider2D:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 362911791}
+  m_Enabled: 0
+  m_Density: 1
+  m_Material: {fileID: 0}
+  m_IsTrigger: 1
+  m_UsedByEffector: 0
+  m_Offset: {x: -0.004344225, y: 0.007962823}
+  serializedVersion: 2
+  m_Size: {x: 0.3592821, y: 0.8385207}
 --- !u!1 &369721908
 GameObject:
   m_ObjectHideFlags: 0
@@ -2886,6 +3300,48 @@ Prefab:
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 387fd04b02c978b448cbaaea6ea8f97d, type: 2}
   m_IsPrefabParent: 0
+--- !u!1 &587187840
+GameObject:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  serializedVersion: 4
+  m_Component:
+  - 4: {fileID: 587187841}
+  - 61: {fileID: 587187842}
+  m_Layer: 24
+  m_Name: JumpingLightAttackHurtBox
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &587187841
+Transform:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 587187840}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 1479609534}
+  m_RootOrder: 1
+--- !u!61 &587187842
+BoxCollider2D:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 587187840}
+  m_Enabled: 0
+  m_Density: 1
+  m_Material: {fileID: 0}
+  m_IsTrigger: 1
+  m_UsedByEffector: 0
+  m_Offset: {x: 0.0011405945, y: 0.0006672144}
+  serializedVersion: 2
+  m_Size: {x: 0.3120284, y: 0.8590417}
 --- !u!1 &593775930
 GameObject:
   m_ObjectHideFlags: 0
@@ -3252,6 +3708,48 @@ Transform:
   m_Children: []
   m_Father: {fileID: 678259232}
   m_RootOrder: 0
+--- !u!1 &674529279
+GameObject:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  serializedVersion: 4
+  m_Component:
+  - 4: {fileID: 674529280}
+  - 61: {fileID: 674529281}
+  m_Layer: 24
+  m_Name: RunHurtBox
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &674529280
+Transform:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 674529279}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 1424384731}
+  m_RootOrder: 0
+--- !u!61 &674529281
+BoxCollider2D:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 674529279}
+  m_Enabled: 0
+  m_Density: 1
+  m_Material: {fileID: 0}
+  m_IsTrigger: 1
+  m_UsedByEffector: 0
+  m_Offset: {x: -0.001159668, y: 0.0011550188}
+  serializedVersion: 2
+  m_Size: {x: 0.3198412, y: 0.8520763}
 --- !u!1 &678259231
 GameObject:
   m_ObjectHideFlags: 0
@@ -3294,6 +3792,48 @@ Transform:
   - {fileID: 819353563}
   m_Father: {fileID: 723504207}
   m_RootOrder: 5
+--- !u!1 &693951924
+GameObject:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  serializedVersion: 4
+  m_Component:
+  - 4: {fileID: 693951925}
+  - 61: {fileID: 693951926}
+  m_Layer: 24
+  m_Name: StandHurtBox
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &693951925
+Transform:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 693951924}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 57592883}
+  m_RootOrder: 0
+--- !u!61 &693951926
+BoxCollider2D:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 693951924}
+  m_Enabled: 0
+  m_Density: 1
+  m_Material: {fileID: 0}
+  m_IsTrigger: 1
+  m_UsedByEffector: 0
+  m_Offset: {x: -0.001159668, y: 0.001155019}
+  serializedVersion: 2
+  m_Size: {x: 0.3198412, y: 0.8520763}
 --- !u!1001 &712808365
 Prefab:
   m_ObjectHideFlags: 0
@@ -3344,6 +3884,48 @@ Prefab:
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 22cec0eebabc04d4db2ca1654ceef887, type: 2}
   m_IsPrefabParent: 0
+--- !u!1 &716554070
+GameObject:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  serializedVersion: 4
+  m_Component:
+  - 4: {fileID: 716554071}
+  - 61: {fileID: 716554072}
+  m_Layer: 24
+  m_Name: CrouchingMiddleAttackHurtBox
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &716554071
+Transform:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 716554070}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 355783775}
+  m_RootOrder: 1
+--- !u!61 &716554072
+BoxCollider2D:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 716554070}
+  m_Enabled: 0
+  m_Density: 1
+  m_Material: {fileID: 0}
+  m_IsTrigger: 1
+  m_UsedByEffector: 0
+  m_Offset: {x: -0.06134391, y: -0.12642777}
+  serializedVersion: 2
+  m_Size: {x: 0.3893999, y: 0.52509177}
 --- !u!1001 &717846796
 Prefab:
   m_ObjectHideFlags: 0
@@ -3442,7 +4024,8 @@ GameObject:
   - 4: {fileID: 747744268}
   - 61: {fileID: 747744270}
   - 114: {fileID: 747744269}
-  m_Layer: 14
+  - 58: {fileID: 747744271}
+  m_Layer: 17
   m_Name: StandingLightAttack
   m_TagString: AttackLevel/1
   m_Icon: {fileID: 0}
@@ -3458,7 +4041,9 @@ Transform:
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
-  m_Children: []
+  m_Children:
+  - {fileID: 129510090}
+  - {fileID: 1545942318}
   m_Father: {fileID: 1799852832}
   m_RootOrder: 0
 --- !u!114 &747744269
@@ -3473,9 +4058,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 537737913817d66479d091c98021d9e8, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  Startup: 4
-  Active: 4
-  Recovery: 4
+  Startup: 6
+  Active: 2
+  Recovery: 15
 --- !u!61 &747744270
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -3486,11 +4071,25 @@ BoxCollider2D:
   m_Enabled: 0
   m_Density: 1
   m_Material: {fileID: 0}
-  m_IsTrigger: 1
+  m_IsTrigger: 0
   m_UsedByEffector: 0
-  m_Offset: {x: -0.1095207, y: 0.03352177}
+  m_Offset: {x: 0.001140594, y: 0.06326544}
   serializedVersion: 2
-  m_Size: {x: 0.2048863, y: 0.04506044}
+  m_Size: {x: 0.2600313, y: 0.681848}
+--- !u!58 &747744271
+CircleCollider2D:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 747744267}
+  m_Enabled: 0
+  m_Density: 1
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_UsedByEffector: 0
+  m_Offset: {x: 0, y: -0.27}
+  serializedVersion: 2
+  m_Radius: 0.132502
 --- !u!1 &752879769
 GameObject:
   m_ObjectHideFlags: 0
@@ -3663,7 +4262,9 @@ Transform:
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
-  m_Children: []
+  m_Children:
+  - {fileID: 357397309}
+  - {fileID: 978643164}
   m_Father: {fileID: 1949437280}
   m_RootOrder: 1
 --- !u!114 &782293146
@@ -3678,6 +4279,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: fc8d7eb148d0d7747bf617e3cfe399fe, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  Startup: 9
+  Active: 3
 --- !u!61 &782293147
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -3688,11 +4291,11 @@ BoxCollider2D:
   m_Enabled: 0
   m_Density: 1
   m_Material: {fileID: 0}
-  m_IsTrigger: 1
+  m_IsTrigger: 0
   m_UsedByEffector: 0
-  m_Offset: {x: -0.271064, y: 0.0415591}
+  m_Offset: {x: 0.001140594, y: 0.002524376}
   serializedVersion: 2
-  m_Size: {x: 0.3092983, y: 0.09151307}
+  m_Size: {x: 0.2600313, y: 0.8033304}
 --- !u!1 &784585631
 GameObject:
   m_ObjectHideFlags: 0
@@ -4248,6 +4851,48 @@ Prefab:
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: d450591fb3d3ba449bd2a7c8ffe8f561, type: 2}
   m_IsPrefabParent: 0
+--- !u!1 &891682687
+GameObject:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  serializedVersion: 4
+  m_Component:
+  - 4: {fileID: 891682688}
+  - 61: {fileID: 891682689}
+  m_Layer: 24
+  m_Name: CrouchingLightAttackHurtBox
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &891682688
+Transform:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 891682687}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 1169188514}
+  m_RootOrder: 1
+--- !u!61 &891682689
+BoxCollider2D:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 891682687}
+  m_Enabled: 0
+  m_Density: 1
+  m_Material: {fileID: 0}
+  m_IsTrigger: 1
+  m_UsedByEffector: 0
+  m_Offset: {x: -0.06134391, y: -0.12642777}
+  serializedVersion: 2
+  m_Size: {x: 0.3893999, y: 0.52509177}
 --- !u!1 &901744535
 GameObject:
   m_ObjectHideFlags: 0
@@ -4274,7 +4919,9 @@ Transform:
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
-  m_Children: []
+  m_Children:
+  - {fileID: 1754654085}
+  - {fileID: 53885950}
   m_Father: {fileID: 1949437280}
   m_RootOrder: 2
 --- !u!114 &901744537
@@ -4289,6 +4936,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c396661e9ae0a02438f4e38887fa4fcb, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  Startup: 10
+  Active: 4
 --- !u!61 &901744538
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -4299,11 +4948,11 @@ BoxCollider2D:
   m_Enabled: 0
   m_Density: 1
   m_Material: {fileID: 0}
-  m_IsTrigger: 1
+  m_IsTrigger: 0
   m_UsedByEffector: 0
-  m_Offset: {x: -0.03010678, y: -0.3378794}
+  m_Offset: {x: 0.001140594, y: 0.002524376}
   serializedVersion: 2
-  m_Size: {x: 0.5696427, y: 0.08597362}
+  m_Size: {x: 0.2600313, y: 0.8033304}
 --- !u!4 &917818262
 Transform:
   m_ObjectHideFlags: 0
@@ -4315,34 +4964,6 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 1109348981}
-  m_RootOrder: 0
---- !u!1 &919699588
-GameObject:
-  m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 163730, guid: 1665c5ce479006740b4a051a2bb59dd1, type: 2}
-  m_PrefabInternal: {fileID: 0}
-  serializedVersion: 4
-  m_Component:
-  - 4: {fileID: 919699589}
-  m_Layer: 11
-  m_Name: Basics
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!4 &919699589
-Transform:
-  m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 433042, guid: 1665c5ce479006740b4a051a2bb59dd1, type: 2}
-  m_PrefabInternal: {fileID: 0}
-  m_GameObject: {fileID: 919699588}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_Children:
-  - {fileID: 1096513205}
-  m_Father: {fileID: 1435002032}
   m_RootOrder: 0
 --- !u!1001 &922933579
 Prefab:
@@ -4460,6 +5081,48 @@ Prefab:
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 75343d6a1ea04014999c100f8fc4fe87, type: 2}
   m_IsPrefabParent: 0
+--- !u!1 &978643163
+GameObject:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  serializedVersion: 4
+  m_Component:
+  - 4: {fileID: 978643164}
+  - 61: {fileID: 978643165}
+  m_Layer: 24
+  m_Name: JumpingMiddleAttackHurtBox
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &978643164
+Transform:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 978643163}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 782293145}
+  m_RootOrder: 1
+--- !u!61 &978643165
+BoxCollider2D:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 978643163}
+  m_Enabled: 0
+  m_Density: 1
+  m_Material: {fileID: 0}
+  m_IsTrigger: 1
+  m_UsedByEffector: 0
+  m_Offset: {x: 0.0011405945, y: 0.0006672144}
+  serializedVersion: 2
+  m_Size: {x: 0.3120284, y: 0.8590417}
 --- !u!1 &979355561
 GameObject:
   m_ObjectHideFlags: 0
@@ -4694,6 +5357,48 @@ SpriteRenderer:
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
+--- !u!1 &995279029
+GameObject:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  serializedVersion: 4
+  m_Component:
+  - 4: {fileID: 995279030}
+  - 61: {fileID: 995279031}
+  m_Layer: 24
+  m_Name: JumpHurtBox
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &995279030
+Transform:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 995279029}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 1212744950}
+  m_RootOrder: 0
+--- !u!61 &995279031
+BoxCollider2D:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 995279029}
+  m_Enabled: 0
+  m_Density: 1
+  m_Material: {fileID: 0}
+  m_IsTrigger: 1
+  m_UsedByEffector: 0
+  m_Offset: {x: 0.0011405945, y: -0.005906582}
+  serializedVersion: 2
+  m_Size: {x: 0.307244, y: 0.84717065}
 --- !u!1 &1002533103
 GameObject:
   m_ObjectHideFlags: 0
@@ -4980,7 +5685,7 @@ GameObject:
   - 4: {fileID: 1031319410}
   - 61: {fileID: 1031319412}
   - 114: {fileID: 1031319411}
-  m_Layer: 14
+  m_Layer: 15
   m_Name: CrouchingHighAttack
   m_TagString: AttackLevel/3
   m_Icon: {fileID: 0}
@@ -4996,7 +5701,9 @@ Transform:
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
-  m_Children: []
+  m_Children:
+  - {fileID: 164716942}
+  - {fileID: 1469033075}
   m_Father: {fileID: 562877374}
   m_RootOrder: 2
 --- !u!114 &1031319411
@@ -5011,6 +5718,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 87504adcf1d8fbf40850e44cd2118ab4, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  Startup: 10
+  Active: 4
+  Recovery: 19
 --- !u!61 &1031319412
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -5021,11 +5731,11 @@ BoxCollider2D:
   m_Enabled: 0
   m_Density: 1
   m_Material: {fileID: 0}
-  m_IsTrigger: 1
+  m_IsTrigger: 0
   m_UsedByEffector: 0
-  m_Offset: {x: -0.436434, y: -0.364021}
+  m_Offset: {x: -0.05174255, y: -0.14403}
   serializedVersion: 2
-  m_Size: {x: 0.5299196, y: 0.02498758}
+  m_Size: {x: 0.3061886, y: 0.4898874}
 --- !u!1001 &1050811351
 Prefab:
   m_ObjectHideFlags: 0
@@ -5448,69 +6158,6 @@ MonoBehaviour:
   m_EffectColor: {r: 0, g: 0, b: 0, a: 0.5}
   m_EffectDistance: {x: 1, y: -1}
   m_UseGraphicAlpha: 1
---- !u!1 &1096513204
-GameObject:
-  m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 106110, guid: 1665c5ce479006740b4a051a2bb59dd1, type: 2}
-  m_PrefabInternal: {fileID: 0}
-  serializedVersion: 4
-  m_Component:
-  - 4: {fileID: 1096513205}
-  - 61: {fileID: 1096513207}
-  - 50: {fileID: 1096513206}
-  m_Layer: 24
-  m_Name: StandingHurtBox
-  m_TagString: HurtBox
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!4 &1096513205
-Transform:
-  m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 460730, guid: 1665c5ce479006740b4a051a2bb59dd1, type: 2}
-  m_PrefabInternal: {fileID: 0}
-  m_GameObject: {fileID: 1096513204}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_Children:
-  - {fileID: 1645776651}
-  m_Father: {fileID: 919699589}
-  m_RootOrder: 0
---- !u!50 &1096513206
-Rigidbody2D:
-  serializedVersion: 2
-  m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 5058038, guid: 1665c5ce479006740b4a051a2bb59dd1,
-    type: 2}
-  m_PrefabInternal: {fileID: 0}
-  m_GameObject: {fileID: 1096513204}
-  m_UseAutoMass: 0
-  m_Mass: 1
-  m_LinearDrag: 0
-  m_AngularDrag: 0.05
-  m_GravityScale: 1
-  m_IsKinematic: 1
-  m_Interpolate: 0
-  m_SleepingMode: 1
-  m_CollisionDetection: 0
-  m_Constraints: 0
---- !u!61 &1096513207
-BoxCollider2D:
-  m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 6163114, guid: 1665c5ce479006740b4a051a2bb59dd1,
-    type: 2}
-  m_PrefabInternal: {fileID: 0}
-  m_GameObject: {fileID: 1096513204}
-  m_Enabled: 1
-  m_Density: 1
-  m_Material: {fileID: 0}
-  m_IsTrigger: 1
-  m_UsedByEffector: 0
-  m_Offset: {x: 0.0011405945, y: 0.0013580322}
-  serializedVersion: 2
-  m_Size: {x: 0.29778638, y: 0.8056629}
 --- !u!1 &1100081339
 GameObject:
   m_ObjectHideFlags: 0
@@ -5654,6 +6301,48 @@ Transform:
   m_Children: []
   m_Father: {fileID: 150007668}
   m_RootOrder: 1
+--- !u!1 &1159324130
+GameObject:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  serializedVersion: 4
+  m_Component:
+  - 4: {fileID: 1159324131}
+  - 61: {fileID: 1159324132}
+  m_Layer: 24
+  m_Name: StandingHighAttackHurtBox
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &1159324131
+Transform:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1159324130}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 1501029339}
+  m_RootOrder: 1
+--- !u!61 &1159324132
+BoxCollider2D:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1159324130}
+  m_Enabled: 0
+  m_Density: 1
+  m_Material: {fileID: 0}
+  m_IsTrigger: 1
+  m_UsedByEffector: 0
+  m_Offset: {x: -0.001159668, y: 0.001155019}
+  serializedVersion: 2
+  m_Size: {x: 0.3198412, y: 0.8520763}
 --- !u!1 &1169188513
 GameObject:
   m_ObjectHideFlags: 0
@@ -5664,7 +6353,7 @@ GameObject:
   - 4: {fileID: 1169188514}
   - 61: {fileID: 1169188516}
   - 114: {fileID: 1169188515}
-  m_Layer: 14
+  m_Layer: 15
   m_Name: CrouchingLightAttack
   m_TagString: AttackLevel/1
   m_Icon: {fileID: 0}
@@ -5680,7 +6369,9 @@ Transform:
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
-  m_Children: []
+  m_Children:
+  - {fileID: 273526839}
+  - {fileID: 891682688}
   m_Father: {fileID: 562877374}
   m_RootOrder: 0
 --- !u!114 &1169188515
@@ -5695,6 +6386,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 50b08bd65bd4f074faa2aa566f746305, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  Startup: 5
+  Active: 2
+  Recovery: 17
 --- !u!61 &1169188516
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -5705,11 +6399,11 @@ BoxCollider2D:
   m_Enabled: 0
   m_Density: 1
   m_Material: {fileID: 0}
-  m_IsTrigger: 1
+  m_IsTrigger: 0
   m_UsedByEffector: 0
-  m_Offset: {x: -0.2429385, y: -0.1280639}
+  m_Offset: {x: -0.05174255, y: -0.14403}
   serializedVersion: 2
-  m_Size: {x: 0.2515338, y: 0.1315695}
+  m_Size: {x: 0.3061886, y: 0.4898874}
 --- !u!1 &1173234714
 GameObject:
   m_ObjectHideFlags: 0
@@ -5738,6 +6432,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 1398116292}
+  - {fileID: 210644826}
   m_Father: {fileID: 29732162}
   m_RootOrder: 1
 --- !u!114 &1173234716
@@ -5762,11 +6457,11 @@ BoxCollider2D:
   m_Enabled: 0
   m_Density: 1
   m_Material: {fileID: 0}
-  m_IsTrigger: 1
+  m_IsTrigger: 0
   m_UsedByEffector: 0
-  m_Offset: {x: -0.055508375, y: -0.14214694}
+  m_Offset: {x: -0.05174255, y: -0.14403}
   serializedVersion: 2
-  m_Size: {x: 0.36644346, y: 0.53884447}
+  m_Size: {x: 0.3061886, y: 0.4898874}
 --- !u!4 &1185111893 stripped
 Transform:
   m_PrefabParentObject: {fileID: 442292, guid: 387fd04b02c978b448cbaaea6ea8f97d, type: 2}
@@ -5805,7 +6500,8 @@ Transform:
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
-  m_Children: []
+  m_Children:
+  - {fileID: 995279030}
   m_Father: {fileID: 477518369}
   m_RootOrder: 2
 --- !u!61 &1212744951
@@ -5835,6 +6531,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 57d5c45cee64a9b4082f193b25eb75ef, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  JumpForce: 10
 --- !u!4 &1220327351 stripped
 Transform:
   m_PrefabParentObject: {fileID: 418598, guid: 22cec0eebabc04d4db2ca1654ceef887, type: 2}
@@ -6672,7 +7369,8 @@ Transform:
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
-  m_Children: []
+  m_Children:
+  - {fileID: 674529280}
   m_Father: {fileID: 477518369}
   m_RootOrder: 4
 --- !u!58 &1424384732
@@ -6717,34 +7415,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e27d87f9edc7e664aab1ef6e103d4ed4, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
---- !u!1 &1435002031
-GameObject:
-  m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 167104, guid: 1665c5ce479006740b4a051a2bb59dd1, type: 2}
-  m_PrefabInternal: {fileID: 0}
-  serializedVersion: 4
-  m_Component:
-  - 4: {fileID: 1435002032}
-  m_Layer: 11
-  m_Name: HurtBoxes
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!4 &1435002032
-Transform:
-  m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 492214, guid: 1665c5ce479006740b4a051a2bb59dd1, type: 2}
-  m_PrefabInternal: {fileID: 0}
-  m_GameObject: {fileID: 1435002031}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_Children:
-  - {fileID: 919699589}
-  m_Father: {fileID: 150007668}
-  m_RootOrder: 5
+  MaxSpeed: 6
 --- !u!1 &1454653986
 GameObject:
   m_ObjectHideFlags: 0
@@ -6820,6 +7491,48 @@ SpriteRenderer:
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
+--- !u!1 &1462787019
+GameObject:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  serializedVersion: 4
+  m_Component:
+  - 4: {fileID: 1462787020}
+  - 61: {fileID: 1462787021}
+  m_Layer: 14
+  m_Name: JumpingLightAttackHitBox
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &1462787020
+Transform:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1462787019}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 1479609534}
+  m_RootOrder: 0
+--- !u!61 &1462787021
+BoxCollider2D:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1462787019}
+  m_Enabled: 0
+  m_Density: 1
+  m_Material: {fileID: 0}
+  m_IsTrigger: 1
+  m_UsedByEffector: 0
+  m_Offset: {x: -0.2073791, y: 0.1646836}
+  serializedVersion: 2
+  m_Size: {x: 0.1819281, y: 0.2103918}
 --- !u!1001 &1468721147
 Prefab:
   m_ObjectHideFlags: 0
@@ -6890,6 +7603,48 @@ Prefab:
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 5b0be34a1bdd14646bea4af5665ef78a, type: 2}
   m_IsPrefabParent: 0
+--- !u!1 &1469033074
+GameObject:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  serializedVersion: 4
+  m_Component:
+  - 4: {fileID: 1469033075}
+  - 61: {fileID: 1469033076}
+  m_Layer: 24
+  m_Name: CrouchingHighAttackHurtBox
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &1469033075
+Transform:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1469033074}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 1031319410}
+  m_RootOrder: 1
+--- !u!61 &1469033076
+BoxCollider2D:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1469033074}
+  m_Enabled: 0
+  m_Density: 1
+  m_Material: {fileID: 0}
+  m_IsTrigger: 1
+  m_UsedByEffector: 0
+  m_Offset: {x: -0.06134391, y: -0.12642777}
+  serializedVersion: 2
+  m_Size: {x: 0.3893999, y: 0.52509177}
 --- !u!1 &1479609533
 GameObject:
   m_ObjectHideFlags: 0
@@ -6916,7 +7671,9 @@ Transform:
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
-  m_Children: []
+  m_Children:
+  - {fileID: 1462787020}
+  - {fileID: 587187841}
   m_Father: {fileID: 1949437280}
   m_RootOrder: 0
 --- !u!114 &1479609535
@@ -6931,6 +7688,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4b608855a4adbef43aa1842a4518b74e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  Startup: 7
+  Active: 2
 --- !u!61 &1479609536
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -6941,11 +7700,11 @@ BoxCollider2D:
   m_Enabled: 0
   m_Density: 1
   m_Material: {fileID: 0}
-  m_IsTrigger: 1
+  m_IsTrigger: 0
   m_UsedByEffector: 0
-  m_Offset: {x: -0.2073791, y: 0.1646836}
+  m_Offset: {x: 0.001140594, y: 0.002524376}
   serializedVersion: 2
-  m_Size: {x: 0.1819281, y: 0.2103918}
+  m_Size: {x: 0.2600313, y: 0.8033304}
 --- !u!1 &1487338265
 GameObject:
   m_ObjectHideFlags: 0
@@ -7032,7 +7791,8 @@ GameObject:
   - 4: {fileID: 1501029339}
   - 61: {fileID: 1501029341}
   - 114: {fileID: 1501029340}
-  m_Layer: 14
+  - 58: {fileID: 1501029342}
+  m_Layer: 17
   m_Name: StandingHighAttack
   m_TagString: AttackLevel/3
   m_Icon: {fileID: 0}
@@ -7048,7 +7808,9 @@ Transform:
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
-  m_Children: []
+  m_Children:
+  - {fileID: 1858032758}
+  - {fileID: 1159324131}
   m_Father: {fileID: 1799852832}
   m_RootOrder: 2
 --- !u!114 &1501029340
@@ -7063,6 +7825,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5f03af68aeb571b43bf6b8eded1e8912, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  Startup: 11
+  Active: 3
+  Recovery: 21
 --- !u!61 &1501029341
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -7075,9 +7840,23 @@ BoxCollider2D:
   m_Material: {fileID: 0}
   m_IsTrigger: 1
   m_UsedByEffector: 0
-  m_Offset: {x: -0.2463715, y: -0.02989638}
+  m_Offset: {x: 0.001140594, y: 0.06326544}
   serializedVersion: 2
-  m_Size: {x: 0.3116956, y: 0.1451947}
+  m_Size: {x: 0.2600313, y: 0.681848}
+--- !u!58 &1501029342
+CircleCollider2D:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1501029338}
+  m_Enabled: 0
+  m_Density: 1
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_UsedByEffector: 0
+  m_Offset: {x: 0, y: -0.27}
+  serializedVersion: 2
+  m_Radius: 0.132502
 --- !u!4 &1505416669 stripped
 Transform:
   m_PrefabParentObject: {fileID: 477350, guid: a8f8a64f9665d3143b221c82cab8dd6d, type: 2}
@@ -7188,6 +7967,48 @@ SpriteRenderer:
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
+--- !u!1 &1545942317
+GameObject:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  serializedVersion: 4
+  m_Component:
+  - 4: {fileID: 1545942318}
+  - 61: {fileID: 1545942319}
+  m_Layer: 24
+  m_Name: StandingLightAttackHurtBox
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &1545942318
+Transform:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1545942317}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 747744268}
+  m_RootOrder: 1
+--- !u!61 &1545942319
+BoxCollider2D:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1545942317}
+  m_Enabled: 0
+  m_Density: 1
+  m_Material: {fileID: 0}
+  m_IsTrigger: 1
+  m_UsedByEffector: 0
+  m_Offset: {x: -0.001159668, y: 0.001155019}
+  serializedVersion: 2
+  m_Size: {x: 0.3198412, y: 0.8520763}
 --- !u!1 &1577426797
 GameObject:
   m_ObjectHideFlags: 0
@@ -7482,46 +8303,6 @@ SpriteRenderer:
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
---- !u!1 &1645776650
-GameObject:
-  m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 120640, guid: 1665c5ce479006740b4a051a2bb59dd1, type: 2}
-  m_PrefabInternal: {fileID: 0}
-  serializedVersion: 4
-  m_Component:
-  - 4: {fileID: 1645776651}
-  - 114: {fileID: 1645776652}
-  m_Layer: 0
-  m_Name: StandingHitBack
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!4 &1645776651
-Transform:
-  m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 436044, guid: 1665c5ce479006740b4a051a2bb59dd1, type: 2}
-  m_PrefabInternal: {fileID: 0}
-  m_GameObject: {fileID: 1645776650}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_Children: []
-  m_Father: {fileID: 1096513205}
-  m_RootOrder: 0
---- !u!114 &1645776652
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 11410374, guid: 1665c5ce479006740b4a051a2bb59dd1,
-    type: 2}
-  m_PrefabInternal: {fileID: 0}
-  m_GameObject: {fileID: 1645776650}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 337167faf1f17f248a7866a7b5dded80, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!1001 &1647181420
 Prefab:
   m_ObjectHideFlags: 0
@@ -7677,6 +8458,48 @@ SpriteRenderer:
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
+--- !u!1 &1705837166
+GameObject:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  serializedVersion: 4
+  m_Component:
+  - 4: {fileID: 1705837167}
+  - 61: {fileID: 1705837168}
+  m_Layer: 0
+  m_Name: JumpingGuardHurtBox
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &1705837167
+Transform:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1705837166}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 1765472193}
+  m_RootOrder: 1
+--- !u!61 &1705837168
+BoxCollider2D:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1705837166}
+  m_Enabled: 0
+  m_Density: 1
+  m_Material: {fileID: 0}
+  m_IsTrigger: 1
+  m_UsedByEffector: 0
+  m_Offset: {x: -0.001882792, y: 0.0045547485}
+  serializedVersion: 2
+  m_Size: {x: 0.37108985, y: 0.83587724}
 --- !u!1 &1716313734
 GameObject:
   m_ObjectHideFlags: 0
@@ -7853,6 +8676,48 @@ Transform:
 Transform:
   m_PrefabParentObject: {fileID: 418598, guid: 22cec0eebabc04d4db2ca1654ceef887, type: 2}
   m_PrefabInternal: {fileID: 2129566497}
+--- !u!1 &1754654084
+GameObject:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  serializedVersion: 4
+  m_Component:
+  - 4: {fileID: 1754654085}
+  - 61: {fileID: 1754654086}
+  m_Layer: 14
+  m_Name: JumpingHighAttackHitBox
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &1754654085
+Transform:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1754654084}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 901744536}
+  m_RootOrder: 0
+--- !u!61 &1754654086
+BoxCollider2D:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1754654084}
+  m_Enabled: 0
+  m_Density: 1
+  m_Material: {fileID: 0}
+  m_IsTrigger: 1
+  m_UsedByEffector: 0
+  m_Offset: {x: -0.2073791, y: 0.1646836}
+  serializedVersion: 2
+  m_Size: {x: 0.1819281, y: 0.2103918}
 --- !u!1 &1765472192
 GameObject:
   m_ObjectHideFlags: 0
@@ -7881,6 +8746,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 1934545356}
+  - {fileID: 1705837167}
   m_Father: {fileID: 29732162}
   m_RootOrder: 2
 --- !u!114 &1765472194
@@ -7905,11 +8771,53 @@ BoxCollider2D:
   m_Enabled: 0
   m_Density: 1
   m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_UsedByEffector: 0
+  m_Offset: {x: 0.0011405945, y: 0.002524376}
+  serializedVersion: 2
+  m_Size: {x: 0.2600313, y: 0.80333036}
+--- !u!1 &1773800776
+GameObject:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  serializedVersion: 4
+  m_Component:
+  - 4: {fileID: 1773800777}
+  - 61: {fileID: 1773800778}
+  m_Layer: 24
+  m_Name: StandingMiddleAttackHurtBox
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &1773800777
+Transform:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1773800776}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 1783782031}
+  m_RootOrder: 1
+--- !u!61 &1773800778
+BoxCollider2D:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1773800776}
+  m_Enabled: 0
+  m_Density: 1
+  m_Material: {fileID: 0}
   m_IsTrigger: 1
   m_UsedByEffector: 0
-  m_Offset: {x: -0.001882792, y: 0.0045547485}
+  m_Offset: {x: -0.001159668, y: 0.001155019}
   serializedVersion: 2
-  m_Size: {x: 0.37108985, y: 0.83587724}
+  m_Size: {x: 0.3198412, y: 0.8520763}
 --- !u!1 &1776473512
 GameObject:
   m_ObjectHideFlags: 0
@@ -7936,7 +8844,8 @@ Transform:
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
-  m_Children: []
+  m_Children:
+  - {fileID: 214892091}
   m_Father: {fileID: 477518369}
   m_RootOrder: 0
 --- !u!61 &1776473514
@@ -7966,6 +8875,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b0b081fde7418324fb4c7d3531f8392c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  WhatIsGround:
+    serializedVersion: 2
+    m_Bits: 768
 --- !u!1 &1783782030
 GameObject:
   m_ObjectHideFlags: 0
@@ -7976,7 +8888,8 @@ GameObject:
   - 4: {fileID: 1783782031}
   - 61: {fileID: 1783782033}
   - 114: {fileID: 1783782032}
-  m_Layer: 14
+  - 58: {fileID: 1783782034}
+  m_Layer: 17
   m_Name: StandingMiddleAttack
   m_TagString: AttackLevel/2
   m_Icon: {fileID: 0}
@@ -7992,7 +8905,9 @@ Transform:
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
-  m_Children: []
+  m_Children:
+  - {fileID: 1890744636}
+  - {fileID: 1773800777}
   m_Father: {fileID: 1799852832}
   m_RootOrder: 1
 --- !u!114 &1783782032
@@ -8007,6 +8922,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3e21139cfe963304b858751bd22142d1, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  Startup: 9
+  Active: 2
+  Recovery: 17
 --- !u!61 &1783782033
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -8017,11 +8935,25 @@ BoxCollider2D:
   m_Enabled: 0
   m_Density: 1
   m_Material: {fileID: 0}
-  m_IsTrigger: 1
+  m_IsTrigger: 0
   m_UsedByEffector: 0
-  m_Offset: {x: -0.1529124, y: -0.05826771}
+  m_Offset: {x: 0.001140594, y: 0.06326544}
   serializedVersion: 2
-  m_Size: {x: 0.291669, y: 0.1685592}
+  m_Size: {x: 0.2600313, y: 0.681848}
+--- !u!58 &1783782034
+CircleCollider2D:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1783782030}
+  m_Enabled: 0
+  m_Density: 1
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_UsedByEffector: 0
+  m_Offset: {x: 0, y: -0.27}
+  serializedVersion: 2
+  m_Radius: 0.132502
 --- !u!1 &1799086722
 GameObject:
   m_ObjectHideFlags: 0
@@ -8299,6 +9231,48 @@ SpriteRenderer:
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
+--- !u!1 &1858032757
+GameObject:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  serializedVersion: 4
+  m_Component:
+  - 4: {fileID: 1858032758}
+  - 61: {fileID: 1858032759}
+  m_Layer: 14
+  m_Name: StandingHighAttackHitBox
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &1858032758
+Transform:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1858032757}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 1501029339}
+  m_RootOrder: 0
+--- !u!61 &1858032759
+BoxCollider2D:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1858032757}
+  m_Enabled: 0
+  m_Density: 1
+  m_Material: {fileID: 0}
+  m_IsTrigger: 1
+  m_UsedByEffector: 0
+  m_Offset: {x: -0.2463715, y: -0.02989638}
+  serializedVersion: 2
+  m_Size: {x: 0.3116956, y: 0.1451947}
 --- !u!4 &1867458542 stripped
 Transform:
   m_PrefabParentObject: {fileID: 418598, guid: 22cec0eebabc04d4db2ca1654ceef887, type: 2}
@@ -8353,6 +9327,48 @@ Prefab:
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 22cec0eebabc04d4db2ca1654ceef887, type: 2}
   m_IsPrefabParent: 0
+--- !u!1 &1890744635
+GameObject:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  serializedVersion: 4
+  m_Component:
+  - 4: {fileID: 1890744636}
+  - 61: {fileID: 1890744637}
+  m_Layer: 14
+  m_Name: StandingMiddleAttackHitBox
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &1890744636
+Transform:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1890744635}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 1783782031}
+  m_RootOrder: 0
+--- !u!61 &1890744637
+BoxCollider2D:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1890744635}
+  m_Enabled: 0
+  m_Density: 1
+  m_Material: {fileID: 0}
+  m_IsTrigger: 1
+  m_UsedByEffector: 0
+  m_Offset: {x: -0.17998576, y: -0.0074995756}
+  serializedVersion: 2
+  m_Size: {x: 0.25755864, y: 0.27255768}
 --- !u!4 &1921157423 stripped
 Transform:
   m_PrefabParentObject: {fileID: 473868, guid: 9c70b6c86a5a34649ad6d6a7aacb5a8c, type: 2}
@@ -9015,6 +10031,7 @@ GameObject:
   - 4: {fileID: 2123435720}
   - 61: {fileID: 2123435722}
   - 114: {fileID: 2123435721}
+  - 58: {fileID: 2123435723}
   m_Layer: 21
   m_Name: StandingGuard
   m_TagString: Guards/StandingGuard
@@ -9033,6 +10050,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 1084978662}
+  - {fileID: 362911792}
   m_Father: {fileID: 29732162}
   m_RootOrder: 0
 --- !u!114 &2123435721
@@ -9057,11 +10075,25 @@ BoxCollider2D:
   m_Enabled: 0
   m_Density: 1
   m_Material: {fileID: 0}
-  m_IsTrigger: 1
+  m_IsTrigger: 0
   m_UsedByEffector: 0
-  m_Offset: {x: -0.004344225, y: 0.007962823}
+  m_Offset: {x: 0.0011405945, y: 0.06326544}
   serializedVersion: 2
-  m_Size: {x: 0.3592821, y: 0.8385207}
+  m_Size: {x: 0.2600313, y: 0.681848}
+--- !u!58 &2123435723
+CircleCollider2D:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 2123435719}
+  m_Enabled: 0
+  m_Density: 1
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_UsedByEffector: 0
+  m_Offset: {x: 0, y: -0.27}
+  serializedVersion: 2
+  m_Radius: 0.13250196
 --- !u!1001 &2129566497
 Prefab:
   m_ObjectHideFlags: 0

@@ -33,25 +33,6 @@ namespace Wolio.Actor.Player
                 .Where(x => (x > 0 & !(PlayerState.FacingRight.Value)) | (x < 0 & PlayerState.FacingRight.Value))
                 .Subscribe(_ => this.Turn());
             #endregion
-            #region Run
-            this.FixedUpdateAsObservable()
-                .Subscribe(_ => this.Run(Key.Horizontal.Value, PlayerConfig.MaxSpeed));
-            #endregion
-            #region Jump
-            this.FixedUpdateAsObservable()
-                .Where(x => Key.Vertical.Value == 1)
-                .Where(x => PlayerState.IsGrounded.Value)
-                .Where(x => !PlayerState.IsClimbable.Value)
-                .Where(x => !PlayerState.IsClimbing.Value)
-                .Subscribe(_ => this.Jump(PlayerConfig.JumpForce));
-            #endregion
-            #region Creep
-            this.FixedUpdateAsObservable()
-                .Where(x => PlayerState.IsCrouching.Value)
-                .Where(x => !PlayerState.IsRunning.Value)
-                .Where(x => Key.Horizontal.Value != 0 && Key.Vertical.Value == -1)
-                .Subscribe(_ => this.Creep(Key.Horizontal.Value, PlayerConfig.CreepSpeed));
-            #endregion
             #region Climb
             this.OnTriggerEnter2DAsObservable()
                 .Where(x => x.gameObject.tag == "Ladder")
@@ -148,20 +129,7 @@ namespace Wolio.Actor.Player
             Utility.Flip(transform);
         }
 
-        public void Run(float Horizontal, float MaxSpeed)
-        {
-            Rigidbody2D.velocity = new Vector2(Horizontal * MaxSpeed, Rigidbody2D.velocity.y);
-        }
 
-        public void Jump(float JumpForce)
-        {
-            Rigidbody2D.velocity = new Vector2(0f, JumpForce);
-        }
-
-        public void Creep(float Horizontal, float CreepSpeed)
-        {
-            Rigidbody2D.velocity = new Vector2(Horizontal * CreepSpeed, Rigidbody2D.velocity.y);
-        }
 
         public void Climb(float Vertical, float MaxSpeed)
         {
