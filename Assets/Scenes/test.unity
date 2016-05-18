@@ -3009,6 +3009,7 @@ Transform:
   - {fileID: 1212744950}
   - {fileID: 57592883}
   - {fileID: 1424384731}
+  - {fileID: 679337881}
   m_Father: {fileID: 150007668}
   m_RootOrder: 2
 --- !u!4 &529925492 stripped
@@ -3792,6 +3793,45 @@ Transform:
   - {fileID: 819353563}
   m_Father: {fileID: 723504207}
   m_RootOrder: 5
+--- !u!1 &679337880
+GameObject:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  serializedVersion: 4
+  m_Component:
+  - 4: {fileID: 679337881}
+  - 114: {fileID: 679337882}
+  m_Layer: 11
+  m_Name: Turn
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &679337881
+Transform:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 679337880}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 477518369}
+  m_RootOrder: 5
+--- !u!114 &679337882
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 679337880}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 55551ca88d4736b488a22b3c58f4a07b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &693951924
 GameObject:
   m_ObjectHideFlags: 0

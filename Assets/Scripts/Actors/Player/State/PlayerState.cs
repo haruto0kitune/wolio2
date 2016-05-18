@@ -94,7 +94,7 @@ namespace Wolio.Actor.Player
             IsStandingGuardBack = new ReactiveProperty<bool>();
             IsCrouchingGuardBack = new ReactiveProperty<bool>();
             IsJumpingGuardBack = new ReactiveProperty<bool>();
-            FacingRight = transform.ObserveEveryValueChanged(x => x.localScale.x).Select(x => x == -1).ToReactiveProperty();
+            FacingRight = SpriteRenderer.ObserveEveryValueChanged(x => x.flipX).ToReactiveProperty();
         }
 
         void Start()
