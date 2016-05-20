@@ -50,39 +50,6 @@ namespace Wolio {
       -void Start()
     }
 
-    PlayerAnimation o-- Key
-    PlayerAnimation o-- PlayerState
-    PlayerAnimation o-- PlayerConfig
-
-    class PlayerAnimation {
-      -Animator Animator
-      -ObservableStateMachineTrigger ObservableStateMachineTrigger
-      -Key Key
-      -PlayerState PlayerState
-      -PlayerConfig PlayerConfig
-      -void Awake()
-      -void Start()
-    }
-
-    PlayerMover o-- Key
-    PlayerMover o-- PlayerState
-    PlayerMover o-- PlayerConfig
-
-    class PlayerMover {
-      -Rigidbody2D Rigidbody2D
-      -PlayerConfig PlayerConfig
-      -PlayerState PlayerState
-      -Key Key
-      +void Turn()
-      +void Run()
-      +void Jump()
-      +void Creep()
-      +void Climb()
-      +void AirMove()
-      -void Awake()
-      -void Start()
-    }
-
     class PlayerConfig {
       +float MaxSpeed = 10f
       +float KnockBackSpeed = 3f
@@ -118,35 +85,193 @@ namespace Wolio {
       -void UpdateAsObservables()
     }
 
+    namespace Wolio.Actor.Player.Basics{
+      PlayerTurn o-- Wolio.Actor.Player.PlayerState
+      PlayerTurn o-- Wolio.Actor.Player.Key
+
+      class PlayerTurn {
+        -GameObject Player
+        -Key Key
+        -PlayerState PlayerState
+        -SpriteRenderer SpriteRenderer
+        -BoxCollider2D[] BoxColliders2D
+        -CircleCollider2D[] CircleColliders2D
+        -void Awake()
+        -void Start()
+        -void Turn()
+      }
+
+      PlayerStand o-- Wolio.Actor.Player.PlayerState
+      PlayerStand o-- Wolio.Actor.Player.Key
+
+      class PlayerStand {
+        -Animator Animator
+        -ObservableStateMachineTrigger ObservableStateMachineTrigger
+        -PlayerState PlayerState
+        -Rigidbody2D PlayerRigidbody2D
+        -Key Key
+        -BoxCollider2D BoxCollider2D
+        -BoxCollider2D HurtBox
+        -CircleCollider2D CircleCollider2D
+        -void Awake()
+        -void Start()
+      }
+
+      PlayerRun o-- Wolio.Actor.Player.PlayerState
+      PlayerRun o-- Wolio.Actor.Player.Key
+
+      class PlayerRun {
+        -Animator Animator
+        -ObservableStateMachineTrigger ObservableStateMachineTrigger
+        -PlayerState PlayerState
+        -Rigidbody2D PlayerRigidbody2D
+        -Key Key
+        -BoxCollider2D BoxCollider2D
+        -BoxCollider2D HurtBox
+        -CircleCollider2D CircleCollider2D
+        -float MaxSpeed
+        -void Awake()
+        -void Start()
+        -void Run()
+      }
+
+      PlayerJump o-- Wolio.Actor.Player.PlayerState
+      PlayerJump o-- Wolio.Actor.Player.Key
+
+      class PlayerJump {
+        -Animator Animator
+        -ObservableStateMachineTrigger ObservableStateMachineTrigger
+        -PlayerState PlayerState
+        -Rigidbody2D PlayerRigidbody2D
+        -Key Key
+        -BoxCollider2D BoxCollider2D
+        -BoxCollider2D HurtBox
+        -float JumpForce
+        -void Awake()
+        -void Start()
+      }
+
+      PlayerCrouch o-- Wolio.Actor.Player.PlayerState
+      PlayerCrouch o-- Wolio.Actor.Player.Key
+
+      class PlayerCrouch {
+        -Animator Animator
+        -ObservableStateMachineTrigger ObservableStateMachineTrigger
+        -PlayerState PlayerState
+        -Key Key
+        -BoxCollider2D BoxCollider2D
+        -BoxCollider2D HurtBox
+        -GameObject CeilingCheck
+        -LayerMask WhatIsGround
+        -void Awake()
+        -void Start()
+      }
+
+      PlayerCreep o-- Wolio.Actor.Player.PlayerState
+      PlayerCreep o-- Wolio.Actor.Player.Key
+
+      class PlayerCreep {
+        -Animator Animator
+        -ObservableStateMachineTrigger ObservableStateMachineTrigger
+        -PlayerState PlayerState
+        -Rigidbody2D PlayerRigidbody2D
+        -Key Key
+        -BoxCollider2D BoxCollider2D
+        -BoxCollider2D HurtBox
+        -float CreepSpeed
+        -void Awake()
+        -void Start()
+        -void Creep()
+      }
+
+      PlayerAirMove o-- Wolio.Actor.Player.PlayerState
+      PlayerAirMove o-- Wolio.Actor.Player.Key
+
+      class PlayerAirMove {
+        -PlayerState PlayerState
+        -Key Key
+        -Rigidbody2D Rigidbody2D
+        -void Awake()
+        -void Start()
+        -void AirMove()
+      }
+
+      PlayerWallKickJump o-- Wolio.Actor.Player.PlayerState
+      PlayerWallKickJump o-- Wolio.Actor.Player.Key
+
+      class PlayerWallKickJump {
+        -GameObject Player
+        -PlayerState PlayerState
+        -Key Key
+        -Rigidbody2D Rigidbody2D
+        -SpriteRenderer SpriteRenderer
+        -BoxCollider2D[] BoxColliders2D
+        -CircleCollider2D[] CircleColliders2D
+        -void Awake()
+        -void Start()
+        -void WallKickJump()
+      }
+    }
+
     namespace Wolio.Actor.Player.Attacks.NormalAttacks.StandingAttacks {
       PlayerStandingLightAttack o-- Wolio.Actor.Player.PlayerState
+      PlayerStandingLightAttack o-- Wolio.Actor.Player.Key
 
       class PlayerStandingLightAttack {
+        -Animator Animator
+        -ObservableStateMachineTrigger ObservableStateMachineTrigger
         -PlayerState PlayerState
+        -Rigidbody2D PlayerRigidbody2D
+        -Key Key
         -BoxCollider2D BoxCollider2D
-        -int Startup;
-        -int Active;
-        -int Recovery;
+        -CircleCollider2D CircleCollider2D
+        -BoxCollider2D HitBox
+        -BoxCollider2D HurtBox
+        -int Startup
+        -int Active
+        -int Recovery
         -void Awake()
         -void Start()
         +IEnumerator Attack()
       }
 
       PlayerStandingMiddleAttack o-- Wolio.Actor.Player.PlayerState
+      PlayerStandingMiddleAttack o-- Wolio.Actor.Player.Key
 
       class PlayerStandingMiddleAttack {
+        -Animator Animator
+        -ObservableStateMachineTrigger ObservableStateMachineTrigger
         -PlayerState PlayerState
+        -Rigidbody2D PlayerRigidbody2D
+        -Key Key
         -BoxCollider2D BoxCollider2D
+        -CircleCollider2D CircleCollider2D
+        -BoxCollider2D HitBox
+        -BoxCollider2D HurtBox
+        -int Startup
+        -int Active
+        -int Recovery
         -void Awake()
         -void Start()
         +IEnumerator Attack()
       }
 
       PlayerStandingHighAttack o-- Wolio.Actor.Player.PlayerState
+      PlayerStandingHighAttack o-- Wolio.Actor.Player.Key
 
       class PlayerStandingHighAttack {
+        -Animator Animator
+        -ObservableStateMachineTrigger ObservableStateMachineTrigger
         -PlayerState PlayerState
+        -Rigidbody2D PlayerRigidbody2D
+        -Key Key
         -BoxCollider2D BoxCollider2D
+        -CircleCollider2D CircleCollider2D
+        -BoxCollider2D HitBox
+        -BoxCollider2D HurtBox
+        -int Startup
+        -int Active
+        -int Recovery
         -void Awake()
         -void Start()
         +IEnumerator Attack()
@@ -155,30 +280,60 @@ namespace Wolio {
 
     namespace Wolio.Actor.Player.Attacks.NormalAttacks.CrouchingAttacks {
       PlayerCrouchingLightAttack o-- Wolio.Actor.Player.PlayerState
+      PlayerCrouchingLightAttack o-- Wolio.Actor.Player.Key
 
       class PlayerCrouchingLightAttack {
+        -Animator Animator
+        -ObservableStateMachineTrigger ObservableStateMachineTrigger
         -PlayerState PlayerState
+        -Rigidbody2D PlayerRigidbody2D
+        -Key Key
         -BoxCollider2D BoxCollider2D
+        -BoxCollider2D HitBox
+        -BoxCollider2D HurtBox
+        -int Startup
+        -int Active
+        -int Recovery
         -void Awake()
         -void Start()
         +IEnumerator Attack()
       }
 
       PlayerCrouchingMiddleAttack o-- Wolio.Actor.Player.PlayerState
+      PlayerCrouchingMiddleAttack o-- Wolio.Actor.Player.Key
 
       class PlayerCrouchingMiddleAttack {
+        -Animator Animator
+        -ObservableStateMachineTrigger ObservableStateMachineTrigger
         -PlayerState PlayerState
+        -Rigidbody2D PlayerRigidbody2D
+        -Key Key
         -BoxCollider2D BoxCollider2D
+        -BoxCollider2D HitBox
+        -BoxCollider2D HurtBox
+        -int Startup
+        -int Active
+        -int Recovery
         -void Awake()
         -void Start()
         +IEnumerator Attack()
       }
 
       PlayerCrouchingHighAttack o-- Wolio.Actor.Player.PlayerState
+      PlayerCrouchingHighAttack o-- Wolio.Actor.Player.Key
 
       class PlayerCrouchingHighAttack {
+        -Animator Animator
+        -ObservableStateMachineTrigger ObservableStateMachineTrigger
         -PlayerState PlayerState
+        -Rigidbody2D PlayerRigidbody2D
+        -Key Key
         -BoxCollider2D BoxCollider2D
+        -BoxCollider2D HitBox
+        -BoxCollider2D HurtBox
+        -int Startup
+        -int Active
+        -int Recovery
         -void Awake()
         -void Start()
         +IEnumerator Attack()
@@ -187,82 +342,60 @@ namespace Wolio {
 
     namespace Wolio.Actor.Player.Attacks.NormalAttacks.JumpingAttacks {
       PlayerJumpingLightAttack o-- Wolio.Actor.Player.PlayerState
+      PlayerJumpingLightAttack o-- Wolio.Actor.Player.Key
 
       class PlayerJumpingLightAttack {
+        -Animator Animator
+        -ObservableStateMachineTrigger ObservableStateMachineTrigger
         -PlayerState PlayerState
+        -Rigidbody2D PlayerRigidbody2D
+        -Key Key
         -BoxCollider2D BoxCollider2D
+        -BoxCollider2D HitBox
+        -BoxCollider2D HurtBox
+        -int Startup
+        -int Active
         -void Awake()
         -void Start()
         +IEnumerator Attack()
       }
 
       PlayerJumpingMiddleAttack o-- Wolio.Actor.Player.PlayerState
+      PlayerJumpingMiddleAttack o-- Wolio.Actor.Player.Key
 
       class PlayerJumpingMiddleAttack {
+        -Animator Animator
+        -ObservableStateMachineTrigger ObservableStateMachineTrigger
         -PlayerState PlayerState
+        -Rigidbody2D PlayerRigidbody2D
+        -Key Key
         -BoxCollider2D BoxCollider2D
+        -BoxCollider2D HitBox
+        -BoxCollider2D HurtBox
+        -int Startup
+        -int Active
         -void Awake()
         -void Start()
         +IEnumerator Attack()
       }
 
       PlayerJumpingHighAttack o-- Wolio.Actor.Player.PlayerState
+      PlayerJumpingHighAttack o-- Wolio.Actor.Player.Key
 
       class PlayerJumpingHighAttack {
+        -Animator Animator
+        -ObservableStateMachineTrigger ObservableStateMachineTrigger
         -PlayerState PlayerState
+        -Rigidbody2D PlayerRigidbody2D
+        -Key Key
         -BoxCollider2D BoxCollider2D
+        -BoxCollider2D HitBox
+        -BoxCollider2D HurtBox
+        -int Startup
+        -int Active
         -void Awake()
         -void Start()
         +IEnumerator Attack()
-      }
-    }
-
-    namespace Wolio.Actor.Player.Basics{
-      PlayerCreep o-- Wolio.Actor.Player.PlayerState
-
-      class PlayerCreep {
-        -PlayerState PlayerState
-        -BoxCollider2D BoxCollider2D
-        -void Awake()
-        -void Start()
-      }
-
-      PlayerCrouch o-- Wolio.Actor.Player.PlayerState
-
-      class PlayerCrouch {
-        -PlayerState PlayerState
-        -BoxCollider2D BoxCollider2D
-        -void Awake()
-        -void Start()
-      }
-
-      PlayerJump o-- Wolio.Actor.Player.PlayerState
-
-      class PlayerJump {
-        -PlayerState PlayerState
-        -BoxCollider2D BoxCollider2D
-        -void Awake()
-        -void Start()
-      }
-
-      PlayerRun o-- Wolio.Actor.Player.PlayerState
-
-      class PlayerRun {
-        -PlayerState PlayerState
-        -BoxCollider2D BoxCollider2D
-        -CircleCollider2D CircleCollider2D
-        -void Awake()
-        -void Start()
-      }
-
-      PlayerStand o-- Wolio.Actor.Player.PlayerState
-
-      class PlayerStand {
-        -PlayerState PlayerState
-        -BoxCollider2D BoxCollider2D
-        -CircleCollider2D CircleCollider2D
-        -void Awake()
-        -void Start()
       }
     }
 
@@ -298,66 +431,6 @@ namespace Wolio {
       -void Start()
       -IEnumerator StandingHitBack()
     }
-  }
-
-  namespace Wolio.Weapons {
-    Gun ..> Fireball
-
-    class Gun {
-      -Vector2 Speed
-      -Vector2 Direction
-      -void Start()
-    }
-
-    class Fireball {
-      -Rigidbody2D Rigidbody2D
-      +Vector2 Speed
-      -PlayerState PlayerState
-      -void Awake()
-      -void Start()
-    }
-  }
-
-  class MainCamera {
-    -GameObject Player
-    -void Awake()
-    -void Start()
-  }
-
-  PlayerDebugInformation o-- Wolio.Actor.Player.PlayerState
-
-  class PlayerDebugInformation {
-    -GameObject Player;
-    -PlayerState PlayerState;
-    -Rigidbody2D Rigidbody2D;
-    -Text Text;
-    -Text Text1;
-    -Text Text2;
-    -Text Text3;
-    -Text Text4;
-    -Text Text5;
-    -Text Text6;
-    -void Awake()
-    -void Start()
-  }
-
-  class FragileBlock {
-    -Animator Animator
-    -void Awake()
-    -void Start()
-  }
-
-  class GameCommand {
-    +bool A
-    +bool B
-    +bool C
-    +bool D
-    +bool E
-    +bool Left
-    +bool Right
-    +bool Up
-    +bool Down
-    -GameController GameController
   }
 }
 

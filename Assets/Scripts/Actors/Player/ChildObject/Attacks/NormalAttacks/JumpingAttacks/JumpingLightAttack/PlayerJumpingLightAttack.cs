@@ -5,7 +5,7 @@ using UniRx.Triggers;
 
 namespace Wolio.Actor.Player.Attacks.NormalAttacks.JumpingAttacks
 {
-    class PlayerJumpingLightAttack : MonoBehaviour
+    public class PlayerJumpingLightAttack : MonoBehaviour
     {
         Animator Animator;
         ObservableStateMachineTrigger ObservableStateMachineTrigger;

@@ -59,6 +59,7 @@ namespace Wolio.Actor.Player.Basics
 
             //Motion
             this.FixedUpdateAsObservable()
+                .Where(x => !Animator.GetBool("IsJumping"))
                 .Subscribe(_ => this.Run(Key.Horizontal.Value, MaxSpeed));
 
             //Collision

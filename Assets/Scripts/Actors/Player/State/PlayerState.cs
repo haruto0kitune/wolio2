@@ -50,7 +50,9 @@ namespace Wolio.Actor.Player
         public ReactiveProperty<bool> IsStandingGuardBack;
         public ReactiveProperty<bool> IsCrouchingGuardBack;
         public ReactiveProperty<bool> IsJumpingGuardBack;
+        public ReactiveProperty<bool> IsWallKickJumping;
         public ReactiveProperty<bool> FacingRight;
+        public ReactiveProperty<bool> IsInTheAir;
 
         void Awake()
         {
@@ -61,7 +63,6 @@ namespace Wolio.Actor.Player
             Rigidbody2D = GetComponent<Rigidbody2D>();
             Animator = GetComponent<Animator>();
 
-            //Hp = new IntReactiveProperty();
             IsGrounded = this.ObserveEveryValueChanged(x => (bool)Physics2D.Linecast(GroundCheck.position, GroundCheck.position, PlayerConfig.WhatIsGround)).ToReactiveProperty();
             IsDead = Hp.Select(x => x <= 0).ToReactiveProperty();
             IsDashing = new ReactiveProperty<bool>();
@@ -94,7 +95,9 @@ namespace Wolio.Actor.Player
             IsStandingGuardBack = new ReactiveProperty<bool>();
             IsCrouchingGuardBack = new ReactiveProperty<bool>();
             IsJumpingGuardBack = new ReactiveProperty<bool>();
+            IsWallKickJumping = new ReactiveProperty<bool>();
             FacingRight = SpriteRenderer.ObserveEveryValueChanged(x => x.flipX).ToReactiveProperty();
+            IsInTheAir = IsGrounded.Select(x => !x).ToReactiveProperty();
         }
 
         void Start()

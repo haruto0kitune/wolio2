@@ -116,7 +116,7 @@ namespace Wolio.Actor.Player.Basics
 
         public void Jump(float JumpForce)
         {
-            PlayerRigidbody2D.velocity = new Vector2(0f, JumpForce);
+            PlayerRigidbody2D.velocity = new Vector2(PlayerRigidbody2D.velocity.x, JumpForce);
         }
     }
 }
