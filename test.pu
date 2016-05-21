@@ -399,37 +399,106 @@ namespace Wolio {
       }
     }
 
-    PlayerStandingGuardBack o-- PlayerState
+    namespace Wolio.Actor.Player.Guards {
+      PlayerStandingGuard o-- Wolio.Actor.Player.PlayerState
+      PlayerStandingGuard o-- Wolio.Actor.Player.Key
 
-    class PlayerStandingGuardBack {
-      -PlayerState PlayerState
-      -Rigidbody2D Rigidbody2D
-      -BoxCollider2D BoxCollider2D
-      -void Awake()
-      -void Start()
-      +IEnumerator StandingGuardBack()
+      class PlayerStandingGuard {
+        -Animator Animator
+        -ObservableStateMachineTrigger ObservableStateMachineTrigger
+        -PlayerState PlayerState
+        -Rigidbody2D PlayerRigidbody2D
+        -Key Key
+        -BoxCollider2D BoxCollider2D
+        -CircleCollider2D CircleCollider2D
+        -BoxCollider2D HurtBox
+        -void Awake()
+        -void Start()
+        +IEnumerator StandingGuard()
+      }
+
+      PlayerCrouchingGuard o-- Wolio.Actor.Player.PlayerState
+      PlayerCrouchingGuard o-- Wolio.Actor.Player.Key
+
+      class PlayerCrouchingGuard {
+        -Animator Animator
+        -ObservableStateMachineTrigger ObservableStateMachineTrigger
+        -PlayerState PlayerState
+        -Rigidbody2D PlayerRigidbody2D
+        -Key Key
+        -BoxCollider2D BoxCollider2D
+        -BoxCollider2D HurtBox
+        -void Awake()
+        -void Start()
+        +IEnumerator CrouchingGuard()
+      }
+
+      PlayerJumpingGuard o-- Wolio.Actor.Player.PlayerState
+      PlayerJumpingGuard o-- Wolio.Actor.Player.Key
+
+      class PlayerJumpingGuard {
+        -Animator Animator
+        -ObservableStateMachineTrigger ObservableStateMachineTrigger
+        -PlayerState PlayerState
+        -Rigidbody2D PlayerRigidbody2D
+        -Key Key
+        -BoxCollider2D BoxCollider2D
+        -BoxCollider2D HurtBox
+        -void Awake()
+        -void Start()
+        +IEnumerator JumpingGuard()
+      }
     }
 
-    PlayerCrouchingGuardBack o-- PlayerState
+    namespace Wolio.Actor.Player.KnockBacks.GuardBacks {
+      PlayerStandingGuardBack o-- Wolio.Actor.Player.PlayerState
+      PlayerStandingGuardBack o-- Wolio.Actor.Player.Key
 
-    class PlayerCrouchingGuardBack {
-      -PlayerState PlayerState
-      -Rigidbody2D Rigidbody2D
-      -BoxCollider2D BoxCollider2D
-      -void Awake()
-      -void Start()
-      +IEnumerator CrouchingGuardBack()
+      class PlayerStandingGuardBack {
+        -PlayerState PlayerState
+        -Rigidbody2D Rigidbody2D
+        -BoxCollider2D BoxCollider2D
+        -void Awake()
+        -void Start()
+        +IEnumerator StandingGuardBack()
+      }
+
+      PlayerCrouchingGuardBack o-- Wolio.Actor.Player.PlayerState
+      PlayerCrouchingGuardBack o-- Wolio.Actor.Player.Key
+
+      class PlayerCrouchingGuardBack {
+        -PlayerState PlayerState
+        -Rigidbody2D Rigidbody2D
+        -BoxCollider2D BoxCollider2D
+        -void Awake()
+        -void Start()
+        +IEnumerator CrouchingGuardBack()
+      }
+
+      PlayerJumpingGuardBack o-- Wolio.Actor.Player.PlayerState
+      PlayerJumpingGuardBack o-- Wolio.Actor.Player.Key
+
+      class PlayerJumpingGuardBack {
+        -PlayerState PlayerState
+        -Rigidbody2D Rigidbody2D
+        -BoxCollider2D BoxCollider2D
+        -void Awake()
+        -void Start()
+        +IEnumerator JumpingGuardBack()
+      }
     }
 
-    PlayerStandingHitBack o-- PlayerState
+    namespace Wolio.Actor.Player.KnockBacks.HitBacks{
+      PlayerStandingHitBack o-- Wolio.Actor.Player.PlayerState
 
-    class PlayerStandingHitBack {
-      -PlayerState PlayerState
-      -Rigidbody2D Rigidbody2D
-      -BoxCollider2D BoxCollider2D
-      -void Awake()
-      -void Start()
-      -IEnumerator StandingHitBack()
+      class PlayerStandingHitBack {
+        -PlayerState PlayerState
+        -Rigidbody2D Rigidbody2D
+        -BoxCollider2D BoxCollider2D
+        -void Awake()
+        -void Start()
+        -IEnumerator StandingHitBack()
+      }
     }
   }
 }

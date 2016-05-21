@@ -1,10 +1,11 @@
 fileFormatVersion: 2
 guid: 419e89753b029af4181e848b089f9b98
-timeCreated: 1458804563
+timeCreated: 1463828123
 licenseType: Free
 MonoImporter:
   serializedVersion: 2
-  defaultReferences: []
+  defaultReferences:
+  - WallCheck: {fileID: 190824, guid: 065be39dacf88db45bbd211eb194aff2, type: 2}
   executionOrder: 0
   icon: {instanceID: 0}
   userData: 
