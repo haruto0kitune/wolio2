@@ -19,6 +19,8 @@ public class PiyoRun : MonoBehaviour
     BoxCollider2D HurtBox;
     [SerializeField]
     float Speed;
+    public int damageValue;
+    public int hitRecovery;
 
     void Awake()
     {
@@ -30,13 +32,39 @@ public class PiyoRun : MonoBehaviour
     }
     void Start()
     {
-        //Motion
+        // Motion
         this.FixedUpdateAsObservable()
             .Subscribe(_ => Run(Speed, PiyoState.Direction.Value));
 
+        // Damage
         this.OnTriggerEnter2DAsObservable()
-            .Where(x => x.gameObject.tag == "HurtBox" && x.gameObject.layer == LayerMask.NameToLayer("Player/HurtBox"))
-            .Subscribe(_ => GameObject.Find("Test").GetComponent<PlayerState>().Hp.Value--);
+            .Where(x => x.gameObject.tag == "HurtBox/StandingHurtBox")
+            .ThrottleFirstFrame(1)
+            .Subscribe(_ => 
+            {
+                _.gameObject.GetComponent<DamageManager>().ApplyDamage(damageValue, hitRecovery);
+                HitBox.enabled = false;
+            });
+
+        this.OnTriggerExit2DAsObservable()
+            .Where(x => x.gameObject.tag == "HurtBox/StandingHurtBox")
+            .Subscribe(_ => HitBox.enabled = true);
+
+        this.OnTriggerEnter2DAsObservable()
+            .Where(x => x.gameObject.tag == "HurtBox/CrouchingHurtBox")
+            .Subscribe(_ => Debug.Log("damage"));
+
+        this.OnTriggerExit2DAsObservable()
+            .Where(x => x.gameObject.tag == "HurtBox/CrouchingHurtBox")
+            .Subscribe(_ => HitBox.enabled = true);
+
+        this.OnTriggerEnter2DAsObservable()
+            .Where(x => x.gameObject.tag == "HurtBox/JumpingHurtBox")
+            .Subscribe(_ => Debug.Log("damage"));
+
+        this.OnTriggerExit2DAsObservable()
+            .Where(x => x.gameObject.tag == "HurtBox/JumpingHurtBox")
+            .Subscribe(_ => HitBox.enabled = true);
     }
 
     public void Run(float speed, float direction)

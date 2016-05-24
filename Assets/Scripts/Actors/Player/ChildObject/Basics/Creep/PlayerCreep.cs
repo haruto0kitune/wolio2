@@ -15,7 +15,7 @@ namespace Wolio.Actor.Player.Basics
         BoxCollider2D BoxCollider2D;
         BoxCollider2D HurtBox;
         [SerializeField]
-        float CreepSpeed;
+        float Speed;
 
         void Awake()
         {
@@ -59,7 +59,7 @@ namespace Wolio.Actor.Player.Basics
                 .Where(x => PlayerState.IsCrouching.Value)
                 .Where(x => !PlayerState.IsRunning.Value)
                 .Where(x => Key.Horizontal.Value != 0 && Key.Vertical.Value == -1)
-                .Subscribe(_ => this.Creep(Key.Horizontal.Value, CreepSpeed));
+                .Subscribe(_ => this.Creep(Key.Horizontal.Value, Speed));
 
             //Collision
             this.ObserveEveryValueChanged(x => Animator.GetBool("IsCreeping"))

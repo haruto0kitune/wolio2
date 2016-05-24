@@ -39,6 +39,12 @@ TagManager:
   - KnockBacks/GuardBacks/CrouchingGuardBack
   - KnockBacks/GuardBacks/JumpingGuardBack
   - HurtBox
+  - HitBox
+  - Enemy/HitBox
+  - Enemy/HurtBox
+  - HurtBox/StandingHurtBox
+  - HurtBox/CrouchingHurtBox
+  - HurtBox/JumpingHurtBox
   layers:
   - Default
   - TransparentFX

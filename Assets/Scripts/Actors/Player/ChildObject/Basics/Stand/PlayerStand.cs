@@ -112,6 +112,17 @@ namespace Wolio.Actor.Player.Basics
                     Animator.SetBool("IsStandingGuard", true);
                 });
             #endregion
+            #region Stand->StandingDamage
+            ObservableStateMachineTrigger
+                .OnStateUpdateAsObservable()
+                .Where(x => x.StateInfo.IsName("Base Layer.Stand"))
+                .Where(x => PlayerState.WasAttacked.Value)
+                .Subscribe(_ =>
+                {
+                    Animator.SetBool("IsStanding", false);
+                    Animator.SetBool("IsStandingDamage", true);
+                });
+            #endregion
 
             //Collision
             this.ObserveEveryValueChanged(x => Animator.GetBool("IsStanding"))

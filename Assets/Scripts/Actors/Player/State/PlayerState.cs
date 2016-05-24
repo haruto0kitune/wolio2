@@ -6,7 +6,7 @@ using UnityEngine.UI;
 
 namespace Wolio.Actor.Player
 {
-    public class PlayerState : MonoBehaviour
+    public class PlayerState : MonoBehaviour, IState
     {
         public Transform GroundCheck;
         public Transform CeilingCheck;
@@ -14,6 +14,7 @@ namespace Wolio.Actor.Player
         private SpriteRenderer SpriteRenderer;
         private Rigidbody2D Rigidbody2D;
         private Animator Animator;
+        private Status Status;
 
         [InspectorDisplay]
         public IntReactiveProperty Hp;
@@ -53,6 +54,7 @@ namespace Wolio.Actor.Player
         public ReactiveProperty<bool> IsWallKickJumping;
         public ReactiveProperty<bool> FacingRight;
         public ReactiveProperty<bool> IsInTheAir;
+        public ReactiveProperty<bool> WasAttacked { get; set; }
 
         void Awake()
         {
@@ -62,9 +64,10 @@ namespace Wolio.Actor.Player
             SpriteRenderer = GetComponent<SpriteRenderer>();
             Rigidbody2D = GetComponent<Rigidbody2D>();
             Animator = GetComponent<Animator>();
+            Status = GetComponent<Status>();
 
             IsGrounded = this.ObserveEveryValueChanged(x => (bool)Physics2D.Linecast(GroundCheck.position, GroundCheck.position, PlayerConfig.WhatIsGround)).ToReactiveProperty();
-            IsDead = Hp.Select(x => x <= 0).ToReactiveProperty();
+            IsDead = Status.Hp.Select(x => x <= 0).ToReactiveProperty();
             IsDashing = new ReactiveProperty<bool>();
             IsRunning = this.ObserveEveryValueChanged(x => Animator.GetBool("IsRunning")).ToReactiveProperty();
             IsJumping = this.ObserveEveryValueChanged(x => Animator.GetBool("IsJumping")).ToReactiveProperty();
@@ -98,6 +101,7 @@ namespace Wolio.Actor.Player
             IsWallKickJumping = new ReactiveProperty<bool>();
             FacingRight = SpriteRenderer.ObserveEveryValueChanged(x => x.flipX).ToReactiveProperty();
             IsInTheAir = IsGrounded.Select(x => !x).ToReactiveProperty();
+            WasAttacked = new ReactiveProperty<bool>();
         }
 
         void Start()
