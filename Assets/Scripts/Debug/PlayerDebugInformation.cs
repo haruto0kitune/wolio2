@@ -12,6 +12,7 @@ namespace Wolio
         [SerializeField]
         private GameObject Player;
         private PlayerState PlayerState;
+        private Status Status;
         private Rigidbody2D Rigidbody2D;
 
         [SerializeField]
@@ -32,6 +33,7 @@ namespace Wolio
         void Awake()
         {
             PlayerState = Player.GetComponent<PlayerState>();
+            Status = Player.GetComponent<Status>();
             Rigidbody2D = Player.GetComponent<Rigidbody2D>();
         }
         void Start()
@@ -41,7 +43,7 @@ namespace Wolio
             this.ObserveEveryValueChanged(x => Rigidbody2D.velocity.x).SubscribeToText(Text3);
             this.ObserveEveryValueChanged(x => Rigidbody2D.velocity.y).SubscribeToText(Text4);
             PlayerState.IsCrouching.SubscribeToText(Text5);
-            PlayerState.Hp.SubscribeToText(Text6);
+            Status.Hp.SubscribeToText(Text6);
         }
     }
 }

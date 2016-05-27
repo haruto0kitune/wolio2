@@ -10,22 +10,14 @@ public class DamageManager : MonoBehaviour
     Status Status;
     IState State;
     [SerializeField]
-    GameObject StandingDamage;
-    IDamage StandingDamageComponent;
-    [SerializeField]
-    GameObject CrouchingDamage;
-    IDamage CrouchingDamageComponent;
-    [SerializeField]
-    GameObject JumpingDamage;
-    IDamage JumpingDamageComponent;
+    GameObject DamageObject;
+    IDamage DamageComponent;
     
     void Awake()
     {
         Status = Actor.GetComponent<Status>();
         State = Actor.GetComponent<IState>();
-        StandingDamageComponent = StandingDamage.GetComponent<IDamage>();
-        CrouchingDamageComponent = CrouchingDamage.GetComponent<IDamage>();
-        JumpingDamageComponent = JumpingDamage.GetComponent<IDamage>();
+        DamageComponent = DamageObject.GetComponent<IDamage>();
     }
 
     void Start()
@@ -35,9 +27,9 @@ public class DamageManager : MonoBehaviour
 
     public void ApplyDamage(int damageValue, int recovery)
     {
-        if(StandingDamageComponent != null)
+        if(DamageComponent != null)
         {
-            StartCoroutine(StandingDamageComponent.Damage(damageValue, recovery));
+            StartCoroutine(DamageComponent.Damage(damageValue, recovery));
         }
     }
 }

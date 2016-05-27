@@ -16,9 +16,6 @@ namespace Wolio.Actor.Player
         private Animator Animator;
         private Status Status;
 
-        [InspectorDisplay]
-        public IntReactiveProperty Hp;
-
         public ReactiveProperty<bool> IsDead;
         public ReactiveProperty<bool> IsGrounded;
         public ReactiveProperty<bool> IsDashing;

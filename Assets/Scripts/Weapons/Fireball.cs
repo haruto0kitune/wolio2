@@ -25,10 +25,6 @@ namespace Wolio.Weapons
 
             this.OnBecameInvisibleAsObservable()
                 .Subscribe(_ => Destroy(this.gameObject));
-
-            this.OnTriggerEnter2DAsObservable()
-                .Where(x => x.gameObject.tag == "HurtBox" && x.gameObject.layer == LayerMask.NameToLayer("Player/HurtBox"))
-                .Subscribe(_ => PlayerState.Hp.Value--);
         }
     }
 }

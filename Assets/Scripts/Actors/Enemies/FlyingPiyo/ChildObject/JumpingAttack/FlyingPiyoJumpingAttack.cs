@@ -38,10 +38,6 @@ public class FlyingPiyoJumpingAttack : MonoBehaviour
             .Where(x => !FlyingPiyoState.IsAttacking.Value)
             .Do(x => FlyingPiyoState.IsAttacking.Value = true)
             .Subscribe(_ => StartCoroutine(Attack()));
-
-        this.OnTriggerEnter2DAsObservable()
-            .Where(x => x.gameObject.tag == "HurtBox" && x.gameObject.layer == LayerMask.NameToLayer("Player/HurtBox"))
-            .Subscribe(_ => PlayerState.Hp.Value--);
     }
 
     public IEnumerator Attack()

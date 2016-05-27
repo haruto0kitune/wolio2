@@ -98,6 +98,17 @@ namespace Wolio.Actor.Player.Basics
                     Animator.SetBool("IsCrouchingGuard", true);
                 });
             #endregion
+            #region Crouch->CrouchingDamage
+            ObservableStateMachineTrigger
+                .OnStateUpdateAsObservable()
+                .Where(x => x.StateInfo.IsName("Base Layer.Crouch"))
+                .Where(x => PlayerState.WasAttacked.Value)
+                .Subscribe(_ =>
+                {
+                    Animator.SetBool("IsCrouching", false);
+                    Animator.SetBool("IsCrouchingDamage", true);
+                });
+            #endregion
 
             //Collision
             this.ObserveEveryValueChanged(x => Animator.GetBool("IsCrouching"))

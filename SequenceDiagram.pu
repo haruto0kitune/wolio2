@@ -1,0 +1,39 @@
+@startuml {SequenceDiagram.png}
+title DamageSystem
+hide footbox
+
+participant AnyAttack <<Enemy>>
+participant DamageManager <<Player>>
+participant Damage <<Player>>
+participant State <<Player>>
+participant Status <<Player>>
+participant Key <<Player>>
+
+[-> AnyAttack : IObservable<Collider2D> Component.OnTriggerEnter2DAsObservable()
+activate AnyAttack
+  AnyAttack -> DamageManager : void ApplyDamage(int damageValue, int recovery)
+deactivate AnyAttack
+activate DamageManager
+  DamageManager -> Damage : IEnumerator Damage(int damageValue, int recovery)
+deactivate DamageManager
+activate Damage
+note right of Damage : Startup
+  Damage ->] : BoxCollider2D.enable = true
+  Damage ->] : CircleCollider2D.enable = true
+  Damage ->] : HurtBox = true
+  Damage -> Key : Key.IsAvailable.Value = false
+  Damage -> State : PlayerState.WasAttacked.Value = true
+note right of Damage : Calculate Damage
+  Damage -> Status : Status.Hp.Value -= damageValue
+note right of Damage : Recovery
+loop 0, recovery
+  Damage --> Damage : yield return null
+end
+note right of Damage : Finish
+  Damage ->] : BoxCollider2D.enable = false
+  Damage ->] : CircleCollider2D.enable = false
+  Damage ->] : HurtBox = false
+  Damage -> Key : Key.IsAvailable.Value = true
+  Damage -> State : PlayerState.WasAttacked.Value = false
+deactivate Damage
+@enduml

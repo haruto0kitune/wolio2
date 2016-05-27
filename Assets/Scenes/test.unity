@@ -443,7 +443,7 @@ Transform:
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 150007667}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 3.34, y: 1.64, z: 0}
+  m_LocalPosition: {x: 6.17, y: 1.93, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 2084710172}
@@ -499,8 +499,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   GroundCheck: {fileID: 2084710172}
   CeilingCheck: {fileID: 1134405137}
-  Hp:
-    value: 5
 --- !u!114 &150007672
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -831,7 +829,7 @@ GameObject:
   - 114: {fileID: 176224133}
   - 61: {fileID: 176224132}
   m_Layer: 12
-  m_Name: Run
+  m_Name: PiyoRun
   m_TagString: Enemy
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -879,8 +877,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   Piyo: {fileID: 1010449266}
-  RunHitBox: {fileID: 1100288140}
-  RunHurtBox: {fileID: 1182445727}
+  PiyoRunHitBox: {fileID: 1100288140}
+  PiyoRunHurtBox: {fileID: 1182445727}
   Speed: 3
   damageValue: 1
   hitRecovery: 20
@@ -944,7 +942,7 @@ GameObject:
   - 4: {fileID: 189612561}
   - 114: {fileID: 189612562}
   m_Layer: 12
-  m_Name: Turn
+  m_Name: PiyoTurn
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -1091,9 +1089,10 @@ GameObject:
   m_Component:
   - 4: {fileID: 214892091}
   - 61: {fileID: 214892092}
+  - 114: {fileID: 214892093}
   m_Layer: 24
   m_Name: CrouchHurtBox
-  m_TagString: Untagged
+  m_TagString: HurtBox
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -1124,6 +1123,19 @@ BoxCollider2D:
   m_Offset: {x: -0.055114985, y: -0.13897145}
   serializedVersion: 2
   m_Size: {x: 0.34665662, y: 0.5000044}
+--- !u!114 &214892093
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 214892090}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d0b46e87f58ac9a45a1bde6538366fe2, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  Actor: {fileID: 150007667}
+  DamageObject: {fileID: 306827548}
 --- !u!1 &217475498
 GameObject:
   m_ObjectHideFlags: 0
@@ -1655,6 +1667,7 @@ Transform:
   m_Children:
   - {fileID: 1823874521}
   - {fileID: 1185111893}
+  - {fileID: 1504406895}
   m_Father: {fileID: 1734839811}
   m_RootOrder: 2
 --- !u!1 &273526838
@@ -1838,7 +1851,7 @@ GameObject:
   - 4: {fileID: 306827549}
   - 61: {fileID: 306827550}
   - 114: {fileID: 306827551}
-  m_Layer: 0
+  m_Layer: 11
   m_Name: CrouchingDamage
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1852,7 +1865,7 @@ Transform:
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 306827548}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -4.65706, y: -0.5483831, z: 0}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 1606024114}
@@ -1883,6 +1896,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1dba2d0a602550543801ab0706ce64de, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  Player: {fileID: 150007667}
+  PlayerCrouchingDamageHurtBox: {fileID: 1606024113}
 --- !u!1 &321215141
 GameObject:
   m_ObjectHideFlags: 0
@@ -3554,6 +3569,35 @@ Prefab:
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 387fd04b02c978b448cbaaea6ea8f97d, type: 2}
   m_IsPrefabParent: 0
+--- !u!1 &570459777
+GameObject:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 162242, guid: f9e7cd8f54ed8df4f94016c5205ae20b, type: 2}
+  m_PrefabInternal: {fileID: 0}
+  serializedVersion: 4
+  m_Component:
+  - 4: {fileID: 570459778}
+  m_Layer: 12
+  m_Name: PiyoBasics
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &570459778
+Transform:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 491310, guid: f9e7cd8f54ed8df4f94016c5205ae20b, type: 2}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 570459777}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children:
+  - {fileID: 829217361}
+  - {fileID: 1008074058}
+  m_Father: {fileID: 1504406895}
+  m_RootOrder: 0
 --- !u!1 &587187840
 GameObject:
   m_ObjectHideFlags: 0
@@ -4097,7 +4141,7 @@ GameObject:
   - 114: {fileID: 693951927}
   m_Layer: 24
   m_Name: StandHurtBox
-  m_TagString: HurtBox/StandingHurtBox
+  m_TagString: HurtBox
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -4140,9 +4184,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   Actor: {fileID: 150007667}
-  StandingDamage: {fileID: 1726887277}
-  CrouchingDamage: {fileID: 306827548}
-  JumpingDamage: {fileID: 302025871}
+  DamageObject: {fileID: 1726887277}
 --- !u!1001 &712808365
 Prefab:
   m_ObjectHideFlags: 0
@@ -4193,6 +4235,49 @@ Prefab:
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 22cec0eebabc04d4db2ca1654ceef887, type: 2}
   m_IsPrefabParent: 0
+--- !u!1 &714579526
+GameObject:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 135282, guid: f9e7cd8f54ed8df4f94016c5205ae20b, type: 2}
+  m_PrefabInternal: {fileID: 0}
+  serializedVersion: 4
+  m_Component:
+  - 4: {fileID: 714579527}
+  - 61: {fileID: 714579528}
+  m_Layer: 20
+  m_Name: PiyoRunHitBox (1)
+  m_TagString: Enemy/HitBox
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &714579527
+Transform:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 419654, guid: f9e7cd8f54ed8df4f94016c5205ae20b, type: 2}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 714579526}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 829217361}
+  m_RootOrder: 0
+--- !u!61 &714579528
+BoxCollider2D:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 6130250, guid: f9e7cd8f54ed8df4f94016c5205ae20b,
+    type: 2}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 714579526}
+  m_Enabled: 1
+  m_Density: 1
+  m_Material: {fileID: 0}
+  m_IsTrigger: 1
+  m_UsedByEffector: 0
+  m_Offset: {x: 0.025931358, y: 0.035722584}
+  serializedVersion: 2
+  m_Size: {x: 0.44900298, y: 0.43413657}
 --- !u!1 &716554070
 GameObject:
   m_ObjectHideFlags: 0
@@ -4967,6 +5052,70 @@ SpriteRenderer:
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
+--- !u!1 &829217360
+GameObject:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 113604, guid: f9e7cd8f54ed8df4f94016c5205ae20b, type: 2}
+  m_PrefabInternal: {fileID: 0}
+  serializedVersion: 4
+  m_Component:
+  - 4: {fileID: 829217361}
+  - 114: {fileID: 829217363}
+  - 61: {fileID: 829217362}
+  m_Layer: 12
+  m_Name: PiyoRun (1)
+  m_TagString: Enemy
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &829217361
+Transform:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 461316, guid: f9e7cd8f54ed8df4f94016c5205ae20b, type: 2}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 829217360}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children:
+  - {fileID: 714579527}
+  - {fileID: 984104721}
+  m_Father: {fileID: 570459778}
+  m_RootOrder: 0
+--- !u!61 &829217362
+BoxCollider2D:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 6101268, guid: f9e7cd8f54ed8df4f94016c5205ae20b,
+    type: 2}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 829217360}
+  m_Enabled: 1
+  m_Density: 1
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_UsedByEffector: 0
+  m_Offset: {x: -0.00363791, y: 0.0008560121}
+  serializedVersion: 2
+  m_Size: {x: 0.35225606, y: 0.3186044}
+--- !u!114 &829217363
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 11421198, guid: f9e7cd8f54ed8df4f94016c5205ae20b,
+    type: 2}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 829217360}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d8b2e69a50c263f458db5e0b17385dad, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  Piyo: {fileID: 1504406894}
+  PiyoRunHitBox: {fileID: 714579526}
+  PiyoRunHurtBox: {fileID: 984104720}
+  Speed: 3
+  damageValue: 1
+  hitRecovery: 20
 --- !u!4 &837509765 stripped
 Transform:
   m_PrefabParentObject: {fileID: 431898, guid: 5b0be34a1bdd14646bea4af5665ef78a, type: 2}
@@ -5632,6 +5781,49 @@ SpriteRenderer:
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
+--- !u!1 &984104720
+GameObject:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 184078, guid: f9e7cd8f54ed8df4f94016c5205ae20b, type: 2}
+  m_PrefabInternal: {fileID: 0}
+  serializedVersion: 4
+  m_Component:
+  - 4: {fileID: 984104721}
+  - 61: {fileID: 984104722}
+  m_Layer: 13
+  m_Name: PiyoRunHurtBox (1)
+  m_TagString: Enemy/HurtBox
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &984104721
+Transform:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 499128, guid: f9e7cd8f54ed8df4f94016c5205ae20b, type: 2}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 984104720}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 829217361}
+  m_RootOrder: 1
+--- !u!61 &984104722
+BoxCollider2D:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 6140590, guid: f9e7cd8f54ed8df4f94016c5205ae20b,
+    type: 2}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 984104720}
+  m_Enabled: 1
+  m_Density: 1
+  m_Material: {fileID: 0}
+  m_IsTrigger: 1
+  m_UsedByEffector: 0
+  m_Offset: {x: 0.009075999, y: 0.018151999}
+  serializedVersion: 2
+  m_Size: {x: 0.4191382, y: 0.4191389}
 --- !u!224 &986232262 stripped
 RectTransform:
   m_PrefabParentObject: {fileID: 22478382, guid: 631a53319fe23c94e9788cc66228b4c0,
@@ -5955,6 +6147,49 @@ SpriteRenderer:
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
+--- !u!1 &1008074057
+GameObject:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 174844, guid: f9e7cd8f54ed8df4f94016c5205ae20b, type: 2}
+  m_PrefabInternal: {fileID: 0}
+  serializedVersion: 4
+  m_Component:
+  - 4: {fileID: 1008074058}
+  - 114: {fileID: 1008074059}
+  m_Layer: 12
+  m_Name: PiyoTurn
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &1008074058
+Transform:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 486788, guid: f9e7cd8f54ed8df4f94016c5205ae20b, type: 2}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1008074057}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children:
+  - {fileID: 1664031222}
+  m_Father: {fileID: 570459778}
+  m_RootOrder: 1
+--- !u!114 &1008074059
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 11425072, guid: f9e7cd8f54ed8df4f94016c5205ae20b,
+    type: 2}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1008074057}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ded1bfbfc81733e4fa620255a23b9e37, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  Piyo: {fileID: 1504406894}
+  WallCheck: {fileID: 1664031221}
 --- !u!1 &1010449266
 GameObject:
   m_ObjectHideFlags: 0
@@ -6714,7 +6949,7 @@ GameObject:
   - 4: {fileID: 1100288141}
   - 61: {fileID: 1100288143}
   m_Layer: 20
-  m_Name: RunHitBox
+  m_Name: PiyoRunHitBox
   m_TagString: Enemy/HitBox
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -6988,7 +7223,7 @@ GameObject:
   - 4: {fileID: 1182445728}
   - 61: {fileID: 1182445730}
   m_Layer: 13
-  m_Name: RunHurtBox
+  m_Name: PiyoRunHurtBox
   m_TagString: Enemy/HurtBox
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -7257,11 +7492,11 @@ Prefab:
     m_Modifications:
     - target: {fileID: 472794, guid: 7e4733219325f204ab5d78daadf39d8f, type: 2}
       propertyPath: m_LocalPosition.x
-      value: 6.93
+      value: 6.94
       objectReference: {fileID: 0}
     - target: {fileID: 472794, guid: 7e4733219325f204ab5d78daadf39d8f, type: 2}
       propertyPath: m_LocalPosition.y
-      value: 2.54
+      value: 2.65
       objectReference: {fileID: 0}
     - target: {fileID: 472794, guid: 7e4733219325f204ab5d78daadf39d8f, type: 2}
       propertyPath: m_LocalPosition.z
@@ -7309,7 +7544,7 @@ Transform:
   m_PrefabInternal: {fileID: 1284726970}
   m_GameObject: {fileID: 983833874}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 6.93, y: 2.54, z: 0}
+  m_LocalPosition: {x: 6.94, y: 2.65, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 1499879014}
@@ -8416,6 +8651,135 @@ CircleCollider2D:
   m_Offset: {x: 0, y: -0.27}
   serializedVersion: 2
   m_Radius: 0.132502
+--- !u!1 &1504406894
+GameObject:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 134140, guid: f9e7cd8f54ed8df4f94016c5205ae20b, type: 2}
+  m_PrefabInternal: {fileID: 0}
+  serializedVersion: 4
+  m_Component:
+  - 4: {fileID: 1504406895}
+  - 212: {fileID: 1504406900}
+  - 58: {fileID: 1504406899}
+  - 50: {fileID: 1504406898}
+  - 95: {fileID: 1504406897}
+  - 114: {fileID: 1504406896}
+  m_Layer: 12
+  m_Name: Piyo (1)
+  m_TagString: Enemy
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &1504406895
+Transform:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 465620, guid: f9e7cd8f54ed8df4f94016c5205ae20b, type: 2}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1504406894}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 4.711, y: 1.043, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children:
+  - {fileID: 570459778}
+  m_Father: {fileID: 268908513}
+  m_RootOrder: 2
+--- !u!114 &1504406896
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 11409208, guid: f9e7cd8f54ed8df4f94016c5205ae20b,
+    type: 2}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1504406894}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 419e89753b029af4181e848b089f9b98, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  Hp:
+    value: 0
+--- !u!95 &1504406897
+Animator:
+  serializedVersion: 3
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 9555920, guid: f9e7cd8f54ed8df4f94016c5205ae20b,
+    type: 2}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1504406894}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: 5b65a2d342d5221458ed93bbd73ef8e9, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+--- !u!50 &1504406898
+Rigidbody2D:
+  serializedVersion: 2
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 5047720, guid: f9e7cd8f54ed8df4f94016c5205ae20b,
+    type: 2}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1504406894}
+  m_UseAutoMass: 0
+  m_Mass: 1
+  m_LinearDrag: 0
+  m_AngularDrag: 0.05
+  m_GravityScale: 1
+  m_IsKinematic: 0
+  m_Interpolate: 0
+  m_SleepingMode: 1
+  m_CollisionDetection: 0
+  m_Constraints: 4
+--- !u!58 &1504406899
+CircleCollider2D:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 5855204, guid: f9e7cd8f54ed8df4f94016c5205ae20b,
+    type: 2}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1504406894}
+  m_Enabled: 1
+  m_Density: 1
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_UsedByEffector: 0
+  m_Offset: {x: 0, y: 0}
+  serializedVersion: 2
+  m_Radius: 0.17
+--- !u!212 &1504406900
+SpriteRenderer:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 21214980, guid: f9e7cd8f54ed8df4f94016c5205ae20b,
+    type: 2}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1504406894}
+  m_Enabled: 1
+  m_CastShadows: 0
+  m_ReceiveShadows: 0
+  m_Materials:
+  - {fileID: 10754, guid: 0000000000000000e000000000000000, type: 0}
+  m_SubsetIndices: 
+  m_StaticBatchRoot: {fileID: 0}
+  m_UseLightProbes: 0
+  m_ReflectionProbeUsage: 0
+  m_ProbeAnchor: {fileID: 0}
+  m_ScaleInLightmap: 1
+  m_PreserveUVs: 0
+  m_IgnoreNormalsForChartDetection: 0
+  m_ImportantGI: 0
+  m_MinimumChartSize: 4
+  m_AutoUVMaxDistance: 0.5
+  m_AutoUVMaxAngle: 89
+  m_LightmapParameters: {fileID: 0}
+  m_SortingLayerID: 0
+  m_SortingOrder: 0
+  m_Sprite: {fileID: 21300000, guid: c2c095e4d0e9f054e82f618db346168f, type: 3}
+  m_Color: {r: 1, g: 1, b: 1, a: 1}
+  m_FlipX: 0
+  m_FlipY: 0
 --- !u!4 &1505416669 stripped
 Transform:
   m_PrefabParentObject: {fileID: 477350, guid: a8f8a64f9665d3143b221c82cab8dd6d, type: 2}
@@ -8690,9 +9054,10 @@ GameObject:
   m_Component:
   - 4: {fileID: 1606024114}
   - 61: {fileID: 1606024115}
+  - 114: {fileID: 1606024116}
   m_Layer: 0
   m_Name: CrouchingDamageHurtBox
-  m_TagString: Untagged
+  m_TagString: HurtBox
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -8723,6 +9088,19 @@ BoxCollider2D:
   m_Offset: {x: -0.055114985, y: -0.13897145}
   serializedVersion: 2
   m_Size: {x: 0.34665662, y: 0.5000044}
+--- !u!114 &1606024116
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1606024113}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d0b46e87f58ac9a45a1bde6538366fe2, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  Actor: {fileID: 150007667}
+  DamageObject: {fileID: 306827548}
 --- !u!1001 &1611175273
 Prefab:
   m_ObjectHideFlags: 0
@@ -8952,6 +9330,33 @@ Prefab:
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 22cec0eebabc04d4db2ca1654ceef887, type: 2}
   m_IsPrefabParent: 0
+--- !u!1 &1664031221
+GameObject:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 154214, guid: f9e7cd8f54ed8df4f94016c5205ae20b, type: 2}
+  m_PrefabInternal: {fileID: 0}
+  serializedVersion: 4
+  m_Component:
+  - 4: {fileID: 1664031222}
+  m_Layer: 12
+  m_Name: PiyoWallCheck
+  m_TagString: Untagged
+  m_Icon: {fileID: 7250588514170254948, guid: 0000000000000000d000000000000000, type: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &1664031222
+Transform:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 418060, guid: f9e7cd8f54ed8df4f94016c5205ae20b, type: 2}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1664031221}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: -0.19999999, y: 0.120000005, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 1008074058}
+  m_RootOrder: 0
 --- !u!1001 &1673355876
 Prefab:
   m_ObjectHideFlags: 0
@@ -9479,7 +9884,7 @@ GameObject:
   m_Component:
   - 4: {fileID: 1758548131}
   m_Layer: 12
-  m_Name: WallCheck
+  m_Name: PiyoWallCheck
   m_TagString: Untagged
   m_Icon: {fileID: 7250588514170254948, guid: 0000000000000000d000000000000000, type: 0}
   m_NavMeshLayer: 0
@@ -9954,7 +10359,7 @@ Transform:
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 1010449266}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0.875, y: 0.422, z: 0}
+  m_LocalPosition: {x: 5.2, y: 1.04, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 2018624177}
@@ -10168,7 +10573,7 @@ GameObject:
   - 114: {fileID: 1889319688}
   m_Layer: 24
   m_Name: StandingDamageHurtBox
-  m_TagString: HurtBox/StandingHurtBox
+  m_TagString: HurtBox
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -10211,9 +10616,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   Actor: {fileID: 150007667}
-  StandingDamage: {fileID: 1726887277}
-  CrouchingDamage: {fileID: 306827548}
-  JumpingDamage: {fileID: 302025871}
+  DamageObject: {fileID: 1726887277}
 --- !u!1 &1890744635
 GameObject:
   m_ObjectHideFlags: 0
@@ -10615,7 +11018,7 @@ GameObject:
   m_Component:
   - 4: {fileID: 2018624177}
   m_Layer: 12
-  m_Name: Basics
+  m_Name: PiyoBasics
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
