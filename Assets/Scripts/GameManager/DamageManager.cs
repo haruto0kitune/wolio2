@@ -7,7 +7,6 @@ public class DamageManager : MonoBehaviour
 {
     [SerializeField]
     GameObject Actor;
-    Status Status;
     IState State;
     [SerializeField]
     GameObject DamageObject;
@@ -15,7 +14,6 @@ public class DamageManager : MonoBehaviour
     
     void Awake()
     {
-        Status = Actor.GetComponent<Status>();
         State = Actor.GetComponent<IState>();
         DamageComponent = DamageObject.GetComponent<IDamage>();
     }
@@ -30,6 +28,15 @@ public class DamageManager : MonoBehaviour
         if(DamageComponent != null)
         {
             StartCoroutine(DamageComponent.Damage(damageValue, recovery));
+        }
+        else if(State.WasAttacked.Value)
+        {
+            StopCoroutine("DamageComponent.Damage");
+            StartCoroutine(DamageComponent.Damage(damageValue, recovery));
+        }
+        else
+        {
+            Debug.Log("DamageComponent is null");
         }
     }
 }

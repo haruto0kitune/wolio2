@@ -3,50 +3,48 @@ using System.Collections;
 using UniRx;
 using UniRx.Triggers;
 
-namespace Wolio.Actor.Player.Damages
+namespace Wolio.Actor.Piyo.Damages
 {
-    public class PlayerJumpingDamage : MonoBehaviour, IDamage
+    public class PiyoDamage : MonoBehaviour, IDamage
     {
         [SerializeField]
-        GameObject Player;
+        GameObject Piyo;
         [SerializeField]
-        GameObject PlayerJumpingDamageHurtBox;
+        GameObject PiyoDamageHurtBox;
         Animator Animator;
         ObservableStateMachineTrigger ObservableStateMachineTrigger;
-        PlayerState PlayerState;
-        Status Status;
-        Rigidbody2D PlayerRigidbody2D;
-        Key Key;
+        PiyoState PiyoState;
+        PiyoStatus Status;
+        Rigidbody2D PiyoRigidbody2D;
         BoxCollider2D BoxCollider2D;
-        BoxCollider2D PlayerJumpingDamageHurtBoxTrigger;
-        bool wasAttackedDuringJumpingDamage = false;
+        BoxCollider2D PiyoDamageHurtBoxTrigger;
+        bool wasAttackedDuringDamage = false;
         bool isKnockBack = false;
         int knockBackFrame;
         
         void Awake()
         {
-            Animator = Player.GetComponent<Animator>();
+            Animator = Piyo.GetComponent<Animator>();
             ObservableStateMachineTrigger = Animator.GetBehaviour<ObservableStateMachineTrigger>();
-            PlayerState = Player.GetComponent<PlayerState>();
-            Status = Player.GetComponent<Status>();
-            PlayerRigidbody2D = Player.GetComponent<Rigidbody2D>();
-            Key = Player.GetComponent<Key>();
+            PiyoState = Piyo.GetComponent<PiyoState>();
+            Status = Piyo.GetComponent<PiyoStatus>();
+            PiyoRigidbody2D = Piyo.GetComponent<Rigidbody2D>();
             BoxCollider2D = GetComponent<BoxCollider2D>();
-            PlayerJumpingDamageHurtBoxTrigger = PlayerJumpingDamageHurtBox.GetComponent<BoxCollider2D>();
+            PiyoDamageHurtBoxTrigger = PiyoDamageHurtBox.GetComponent<BoxCollider2D>();
         }
 
         void Start()
         {
             // Animation
-            #region JumpingDamage->Jump
+            #region Damage->Run
             ObservableStateMachineTrigger
                 .OnStateUpdateAsObservable()
-                .Where(x => x.StateInfo.IsName("Base Layer.JumpingDamage"))
-                .Where(x => !PlayerState.WasAttacked.Value)
+                .Where(x => x.StateInfo.IsName("Base Layer.PiyoDamage"))
+                .Where(x => !PiyoState.WasAttacked.Value)
                 .Subscribe(_ =>
                 {
-                    Animator.SetBool("IsJumping", true);
-                    Animator.SetBool("IsJumpingDamage", false);
+                    Animator.SetBool("IsRunning", true);
+                    Animator.SetBool("IsDamaged", false);
                 });
             #endregion
 
@@ -57,16 +55,16 @@ namespace Wolio.Actor.Player.Damages
                 {
                     knockBackFrame++;
 
-                    if (PlayerState.FacingRight.Value)
+                    if (PiyoState.FacingRight.Value)
                     {
-                        PlayerRigidbody2D.velocity = new Vector2(-1f, 0);
+                        PiyoRigidbody2D.velocity = new Vector2(-1f, 0);
                     }
                     else
                     {
-                        PlayerRigidbody2D.velocity = new Vector2(1f, 0);
+                        PiyoRigidbody2D.velocity = new Vector2(1f, 0);
                     }
 
-                    if(knockBackFrame == 3)
+                    if(knockBackFrame == 10)
                     {
                         isKnockBack = false;
                         knockBackFrame = 0;
@@ -78,12 +76,11 @@ namespace Wolio.Actor.Player.Damages
         public IEnumerator Damage(int damageValue, int recovery)
         {
             // StartUp
-            Animator.Play("JumpingDamage", Animator.GetLayerIndex("Base Layer"), 0.0f);
+            Animator.Play("PiyoDamage", Animator.GetLayerIndex("Base Layer"), 0.0f);
             isKnockBack = true;
             BoxCollider2D.enabled = true;
-            PlayerJumpingDamageHurtBoxTrigger.enabled = true;
-            Key.IsAvailable.Value = false;
-            PlayerState.WasAttacked.Value = true;
+            PiyoDamageHurtBoxTrigger.enabled = true;
+            PiyoState.WasAttacked.Value = true;
 
             // Apply Damage
             Status.Hp.Value -= damageValue;
@@ -97,14 +94,13 @@ namespace Wolio.Actor.Player.Damages
             // Finish
             //
             // When transtion to next state, collider enabled is off.
-            // if not, PlayerJumpingDamage becomes strange motion.
-            PlayerState.WasAttacked.Value = false;
+            // if not, PiyoDamage becomes strange motion.
+            PiyoState.WasAttacked.Value = false;
 
             yield return null;
             
             BoxCollider2D.enabled = false;
-            PlayerJumpingDamageHurtBoxTrigger.enabled = false;
-            Key.IsAvailable.Value = true;
+            PiyoDamageHurtBoxTrigger.enabled = false;
         }
     }
 }

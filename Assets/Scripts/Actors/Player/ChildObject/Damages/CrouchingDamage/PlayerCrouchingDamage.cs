@@ -37,13 +37,6 @@ namespace Wolio.Actor.Player.Damages
 
         void Start()
         {
-            //When Player was attacked during CrouchingDamage
-            PlayerCrouchingDamageHurtBox
-                .OnTriggerEnter2DAsObservable()
-                .Where(x => x.gameObject.tag == "Enemy/HitBox")
-                .Do(x => Debug.Log(x.gameObject.name))
-                .Subscribe(_ => wasAttackedDuringCrouchingDamage = true);
-
             // Animation
             #region CrouchingDamage->Crouch
             ObservableStateMachineTrigger
@@ -99,18 +92,12 @@ namespace Wolio.Actor.Player.Damages
             for (int i = 0; i < recovery; i++)
             {
                 yield return null;
-
-                if(wasAttackedDuringCrouchingDamage)
-                {
-                    wasAttackedDuringCrouchingDamage = false;
-                    yield break;
-                }
             }
 
             // Finish
             //
             // When transtion to next state, collider enabled is off.
-            // if not, PlayerStandingDamage becomes strange motion.
+            // if not, PlayerCrouchingDamage becomes strange motion.
             PlayerState.WasAttacked.Value = false;
 
             yield return null;

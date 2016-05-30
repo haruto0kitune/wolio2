@@ -2,7 +2,6 @@
 using System.Collections;
 using UniRx;
 using UniRx.Triggers;
-using Wolio.Actor.Player;
 
 namespace Wolio.Actor.Enemy.Piyo.Basics
 {
@@ -10,6 +9,8 @@ namespace Wolio.Actor.Enemy.Piyo.Basics
     {
         [SerializeField]
         GameObject Piyo;
+        Animator Animator;
+        ObservableStateMachineTrigger ObservableStateMachineTrigger;
         Rigidbody2D PiyoRigidbody2D;
         PiyoState PiyoState;
         [SerializeField]
@@ -26,6 +27,8 @@ namespace Wolio.Actor.Enemy.Piyo.Basics
 
         void Awake()
         {
+            Animator = Piyo.GetComponent<Animator>();
+            ObservableStateMachineTrigger = Animator.GetBehaviour<ObservableStateMachineTrigger>();
             PiyoRigidbody2D = Piyo.GetComponent<Rigidbody2D>();
             PiyoState = Piyo.GetComponent<PiyoState>();
             BoxCollider2D = GetComponent<BoxCollider2D>();
@@ -35,14 +38,30 @@ namespace Wolio.Actor.Enemy.Piyo.Basics
 
         void Start()
         {
+            this.FixedUpdateAsObservable()
+                .Subscribe(_ => Debug.Log(Time.deltaTime));
+            // Animation
+            #region Run->Damage
+            ObservableStateMachineTrigger
+                .OnStateUpdateAsObservable()
+                .Where(x => x.StateInfo.IsName("Base Layer.PiyoRun"))
+                .Where(x => PiyoState.WasAttacked.Value)
+                .Subscribe(_ =>
+                {
+                    Animator.SetBool("IsRunning", false);
+                    Animator.SetBool("IsDamaged", true);
+                });
+            #endregion
+
             // Motion
             this.FixedUpdateAsObservable()
+                .Where(x => PiyoState.IsRunning.Value)
                 .Subscribe(_ => Run(Speed, PiyoState.Direction.Value));
 
             // Damage
             this.OnTriggerEnter2DAsObservable()
                 .Where(x => x.gameObject.tag == "HurtBox")
-                .ThrottleFirstFrame(hitRecovery)
+                .ThrottleFirstFrame(30)
                 .Subscribe(_ =>
                 {
                     _.gameObject.GetComponent<DamageManager>().ApplyDamage(damageValue, hitRecovery);

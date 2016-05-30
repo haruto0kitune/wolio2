@@ -5,7 +5,6 @@ using UniRx.Triggers;
 
 public class FlyingPiyoState : MonoBehaviour
 {
-    public Transform WallCheck;
     private SpriteRenderer SpriteRenderer;
 
     public IntReactiveProperty Hp;
@@ -16,20 +15,15 @@ public class FlyingPiyoState : MonoBehaviour
 
     void Awake()
     {
-        WallCheck = gameObject.transform.Find("WallCheck");
         SpriteRenderer = GetComponent<SpriteRenderer>();
 
-        //FacingRight = SpriteRenderer.ObserveEveryValueChanged(x => x.flipX).ToReactiveProperty();
-        FacingRight = transform.ObserveEveryValueChanged(x => x.localScale.x).Select(x => x == -1).ToReactiveProperty();
+        FacingRight = SpriteRenderer.ObserveEveryValueChanged(x => x.flipX).ToReactiveProperty();
         Direction = FacingRight.Select(x => x ? 1f : -1f).ToReactiveProperty(-1f);
         IsAttacking = new ReactiveProperty<bool>();
     }
 
     void Start()
     {
-        var PublishFacingRight = FacingRight.Publish().RefCount();
-    
-        PublishFacingRight.Where(x => x).Subscribe(_ => WallCheck.localPosition = new Vector2(0.2f, WallCheck.localPosition.y));
-        PublishFacingRight.Where(x => !x).Subscribe(_ => WallCheck.localPosition = new Vector2(-0.2f, WallCheck.localPosition.y));
+        Hp.Where(x => x <= 0).Subscribe(_ => Destroy(this.gameObject));
     }
 }

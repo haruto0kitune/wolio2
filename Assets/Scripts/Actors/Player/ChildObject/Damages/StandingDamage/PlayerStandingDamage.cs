@@ -39,13 +39,6 @@ namespace Wolio.Actor.Player.Damages
 
         void Start()
         {
-            //When Player was attacked during StandingDamage
-            PlayerStandingDamageHurtBox
-                .OnTriggerEnter2DAsObservable()
-                .Where(x => x.gameObject.tag == "Enemy/HitBox")
-                .ThrottleFirstFrame(1)
-                .Subscribe(_ => wasAttackedDuringStandingDamage = true);
-
             // Animation
             #region StandingDamage->Stand
             ObservableStateMachineTrigger
@@ -102,12 +95,6 @@ namespace Wolio.Actor.Player.Damages
             for (int i = 0; i < recovery; i++)
             {
                 yield return null;
-                
-                if(wasAttackedDuringStandingDamage)
-                {
-                    wasAttackedDuringStandingDamage = false;
-                    yield break;
-                }
             }
 
             // Finish

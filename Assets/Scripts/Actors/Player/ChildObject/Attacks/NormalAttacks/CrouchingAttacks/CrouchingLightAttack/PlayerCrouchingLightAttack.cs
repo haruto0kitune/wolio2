@@ -16,6 +16,10 @@ namespace Wolio.Actor.Player.Attacks.NormalAttacks.CrouchingAttacks
         BoxCollider2D HitBox;
         BoxCollider2D HurtBox;
         [SerializeField]
+        int damageValue;
+        [SerializeField]
+        int hitRecovery;
+        [SerializeField]
         int Startup;
         [SerializeField]
         int Active;
@@ -36,7 +40,7 @@ namespace Wolio.Actor.Player.Attacks.NormalAttacks.CrouchingAttacks
 
         void Start()
         {
-            //Animation
+            // Animation
             #region CrouchingLightAttack
             ObservableStateMachineTrigger
                  .OnStateEnterAsObservable()
@@ -44,10 +48,20 @@ namespace Wolio.Actor.Player.Attacks.NormalAttacks.CrouchingAttacks
                  .Subscribe(_ => Animator.speed = 0);
             #endregion
 
-            //Collision
+            // Collision
             this.ObserveEveryValueChanged(x => Animator.GetBool("IsCrouchingLightAttack"))
                 .Where(x => x)
                 .Subscribe(_ => StartCoroutine(Attack()));
+
+            // Damage
+            this.OnTriggerEnter2DAsObservable()
+                .Where(x => x.gameObject.tag == "Enemy/HurtBox")
+                .ThrottleFirstFrame(hitRecovery)
+                .Subscribe(_ =>
+                {
+                    _.gameObject.GetComponent<DamageManager>().ApplyDamage(damageValue, hitRecovery);
+                    HitBox.enabled = false;
+                });
         }
 
         public IEnumerator Attack()
