@@ -14,7 +14,7 @@ public class PiyoState : MonoBehaviour
     public ReactiveProperty<bool> IsDamaged;
     public ReactiveProperty<bool> FacingRight;
     public ReactiveProperty<float> Direction;
-    public ReactiveProperty<bool> WasAttacked;
+    public ReactiveProperty<bool> WasAttacked { get; set; }
 
     void Awake()
     {

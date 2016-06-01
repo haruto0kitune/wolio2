@@ -139,7 +139,7 @@ CircleCollider2D:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 1460068}
-  m_Enabled: 1
+  m_Enabled: 0
   m_Density: 1
   m_Material: {fileID: 0}
   m_IsTrigger: 0
@@ -445,7 +445,7 @@ GameObject:
   - 61: {fileID: 129510091}
   m_Layer: 14
   m_Name: StandingLightAttackHitBox
-  m_TagString: Untagged
+  m_TagString: HitBox
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -3382,6 +3382,7 @@ GameObject:
   m_Component:
   - 4: {fileID: 525903628}
   - 61: {fileID: 525903629}
+  - 114: {fileID: 525903630}
   m_Layer: 12
   m_Name: FlyingPiyoDamage
   m_TagString: Untagged
@@ -3416,6 +3417,19 @@ BoxCollider2D:
   m_Offset: {x: -0.00363791, y: 0.0008560121}
   serializedVersion: 2
   m_Size: {x: 0.35225606, y: 0.3186044}
+--- !u!114 &525903630
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 525903627}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 36d98aa9e1dcd18469e0c1a5910aeb00, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  FlyingPiyo: {fileID: 743129986}
+  FlyingPiyoDamageHurtBox: {fileID: 1013882153}
 --- !u!4 &529925492 stripped
 Transform:
   m_PrefabParentObject: {fileID: 449658, guid: 5f98b9b4d0371fb438dc1ef5ce906a0a, type: 2}
@@ -4462,6 +4476,7 @@ GameObject:
   - 95: {fileID: 743129994}
   - 114: {fileID: 743129993}
   - 50: {fileID: 743129989}
+  - 114: {fileID: 743129987}
   m_Layer: 12
   m_Name: FlyingPiyo
   m_TagString: Enemy
@@ -4469,6 +4484,19 @@ GameObject:
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
+--- !u!114 &743129987
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 743129986}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: bd8c931d2d9a03a45858050c5bb8868d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  Hp:
+    value: 3
 --- !u!50 &743129989
 Rigidbody2D:
   serializedVersion: 2
@@ -4499,8 +4527,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2f5937d0f1ac25a4a91bdbaca6e24a79, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  Hp:
-    value: 1
 --- !u!95 &743129994
 Animator:
   serializedVersion: 3
@@ -4594,6 +4620,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 537737913817d66479d091c98021d9e8, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  Player: {fileID: 150007667}
+  PlayerStandingLightAttackHitBox: {fileID: 129510089}
+  PlayerStandingLightAttackHurtBox: {fileID: 1545942317}
+  damageValue: 1
+  hitRecovery: 20
   Startup: 6
   Active: 2
   Recovery: 15
@@ -7319,9 +7350,10 @@ GameObject:
   m_Component:
   - 4: {fileID: 1159324131}
   - 61: {fileID: 1159324132}
+  - 114: {fileID: 1159324133}
   m_Layer: 24
   m_Name: StandingHighAttackHurtBox
-  m_TagString: Untagged
+  m_TagString: HurtBox
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -7352,6 +7384,19 @@ BoxCollider2D:
   m_Offset: {x: -0.001159668, y: 0.001155019}
   serializedVersion: 2
   m_Size: {x: 0.3198412, y: 0.8520763}
+--- !u!114 &1159324133
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1159324130}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d0b46e87f58ac9a45a1bde6538366fe2, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  Actor: {fileID: 150007667}
+  DamageObject: {fileID: 1726887277}
 --- !u!1 &1169188513
 GameObject:
   m_ObjectHideFlags: 0
@@ -7537,7 +7582,7 @@ Transform:
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 743129986}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0.45, y: 1.84, z: 0}
+  m_LocalPosition: {x: 0.48, y: 1.27, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 1888445761}
@@ -9096,9 +9141,10 @@ GameObject:
   m_Component:
   - 4: {fileID: 1545942318}
   - 61: {fileID: 1545942319}
+  - 114: {fileID: 1545942320}
   m_Layer: 24
   m_Name: StandingLightAttackHurtBox
-  m_TagString: Untagged
+  m_TagString: HurtBox
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -9129,6 +9175,19 @@ BoxCollider2D:
   m_Offset: {x: -0.001159668, y: 0.001155019}
   serializedVersion: 2
   m_Size: {x: 0.3198412, y: 0.8520763}
+--- !u!114 &1545942320
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1545942317}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d0b46e87f58ac9a45a1bde6538366fe2, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  Actor: {fileID: 150007667}
+  DamageObject: {fileID: 1726887277}
 --- !u!1 &1577426797
 GameObject:
   m_ObjectHideFlags: 0
@@ -10139,9 +10198,10 @@ GameObject:
   m_Component:
   - 4: {fileID: 1773800777}
   - 61: {fileID: 1773800778}
+  - 114: {fileID: 1773800779}
   m_Layer: 24
   m_Name: StandingMiddleAttackHurtBox
-  m_TagString: Untagged
+  m_TagString: HurtBox
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -10172,6 +10232,19 @@ BoxCollider2D:
   m_Offset: {x: -0.001159668, y: 0.001155019}
   serializedVersion: 2
   m_Size: {x: 0.3198412, y: 0.8520763}
+--- !u!114 &1773800779
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1773800776}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d0b46e87f58ac9a45a1bde6538366fe2, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  Actor: {fileID: 150007667}
+  DamageObject: {fileID: 1726887277}
 --- !u!1 &1776473512
 GameObject:
   m_ObjectHideFlags: 0
@@ -10704,7 +10777,7 @@ GameObject:
   - 61: {fileID: 1858032759}
   m_Layer: 14
   m_Name: StandingHighAttackHitBox
-  m_TagString: Untagged
+  m_TagString: HitBox
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -10912,7 +10985,7 @@ GameObject:
   - 61: {fileID: 1890744637}
   m_Layer: 14
   m_Name: StandingMiddleAttackHitBox
-  m_TagString: Untagged
+  m_TagString: HitBox
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0

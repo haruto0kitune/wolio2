@@ -22,8 +22,10 @@ namespace Wolio.Actor.Enemy.Piyo.Basics
         BoxCollider2D HurtBox;
         [SerializeField]
         float Speed;
-        public int damageValue;
-        public int hitRecovery;
+        [SerializeField]
+        int damageValue;
+        [SerializeField]
+        int hitRecovery;
 
         void Awake()
         {
@@ -38,8 +40,6 @@ namespace Wolio.Actor.Enemy.Piyo.Basics
 
         void Start()
         {
-            this.FixedUpdateAsObservable()
-                .Subscribe(_ => Debug.Log(Time.deltaTime));
             // Animation
             #region Run->Damage
             ObservableStateMachineTrigger
