@@ -7,6 +7,8 @@ namespace Wolio.Actor.Player.Attacks.NormalAttacks.StandingAttacks
 {
     public class PlayerStandingMiddleAttack : MonoBehaviour
     {
+        [SerializeField]
+        GameObject Player;
         Animator Animator;
         ObservableStateMachineTrigger ObservableStateMachineTrigger;
         PlayerState PlayerState;
@@ -14,8 +16,16 @@ namespace Wolio.Actor.Player.Attacks.NormalAttacks.StandingAttacks
         Key Key;
         BoxCollider2D BoxCollider2D;
         CircleCollider2D CircleCollider2D;
+        [SerializeField]
+        GameObject PlayerStandingMiddleAttackHitBox;
         BoxCollider2D HitBox;
+        [SerializeField]
+        GameObject PlayerStandingMiddleAttackHurtBox;
         BoxCollider2D HurtBox;
+        [SerializeField]
+        int damageValue;
+        [SerializeField]
+        int hitRecovery;
         [SerializeField]
         int Startup;
         [SerializeField]
@@ -25,20 +35,20 @@ namespace Wolio.Actor.Player.Attacks.NormalAttacks.StandingAttacks
 
         void Awake()
         {
-            Animator = GameObject.Find("Test").GetComponent<Animator>();
+            Animator = Player.GetComponent<Animator>();
             ObservableStateMachineTrigger = Animator.GetBehaviour<ObservableStateMachineTrigger>();
-            PlayerState = GameObject.Find("Test").GetComponent<PlayerState>();
-            PlayerRigidbody2D = GameObject.Find("Test").GetComponent<Rigidbody2D>();
-            Key = GameObject.Find("Test").GetComponent<Key>();
+            PlayerState = Player.GetComponent<PlayerState>();
+            PlayerRigidbody2D = Player.GetComponent<Rigidbody2D>();
+            Key = Player.GetComponent<Key>();
             BoxCollider2D = GetComponent<BoxCollider2D>();
             CircleCollider2D = GetComponent<CircleCollider2D>();
-            HitBox = GameObject.Find("StandingMiddleAttackHitBox").GetComponent<BoxCollider2D>();
-            HurtBox = GameObject.Find("StandingMiddleAttackHurtBox").GetComponent<BoxCollider2D>();
+            HitBox = PlayerStandingMiddleAttackHitBox.GetComponent<BoxCollider2D>();
+            HurtBox = PlayerStandingMiddleAttackHurtBox.GetComponent<BoxCollider2D>();
         }
 
         void Start()
         {
-            //Animation
+            // Animation
             #region StandingMiddleAttack
             ObservableStateMachineTrigger
                  .OnStateEnterAsObservable()
@@ -46,10 +56,20 @@ namespace Wolio.Actor.Player.Attacks.NormalAttacks.StandingAttacks
                  .Subscribe(_ => Animator.speed = 0);
             #endregion
 
-            //Collision
+            // Collision
             this.ObserveEveryValueChanged(x => Animator.GetBool("IsStandingMiddleAttack"))
                 .Where(x => x)
                 .Subscribe(_ => StartCoroutine(Attack()));
+
+            // Damage
+            this.OnTriggerEnter2DAsObservable()
+                .Where(x => x.gameObject.tag == "Enemy/HurtBox")
+                .ThrottleFirstFrame(hitRecovery)
+                .Subscribe(_ =>
+                {
+                    _.gameObject.GetComponent<DamageManager>().ApplyDamage(damageValue, hitRecovery);
+                    HitBox.enabled = false;
+                });
         }
 
         public IEnumerator Attack()
