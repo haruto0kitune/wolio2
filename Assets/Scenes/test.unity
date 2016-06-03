@@ -299,9 +299,10 @@ GameObject:
   m_Component:
   - 4: {fileID: 53885950}
   - 61: {fileID: 53885951}
+  - 114: {fileID: 53885952}
   m_Layer: 24
   m_Name: JumpingHighAttackHurtBox
-  m_TagString: Untagged
+  m_TagString: HurtBox
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -332,6 +333,19 @@ BoxCollider2D:
   m_Offset: {x: 0.0011405945, y: 0.0006672144}
   serializedVersion: 2
   m_Size: {x: 0.3120284, y: 0.8590417}
+--- !u!114 &53885952
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 53885949}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d0b46e87f58ac9a45a1bde6538366fe2, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  Actor: {fileID: 1734839810}
+  DamageObject: {fileID: 302025871}
 --- !u!1 &57592882
 GameObject:
   m_ObjectHideFlags: 0
@@ -2535,7 +2549,7 @@ GameObject:
   - 61: {fileID: 357397310}
   m_Layer: 14
   m_Name: JumpingMiddleAttackHitBox
-  m_TagString: Untagged
+  m_TagString: HitBox
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -3681,9 +3695,10 @@ GameObject:
   m_Component:
   - 4: {fileID: 587187841}
   - 61: {fileID: 587187842}
+  - 114: {fileID: 587187843}
   m_Layer: 24
   m_Name: JumpingLightAttackHurtBox
-  m_TagString: Untagged
+  m_TagString: HurtBox
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -3714,6 +3729,19 @@ BoxCollider2D:
   m_Offset: {x: 0.0011405945, y: 0.0006672144}
   serializedVersion: 2
   m_Size: {x: 0.3120284, y: 0.8590417}
+--- !u!114 &587187843
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 587187840}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d0b46e87f58ac9a45a1bde6538366fe2, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  Actor: {fileID: 150007667}
+  DamageObject: {fileID: 302025871}
 --- !u!1 &593775930
 GameObject:
   m_ObjectHideFlags: 0
@@ -5758,9 +5786,10 @@ GameObject:
   m_Component:
   - 4: {fileID: 978643164}
   - 61: {fileID: 978643165}
+  - 114: {fileID: 978643166}
   m_Layer: 24
   m_Name: JumpingMiddleAttackHurtBox
-  m_TagString: Untagged
+  m_TagString: HurtBox
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -5791,6 +5820,19 @@ BoxCollider2D:
   m_Offset: {x: 0.0011405945, y: 0.0006672144}
   serializedVersion: 2
   m_Size: {x: 0.3120284, y: 0.8590417}
+--- !u!114 &978643166
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 978643163}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d0b46e87f58ac9a45a1bde6538366fe2, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  Actor: {fileID: 150007667}
+  DamageObject: {fileID: 302025871}
 --- !u!1 &979355561
 GameObject:
   m_ObjectHideFlags: 0
@@ -8662,7 +8704,7 @@ GameObject:
   - 61: {fileID: 1462787021}
   m_Layer: 14
   m_Name: JumpingLightAttackHitBox
-  m_TagString: Untagged
+  m_TagString: HitBox
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -8862,6 +8904,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4b608855a4adbef43aa1842a4518b74e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  Player: {fileID: 150007667}
+  PlayerJumpingLightAttackHitBox: {fileID: 1462787019}
+  PlayerJumpingLightAttackHurtBox: {fileID: 587187840}
+  damageValue: 1
+  hitRecovery: 20
   Startup: 7
   Active: 2
 --- !u!61 &1479609536
@@ -10087,7 +10134,7 @@ GameObject:
   - 61: {fileID: 1754654086}
   m_Layer: 14
   m_Name: JumpingHighAttackHitBox
-  m_TagString: Untagged
+  m_TagString: HitBox
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
