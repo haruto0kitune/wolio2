@@ -4905,6 +4905,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: fc8d7eb148d0d7747bf617e3cfe399fe, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  Player: {fileID: 150007667}
+  PlayerJumpingMiddleAttackHitBox: {fileID: 357397308}
+  PlayerJumpingMiddleAttackHurtBox: {fileID: 978643163}
+  damageValue: 1
+  hitRecovery: 20
   Startup: 9
   Active: 3
 --- !u!61 &782293147
