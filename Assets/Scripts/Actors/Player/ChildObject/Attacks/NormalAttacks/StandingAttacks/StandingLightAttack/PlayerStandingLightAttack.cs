@@ -62,7 +62,7 @@ namespace Wolio.Actor.Player.Attacks.NormalAttacks.StandingAttacks
                 .Subscribe(_ => StartCoroutine(Attack()));
 
             // Damage
-            this.OnTriggerEnter2DAsObservable()
+            PlayerStandingLightAttackHitBox.OnTriggerEnter2DAsObservable()
                 .Where(x => x.gameObject.tag == "Enemy/HurtBox")
                 .ThrottleFirstFrame(hitRecovery)
                 .Subscribe(_ =>

@@ -2442,6 +2442,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: bea630aafea3f024db69e99a744c9f8b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  Player: {fileID: 150007667}
+  PlayerCrouchingMiddleAttackHitBox: {fileID: 150919249}
+  PlayerCrouchingMiddleAttackHurtBox: {fileID: 716554070}
   damageValue: 1
   hitRecovery: 23
   Startup: 9
@@ -6507,7 +6510,7 @@ GameObject:
   - 114: {fileID: 1013882155}
   m_Layer: 12
   m_Name: FlyingPiyoDamageHurtBox
-  m_TagString: Untagged
+  m_TagString: Enemy/HurtBox
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -6669,6 +6672,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 87504adcf1d8fbf40850e44cd2118ab4, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  Player: {fileID: 150007667}
+  PlayerCrouchingHighAttackHitBox: {fileID: 164716941}
+  PlayerCrouchingHighAttackHurtBox: {fileID: 1469033074}
   damageValue: 1
   hitRecovery: 30
   Startup: 10
@@ -7440,6 +7446,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 50b08bd65bd4f074faa2aa566f746305, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  Player: {fileID: 150007667}
+  PlayerCrouchingLightAttackHitBox: {fileID: 273526838}
+  PlayerCrouchingLightAttackHurtBox: {fileID: 891682687}
   damageValue: 1
   hitRecovery: 20
   Startup: 4
@@ -8990,6 +8999,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5f03af68aeb571b43bf6b8eded1e8912, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  Player: {fileID: 150007667}
+  PlayerStandingHighAttackHitBox: {fileID: 1858032757}
+  PlayerStandingHighAttackHurtBox: {fileID: 1159324130}
+  damageValue: 1
+  hitRecovery: 20
   Startup: 11
   Active: 3
   Recovery: 21

@@ -7,13 +7,19 @@ namespace Wolio.Actor.Player.Attacks.NormalAttacks.CrouchingAttacks
 {
     public class PlayerCrouchingHighAttack : MonoBehaviour
     {
+        [SerializeField]
+        GameObject Player;
         Animator Animator;
         ObservableStateMachineTrigger ObservableStateMachineTrigger;
         PlayerState PlayerState;
         Rigidbody2D PlayerRigidbody2D;
         Key Key;
         BoxCollider2D BoxCollider2D;
+        [SerializeField]
+        GameObject PlayerCrouchingHighAttackHitBox;
         BoxCollider2D HitBox;
+        [SerializeField]
+        GameObject PlayerCrouchingHighAttackHurtBox;
         BoxCollider2D HurtBox;
         [SerializeField]
         int damageValue;
@@ -28,14 +34,14 @@ namespace Wolio.Actor.Player.Attacks.NormalAttacks.CrouchingAttacks
 
         void Awake()
         {
-            Animator = GameObject.Find("Test").GetComponent<Animator>();
+            Animator = Player.GetComponent<Animator>();
             ObservableStateMachineTrigger = Animator.GetBehaviour<ObservableStateMachineTrigger>();
-            PlayerState = GameObject.Find("Test").GetComponent<PlayerState>();
-            PlayerRigidbody2D = GameObject.Find("Test").GetComponent<Rigidbody2D>();
-            Key = GameObject.Find("Test").GetComponent<Key>();
+            PlayerState = Player.GetComponent<PlayerState>();
+            PlayerRigidbody2D = Player.GetComponent<Rigidbody2D>();
+            Key = Player.GetComponent<Key>();
             BoxCollider2D = GetComponent<BoxCollider2D>();
-            HitBox = GameObject.Find("CrouchingHighAttackHitBox").GetComponent<BoxCollider2D>();
-            HurtBox = GameObject.Find("CrouchingHighAttackHurtBox").GetComponent<BoxCollider2D>();
+            HitBox = PlayerCrouchingHighAttackHitBox.GetComponent<BoxCollider2D>();
+            HurtBox = PlayerCrouchingHighAttackHurtBox.GetComponent<BoxCollider2D>();
         }
 
         void Start()
@@ -54,7 +60,7 @@ namespace Wolio.Actor.Player.Attacks.NormalAttacks.CrouchingAttacks
                 .Subscribe(_ => StartCoroutine(Attack()));
 
             // Damage
-            this.OnTriggerEnter2DAsObservable()
+            PlayerCrouchingHighAttackHitBox.OnTriggerEnter2DAsObservable()
                 .Where(x => x.gameObject.tag == "Enemy/HurtBox")
                 .ThrottleFirstFrame(hitRecovery)
                 .Subscribe(_ =>
