@@ -5581,7 +5581,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c396661e9ae0a02438f4e38887fa4fcb, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  Startup: 10
+  Player: {fileID: 150007667}
+  PlayerJumpingHighAttackHitBox: {fileID: 1754654084}
+  PlayerJumpingHighAttackHurtBox: {fileID: 53885949}
+  damageValue: 1
+  hitRecovery: 20
+  Startup: 3
   Active: 4
 --- !u!61 &901744538
 BoxCollider2D:
