@@ -32,6 +32,10 @@ namespace Wolio.Actor.Player.Attacks.NormalAttacks.StandingAttacks
         int Active;
         [SerializeField]
         int Recovery;
+        bool wasFinished;
+        bool isCancelable;
+        bool wasCanceled;
+        Coroutine coroutineStore;
 
         void Awake()
         {
@@ -48,18 +52,34 @@ namespace Wolio.Actor.Player.Attacks.NormalAttacks.StandingAttacks
 
         void Start()
         {
-            //Animation
-            #region StandingMiddleAttack
+            // Animation
+            #region EnterStandingHighAttack
             ObservableStateMachineTrigger
-                 .OnStateEnterAsObservable()
-                 .Where(x => x.StateInfo.IsName("Base Layer.StandingHighAttack"))
-                 .Subscribe(_ => Animator.speed = 0);
+                .OnStateEnterAsObservable()
+                .Where(x => x.StateInfo.IsName("Base Layer.StandingHighAttack"))
+                .Subscribe(_ => Animator.speed = 0);
+            #endregion
+            #region StandingHighAttack->Stand
+            ObservableStateMachineTrigger
+                .OnStateUpdateAsObservable()
+                .Where(x => x.StateInfo.IsName("Base Layer.StandingHighAttack"))
+                .Where(x => wasFinished)
+                .Subscribe(_ =>
+                {
+                    Animator.SetBool("IsStandingHighAttack", false);
+                    Animator.SetBool("IsStanding", true);
+                    wasFinished = false;
+                });
             #endregion
 
-            //Collision and Motion
+            // Collision and Motion
             this.ObserveEveryValueChanged(x => Animator.GetBool("IsStandingHighAttack"))
                 .Where(x => x)
-                .Subscribe(_ => StartCoroutine(Attack()));
+                .Subscribe(_ => coroutineStore = StartCoroutine(Attack()));
+
+            this.ObserveEveryValueChanged(x => wasCanceled)
+                .Where(x => x)
+                .Subscribe(_ => Cancel());
 
             // Damage
             PlayerStandingHighAttackHitBox.OnTriggerEnter2DAsObservable()
@@ -68,6 +88,7 @@ namespace Wolio.Actor.Player.Attacks.NormalAttacks.StandingAttacks
                 {
                     _.gameObject.GetComponent<DamageManager>().ApplyDamage(damageValue, hitRecovery);
                     HitBox.enabled = false;
+                    isCancelable = true;
                 });
         }
 
@@ -100,14 +121,29 @@ namespace Wolio.Actor.Player.Attacks.NormalAttacks.StandingAttacks
                 yield return null;
             }
 
+            // This needs to enable collision of next state.
+            // First of all, It should enable to collision of next state.
+            // Otherwise, Player become strange motion.
+            wasFinished = true;
+            yield return null;
+
             BoxCollider2D.enabled = false;
             CircleCollider2D.enabled = false;
             HurtBox.enabled = false;
+            isCancelable = false;
             #endregion
-            #region StandingHighAttack->Stand
-            Animator.SetBool("IsStanding", true);
-            Animator.SetBool("IsStandingHighAttack", false);
-            #endregion
+        }
+
+        void Cancel()
+        {
+            StopCoroutine(coroutineStore);
+
+            // Collision disable
+            BoxCollider2D.enabled = false;
+            CircleCollider2D.enabled = false;
+            HurtBox.enabled = false;
+            
+            wasCanceled = false;
         }
     }
 }

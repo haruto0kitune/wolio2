@@ -52,7 +52,7 @@ namespace Wolio.Actor.Player.Attacks.NormalAttacks.StandingAttacks
 
         void Start()
         {
-            //Animation
+            // Animation
             #region EnterStandingLightAttack
             ObservableStateMachineTrigger
                 .OnStateEnterAsObservable()
