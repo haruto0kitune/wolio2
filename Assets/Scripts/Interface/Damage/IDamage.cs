@@ -3,5 +3,6 @@ using System.Collections;
 
 public interface IDamage
 {
-    IEnumerator Damage(int damageValue, int recover); 
+    void Damage(int damageValue, int recovery);
+    IEnumerator DamageCoroutine(int damageValue, int recovery); 
 }

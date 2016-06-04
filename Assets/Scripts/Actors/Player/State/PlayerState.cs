@@ -21,6 +21,7 @@ namespace Wolio.Actor.Player
         public ReactiveProperty<bool> IsDashing;
         public ReactiveProperty<bool> IsRunning;
         public ReactiveProperty<bool> IsJumping;
+        public ReactiveProperty<bool> IsJumpable;
         public ReactiveProperty<bool> IsStanding;
         public ReactiveProperty<bool> IsCrouching;
         public ReactiveProperty<bool> IsCreeping;
@@ -68,6 +69,7 @@ namespace Wolio.Actor.Player
             IsDashing = new ReactiveProperty<bool>();
             IsRunning = this.ObserveEveryValueChanged(x => Animator.GetBool("IsRunning")).ToReactiveProperty();
             IsJumping = this.ObserveEveryValueChanged(x => Animator.GetBool("IsJumping")).ToReactiveProperty();
+            IsJumpable = new ReactiveProperty<bool>();
             IsStanding = this.ObserveEveryValueChanged(x => Animator.GetBool("IsStanding")).ToReactiveProperty();
             IsCrouching = this.ObserveEveryValueChanged(x => Animator.GetBool("IsCrouching")).ToReactiveProperty();
             IsCreeping = this.ObserveEveryValueChanged(x => Animator.GetBool("IsCreeping")).ToReactiveProperty();

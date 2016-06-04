@@ -48,8 +48,7 @@ namespace Wolio.Actor.Player.Basics
             ObservableStateMachineTrigger
                 .OnStateUpdateAsObservable()
                 .Where(x => x.StateInfo.IsName("Base Layer.Run"))
-                .SelectMany(x => Key.Vertical)
-                .Where(x => x == 1)
+                .Where(x => Key.Vertical.Value == 1)
                 .Subscribe(_ =>
                 {
                     Animator.SetBool("IsRunning", false);
@@ -60,6 +59,7 @@ namespace Wolio.Actor.Player.Basics
             //Motion
             this.FixedUpdateAsObservable()
                 .Where(x => !Animator.GetBool("IsJumping"))
+                .Where(x => !Animator.GetBool("IsStandingLightAttack"))
                 .Subscribe(_ => this.Run(Key.Horizontal.Value, MaxSpeed));
 
             //Collision

@@ -53,6 +53,25 @@ namespace Wolio.Actor.Enemy.Piyo.Basics
                 });
             #endregion
 
+            // Collision
+            ObservableStateMachineTrigger
+                .OnStateEnterAsObservable()
+                .Where(x => x.StateInfo.IsName("Base Layer.PiyoRun"))
+                .Subscribe(_ =>
+                {
+                    BoxCollider2D.enabled = true;
+                    HitBox.enabled = true;
+                    HurtBox.enabled = true;
+                });
+            ObservableStateMachineTrigger
+                .OnStateExitAsObservable()
+                .Where(x => x.StateInfo.IsName("Base Layer.PiyoRun"))
+                .Subscribe(_ =>
+                {
+                    BoxCollider2D.enabled = false;
+                    HitBox.enabled = false;
+                    HurtBox.enabled = false;
+                });
             // Motion
             this.FixedUpdateAsObservable()
                 .Where(x => PiyoState.IsRunning.Value)

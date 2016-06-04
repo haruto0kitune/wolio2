@@ -92,8 +92,7 @@ namespace Wolio.Actor.Player.Basics
             this.FixedUpdateAsObservable()
                 .Where(x => Key.Vertical.Value == 1)
                 .Where(x => PlayerState.IsGrounded.Value)
-                .Where(x => !PlayerState.IsClimbable.Value)
-                .Where(x => !PlayerState.IsClimbing.Value)
+                .Where(x => !Animator.GetBool("IsStandingLightAttack"))
                 .Subscribe(_ => this.Jump(JumpForce));
 
             //Collision

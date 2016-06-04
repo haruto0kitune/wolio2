@@ -62,7 +62,6 @@ namespace Wolio.Actor.Player.Attacks.NormalAttacks.CrouchingAttacks
             // Damage
             PlayerCrouchingLightAttackHitBox.OnTriggerEnter2DAsObservable()
                 .Where(x => x.gameObject.tag == "Enemy/HurtBox")
-                .ThrottleFirstFrame(hitRecovery)
                 .Subscribe(_ =>
                 {
                     _.gameObject.GetComponent<DamageManager>().ApplyDamage(damageValue, hitRecovery);

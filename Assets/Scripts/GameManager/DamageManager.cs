@@ -27,12 +27,7 @@ public class DamageManager : MonoBehaviour
     {
         if(DamageComponent != null)
         {
-            StartCoroutine(DamageComponent.Damage(damageValue, recovery));
-        }
-        else if(State.WasAttacked.Value)
-        {
-            StopCoroutine("DamageComponent.Damage");
-            StartCoroutine(DamageComponent.Damage(damageValue, recovery));
+            DamageComponent.Damage(damageValue, recovery);
         }
         else
         {

@@ -20,10 +20,10 @@ namespace Wolio.Actor.Player.Damages
         BoxCollider2D BoxCollider2D;
         CircleCollider2D CircleCollider2D;
         BoxCollider2D PlayerStandingDamageHurtBoxTrigger;
-        bool wasAttackedDuringStandingDamage = false;
+        bool wasAttackedDuringDamage = false;
         bool isKnockBack = false;
         int knockBackFrame;
-
+        Coroutine damageCoroutineStore;
         void Awake()
         {
             Animator = Player.GetComponent<Animator>();
@@ -75,9 +75,23 @@ namespace Wolio.Actor.Player.Damages
                     }
                 });
         }
+        
+        public void Damage(int damageValue, int recovery)
+        {
+            if (damageCoroutineStore == null)
+            {
+                damageCoroutineStore = StartCoroutine(DamageCoroutine(damageValue, recovery));
+            }
+            else
+            {
+                StopCoroutine(damageCoroutineStore);
+                damageCoroutineStore = StartCoroutine(DamageCoroutine(damageValue, recovery));
+                wasAttackedDuringDamage = true;
+            }
+        }
 
         // Execute DamageManager
-        public IEnumerator Damage(int damageValue, int recovery)
+        public IEnumerator DamageCoroutine(int damageValue, int recovery)
         {
             // StartUp
             Animator.Play("StandingDamage", Animator.GetLayerIndex("Base Layer"), 0.0f);
@@ -102,6 +116,7 @@ namespace Wolio.Actor.Player.Damages
             // When transtion to next state, collider enabled is off.
             // if not, PlayerStandingDamage becomes strange motion.
             PlayerState.WasAttacked.Value = false;
+            wasAttackedDuringDamage = false;
 
             yield return null;
 

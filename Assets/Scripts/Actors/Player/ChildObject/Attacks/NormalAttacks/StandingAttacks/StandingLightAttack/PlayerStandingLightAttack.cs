@@ -32,6 +32,10 @@ namespace Wolio.Actor.Player.Attacks.NormalAttacks.StandingAttacks
         int Active;
         [SerializeField]
         int Recovery;
+        bool wasFinished;
+        bool isCancelable;
+        bool wasCanceled;
+        Coroutine coroutineStore;
 
         void Awake()
         {
@@ -49,30 +53,150 @@ namespace Wolio.Actor.Player.Attacks.NormalAttacks.StandingAttacks
         void Start()
         {
             //Animation
-            #region StandingLightAttack
+            #region EnterStandingLightAttack
             ObservableStateMachineTrigger
-                 .OnStateEnterAsObservable()
-                 .Where(x => x.StateInfo.IsName("Base Layer.StandingLightAttack"))
-                 .Subscribe(_ => Animator.speed = 0);
+                .OnStateEnterAsObservable()
+                .Where(x => x.StateInfo.IsName("Base Layer.StandingLightAttack"))
+                .Subscribe(_ => Animator.speed = 0);
+            #endregion
+            #region StandingLightAttack->Stand
+            ObservableStateMachineTrigger
+                .OnStateUpdateAsObservable()
+                .Where(x => x.StateInfo.IsName("Base Layer.StandingLightAttack"))
+                .Where(x => wasFinished)
+                .Subscribe(_ =>
+                {
+                    Animator.SetBool("IsStandingLightAttack", false);
+                    Animator.SetBool("IsStanding", true);
+                    wasFinished = false;
+                });
+            #endregion
+            #region StandingLightAttack->Jump
+            ObservableStateMachineTrigger
+                .OnStateUpdateAsObservable()
+                .Where(x => x.StateInfo.IsName("Base Layer.StandingLightAttack"))
+                .Where(x => isCancelable)
+                .Where(x => Key.Vertical.Value == 1f)
+                .Subscribe(_ =>
+                {
+                    Animator.SetBool("IsStandingLightAttack", false);
+                    Animator.SetBool("IsJumping", true);
+                    isCancelable = false;
+                    StopCoroutine(coroutineStore);
+                    wasCanceled = true;
+                });
+            #endregion
+            #region StandingLightAttack->StandingLightAttack
+            ObservableStateMachineTrigger
+                .OnStateUpdateAsObservable()
+                .Where(x => x.StateInfo.IsName("Base Layer.StandingLightAttack"))
+                .Where(x => isCancelable)
+                .Where(x => Key.Z && Key.Vertical.Value == 0)
+                .Subscribe(_ =>
+                {
+                    Animator.Play("StandingLightAttack", Animator.GetLayerIndex("Base Layer"), 0.0f);
+                    isCancelable = false;
+                    StopCoroutine(coroutineStore);
+                    coroutineStore = StartCoroutine(Attack());
+                });
+            #endregion
+            #region StandingLightAttack->StandingMiddleAttack
+            ObservableStateMachineTrigger
+                .OnStateUpdateAsObservable()
+                .Where(x => x.StateInfo.IsName("Base Layer.StandingLightAttack"))
+                .Where(x => isCancelable)
+                .Where(x => Key.X && Key.Vertical.Value == 0)
+                .Subscribe(_ =>
+                {
+                    Animator.SetBool("IsStandingLightAttack", false);
+                    Animator.SetBool("IsStandingMiddleAttack", true);
+                    isCancelable = false;
+                    StopCoroutine(coroutineStore);
+                    wasCanceled = true;
+                });
+            #endregion
+            #region StandingLightAttack->StandingHighAttack
+            ObservableStateMachineTrigger
+                .OnStateUpdateAsObservable()
+                .Where(x => x.StateInfo.IsName("Base Layer.StandingLightAttack"))
+                .Where(x => isCancelable)
+                .Where(x => Key.C && Key.Vertical.Value == 0)
+                .Subscribe(_ =>
+                {
+                    Animator.SetBool("IsStandingLightAttack", false);
+                    Animator.SetBool("IsStandingHighAttack", true);
+                    isCancelable = false;
+                    StopCoroutine(coroutineStore);
+                    wasCanceled = true;
+                });
+            #endregion
+            #region StandingLightAttack->CrouchingLightAttack
+            ObservableStateMachineTrigger
+                .OnStateUpdateAsObservable()
+                .Where(x => x.StateInfo.IsName("Base Layer.StandingLightAttack"))
+                .Where(x => isCancelable)
+                .Where(x => Key.Z && Key.Vertical.Value == -1f)
+                .Subscribe(_ =>
+                {
+                    Animator.SetBool("IsStandingLightAttack", false);
+                    Animator.SetBool("IsCrouchingLightAttack", true);
+                    isCancelable = false;
+                    StopCoroutine(coroutineStore);
+                    wasCanceled = true;
+                });
+            #endregion
+            #region StandingLightAttack->CrouchingMiddleAttack
+            ObservableStateMachineTrigger
+                .OnStateUpdateAsObservable()
+                .Where(x => x.StateInfo.IsName("Base Layer.StandingLightAttack"))
+                .Where(x => isCancelable)
+                .Where(x => Key.X && Key.Vertical.Value == -1f)
+                .Subscribe(_ =>
+                {
+                    Animator.SetBool("IsStandingLightAttack", false);
+                    Animator.SetBool("IsCrouchingMiddleAttack", true);
+                    isCancelable = false;
+                    StopCoroutine(coroutineStore);
+                    wasCanceled = true;
+                });
+            #endregion
+            #region StandingLightAttack->CrouchingHighAttack
+            ObservableStateMachineTrigger
+                .OnStateUpdateAsObservable()
+                .Where(x => x.StateInfo.IsName("Base Layer.StandingLightAttack"))
+                .Where(x => isCancelable)
+                .Where(x => Key.C && Key.Vertical.Value == -1f)
+                .Subscribe(_ =>
+                {
+                    Animator.SetBool("IsStandingLightAttack", false);
+                    Animator.SetBool("IsCrouchingHighAttack", true);
+                    isCancelable = false;
+                    StopCoroutine(coroutineStore);
+                    wasCanceled = true;
+                });
             #endregion
 
-            //Collision
+            // Collision
             this.ObserveEveryValueChanged(x => Animator.GetBool("IsStandingLightAttack"))
                 .Where(x => x)
-                .Subscribe(_ => StartCoroutine(Attack()));
+                .Subscribe(_ => coroutineStore = StartCoroutine(Attack()));
+
+            this.ObserveEveryValueChanged(x => wasCanceled)
+                .Where(x => x)
+                .Subscribe(_ => Cancel());
 
             // Damage
             PlayerStandingLightAttackHitBox.OnTriggerEnter2DAsObservable()
                 .Where(x => x.gameObject.tag == "Enemy/HurtBox")
-                .ThrottleFirstFrame(hitRecovery)
                 .Subscribe(_ =>
                 {
                     _.gameObject.GetComponent<DamageManager>().ApplyDamage(damageValue, hitRecovery);
                     HitBox.enabled = false;
+                    isCancelable = true;
                 });
         }
 
-        public IEnumerator Attack()
+        IEnumerator Attack()
         {
             #region Startup
             BoxCollider2D.enabled = true;
@@ -100,15 +224,30 @@ namespace Wolio.Actor.Player.Attacks.NormalAttacks.StandingAttacks
             {
                 yield return null;
             }
+            
+            // This needs to enable collision of next state.
+            // First of all, It should enable to collision of next state.
+            // Otherwise, Player become strange motion.
+            wasFinished = true;
+            yield return null;
 
             BoxCollider2D.enabled = false;
             CircleCollider2D.enabled = false;
             HurtBox.enabled = false;
+            isCancelable = false;
             #endregion
-            #region StandingLightAttack->Stand
-            Animator.SetBool("IsStanding", true);
-            Animator.SetBool("IsStandingLightAttack", false);
-            #endregion
+        }
+
+        void Cancel()
+        {
+            StopCoroutine(coroutineStore);
+
+            // Collision disable
+            BoxCollider2D.enabled = false;
+            CircleCollider2D.enabled = false;
+            HurtBox.enabled = false;
+            
+            wasCanceled = false;
         }
     }
 }

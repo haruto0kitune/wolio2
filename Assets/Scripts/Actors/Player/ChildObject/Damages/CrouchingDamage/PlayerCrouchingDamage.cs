@@ -19,9 +19,10 @@ namespace Wolio.Actor.Player.Damages
         Key Key;
         BoxCollider2D BoxCollider2D;
         BoxCollider2D PlayerCrouchingDamageHurtBoxTrigger;
-        bool wasAttackedDuringCrouchingDamage = false;
+        bool wasAttackedDuringDamage = false;
         bool isKnockBack = false;
         int knockBackFrame;
+        Coroutine damageCoroutineStore;
         
         void Awake()
         {
@@ -74,8 +75,22 @@ namespace Wolio.Actor.Player.Damages
                 });
         }
 
+        public void Damage(int damageValue, int recovery)
+        {
+            if (damageCoroutineStore == null)
+            {
+                damageCoroutineStore = StartCoroutine(DamageCoroutine(damageValue, recovery));
+            }
+            else
+            {
+                StopCoroutine(damageCoroutineStore);
+                damageCoroutineStore = StartCoroutine(DamageCoroutine(damageValue, recovery));
+                wasAttackedDuringDamage = true;
+            }
+        }
+
         // Execute DamageManager
-        public IEnumerator Damage(int damageValue, int recovery)
+        public IEnumerator DamageCoroutine(int damageValue, int recovery)
         {
             // StartUp
             Animator.Play("CrouchingDamage", Animator.GetLayerIndex("Base Layer"), 0.0f);
@@ -99,6 +114,7 @@ namespace Wolio.Actor.Player.Damages
             // When transtion to next state, collider enabled is off.
             // if not, PlayerCrouchingDamage becomes strange motion.
             PlayerState.WasAttacked.Value = false;
+            wasAttackedDuringDamage = false;
 
             yield return null;
             

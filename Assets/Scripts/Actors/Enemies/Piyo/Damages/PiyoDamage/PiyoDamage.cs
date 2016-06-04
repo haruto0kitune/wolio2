@@ -21,6 +21,7 @@ namespace Wolio.Actor.Piyo.Damages
         bool wasAttackedDuringDamage = false;
         bool isKnockBack = false;
         int knockBackFrame;
+        Coroutine damageCoroutineStore;
         
         void Awake()
         {
@@ -45,6 +46,16 @@ namespace Wolio.Actor.Piyo.Damages
                 {
                     Animator.SetBool("IsRunning", true);
                     Animator.SetBool("IsDamaged", false);
+                });
+            #endregion
+            #region Damage->Damage
+            ObservableStateMachineTrigger
+                .OnStateUpdateAsObservable()
+                .Where(x => x.StateInfo.IsName("Base Layer.PiyoDamage"))
+                .Where(x => wasAttackedDuringDamage)
+                .Subscribe(_ =>
+                {
+                    Animator.Play("PiyoDamage", Animator.GetLayerIndex("Base Layer"), 0.0f);
                 });
             #endregion
 
@@ -72,11 +83,24 @@ namespace Wolio.Actor.Piyo.Damages
                 });
         }
 
+        public void Damage(int damageValue, int recovery)
+        {
+            if(damageCoroutineStore == null)
+            {
+                damageCoroutineStore = StartCoroutine(DamageCoroutine(damageValue, recovery));
+            }
+            else
+            {
+                StopCoroutine(damageCoroutineStore);
+                damageCoroutineStore = StartCoroutine(DamageCoroutine(damageValue, recovery));
+                wasAttackedDuringDamage = true;
+            }
+        }
+
         // Execute DamageManager
-        public IEnumerator Damage(int damageValue, int recovery)
+        public IEnumerator DamageCoroutine(int damageValue, int recovery)
         {
             // StartUp
-            Animator.Play("PiyoDamage", Animator.GetLayerIndex("Base Layer"), 0.0f);
             isKnockBack = true;
             BoxCollider2D.enabled = true;
             PiyoDamageHurtBoxTrigger.enabled = true;
@@ -96,6 +120,7 @@ namespace Wolio.Actor.Piyo.Damages
             // When transtion to next state, collider enabled is off.
             // if not, PiyoDamage becomes strange motion.
             PiyoState.WasAttacked.Value = false;
+            wasAttackedDuringDamage = false;
 
             yield return null;
             

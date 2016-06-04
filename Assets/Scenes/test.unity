@@ -969,7 +969,7 @@ MonoBehaviour:
   Piyo: {fileID: 1010449266}
   PiyoRunHitBox: {fileID: 1100288140}
   PiyoRunHurtBox: {fileID: 1182445727}
-  Speed: 3
+  Speed: 0
   damageValue: 1
   hitRecovery: 20
 --- !u!1001 &187099275
@@ -4514,7 +4514,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!114 &743129987
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -4656,9 +4656,9 @@ MonoBehaviour:
   PlayerStandingLightAttackHurtBox: {fileID: 1545942317}
   damageValue: 1
   hitRecovery: 20
-  Startup: 6
-  Active: 2
-  Recovery: 15
+  Startup: 4
+  Active: 10
+  Recovery: 30
 --- !u!61 &747744270
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -6455,7 +6455,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   Hp:
-    value: 3
+    value: 30
 --- !u!114 &1010449268
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -10735,7 +10735,7 @@ Transform:
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 1010449266}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 5.2, y: 1.04, z: 0}
+  m_LocalPosition: {x: 5.734, y: 0.96, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 2018624177}
