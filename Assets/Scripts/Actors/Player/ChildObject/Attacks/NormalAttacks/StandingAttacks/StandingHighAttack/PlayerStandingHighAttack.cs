@@ -63,11 +63,35 @@ namespace Wolio.Actor.Player.Attacks.NormalAttacks.StandingAttacks
             ObservableStateMachineTrigger
                 .OnStateUpdateAsObservable()
                 .Where(x => x.StateInfo.IsName("Base Layer.StandingHighAttack"))
-                .Where(x => wasFinished)
+                .Where(x => wasFinished && Key.Vertical.Value == 0)
                 .Subscribe(_ =>
                 {
                     Animator.SetBool("IsStandingHighAttack", false);
                     Animator.SetBool("IsStanding", true);
+                    wasFinished = false;
+                });
+            #endregion
+            #region StandingHighAttack->Crouch
+            ObservableStateMachineTrigger
+                .OnStateUpdateAsObservable()
+                .Where(x => x.StateInfo.IsName("Base Layer.StandingHighAttack"))
+                .Where(x => wasFinished && Key.Vertical.Value == -1f)
+                .Subscribe(_ =>
+                {
+                    Animator.SetBool("IsStandingHighAttack", false);
+                    Animator.SetBool("IsCrouching", true);
+                    wasFinished = false;
+                });
+            #endregion
+            #region StandingHighAttack->Jump
+            ObservableStateMachineTrigger
+                .OnStateUpdateAsObservable()
+                .Where(x => x.StateInfo.IsName("Base Layer.StandingHighAttack"))
+                .Where(x => wasFinished && Key.Vertical.Value == 1f)
+                .Subscribe(_ =>
+                {
+                    Animator.SetBool("IsStandingHighAttack", false);
+                    Animator.SetBool("IsJumping", true);
                     wasFinished = false;
                 });
             #endregion
