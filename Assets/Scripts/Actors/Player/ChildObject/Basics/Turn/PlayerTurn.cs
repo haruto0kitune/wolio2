@@ -9,6 +9,7 @@ namespace Wolio.Actor.Player.Basics
     public class PlayerTurn : MonoBehaviour
     {
         GameObject Player;
+        Animator Animator;
         Key Key;
         PlayerState PlayerState;
         SpriteRenderer SpriteRenderer;
@@ -18,6 +19,7 @@ namespace Wolio.Actor.Player.Basics
         void Awake()
         {
             Player = GameObject.Find("Test");
+            Animator = Player.GetComponent<Animator>();
             Key = Player.GetComponent<Key>();
             PlayerState = Player.GetComponent<PlayerState>();
             SpriteRenderer = Player.GetComponent<SpriteRenderer>();
@@ -30,6 +32,12 @@ namespace Wolio.Actor.Player.Basics
             this.FixedUpdateAsObservable()
                 .SelectMany(x => Key.Horizontal)
                 .Where(x => (x > 0 & !(PlayerState.FacingRight.Value)) | (x < 0 & PlayerState.FacingRight.Value))
+                .Where(x => !Animator.GetBool("IsStandingLightAttack"))
+                .Where(x => !Animator.GetBool("IsStandingMiddleAttack"))
+                .Where(x => !Animator.GetBool("IsStandingHighAttack"))
+                .Where(x => !Animator.GetBool("IsCrouchingLightAttack"))
+                .Where(x => !Animator.GetBool("IsCrouchingMiddleAttack"))
+                .Where(x => !Animator.GetBool("IsCrouchingHighAttack"))
                 .Subscribe(_ => this.Turn());
         }
 

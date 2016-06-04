@@ -31,6 +31,10 @@ namespace Wolio.Actor.Player.Attacks.NormalAttacks.CrouchingAttacks
         int Active;
         [SerializeField]
         int Recovery;
+        bool wasFinished;
+        bool isCancelable;
+        bool wasCanceled;
+        Coroutine coroutineStore;
 
         void Awake()
         {
@@ -47,17 +51,147 @@ namespace Wolio.Actor.Player.Attacks.NormalAttacks.CrouchingAttacks
         void Start()
         {
             // Animation
-            #region CrouchingLightAttack
+            #region EnterCrouchingLightAttack
             ObservableStateMachineTrigger
                  .OnStateEnterAsObservable()
                  .Where(x => x.StateInfo.IsName("Base Layer.CrouchingLightAttack"))
                  .Subscribe(_ => Animator.speed = 0);
             #endregion
+            #region CrouchingLightAttack->Stand
+            ObservableStateMachineTrigger
+                .OnStateUpdateAsObservable()
+                .Where(x => x.StateInfo.IsName("Base Layer.CrouchingLightAttack"))
+                .Where(x => wasFinished && Key.Vertical.Value == 0)
+                .Subscribe(_ =>
+                {
+                    Animator.SetBool("IsCrouchingLightAttack", false);
+                    Animator.SetBool("IsStanding", true);
+                    wasFinished = false;
+                });
+            #endregion
+            #region CrouchingLightAttack->Crouch
+            ObservableStateMachineTrigger
+                .OnStateUpdateAsObservable()
+                .Where(x => x.StateInfo.IsName("Base Layer.CrouchingLightAttack"))
+                .Where(x => wasFinished && Key.Vertical.Value == -1f)
+                .Subscribe(_ =>
+                {
+                    Animator.SetBool("IsCrouchingLightAttack", false);
+                    Animator.SetBool("IsCrouching", true);
+                    wasFinished = false;
+                });
+            #endregion
+            #region CrouchingLightAttack->Jump
+            ObservableStateMachineTrigger
+                .OnStateUpdateAsObservable()
+                .Where(x => x.StateInfo.IsName("Base Layer.CrouchingLightAttack"))
+                .Where(x => wasFinished && Key.Vertical.Value == 1f)
+                .Subscribe(_ =>
+                {
+                    Animator.SetBool("IsCrouchingLightAttack", false);
+                    Animator.SetBool("IsJumping", true);
+                    wasFinished = false;
+                });
+            #endregion
+            #region CrouchingLightAttack->StandingLightAttack
+            ObservableStateMachineTrigger
+                .OnStateUpdateAsObservable()
+                .Where(x => x.StateInfo.IsName("Base Layer.CrouchingLightAttack"))
+                .Where(x => isCancelable)
+                .Where(x => Key.Z && Key.Vertical.Value == 0)
+                .Subscribe(_ =>
+                {
+                    Debug.Log("aha");
+                    Animator.SetBool("IsCrouchingLightAttack", false);
+                    Animator.SetBool("IsStandingLightAttack", true);
+                    isCancelable = false;
+                    StopCoroutine(coroutineStore);
+                    wasCanceled = true;
+                });
+            #endregion
+            #region CrouchingLightAttack->StandingMiddleAttack
+            ObservableStateMachineTrigger
+                .OnStateUpdateAsObservable()
+                .Where(x => x.StateInfo.IsName("Base Layer.CrouchingLightAttack"))
+                .Where(x => isCancelable)
+                .Where(x => Key.X && Key.Vertical.Value == 0)
+                .Subscribe(_ =>
+                {
+                    Animator.SetBool("IsCrouchingLightAttack", false);
+                    Animator.SetBool("IsStandingMiddleAttack", true);
+                    isCancelable = false;
+                    StopCoroutine(coroutineStore);
+                    wasCanceled = true;
+                });
+            #endregion
+            #region CrouchingLightAttack->StandingHighAttack
+            ObservableStateMachineTrigger
+                .OnStateUpdateAsObservable()
+                .Where(x => x.StateInfo.IsName("Base Layer.CrouchingLightAttack"))
+                .Where(x => isCancelable)
+                .Where(x => Key.C && Key.Vertical.Value == 0)
+                .Subscribe(_ =>
+                {
+                    Animator.SetBool("IsCrouchingLightAttack", false);
+                    Animator.SetBool("IsStandingHighAttack", true);
+                    isCancelable = false;
+                    StopCoroutine(coroutineStore);
+                    wasCanceled = true;
+                });
+            #endregion
+            #region CrouchingLightAttack->CrouchingLightAttack
+            ObservableStateMachineTrigger
+                .OnStateUpdateAsObservable()
+                .Where(x => x.StateInfo.IsName("Base Layer.CrouchingLightAttack"))
+                .Where(x => isCancelable)
+                .Where(x => Key.Z && Key.Vertical.Value == -1f)
+                .Subscribe(_ =>
+                {
+                    Animator.Play("CrouchingLightAttack", Animator.GetLayerIndex("Base Layer"), 0.0f);
+                    isCancelable = false;
+                    StopCoroutine(coroutineStore);
+                    coroutineStore = StartCoroutine(Attack());
+                });
+            #endregion
+            #region CrouchingLightAttack->CrouchingMiddleAttack
+            ObservableStateMachineTrigger
+                .OnStateUpdateAsObservable()
+                .Where(x => x.StateInfo.IsName("Base Layer.CrouchingLightAttack"))
+                .Where(x => isCancelable)
+                .Where(x => Key.X && Key.Vertical.Value == -1f)
+                .Subscribe(_ =>
+                {
+                    Animator.SetBool("IsCrouchingLightAttack", false);
+                    Animator.SetBool("IsCrouchingMiddleAttack", true);
+                    isCancelable = false;
+                    StopCoroutine(coroutineStore);
+                    wasCanceled = true;
+                });
+            #endregion
+            #region CrouchingLightAttack->CrouchingHighAttack
+            ObservableStateMachineTrigger
+                .OnStateUpdateAsObservable()
+                .Where(x => x.StateInfo.IsName("Base Layer.CrouchingLightAttack"))
+                .Where(x => isCancelable)
+                .Where(x => Key.C && Key.Vertical.Value == -1f)
+                .Subscribe(_ =>
+                {
+                    Animator.SetBool("IsCrouchingLightAttack", false);
+                    Animator.SetBool("IsCrouchingHighAttack", true);
+                    isCancelable = false;
+                    StopCoroutine(coroutineStore);
+                    wasCanceled = true;
+                });
+            #endregion
 
             // Collision
             this.ObserveEveryValueChanged(x => Animator.GetBool("IsCrouchingLightAttack"))
                 .Where(x => x)
-                .Subscribe(_ => StartCoroutine(Attack()));
+                .Subscribe(_ => coroutineStore = StartCoroutine(Attack()));
+
+            this.ObserveEveryValueChanged(x => wasCanceled)
+                .Where(x => x)
+                .Subscribe(_ => Cancel());
 
             // Damage
             PlayerCrouchingLightAttackHitBox.OnTriggerEnter2DAsObservable()
@@ -66,6 +200,7 @@ namespace Wolio.Actor.Player.Attacks.NormalAttacks.CrouchingAttacks
                 {
                     _.gameObject.GetComponent<DamageManager>().ApplyDamage(damageValue, hitRecovery);
                     HitBox.enabled = false;
+                    isCancelable = true;
                 });
         }
 
@@ -96,22 +231,28 @@ namespace Wolio.Actor.Player.Attacks.NormalAttacks.CrouchingAttacks
             {
                 yield return null;
             }
+            
+            // This needs to enable collision of next state.
+            // First of all, It should enable to collision of next state.
+            // Otherwise, Player become strange motion.
+            wasFinished = true;
+            yield return null;
 
             BoxCollider2D.enabled = false;
             HurtBox.enabled = false;
+            isCancelable = false;
             #endregion
-            #region CrouchingLightAttack->Stand|Crouch
-            if(Key.Vertical.Value != -1)
-            {
-                Animator.SetBool("IsStanding", true);
-                Animator.SetBool("IsCrouchingLightAttack", false);
-            }
-            else if(Key.Vertical.Value == -1)
-            {
-                Animator.SetBool("IsCrouching", true);
-                Animator.SetBool("IsCrouchingLightAttack", false);
-            }
-            #endregion
+        }
+
+        void Cancel()
+        {
+            StopCoroutine(coroutineStore);
+
+            // Collision disable
+            BoxCollider2D.enabled = false;
+            HurtBox.enabled = false;
+            
+            wasCanceled = false;
         }
     }
 }

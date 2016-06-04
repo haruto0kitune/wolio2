@@ -94,6 +94,10 @@ namespace Wolio.Actor.Player.Basics
                 .Where(x => PlayerState.IsGrounded.Value)
                 .Where(x => !Animator.GetBool("IsStandingLightAttack"))
                 .Where(x => !Animator.GetBool("IsStandingMiddleAttack"))
+                .Where(x => !Animator.GetBool("IsStandingHighAttack"))
+                .Where(x => !Animator.GetBool("IsCrouchingLightAttack"))
+                .Where(x => !Animator.GetBool("IsCrouchingMiddleAttack"))
+                .Where(x => !Animator.GetBool("IsCrouchingHighAttack"))
                 .Subscribe(_ => this.Jump(JumpForce));
 
             //Collision

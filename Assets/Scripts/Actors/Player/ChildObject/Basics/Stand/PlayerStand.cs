@@ -59,7 +59,7 @@ namespace Wolio.Actor.Player.Basics
             ObservableStateMachineTrigger
                 .OnStateUpdateAsObservable()
                 .Where(x => x.StateInfo.IsName("Base Layer.Stand"))
-                .Where(x => Key.Vertical.Value == -1)
+                .Where(x => Key.Vertical.Value == -1f)
                 .Where(x => !PlayerState.IsJumping.Value)
                 .Subscribe(_ =>
                 {

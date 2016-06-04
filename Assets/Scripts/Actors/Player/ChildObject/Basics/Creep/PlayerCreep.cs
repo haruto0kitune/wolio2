@@ -49,7 +49,7 @@ namespace Wolio.Actor.Player.Basics
                 .Where(x => Key.Horizontal.Value == 0 && Key.Vertical.Value == -1)
                 .Subscribe(_ =>
                 {
-                    Animator.SetBool("IsCrouching", true);
+                    Animator.SetBool("isCrouching", true);
                     Animator.SetBool("IsCreeping", false);
                 });
             #endregion

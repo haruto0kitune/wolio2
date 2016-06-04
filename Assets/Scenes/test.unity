@@ -7505,7 +7505,7 @@ MonoBehaviour:
   hitRecovery: 20
   Startup: 4
   Active: 4
-  Recovery: 4
+  Recovery: 10
 --- !u!61 &1169188516
 BoxCollider2D:
   m_ObjectHideFlags: 0
