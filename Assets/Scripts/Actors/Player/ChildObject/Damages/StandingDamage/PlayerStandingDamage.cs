@@ -24,6 +24,7 @@ namespace Wolio.Actor.Player.Damages
         bool isKnockBack = false;
         int knockBackFrame;
         Coroutine damageCoroutineStore;
+
         void Awake()
         {
             Animator = Player.GetComponent<Animator>();
@@ -51,63 +52,55 @@ namespace Wolio.Actor.Player.Damages
                     Animator.SetBool("IsStandingDamage", false);
                 });
             #endregion
-
-            // Motion (KnockBack)
-            this.FixedUpdateAsObservable()
-                .Where(x => isKnockBack) 
-                .Subscribe(x =>
-                {
-                    knockBackFrame++;
-
-                    if (PlayerState.FacingRight.Value)
-                    {
-                        PlayerRigidbody2D.velocity = new Vector2(-1f, 0);
-                    }
-                    else
-                    {
-                        PlayerRigidbody2D.velocity = new Vector2(1f, 0);
-                    }
-
-                    if(knockBackFrame == 3)
-                    {
-                        isKnockBack = false;
-                        knockBackFrame = 0;
-                    }
-                });
         }
-        
-        public void Damage(int damageValue, int recovery)
+
+        public void Damage(int damageValue, int recovery, int hitStop)
         {
             if (damageCoroutineStore == null)
             {
-                damageCoroutineStore = StartCoroutine(DamageCoroutine(damageValue, recovery));
+                damageCoroutineStore = StartCoroutine(DamageCoroutine(damageValue, recovery, hitStop));
             }
             else
             {
                 StopCoroutine(damageCoroutineStore);
-                damageCoroutineStore = StartCoroutine(DamageCoroutine(damageValue, recovery));
+                damageCoroutineStore = StartCoroutine(DamageCoroutine(damageValue, recovery, hitStop));
                 wasAttackedDuringDamage = true;
             }
         }
 
         // Execute DamageManager
-        public IEnumerator DamageCoroutine(int damageValue, int recovery)
+        public IEnumerator DamageCoroutine(int damageValue, int recovery, int hitStop)
         {
             // StartUp
-            Animator.Play("StandingDamage", Animator.GetLayerIndex("Base Layer"), 0.0f);
-            isKnockBack = true;
             BoxCollider2D.enabled = true;
             CircleCollider2D.enabled = true;
             PlayerStandingDamageHurtBoxTrigger.enabled = true;
             Key.IsAvailable.Value = false;
-            PlayerState.WasAttacked.Value = true;
 
             // Apply Damage
             Status.Hp.Value -= damageValue;
 
+            var x = 1;
             // Recover
-            for (int i = 0; i < recovery; i++)
+            for (int i = 0; i < hitStop; i++)
             {
+                yield return null;
+                PlayerRigidbody2D.velocity = new Vector2(x, 0);
+                x *= -1;
+            }
+
+            // Knockback
+            for (int i = 0;i < recovery; i++)
+            {
+                if (PlayerState.FacingRight.Value)
+                {
+                    PlayerRigidbody2D.velocity = new Vector2(-1f, 0);
+                }
+                else
+                {
+                    PlayerRigidbody2D.velocity = new Vector2(1f, 0);
+                }
+
                 yield return null;
             }
 

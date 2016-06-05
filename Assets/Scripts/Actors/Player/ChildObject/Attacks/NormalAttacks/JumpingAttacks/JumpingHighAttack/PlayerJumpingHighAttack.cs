@@ -26,6 +26,8 @@ namespace Wolio.Actor.Player.Attacks.NormalAttacks.JumpingAttacks
         [SerializeField]
         int hitRecovery;
         [SerializeField]
+        int hitStop;
+        [SerializeField]
         int Startup;
         [SerializeField]
         int Active;
@@ -82,7 +84,7 @@ namespace Wolio.Actor.Player.Attacks.NormalAttacks.JumpingAttacks
                 .Where(x => x.gameObject.tag == "Enemy/HurtBox")
                 .Subscribe(_ =>
                 {
-                    _.gameObject.GetComponent<DamageManager>().ApplyDamage(damageValue, hitRecovery);
+                    _.gameObject.GetComponent<DamageManager>().ApplyDamage(damageValue, hitRecovery, hitStop);
                     HitBox.enabled = false;
                     isCancelable = true;
                 });

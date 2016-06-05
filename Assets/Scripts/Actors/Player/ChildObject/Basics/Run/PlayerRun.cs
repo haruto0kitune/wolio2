@@ -65,6 +65,9 @@ namespace Wolio.Actor.Player.Basics
                 .Where(x => !Animator.GetBool("IsCrouchingLightAttack"))
                 .Where(x => !Animator.GetBool("IsCrouchingMiddleAttack"))
                 .Where(x => !Animator.GetBool("IsCrouchingHighAttack"))
+                .Where(x => !Animator.GetBool("IsStandingDamage"))
+                .Where(x => !Animator.GetBool("IsCrouchingDamage"))
+                .Where(x => !Animator.GetBool("IsJumpingDamage"))
                 .Subscribe(_ => this.Run(Key.Horizontal.Value, MaxSpeed));
 
             //Collision

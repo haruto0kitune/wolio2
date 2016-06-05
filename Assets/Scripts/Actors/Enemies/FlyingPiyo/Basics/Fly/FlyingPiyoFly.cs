@@ -26,6 +26,8 @@ namespace Wolio.Actor.Enemy.FlyingPiyo.Basics
         int damageValue;
         [SerializeField]
         int hitRecovery;
+        [SerializeField]
+        int hitStop;
 
         void Awake()
         {
@@ -75,7 +77,7 @@ namespace Wolio.Actor.Enemy.FlyingPiyo.Basics
                 .ThrottleFirstFrame(hitRecovery)
                 .Subscribe(_ =>
                 {
-                    _.gameObject.GetComponent<DamageManager>().ApplyDamage(damageValue, hitRecovery);
+                    _.gameObject.GetComponent<DamageManager>().ApplyDamage(damageValue, hitRecovery, hitStop);
                 });
         }
 

@@ -7,6 +7,8 @@ namespace Wolio.Actor.Player.Attacks.NormalAttacks.StandingAttacks
 {
     public class PlayerStandingLightAttack : MonoBehaviour
     {
+        int debug;
+        int debug2;
         [SerializeField]
         GameObject Player;
         Animator Animator;
@@ -27,6 +29,8 @@ namespace Wolio.Actor.Player.Attacks.NormalAttacks.StandingAttacks
         [SerializeField]
         int hitRecovery;
         [SerializeField]
+        int hitStop;
+        [SerializeField]
         int Startup;
         [SerializeField]
         int Active;
@@ -36,6 +40,8 @@ namespace Wolio.Actor.Player.Attacks.NormalAttacks.StandingAttacks
         bool isCancelable;
         bool wasCanceled;
         Coroutine coroutineStore;
+        IEnumerator _Attack;
+        IEnumerator _HitStop;
 
         void Awake()
         {
@@ -48,6 +54,8 @@ namespace Wolio.Actor.Player.Attacks.NormalAttacks.StandingAttacks
             CircleCollider2D = GetComponent<CircleCollider2D>();
             HitBox = PlayerStandingLightAttackHitBox.GetComponent<BoxCollider2D>();
             HurtBox = PlayerStandingLightAttackHurtBox.GetComponent<BoxCollider2D>();
+            _Attack = Attack();
+            _HitStop = HitStop(hitStop);
         }
 
         void Start()
@@ -179,7 +187,7 @@ namespace Wolio.Actor.Player.Attacks.NormalAttacks.StandingAttacks
             // Collision
             this.ObserveEveryValueChanged(x => Animator.GetBool("IsStandingLightAttack"))
                 .Where(x => x)
-                .Subscribe(_ => coroutineStore = StartCoroutine(Attack()));
+                .Subscribe(_ => coroutineStore = StartCoroutine(_Attack));
 
             this.ObserveEveryValueChanged(x => wasCanceled)
                 .Where(x => x)
@@ -190,9 +198,10 @@ namespace Wolio.Actor.Player.Attacks.NormalAttacks.StandingAttacks
                 .Where(x => x.gameObject.tag == "Enemy/HurtBox")
                 .Subscribe(_ =>
                 {
-                    _.gameObject.GetComponent<DamageManager>().ApplyDamage(damageValue, hitRecovery);
+                    _.gameObject.GetComponent<DamageManager>().ApplyDamage(damageValue, hitRecovery, hitStop);
                     HitBox.enabled = false;
                     isCancelable = true;
+                    StartCoroutine(HitStop(hitStop));
                 });
         }
 
@@ -205,6 +214,8 @@ namespace Wolio.Actor.Player.Attacks.NormalAttacks.StandingAttacks
 
             for (int i = 0; i < Startup; i++)
             {
+                Debug.Log("Attack " + debug);
+                debug++;
                 yield return null;
             }
             #endregion
@@ -214,6 +225,8 @@ namespace Wolio.Actor.Player.Attacks.NormalAttacks.StandingAttacks
 
             for (var i = 0; i < Active; i++)
             {
+                Debug.Log("Attack " + debug);
+                debug++;
                 yield return null;
             }
 
@@ -222,6 +235,8 @@ namespace Wolio.Actor.Player.Attacks.NormalAttacks.StandingAttacks
             #region Recovery
             for (int i = 0; i < Recovery; i++)
             {
+                Debug.Log("Attack " + debug);
+                debug++;
                 yield return null;
             }
             
@@ -229,13 +244,29 @@ namespace Wolio.Actor.Player.Attacks.NormalAttacks.StandingAttacks
             // First of all, It should enable to collision of next state.
             // Otherwise, Player become strange motion.
             wasFinished = true;
+                Debug.Log("Attack " + debug);
             yield return null;
 
             BoxCollider2D.enabled = false;
             CircleCollider2D.enabled = false;
             HurtBox.enabled = false;
             isCancelable = false;
+            _Attack = Attack();
             #endregion
+        }
+
+        IEnumerator HitStop(int hitStopFrame)
+        {
+            StopCoroutine(coroutineStore);
+
+            for(var i = 0;i < hitStopFrame;i++)
+            {
+                Debug.Log("HitStop " + debug2);
+                debug2++;
+                yield return null;
+            }
+
+            coroutineStore = StartCoroutine(_Attack);
         }
 
         void Cancel()

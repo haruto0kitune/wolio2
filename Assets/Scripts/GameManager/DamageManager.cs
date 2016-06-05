@@ -23,11 +23,12 @@ public class DamageManager : MonoBehaviour
         
     }
 
-    public void ApplyDamage(int damageValue, int recovery)
+    public void ApplyDamage(int damageValue, int recovery, int hitStop)
     {
         if(DamageComponent != null)
         {
-            DamageComponent.Damage(damageValue, recovery);
+            State.WasAttacked.Value = true;
+            DamageComponent.Damage(damageValue, recovery, hitStop);
         }
         else
         {

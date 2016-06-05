@@ -83,22 +83,22 @@ namespace Wolio.Actor.Piyo.Damages
                 });
         }
 
-        public void Damage(int damageValue, int recovery)
+        public void Damage(int damageValue, int recovery, int hitStop)
         {
             if(damageCoroutineStore == null)
             {
-                damageCoroutineStore = StartCoroutine(DamageCoroutine(damageValue, recovery));
+                damageCoroutineStore = StartCoroutine(DamageCoroutine(damageValue, recovery, hitStop));
             }
             else
             {
                 StopCoroutine(damageCoroutineStore);
-                damageCoroutineStore = StartCoroutine(DamageCoroutine(damageValue, recovery));
+                damageCoroutineStore = StartCoroutine(DamageCoroutine(damageValue, recovery, hitStop));
                 wasAttackedDuringDamage = true;
             }
         }
 
         // Execute DamageManager
-        public IEnumerator DamageCoroutine(int damageValue, int recovery)
+        public IEnumerator DamageCoroutine(int damageValue, int recovery, int hitStop)
         {
             // StartUp
             isKnockBack = true;
@@ -110,7 +110,11 @@ namespace Wolio.Actor.Piyo.Damages
             Status.Hp.Value -= damageValue;
 
             // Recover
-            for (int i = 0; i < recovery; i++)
+            //for (int i = 0; i < recovery; i++)
+            //{
+            //    yield return null;
+            //}
+            for (int i = 0; i < hitStop; i++)
             {
                 yield return null;
             }

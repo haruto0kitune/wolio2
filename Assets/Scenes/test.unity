@@ -133,6 +133,7 @@ MonoBehaviour:
   speed: 0
   damageValue: 1
   hitRecovery: 20
+  hitStop: 0
 --- !u!58 &1460071
 CircleCollider2D:
   m_ObjectHideFlags: 0
@@ -519,7 +520,7 @@ Transform:
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 150007667}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 1.29, y: 1.1, z: 0}
+  m_LocalPosition: {x: 3.963, y: 1.768, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 2084710172}
@@ -969,9 +970,10 @@ MonoBehaviour:
   Piyo: {fileID: 1010449266}
   PiyoRunHitBox: {fileID: 1100288140}
   PiyoRunHurtBox: {fileID: 1182445727}
-  Speed: 0
+  Speed: 3
   damageValue: 1
-  hitRecovery: 20
+  hitRecovery: 14
+  hitStop: 8
 --- !u!1001 &187099275
 Prefab:
   m_ObjectHideFlags: 0
@@ -2461,6 +2463,7 @@ MonoBehaviour:
   PlayerCrouchingMiddleAttackHurtBox: {fileID: 716554070}
   damageValue: 1
   hitRecovery: 23
+  hitStop: 10
   Startup: 9
   Active: 3
   Recovery: 18
@@ -4656,6 +4659,7 @@ MonoBehaviour:
   PlayerStandingLightAttackHurtBox: {fileID: 1545942317}
   damageValue: 1
   hitRecovery: 20
+  hitStop: 13
   Startup: 4
   Active: 10
   Recovery: 30
@@ -4910,6 +4914,7 @@ MonoBehaviour:
   PlayerJumpingMiddleAttackHurtBox: {fileID: 978643163}
   damageValue: 1
   hitRecovery: 20
+  hitStop: 13
   Startup: 9
   Active: 3
 --- !u!61 &782293147
@@ -5586,6 +5591,7 @@ MonoBehaviour:
   PlayerJumpingHighAttackHurtBox: {fileID: 53885949}
   damageValue: 1
   hitRecovery: 20
+  hitStop: 15
   Startup: 3
   Active: 4
 --- !u!61 &901744538
@@ -6729,6 +6735,7 @@ MonoBehaviour:
   PlayerCrouchingHighAttackHurtBox: {fileID: 1469033074}
   damageValue: 1
   hitRecovery: 30
+  hitStop: 13
   Startup: 10
   Active: 10
   Recovery: 19
@@ -7503,6 +7510,7 @@ MonoBehaviour:
   PlayerCrouchingLightAttackHurtBox: {fileID: 891682687}
   damageValue: 1
   hitRecovery: 20
+  hitStop: 8
   Startup: 4
   Active: 4
   Recovery: 10
@@ -8919,6 +8927,7 @@ MonoBehaviour:
   PlayerJumpingLightAttackHurtBox: {fileID: 587187840}
   damageValue: 1
   hitRecovery: 20
+  hitStop: 10
   Startup: 7
   Active: 2
 --- !u!61 &1479609536
@@ -9061,6 +9070,7 @@ MonoBehaviour:
   PlayerStandingHighAttackHurtBox: {fileID: 1159324130}
   damageValue: 1
   hitRecovery: 20
+  hitStop: 13
   Startup: 11
   Active: 3
   Recovery: 21
@@ -10425,6 +10435,7 @@ MonoBehaviour:
   PlayerStandingMiddleAttackHurtBox: {fileID: 1773800776}
   damageValue: 1
   hitRecovery: 20
+  hitStop: 13
   Startup: 9
   Active: 2
   Recovery: 17
