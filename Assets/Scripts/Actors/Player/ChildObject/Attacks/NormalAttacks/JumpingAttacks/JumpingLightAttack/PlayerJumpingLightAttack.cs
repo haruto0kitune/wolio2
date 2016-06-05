@@ -29,6 +29,10 @@ namespace Wolio.Actor.Player.Attacks.NormalAttacks.JumpingAttacks
         int Startup;
         [SerializeField]
         int Active;
+        bool wasFinished;
+        bool isCancelable;
+        bool wasCanceled;
+        Coroutine coroutineStore;
 
         void Awake()
         {
@@ -44,18 +48,78 @@ namespace Wolio.Actor.Player.Attacks.NormalAttacks.JumpingAttacks
 
         void Start()
         {
-            //Animation
-            #region CrouchingLightAttack
+            // Animation
+            #region EnterJumpingLightAttack
             ObservableStateMachineTrigger
                  .OnStateEnterAsObservable()
                  .Where(x => x.StateInfo.IsName("Base Layer.JumpingLightAttack"))
                  .Subscribe(_ => Animator.speed = 0);
             #endregion
+            #region JumpingLightAttack->Stand
+            ObservableStateMachineTrigger
+                .OnStateUpdateAsObservable()
+                .Where(x => x.StateInfo.IsName("Base Layer.JumpingLightAttack"))
+                .Where(x => PlayerState.IsGrounded.Value)
+                .Subscribe(_ =>
+                {
+                    Animator.SetBool("IsJumpingLightAttack", false);
+                    Animator.SetBool("IsStanding", true);
+                    wasFinished = false;
+                });
+            #endregion
+            #region JumpingLightAttack->JumpingLightAttack
+            ObservableStateMachineTrigger
+                .OnStateUpdateAsObservable()
+                .Where(x => x.StateInfo.IsName("Base Layer.JumpingLightAttack"))
+                .Where(x => isCancelable)
+                .Where(x => Key.Z)
+                .Subscribe(_ =>
+                {
+                    Animator.Play("JumpingLightAttack", Animator.GetLayerIndex("Base Layer"), 0.0f);
+                    isCancelable = false;
+                    StopCoroutine(coroutineStore);
+                    coroutineStore = StartCoroutine(Attack());
+                });
+            #endregion
+            #region JumpingLightAttack->JumpingMiddleAttack
+            ObservableStateMachineTrigger
+                .OnStateUpdateAsObservable()
+                .Where(x => x.StateInfo.IsName("Base Layer.JumpingLightAttack"))
+                .Where(x => isCancelable)
+                .Where(x => Key.X)
+                .Subscribe(_ =>
+                {
+                    Animator.SetBool("IsJumpingLightAttack", false);
+                    Animator.SetBool("IsJumpingMiddleAttack", true);
+                    isCancelable = false;
+                    StopCoroutine(coroutineStore);
+                    wasCanceled = true;
+                });
+            #endregion
+            #region JumpingLightAttack->JumpingHighAttack
+            ObservableStateMachineTrigger
+                .OnStateUpdateAsObservable()
+                .Where(x => x.StateInfo.IsName("Base Layer.JumpingLightAttack"))
+                .Where(x => isCancelable)
+                .Where(x => Key.C)
+                .Subscribe(_ =>
+                {
+                    Animator.SetBool("IsJumpingLightAttack", false);
+                    Animator.SetBool("IsJumpingHighAttack", true);
+                    isCancelable = false;
+                    StopCoroutine(coroutineStore);
+                    wasCanceled = true;
+                });
+            #endregion
 
-            //Collision
+            // Collision
             this.ObserveEveryValueChanged(x => Animator.GetBool("IsJumpingLightAttack"))
                 .Where(x => x)
-                .Subscribe(_ => StartCoroutine(Attack()));
+                .Subscribe(_ => coroutineStore = StartCoroutine(Attack()));
+
+            this.ObserveEveryValueChanged(x => wasCanceled)
+                .Where(x => x)
+                .Subscribe(_ => Cancel());
 
             // Damage
             PlayerJumpingLightAttackHitBox.OnTriggerEnter2DAsObservable()
@@ -64,6 +128,7 @@ namespace Wolio.Actor.Player.Attacks.NormalAttacks.JumpingAttacks
                 {
                     _.gameObject.GetComponent<DamageManager>().ApplyDamage(damageValue, hitRecovery);
                     HitBox.enabled = false;
+                    isCancelable = true;
                 });
         }
 
@@ -95,13 +160,27 @@ namespace Wolio.Actor.Player.Attacks.NormalAttacks.JumpingAttacks
                 yield return null;
             }
 
+            // This needs to enable collision of next state.
+            // First of all, It should enable to collision of next state.
+            // Otherwise, Player become strange motion.
+            wasFinished = true;
+            yield return null;
+
             BoxCollider2D.enabled = false;
             HurtBox.enabled = false;
+            isCancelable = false;
             #endregion
-            #region JumpingLightAttack->Stand
-            Animator.SetBool("IsStanding", true);
-            Animator.SetBool("IsJumpingLightAttack", false);
-            #endregion
+        }
+
+        void Cancel()
+        {
+            StopCoroutine(coroutineStore);
+
+            // Collision disable
+            BoxCollider2D.enabled = false;
+            HurtBox.enabled = false;
+            
+            wasCanceled = false;
         }
     }
 }

@@ -52,8 +52,6 @@ namespace Wolio.Actor.Player.Attacks.NormalAttacks.StandingAttacks
 
         void Start()
         {
-            this.ObserveEveryValueChanged(x => wasCanceled)
-                .Subscribe(_ => Debug.Log("wasCanceled: " + wasCanceled));
             // Animation
             #region EnterStandingLightAttack
             ObservableStateMachineTrigger

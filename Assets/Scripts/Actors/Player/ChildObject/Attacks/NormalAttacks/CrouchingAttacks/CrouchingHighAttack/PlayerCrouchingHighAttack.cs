@@ -150,6 +150,7 @@ namespace Wolio.Actor.Player.Attacks.NormalAttacks.CrouchingAttacks
 
             BoxCollider2D.enabled = false;
             HurtBox.enabled = false;
+            isCancelable = false;
             #endregion
         }
 
