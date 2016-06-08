@@ -12,6 +12,7 @@ namespace Wolio.Actor.Player
 
         void Start()
         {
+            
         }
     }
 }

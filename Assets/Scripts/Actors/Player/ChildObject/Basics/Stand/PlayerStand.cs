@@ -137,6 +137,7 @@ namespace Wolio.Actor.Player.Basics
                 .Where(x => !x)
                 .Subscribe(_ =>
                 {
+                    Debug.Log("PlayerStandObseveEveryValueChanged.Animator.GetBool(\"IsStanding\"): " + Time.frameCount);
                     BoxCollider2D.enabled = false;
                     HurtBox.enabled = false;
                     CircleCollider2D.enabled = false;

@@ -10,6 +10,5 @@ public class Status : MonoBehaviour
 
     void Start()
     {
-
     }
 }

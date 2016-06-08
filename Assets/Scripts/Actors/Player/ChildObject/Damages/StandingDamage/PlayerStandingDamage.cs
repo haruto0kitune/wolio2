@@ -75,6 +75,7 @@ namespace Wolio.Actor.Player.Damages
             BoxCollider2D.enabled = true;
             CircleCollider2D.enabled = true;
             PlayerStandingDamageHurtBoxTrigger.enabled = true;
+            PlayerState.WasAttacked.Value = true;
             Key.IsAvailable.Value = false;
 
             // Apply Damage
@@ -84,9 +85,9 @@ namespace Wolio.Actor.Player.Damages
             // Recover
             for (int i = 0; i < hitStop; i++)
             {
-                yield return null;
                 PlayerRigidbody2D.velocity = new Vector2(x, 0);
                 x *= -1;
+                yield return null;
             }
 
             // Knockback

@@ -27,7 +27,6 @@ public class DamageManager : MonoBehaviour
     {
         if(DamageComponent != null)
         {
-            State.WasAttacked.Value = true;
             DamageComponent.Damage(damageValue, recovery, hitStop);
         }
         else
