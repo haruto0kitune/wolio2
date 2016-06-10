@@ -87,6 +87,17 @@ namespace Wolio.Actor.Player.Basics
                     Animator.SetBool("IsJumpingGuard", true);
                 });
             #endregion
+            #region Jump->JumpingDamage
+            ObservableStateMachineTrigger
+                .OnStateUpdateAsObservable()
+                .Where(x => x.StateInfo.IsName("Base Layer.Jump"))
+                .Where(x => PlayerState.WasAttacked.Value)
+                .Subscribe(_ =>
+                {
+                    Animator.SetBool("IsJumping", false);
+                    Animator.SetBool("IsJumpingDamage", true);
+                });
+            #endregion
             
             //Motion
             this.FixedUpdateAsObservable()

@@ -51,22 +51,22 @@ namespace Wolio.Actor.Player.Damages
             #endregion
         }
 
-        public void Damage(int damageValue, int recovery, int hitStop)
+        public void Damage(int damageValue, int recovery, int hitStop, bool isTechable = false)
         {
             if (damageCoroutineStore == null)
             {
-                damageCoroutineStore = StartCoroutine(DamageCoroutine(damageValue, recovery, hitStop));
+                damageCoroutineStore = StartCoroutine(DamageCoroutine(damageValue, recovery, hitStop, isTechable));
             }
             else
             {
                 StopCoroutine(damageCoroutineStore);
-                damageCoroutineStore = StartCoroutine(DamageCoroutine(damageValue, recovery, hitStop));
+                damageCoroutineStore = StartCoroutine(DamageCoroutine(damageValue, recovery, hitStop, isTechable));
                 wasAttackedDuringDamage = true;
             }
         }
 
         // Execute DamageManager
-        public IEnumerator DamageCoroutine(int damageValue, int recovery, int hitStop)
+        public IEnumerator DamageCoroutine(int damageValue, int recovery, int hitStop, bool isTechable = false)
         {
             // StartUp
             BoxCollider2D.enabled = true;

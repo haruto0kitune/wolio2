@@ -133,7 +133,7 @@ MonoBehaviour:
   speed: 0
   damageValue: 1
   hitRecovery: 20
-  hitStop: 8
+  hitStop: 4
 --- !u!58 &1460071
 CircleCollider2D:
   m_ObjectHideFlags: 0
