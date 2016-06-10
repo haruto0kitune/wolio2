@@ -133,7 +133,7 @@ MonoBehaviour:
   speed: 0
   damageValue: 1
   hitRecovery: 20
-  hitStop: 0
+  hitStop: 8
 --- !u!58 &1460071
 CircleCollider2D:
   m_ObjectHideFlags: 0
@@ -520,7 +520,7 @@ Transform:
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 150007667}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 3.963, y: 1.768, z: 0}
+  m_LocalPosition: {x: 1.3, y: 1.05, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 2084710172}
@@ -972,7 +972,7 @@ MonoBehaviour:
   PiyoRunHurtBox: {fileID: 1182445727}
   Speed: 3
   damageValue: 1
-  hitRecovery: 14
+  hitRecovery: 10
   hitStop: 8
 --- !u!1001 &187099275
 Prefab:

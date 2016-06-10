@@ -21,7 +21,6 @@ namespace Wolio.Actor.Player.Damages
         CircleCollider2D CircleCollider2D;
         BoxCollider2D PlayerStandingDamageHurtBoxTrigger;
         bool wasAttackedDuringDamage = false;
-        bool isKnockBack = false;
         int knockBackFrame;
         Coroutine damageCoroutineStore;
 
@@ -81,8 +80,9 @@ namespace Wolio.Actor.Player.Damages
             // Apply Damage
             Status.Hp.Value -= damageValue;
 
+            // HitStop
             var x = 1;
-            // Recover
+
             for (int i = 0; i < hitStop; i++)
             {
                 PlayerRigidbody2D.velocity = new Vector2(x, 0);

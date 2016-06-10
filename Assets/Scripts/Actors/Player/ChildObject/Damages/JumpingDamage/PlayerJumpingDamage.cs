@@ -20,7 +20,6 @@ namespace Wolio.Actor.Player.Damages
         BoxCollider2D BoxCollider2D;
         BoxCollider2D PlayerJumpingDamageHurtBoxTrigger;
         bool wasAttackedDuringDamage = false;
-        bool isKnockBack = false;
         int knockBackFrame;
         Coroutine damageCoroutineStore;
         
@@ -50,29 +49,6 @@ namespace Wolio.Actor.Player.Damages
                     Animator.SetBool("IsJumpingDamage", false);
                 });
             #endregion
-
-            // Motion (KnockBack)
-            this.FixedUpdateAsObservable()
-                .Where(x => isKnockBack) 
-                .Subscribe(x =>
-                {
-                    knockBackFrame++;
-
-                    if (PlayerState.FacingRight.Value)
-                    {
-                        PlayerRigidbody2D.velocity = new Vector2(-1f, 0);
-                    }
-                    else
-                    {
-                        PlayerRigidbody2D.velocity = new Vector2(1f, 0);
-                    }
-
-                    if(knockBackFrame == 3)
-                    {
-                        isKnockBack = false;
-                        knockBackFrame = 0;
-                    }
-                });
         }
 
         public void Damage(int damageValue, int recovery, int hitStop)
@@ -93,8 +69,6 @@ namespace Wolio.Actor.Player.Damages
         public IEnumerator DamageCoroutine(int damageValue, int recovery, int hitStop)
         {
             // StartUp
-            Animator.Play("JumpingDamage", Animator.GetLayerIndex("Base Layer"), 0.0f);
-            isKnockBack = true;
             BoxCollider2D.enabled = true;
             PlayerJumpingDamageHurtBoxTrigger.enabled = true;
             Key.IsAvailable.Value = false;
@@ -103,8 +77,32 @@ namespace Wolio.Actor.Player.Damages
             // Apply Damage
             Status.Hp.Value -= damageValue;
 
-            // Recover
-            for (int i = 0; i < recovery; i++)
+            // HitStop
+            var x = 1;
+            PlayerRigidbody2D.isKinematic = true;
+
+            for (int i = 0; i < hitStop; i++)
+            {
+                PlayerRigidbody2D.velocity = new Vector2(x, 0);
+                x *= -1;
+                yield return null;
+            }
+
+            PlayerRigidbody2D.isKinematic = false;
+
+            // Knockback
+            var Vector = Utility.PolarToRectangular2D(60, 10);
+
+            if (PlayerState.FacingRight.Value)
+            {
+                PlayerRigidbody2D.velocity = new Vector2(Vector.x * -1, Vector.y);
+            }
+            else
+            {
+                PlayerRigidbody2D.velocity = new Vector2(Vector.x, Vector.y);
+            }
+
+            for (int i = 0;i < recovery; i++)
             {
                 yield return null;
             }
