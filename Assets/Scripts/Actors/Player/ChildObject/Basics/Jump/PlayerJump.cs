@@ -46,6 +46,7 @@ namespace Wolio.Actor.Player.Basics
             ObservableStateMachineTrigger
                 .OnStateUpdateAsObservable()
                 .Where(x => x.StateInfo.IsName("Base Layer.Jump"))
+                .Where(x => PlayerState.canJumpingLightAttack.Value)
                 .Where(x => Key.Z)
                 .Subscribe(_ =>
                 {
@@ -57,6 +58,7 @@ namespace Wolio.Actor.Player.Basics
             ObservableStateMachineTrigger
                 .OnStateUpdateAsObservable()
                 .Where(x => x.StateInfo.IsName("Base Layer.Jump"))
+                .Where(x => PlayerState.canJumpingMiddleAttack.Value)
                 .Where(x => Key.X)
                 .Subscribe(_ =>
                 {
@@ -68,6 +70,7 @@ namespace Wolio.Actor.Player.Basics
             ObservableStateMachineTrigger
                 .OnStateUpdateAsObservable()
                 .Where(x => x.StateInfo.IsName("Base Layer.Jump"))
+                .Where(x => PlayerState.canJumpingHighAttack.Value)
                 .Where(x => Key.C)
                 .Subscribe(_ =>
                 {
@@ -79,6 +82,7 @@ namespace Wolio.Actor.Player.Basics
             ObservableStateMachineTrigger
                 .OnStateUpdateAsObservable()
                 .Where(x => x.StateInfo.IsName("Base Layer.Jump"))
+                .Where(x => PlayerState.canJumpingGuard.Value)
                 .Where(x => !PlayerState.IsGrounded.Value)
                 .Where(x => Key.LeftShift)
                 .Subscribe(_ =>
@@ -101,14 +105,8 @@ namespace Wolio.Actor.Player.Basics
             
             //Motion
             this.FixedUpdateAsObservable()
+                .Where(x => PlayerState.canJump.Value)
                 .Where(x => Key.Vertical.Value == 1)
-                .Where(x => PlayerState.IsGrounded.Value)
-                .Where(x => !Animator.GetBool("IsStandingLightAttack"))
-                .Where(x => !Animator.GetBool("IsStandingMiddleAttack"))
-                .Where(x => !Animator.GetBool("IsStandingHighAttack"))
-                .Where(x => !Animator.GetBool("IsCrouchingLightAttack"))
-                .Where(x => !Animator.GetBool("IsCrouchingMiddleAttack"))
-                .Where(x => !Animator.GetBool("IsCrouchingHighAttack"))
                 .Subscribe(_ => this.Jump(JumpForce));
 
             //Collision

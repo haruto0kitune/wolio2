@@ -39,8 +39,8 @@ namespace Wolio
         void Start()
         {
             FPSCounter.Current.SubscribeToText(Text);
-            PlayerState.IsClimbable.SubscribeToText(Text1);
-            PlayerState.IsClimbing.SubscribeToText(Text2);
+            //PlayerState.IsClimbable.SubscribeToText(Text1);
+            //PlayerState.IsClimbing.SubscribeToText(Text2);
             this.ObserveEveryValueChanged(x => Rigidbody2D.velocity.x).SubscribeToText(Text3);
             this.ObserveEveryValueChanged(x => Rigidbody2D.velocity.y).SubscribeToText(Text4);
             PlayerState.IsCrouching.SubscribeToText(Text5);

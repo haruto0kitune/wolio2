@@ -35,6 +35,7 @@ namespace Wolio.Actor.Player.Basics
             ObservableStateMachineTrigger
                 .OnStateUpdateAsObservable()
                 .Where(x => x.StateInfo.IsName("Base Layer.Stand"))
+                .Where(x => PlayerState.canRun.Value)
                 .Where(x => Key.Horizontal.Value != 0 && Key.Vertical.Value == 0)
                 .Subscribe(_ =>
                 {
@@ -47,8 +48,8 @@ namespace Wolio.Actor.Player.Basics
             ObservableStateMachineTrigger
                 .OnStateUpdateAsObservable()
                 .Where(x => x.StateInfo.IsName("Base Layer.Stand"))
+                .Where(x => PlayerState.canJump.Value)
                 .Where(x => Key.Vertical.Value == 1)
-                .Where(x => !PlayerState.IsJumping.Value)
                 .Subscribe(_ =>
                 {
                     Animator.SetBool("IsStanding", false);
@@ -59,8 +60,8 @@ namespace Wolio.Actor.Player.Basics
             ObservableStateMachineTrigger
                 .OnStateUpdateAsObservable()
                 .Where(x => x.StateInfo.IsName("Base Layer.Stand"))
+                .Where(x => PlayerState.canCrouch.Value)
                 .Where(x => Key.Vertical.Value == -1f)
-                .Where(x => !PlayerState.IsJumping.Value)
                 .Subscribe(_ =>
                 {
                     Animator.SetBool("IsStanding", false);
@@ -71,6 +72,7 @@ namespace Wolio.Actor.Player.Basics
             ObservableStateMachineTrigger
                 .OnStateUpdateAsObservable()
                 .Where(x => x.StateInfo.IsName("Base Layer.Stand"))
+                .Where(x => PlayerState.canStandingLightAttack.Value)
                 .Where(x => Key.Z)
                 .Subscribe(_ =>
                 {
@@ -82,6 +84,7 @@ namespace Wolio.Actor.Player.Basics
             ObservableStateMachineTrigger
                 .OnStateUpdateAsObservable()
                 .Where(x => x.StateInfo.IsName("Base Layer.Stand"))
+                .Where(x => PlayerState.canStandingMiddleAttack.Value)
                 .Where(x => Key.X)
                 .Subscribe(_ =>
                 {
@@ -93,6 +96,7 @@ namespace Wolio.Actor.Player.Basics
             ObservableStateMachineTrigger
                 .OnStateUpdateAsObservable()
                 .Where(x => x.StateInfo.IsName("Base Layer.Stand"))
+                .Where(x => PlayerState.canStandingHighAttack.Value)
                 .Where(x => Key.C)
                 .Subscribe(_ =>
                 {
@@ -104,6 +108,7 @@ namespace Wolio.Actor.Player.Basics
             ObservableStateMachineTrigger
                 .OnStateUpdateAsObservable()
                 .Where(x => x.StateInfo.IsName("Base Layer.Stand"))
+                .Where(x => PlayerState.canStandingGuard.Value)
                 .Where(x => Key.LeftShift)
                 .Subscribe(_ =>
                 {
@@ -137,7 +142,6 @@ namespace Wolio.Actor.Player.Basics
                 .Where(x => !x)
                 .Subscribe(_ =>
                 {
-                    Debug.Log("PlayerStandObseveEveryValueChanged.Animator.GetBool(\"IsStanding\"): " + Time.frameCount);
                     BoxCollider2D.enabled = false;
                     HurtBox.enabled = false;
                     CircleCollider2D.enabled = false;

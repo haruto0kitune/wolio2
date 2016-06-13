@@ -7,8 +7,6 @@ namespace Wolio.Actor.Player.Attacks.NormalAttacks.StandingAttacks
 {
     public class PlayerStandingLightAttack : MonoBehaviour
     {
-        int debug;
-        int debug2;
         [SerializeField]
         GameObject Player;
         Animator Animator;
@@ -98,6 +96,7 @@ namespace Wolio.Actor.Player.Attacks.NormalAttacks.StandingAttacks
             ObservableStateMachineTrigger
                 .OnStateUpdateAsObservable()
                 .Where(x => x.StateInfo.IsName("Base Layer.StandingLightAttack"))
+                .Where(x => PlayerState.canStandingLightAttack.Value)
                 .Where(x => isCancelable)
                 .Where(x => Key.Z && Key.Vertical.Value == 0)
                 .Subscribe(_ =>
@@ -112,6 +111,7 @@ namespace Wolio.Actor.Player.Attacks.NormalAttacks.StandingAttacks
             ObservableStateMachineTrigger
                 .OnStateUpdateAsObservable()
                 .Where(x => x.StateInfo.IsName("Base Layer.StandingLightAttack"))
+                .Where(x => PlayerState.canStandingMiddleAttack.Value)
                 .Where(x => isCancelable)
                 .Where(x => Key.X && Key.Vertical.Value == 0)
                 .Subscribe(_ =>
@@ -127,6 +127,7 @@ namespace Wolio.Actor.Player.Attacks.NormalAttacks.StandingAttacks
             ObservableStateMachineTrigger
                 .OnStateUpdateAsObservable()
                 .Where(x => x.StateInfo.IsName("Base Layer.StandingLightAttack"))
+                .Where(x => PlayerState.canStandingHighAttack.Value)
                 .Where(x => isCancelable)
                 .Where(x => Key.C && Key.Vertical.Value == 0)
                 .Subscribe(_ =>
@@ -142,6 +143,7 @@ namespace Wolio.Actor.Player.Attacks.NormalAttacks.StandingAttacks
             ObservableStateMachineTrigger
                 .OnStateUpdateAsObservable()
                 .Where(x => x.StateInfo.IsName("Base Layer.StandingLightAttack"))
+                .Where(x => PlayerState.canCrouchingLightAttack.Value)
                 .Where(x => isCancelable)
                 .Where(x => Key.Z && Key.Vertical.Value == -1f)
                 .Subscribe(_ =>
@@ -157,6 +159,7 @@ namespace Wolio.Actor.Player.Attacks.NormalAttacks.StandingAttacks
             ObservableStateMachineTrigger
                 .OnStateUpdateAsObservable()
                 .Where(x => x.StateInfo.IsName("Base Layer.StandingLightAttack"))
+                .Where(x => PlayerState.canCrouchingMiddleAttack.Value)
                 .Where(x => isCancelable)
                 .Where(x => Key.X && Key.Vertical.Value == -1f)
                 .Subscribe(_ =>
@@ -172,6 +175,7 @@ namespace Wolio.Actor.Player.Attacks.NormalAttacks.StandingAttacks
             ObservableStateMachineTrigger
                 .OnStateUpdateAsObservable()
                 .Where(x => x.StateInfo.IsName("Base Layer.StandingLightAttack"))
+                .Where(x => PlayerState.canCrouchingHighAttack.Value)
                 .Where(x => isCancelable)
                 .Where(x => Key.C && Key.Vertical.Value == -1f)
                 .Subscribe(_ =>
@@ -214,8 +218,6 @@ namespace Wolio.Actor.Player.Attacks.NormalAttacks.StandingAttacks
 
             for (int i = 0; i < Startup; i++)
             {
-                Debug.Log("Attack " + debug);
-                debug++;
                 yield return null;
             }
             #endregion
@@ -225,8 +227,6 @@ namespace Wolio.Actor.Player.Attacks.NormalAttacks.StandingAttacks
 
             for (var i = 0; i < Active; i++)
             {
-                Debug.Log("Attack " + debug);
-                debug++;
                 yield return null;
             }
 
@@ -235,8 +235,6 @@ namespace Wolio.Actor.Player.Attacks.NormalAttacks.StandingAttacks
             #region Recovery
             for (int i = 0; i < Recovery; i++)
             {
-                Debug.Log("Attack " + debug);
-                debug++;
                 yield return null;
             }
             
@@ -244,7 +242,6 @@ namespace Wolio.Actor.Player.Attacks.NormalAttacks.StandingAttacks
             // First of all, It should enable to collision of next state.
             // Otherwise, Player become strange motion.
             wasFinished = true;
-                Debug.Log("Attack " + debug);
             yield return null;
 
             BoxCollider2D.enabled = false;
@@ -261,8 +258,6 @@ namespace Wolio.Actor.Player.Attacks.NormalAttacks.StandingAttacks
 
             for(var i = 0;i < hitStopFrame;i++)
             {
-                Debug.Log("HitStop " + debug2);
-                debug2++;
                 yield return null;
             }
 

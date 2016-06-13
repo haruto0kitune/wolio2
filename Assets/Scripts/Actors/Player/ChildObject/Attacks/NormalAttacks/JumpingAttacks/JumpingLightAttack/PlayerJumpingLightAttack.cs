@@ -73,6 +73,7 @@ namespace Wolio.Actor.Player.Attacks.NormalAttacks.JumpingAttacks
             ObservableStateMachineTrigger
                 .OnStateUpdateAsObservable()
                 .Where(x => x.StateInfo.IsName("Base Layer.JumpingLightAttack"))
+                .Where(x => PlayerState.canJumpingLightAttack.Value)
                 .Where(x => isCancelable)
                 .Where(x => Key.Z)
                 .Subscribe(_ =>

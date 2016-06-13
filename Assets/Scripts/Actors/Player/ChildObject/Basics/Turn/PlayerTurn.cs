@@ -30,14 +30,8 @@ namespace Wolio.Actor.Player.Basics
         void Start()
         {
             this.FixedUpdateAsObservable()
-                .SelectMany(x => Key.Horizontal)
-                .Where(x => (x > 0 & !(PlayerState.FacingRight.Value)) | (x < 0 & PlayerState.FacingRight.Value))
-                .Where(x => !Animator.GetBool("IsStandingLightAttack"))
-                .Where(x => !Animator.GetBool("IsStandingMiddleAttack"))
-                .Where(x => !Animator.GetBool("IsStandingHighAttack"))
-                .Where(x => !Animator.GetBool("IsCrouchingLightAttack"))
-                .Where(x => !Animator.GetBool("IsCrouchingMiddleAttack"))
-                .Where(x => !Animator.GetBool("IsCrouchingHighAttack"))
+                .Where(x => PlayerState.canTurn.Value)
+                .Where(x => (Key.Horizontal.Value > 0 & !(PlayerState.FacingRight.Value)) | (Key.Horizontal.Value < 0 & PlayerState.FacingRight.Value))
                 .Subscribe(_ => this.Turn());
         }
 

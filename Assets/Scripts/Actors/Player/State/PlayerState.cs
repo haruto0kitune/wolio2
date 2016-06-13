@@ -20,26 +20,39 @@ namespace Wolio.Actor.Player
         public ReactiveProperty<bool> IsGrounded;
         public ReactiveProperty<bool> IsDashing;
         public ReactiveProperty<bool> IsRunning;
+        public ReactiveProperty<bool> canRun;
         public ReactiveProperty<bool> IsJumping;
-        public ReactiveProperty<bool> IsJumpable;
+        public ReactiveProperty<bool> canJump;
         public ReactiveProperty<bool> IsStanding;
         public ReactiveProperty<bool> IsCrouching;
+        public ReactiveProperty<bool> canCrouch;
         public ReactiveProperty<bool> IsCreeping;
+        public ReactiveProperty<bool> canCreep;
         public ReactiveProperty<bool> IsTouchingWall;
-        public ReactiveProperty<bool> IsClimbing;
-        public ReactiveProperty<bool> IsClimbable;
         public ReactiveProperty<bool> IsStandingLightAttack;
+        public ReactiveProperty<bool> canStandingLightAttack;
         public ReactiveProperty<bool> IsStandingMiddleAttack;
+        public ReactiveProperty<bool> canStandingMiddleAttack;
         public ReactiveProperty<bool> IsStandingHighAttack;
+        public ReactiveProperty<bool> canStandingHighAttack;
         public ReactiveProperty<bool> IsCrouchingLightAttack;
+        public ReactiveProperty<bool> canCrouchingLightAttack;
         public ReactiveProperty<bool> IsCrouchingMiddleAttack;
+        public ReactiveProperty<bool> canCrouchingMiddleAttack;
         public ReactiveProperty<bool> IsCrouchingHighAttack;
+        public ReactiveProperty<bool> canCrouchingHighAttack;
         public ReactiveProperty<bool> IsJumpingLightAttack;
+        public ReactiveProperty<bool> canJumpingLightAttack;
         public ReactiveProperty<bool> IsJumpingMiddleAttack;
+        public ReactiveProperty<bool> canJumpingMiddleAttack;
         public ReactiveProperty<bool> IsJumpingHighAttack;
+        public ReactiveProperty<bool> canJumpingHighAttack;
         public ReactiveProperty<bool> IsStandingGuard;
+        public ReactiveProperty<bool> canStandingGuard;
         public ReactiveProperty<bool> IsCrouchingGuard;
+        public ReactiveProperty<bool> canCrouchingGuard;
         public ReactiveProperty<bool> IsJumpingGuard;
+        public ReactiveProperty<bool> canJumpingGuard;
         public ReactiveProperty<bool> IsStandingDamage;
         public ReactiveProperty<bool> IsCrouchingDamage;
         public ReactiveProperty<bool> IsJumpingDamage;
@@ -50,9 +63,13 @@ namespace Wolio.Actor.Player
         public ReactiveProperty<bool> IsCrouchingGuardBack;
         public ReactiveProperty<bool> IsJumpingGuardBack;
         public ReactiveProperty<bool> IsWallKickJumping;
+        public ReactiveProperty<bool> canWallKickJumping;
         public ReactiveProperty<bool> FacingRight;
         public ReactiveProperty<bool> IsInTheAir;
         public ReactiveProperty<bool> WasAttacked { get; set; }
+        public ReactiveProperty<bool> IsAirTech;
+        public ReactiveProperty<bool> canAirTech;
+        public ReactiveProperty<bool> canTurn;
 
         void Awake()
         {
@@ -64,33 +81,142 @@ namespace Wolio.Actor.Player
             Animator = GetComponent<Animator>();
             Status = GetComponent<Status>();
 
-            IsGrounded = this.ObserveEveryValueChanged(x => (bool)Physics2D.Linecast(GroundCheck.position, GroundCheck.position, PlayerConfig.WhatIsGround)).ToReactiveProperty();
-            IsDead = Status.Hp.Select(x => x <= 0).ToReactiveProperty();
+            IsGrounded = this.ObserveEveryValueChanged(x => (bool)Physics2D.Linecast(GroundCheck.position, GroundCheck.position, PlayerConfig.WhatIsGround))
+                             .ToReactiveProperty();
+            
+            IsDead = Status.Hp
+                           .Select(x => x <= 0)
+                           .ToReactiveProperty();
+
             IsDashing = new ReactiveProperty<bool>();
-            IsRunning = this.ObserveEveryValueChanged(x => Animator.GetBool("IsRunning")).ToReactiveProperty();
-            IsJumping = this.ObserveEveryValueChanged(x => Animator.GetBool("IsJumping")).ToReactiveProperty();
-            IsJumpable = new ReactiveProperty<bool>();
-            IsStanding = this.ObserveEveryValueChanged(x => Animator.GetBool("IsStanding")).ToReactiveProperty();
-            IsCrouching = this.ObserveEveryValueChanged(x => Animator.GetBool("IsCrouching")).ToReactiveProperty();
-            IsCreeping = this.ObserveEveryValueChanged(x => Animator.GetBool("IsCreeping")).ToReactiveProperty();
+
+            IsJumping = this.ObserveEveryValueChanged(x => Animator.GetBool("IsJumping"))
+                            .ToReactiveProperty();
+
+            canJump = this.ObserveEveryValueChanged(x => (IsStanding.Value || 
+                                                          IsRunning.Value ||
+                                                          IsStandingMiddleAttack.Value) &&
+                                                          IsGrounded.Value).ToReactiveProperty();
+            
+            IsStanding = this.ObserveEveryValueChanged(x => Animator.GetBool("IsStanding"))
+                             .ToReactiveProperty();
+
+            IsRunning = this.ObserveEveryValueChanged(x => Animator.GetBool("IsRunning"))
+                            .ToReactiveProperty();
+
+            canRun = this.ObserveEveryValueChanged(x => (IsStanding.Value || IsRunning.Value) && IsGrounded.Value).ToReactiveProperty();
+
+            IsCrouching = this.ObserveEveryValueChanged(x => Animator.GetBool("IsCrouching"))
+                              .ToReactiveProperty();
+
+            canCrouch = this.ObserveEveryValueChanged(x => (IsStanding.Value || IsCrouching.Value) && IsGrounded.Value).ToReactiveProperty();
+
+            IsCreeping = this.ObserveEveryValueChanged(x => Animator.GetBool("IsCreeping"))
+                             .ToReactiveProperty();
+
+            canCreep = this.ObserveEveryValueChanged(x => (IsCrouching.Value || IsCreeping.Value) && IsGrounded.Value).ToReactiveProperty();
+
             IsTouchingWall = new ReactiveProperty<bool>();
-            IsClimbing = new ReactiveProperty<bool>();
-            IsClimbable = new ReactiveProperty<bool>();
-            IsStandingLightAttack = this.ObserveEveryValueChanged(x => Animator.GetBool("IsStandingLightAttack")).ToReactiveProperty();
-            IsStandingMiddleAttack = this.ObserveEveryValueChanged(x => Animator.GetBool("IsStandingMiddleAttack")).ToReactiveProperty();
-            IsStandingHighAttack = this.ObserveEveryValueChanged(x => Animator.GetBool("IsStandingHighAttack")).ToReactiveProperty();
-            IsCrouchingLightAttack = this.ObserveEveryValueChanged(x => Animator.GetBool("IsCrouchingLightAttack")).ToReactiveProperty();
-            IsCrouchingMiddleAttack = this.ObserveEveryValueChanged(x => Animator.GetBool("IsCrouchingMiddleAttack")).ToReactiveProperty();
-            IsCrouchingHighAttack = this.ObserveEveryValueChanged(x => Animator.GetBool("IsCrouchingHighAttack")).ToReactiveProperty();
-            IsJumpingLightAttack = this.ObserveEveryValueChanged(x => Animator.GetBool("IsJumpingLightAttack")).ToReactiveProperty();
-            IsJumpingMiddleAttack = this.ObserveEveryValueChanged(x => Animator.GetBool("IsJumpingMiddleAttack")).ToReactiveProperty();
-            IsJumpingHighAttack = this.ObserveEveryValueChanged(x => Animator.GetBool("IsJumpingHighAttack")).ToReactiveProperty();
-            IsStandingGuard = this.ObserveEveryValueChanged(x => Animator.GetBool("IsStandingGuard")).ToReactiveProperty();
-            IsCrouchingGuard = this.ObserveEveryValueChanged(x => Animator.GetBool("IsCrouchingGuard")).ToReactiveProperty();
-            IsJumpingGuard = this.ObserveEveryValueChanged(x => Animator.GetBool("IsJumpingGuard")).ToReactiveProperty();
-            IsStandingDamage = this.ObserveEveryValueChanged(x => Animator.GetBool("IsStandingDamage")).ToReactiveProperty();
-            IsCrouchingDamage = this.ObserveEveryValueChanged(x => Animator.GetBool("IsCrouchingDamage")).ToReactiveProperty();
-            IsJumpingDamage = this.ObserveEveryValueChanged(x => Animator.GetBool("IsJumpingDamage")).ToReactiveProperty();
+
+            IsStandingLightAttack = this.ObserveEveryValueChanged(x => Animator.GetBool("IsStandingLightAttack"))
+                                        .ToReactiveProperty();
+            
+            canStandingLightAttack = this.ObserveEveryValueChanged(x => IsStanding.Value ||
+                                                                        IsStandingLightAttack.Value ||
+                                                                        IsCrouchingLightAttack.Value)
+                                         .ToReactiveProperty();
+
+            IsStandingMiddleAttack = this.ObserveEveryValueChanged(x => Animator.GetBool("IsStandingMiddleAttack"))
+                                         .ToReactiveProperty();
+
+            canStandingMiddleAttack = this.ObserveEveryValueChanged(x => IsStanding.Value ||
+                                                                         IsStandingLightAttack.Value || 
+                                                                         IsCrouchingLightAttack.Value)
+                                          .ToReactiveProperty();
+            
+            IsStandingHighAttack = this.ObserveEveryValueChanged(x => Animator.GetBool("IsStandingHighAttack"))
+                                       .ToReactiveProperty();
+
+            canStandingHighAttack = this.ObserveEveryValueChanged(x => IsStanding.Value || 
+                                                                       IsStandingLightAttack.Value ||
+                                                                       IsStandingMiddleAttack.Value ||
+                                                                       IsCrouchingLightAttack.Value || 
+                                                                       IsCrouchingMiddleAttack.Value)
+                                        .ToReactiveProperty();
+
+            IsCrouchingLightAttack = this.ObserveEveryValueChanged(x => Animator.GetBool("IsCrouchingLightAttack"))
+                                         .ToReactiveProperty();
+
+            canCrouchingLightAttack = this.ObserveEveryValueChanged(x => IsCrouching.Value ||
+                                                                         IsStandingLightAttack.Value ||
+                                                                         IsCrouchingLightAttack.Value)
+                                          .ToReactiveProperty();
+
+            IsCrouchingMiddleAttack = this.ObserveEveryValueChanged(x => Animator.GetBool("IsCrouchingMiddleAttack"))
+                                          .ToReactiveProperty();
+
+            canCrouchingMiddleAttack = this.ObserveEveryValueChanged(x => IsCrouching.Value ||
+                                                                          IsCrouchingLightAttack.Value ||
+                                                                          IsStandingLightAttack.Value)
+                                           .ToReactiveProperty();
+                                                                          
+            IsCrouchingHighAttack = this.ObserveEveryValueChanged(x => Animator.GetBool("IsCrouchingHighAttack"))
+                                        .ToReactiveProperty();
+
+            canCrouchingHighAttack = this.ObserveEveryValueChanged(x => IsCrouching.Value ||
+                                                                        IsCrouchingLightAttack.Value ||
+                                                                        IsCrouchingMiddleAttack.Value ||
+                                                                        IsStandingLightAttack.Value ||
+                                                                        IsStandingMiddleAttack.Value)
+                                         .ToReactiveProperty();
+
+            IsJumpingLightAttack = this.ObserveEveryValueChanged(x => Animator.GetBool("IsJumpingLightAttack"))
+                                       .ToReactiveProperty();
+
+            canJumpingLightAttack = this.ObserveEveryValueChanged(x => IsJumping.Value || IsJumpingLightAttack.Value)
+                                        .ToReactiveProperty();
+
+            IsJumpingMiddleAttack = this.ObserveEveryValueChanged(x => Animator.GetBool("IsJumpingMiddleAttack"))
+                                        .ToReactiveProperty();
+
+            canJumpingMiddleAttack = this.ObserveEveryValueChanged(x => IsJumping.Value || IsJumpingLightAttack.Value)
+                                         .ToReactiveProperty();
+
+            IsJumpingHighAttack = this.ObserveEveryValueChanged(x => Animator.GetBool("IsJumpingHighAttack"))
+                                      .ToReactiveProperty();
+
+            canJumpingHighAttack = this.ObserveEveryValueChanged(x => IsJumping.Value ||
+                                                                      IsJumpingLightAttack.Value ||
+                                                                      IsJumpingMiddleAttack.Value)
+                                       .ToReactiveProperty();
+
+            IsStandingGuard = this.ObserveEveryValueChanged(x => Animator.GetBool("IsStandingGuard"))
+                                  .ToReactiveProperty();
+
+            canStandingGuard = this.ObserveEveryValueChanged(x => (IsStanding.Value || IsStandingGuard.Value) && IsGrounded.Value)
+                                   .ToReactiveProperty();
+
+            IsCrouchingGuard = this.ObserveEveryValueChanged(x => Animator.GetBool("IsCrouchingGuard"))
+                                   .ToReactiveProperty();
+
+            canCrouchingGuard = this.ObserveEveryValueChanged(x => (IsCrouching.Value || IsCrouchingGuard.Value) && IsGrounded.Value)
+                                    .ToReactiveProperty();
+
+            IsJumpingGuard = this.ObserveEveryValueChanged(x => Animator.GetBool("IsJumpingGuard")) 
+                                 .ToReactiveProperty();
+
+            canJumpingGuard = this.ObserveEveryValueChanged(x => (IsJumping.Value || IsJumpingGuard.Value) && IsGrounded.Value)
+                                  .ToReactiveProperty();
+
+            IsStandingDamage = this.ObserveEveryValueChanged(x => Animator.GetBool("IsStandingDamage"))
+                                   .ToReactiveProperty();
+
+            IsCrouchingDamage = this.ObserveEveryValueChanged(x => Animator.GetBool("IsCrouchingDamage"))
+                                    .ToReactiveProperty();
+
+            IsJumpingDamage = this.ObserveEveryValueChanged(x => Animator.GetBool("IsJumpingDamage"))
+                                  .ToReactiveProperty();
+
             IsStandingHitBack = new ReactiveProperty<bool>();
             IsCrouchingHitBack = new ReactiveProperty<bool>();
             IsJumpingHitBack = new ReactiveProperty<bool>();
@@ -98,9 +224,25 @@ namespace Wolio.Actor.Player
             IsCrouchingGuardBack = new ReactiveProperty<bool>();
             IsJumpingGuardBack = new ReactiveProperty<bool>();
             IsWallKickJumping = new ReactiveProperty<bool>();
-            FacingRight = SpriteRenderer.ObserveEveryValueChanged(x => x.flipX).ToReactiveProperty();
-            IsInTheAir = IsGrounded.Select(x => !x).ToReactiveProperty();
+
+            FacingRight = SpriteRenderer.ObserveEveryValueChanged(x => x.flipX)
+                                        .ToReactiveProperty();
+
+            IsInTheAir = IsGrounded.Select(x => !x)
+                                   .ToReactiveProperty();
+
             WasAttacked = new ReactiveProperty<bool>();
+
+            IsAirTech = this.ObserveEveryValueChanged(x => Animator.GetBool("IsAirTech"))
+                            .ToReactiveProperty();
+
+            canAirTech = new ReactiveProperty<bool>();
+
+            canTurn = this.ObserveEveryValueChanged(x => (IsStanding.Value ||
+                                                         IsRunning.Value ||
+                                                         IsJumping.Value ||
+                                                         IsCreeping.Value))
+                          .ToReactiveProperty();
         }
 
         void Start()

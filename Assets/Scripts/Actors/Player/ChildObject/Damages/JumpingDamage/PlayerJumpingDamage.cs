@@ -38,14 +38,15 @@ namespace Wolio.Actor.Player.Damages
         void Start()
         {
             // Animation
-            #region JumpingDamage->Jump
+            #region JumpingDamage->AirTech
             ObservableStateMachineTrigger
                 .OnStateUpdateAsObservable()
                 .Where(x => x.StateInfo.IsName("Base Layer.JumpingDamage"))
-                .Where(x => !PlayerState.WasAttacked.Value)
+                .Where(x => PlayerState.canAirTech.Value)
+                .Where(x => Key.Z)
                 .Subscribe(_ =>
                 {
-                    Animator.SetBool("IsJumping", true);
+                    Animator.SetBool("IsAirTech", true);
                     Animator.SetBool("IsJumpingDamage", false);
                 });
             #endregion
@@ -71,8 +72,8 @@ namespace Wolio.Actor.Player.Damages
             // StartUp
             BoxCollider2D.enabled = true;
             PlayerJumpingDamageHurtBoxTrigger.enabled = true;
-            Key.IsAvailable.Value = false;
             PlayerState.WasAttacked.Value = true;
+            PlayerState.canAirTech.Value = false;
 
             // Apply Damage
             Status.Hp.Value -= damageValue;
@@ -91,7 +92,7 @@ namespace Wolio.Actor.Player.Damages
             PlayerRigidbody2D.isKinematic = false;
 
             // Knockback
-            var Vector = Utility.PolarToRectangular2D(60, 10);
+            var Vector = Utility.PolarToRectangular2D(75, 7);
 
             if (PlayerState.FacingRight.Value)
             {
@@ -107,6 +108,19 @@ namespace Wolio.Actor.Player.Damages
                 yield return null;
             }
 
+            // AirTechable Time
+            PlayerState.canAirTech.Value = true;
+
+            while (!Key.Z)
+            {
+                if (PlayerState.IsGrounded.Value)
+                {
+                    break;
+                }
+
+                yield return null;
+            }
+
             // Finish
             //
             // When transtion to next state, collider enabled is off.
@@ -118,7 +132,6 @@ namespace Wolio.Actor.Player.Damages
             
             BoxCollider2D.enabled = false;
             PlayerJumpingDamageHurtBoxTrigger.enabled = false;
-            Key.IsAvailable.Value = true;
         }
     }
 }

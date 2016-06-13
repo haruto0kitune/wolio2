@@ -77,6 +77,7 @@ namespace Wolio.Actor.Player.Attacks.NormalAttacks.StandingAttacks
             ObservableStateMachineTrigger
                 .OnStateUpdateAsObservable()
                 .Where(x => x.StateInfo.IsName("Base Layer.StandingMiddleAttack"))
+                .Where(x => PlayerState.canJump.Value)
                 .Where(x => isCancelable)
                 .Where(x => Key.Vertical.Value == 1f)
                 .Subscribe(_ =>
@@ -92,6 +93,7 @@ namespace Wolio.Actor.Player.Attacks.NormalAttacks.StandingAttacks
             ObservableStateMachineTrigger
                 .OnStateUpdateAsObservable()
                 .Where(x => x.StateInfo.IsName("Base Layer.StandingMiddleAttack"))
+                .Where(x => PlayerState.canStandingHighAttack.Value)
                 .Where(x => isCancelable)
                 .Where(x => Key.C && Key.Vertical.Value == 0)
                 .Subscribe(_ =>
@@ -107,6 +109,7 @@ namespace Wolio.Actor.Player.Attacks.NormalAttacks.StandingAttacks
             ObservableStateMachineTrigger
                 .OnStateUpdateAsObservable()
                 .Where(x => x.StateInfo.IsName("Base Layer.StandingMiddleAttack"))
+                .Where(x => PlayerState.canCrouchingHighAttack.Value)
                 .Where(x => isCancelable)
                 .Where(x => Key.C && Key.Vertical.Value == -1f)
                 .Subscribe(_ =>

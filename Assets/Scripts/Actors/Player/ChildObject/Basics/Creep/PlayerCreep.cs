@@ -49,15 +49,14 @@ namespace Wolio.Actor.Player.Basics
                 .Where(x => Key.Horizontal.Value == 0 && Key.Vertical.Value == -1)
                 .Subscribe(_ =>
                 {
-                    Animator.SetBool("isCrouching", true);
+                    Animator.SetBool("IsCrouching", true);
                     Animator.SetBool("IsCreeping", false);
                 });
             #endregion
             
             //Motion
             this.FixedUpdateAsObservable()
-                .Where(x => PlayerState.IsCrouching.Value)
-                .Where(x => !PlayerState.IsRunning.Value)
+                .Where(x => PlayerState.canCreep.Value)
                 .Where(x => Key.Horizontal.Value != 0 && Key.Vertical.Value == -1)
                 .Subscribe(_ => this.Creep(Key.Horizontal.Value, Speed));
 
@@ -76,6 +75,7 @@ namespace Wolio.Actor.Player.Basics
                 {
                     BoxCollider2D.enabled = false;
                     HurtBox.enabled = false;
+                    PlayerRigidbody2D.velocity = Vector2.zero;
                 });
         }
 

@@ -47,6 +47,7 @@ namespace Wolio.Actor.Player.Basics
             ObservableStateMachineTrigger
                 .OnStateUpdateAsObservable()
                 .Where(x => x.StateInfo.IsName("Base Layer.Crouch"))
+                .Where(x => PlayerState.canCreep.Value)
                 .Where(x => Key.Horizontal.Value != 0 && Key.Vertical.Value == -1)
                 .Subscribe(_ =>
                 {

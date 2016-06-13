@@ -58,16 +58,7 @@ namespace Wolio.Actor.Player.Basics
 
             //Motion
             this.FixedUpdateAsObservable()
-                .Where(x => !Animator.GetBool("IsJumping"))
-                .Where(x => !Animator.GetBool("IsStandingLightAttack"))
-                .Where(x => !Animator.GetBool("IsStandingMiddleAttack"))
-                .Where(x => !Animator.GetBool("IsStandingHighAttack"))
-                .Where(x => !Animator.GetBool("IsCrouchingLightAttack"))
-                .Where(x => !Animator.GetBool("IsCrouchingMiddleAttack"))
-                .Where(x => !Animator.GetBool("IsCrouchingHighAttack"))
-                .Where(x => !Animator.GetBool("IsStandingDamage"))
-                .Where(x => !Animator.GetBool("IsCrouchingDamage"))
-                .Where(x => !Animator.GetBool("IsJumpingDamage"))
+                .Where(x => PlayerState.canRun.Value)
                 .Subscribe(_ => this.Run(Key.Horizontal.Value, MaxSpeed));
 
             //Collision
