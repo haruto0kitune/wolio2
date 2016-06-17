@@ -73,22 +73,22 @@ namespace Wolio.Actor.FlyingPiyo.Damages
                 });
         }
 
-        public void Damage(int damageValue, int recovery, int hitStop, bool isTechable = false)
+        public void Damage(int damageValue, int recovery, int hitStop, bool isTechable, bool hasKnockdownAttribute, AttackAttribute attackAttribute)
         {
             if(damageCoroutineStore == null)
             {
-                damageCoroutineStore = StartCoroutine(DamageCoroutine(damageValue, recovery, hitStop, isTechable));
+                damageCoroutineStore = StartCoroutine(DamageCoroutine(damageValue, recovery, hitStop, isTechable, hasKnockdownAttribute, attackAttribute));
             }
             else
             {
                 StopCoroutine(damageCoroutineStore);
-                damageCoroutineStore = StartCoroutine(DamageCoroutine(damageValue, recovery, hitStop, isTechable));
+                damageCoroutineStore = StartCoroutine(DamageCoroutine(damageValue, recovery, hitStop, isTechable, hasKnockdownAttribute, attackAttribute));
                 wasAttackedDuringDamage = true;
             }
         }
 
         // Execute DamageManager
-        public IEnumerator DamageCoroutine(int damageValue, int recovery, int hitStop, bool isTechable = false)
+        public IEnumerator DamageCoroutine(int damageValue, int recovery, int hitStop, bool isTechable, bool hasKnockdownAttribute, AttackAttribute attackAttribute)
         {
             // StartUp
             Animator.Play("FlyingPiyoDamage", Animator.GetLayerIndex("Base Layer"), 0.0f);

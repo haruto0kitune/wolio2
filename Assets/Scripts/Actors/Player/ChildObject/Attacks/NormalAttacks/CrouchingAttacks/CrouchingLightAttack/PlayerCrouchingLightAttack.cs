@@ -33,6 +33,12 @@ namespace Wolio.Actor.Player.Attacks.NormalAttacks.CrouchingAttacks
         int Active;
         [SerializeField]
         int Recovery;
+        [SerializeField]
+        bool isTechable;
+        [SerializeField]
+        bool hasKnockdownAttribute;
+        [SerializeField]
+        AttackAttribute attackAttribute;
         bool wasFinished;
         bool isCancelable;
         bool wasCanceled;
@@ -200,7 +206,7 @@ namespace Wolio.Actor.Player.Attacks.NormalAttacks.CrouchingAttacks
                 .Where(x => x.gameObject.tag == "Enemy/HurtBox")
                 .Subscribe(_ =>
                 {
-                    _.gameObject.GetComponent<DamageManager>().ApplyDamage(damageValue, hitRecovery, hitStop);
+                    _.gameObject.GetComponent<DamageManager>().ApplyDamage(damageValue, hitRecovery, hitStop, isTechable, hasKnockdownAttribute, attackAttribute);
                     HitBox.enabled = false;
                     isCancelable = true;
                 });

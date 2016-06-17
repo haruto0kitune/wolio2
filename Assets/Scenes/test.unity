@@ -134,6 +134,9 @@ MonoBehaviour:
   damageValue: 1
   hitRecovery: 13
   hitStop: 8
+  isTechable: 1
+  hasKnockdownAttribute: 0
+  attackAttribute: 1
 --- !u!58 &1460071
 CircleCollider2D:
   m_ObjectHideFlags: 0
@@ -520,7 +523,7 @@ Transform:
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 150007667}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 1.116, y: 0.841, z: 0}
+  m_LocalPosition: {x: 0.61, y: 0.83, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 2084710172}
@@ -529,8 +532,10 @@ Transform:
   - {fileID: 1966504324}
   - {fileID: 29732162}
   - {fileID: 1981431411}
+  - {fileID: 749958381}
+  - {fileID: 1830976757}
   m_Father: {fileID: 1734839811}
-  m_RootOrder: 1
+  m_RootOrder: 0
 --- !u!114 &150007669
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -974,6 +979,9 @@ MonoBehaviour:
   damageValue: 1
   hitRecovery: 10
   hitStop: 8
+  isTechable: 1
+  hasKnockdownAttribute: 0
+  attackAttribute: 2
 --- !u!1001 &187099275
 Prefab:
   m_ObjectHideFlags: 0
@@ -1067,6 +1075,74 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   Piyo: {fileID: 1010449266}
   WallCheck: {fileID: 1758548130}
+--- !u!1 &194713347
+GameObject:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  serializedVersion: 4
+  m_Component:
+  - 4: {fileID: 194713348}
+  - 61: {fileID: 194713349}
+  - 114: {fileID: 194713350}
+  m_Layer: 12
+  m_Name: DashPiyoRun
+  m_TagString: Enemy
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &194713348
+Transform:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 194713347}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children:
+  - {fileID: 468359190}
+  - {fileID: 1607398871}
+  - {fileID: 600625267}
+  m_Father: {fileID: 1321964384}
+  m_RootOrder: 0
+--- !u!61 &194713349
+BoxCollider2D:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 194713347}
+  m_Enabled: 1
+  m_Density: 1
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_UsedByEffector: 0
+  m_Offset: {x: -0.00363791, y: 0.0008560121}
+  serializedVersion: 2
+  m_Size: {x: 0.35225606, y: 0.3186044}
+--- !u!114 &194713350
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 194713347}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 80b7ec045d9de6843bcfce7695febd5f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  DashPiyo: {fileID: 1024434289}
+  DashPiyoRunHitBox: {fileID: 468359189}
+  DashPiyoRunHurtBox: {fileID: 1607398870}
+  DashPiyoRunDashTriggerBox: {fileID: 600625266}
+  Speed: 3
+  damageValue: 1
+  hitRecovery: 8
+  hitStop: 8
+  isTechable: 1
+  hasKnockdownAttribute: 0
+  attackAttribute: 2
 --- !u!1 &207761959
 GameObject:
   m_ObjectHideFlags: 0
@@ -1759,8 +1835,9 @@ Transform:
   m_Children:
   - {fileID: 1823874521}
   - {fileID: 1185111893}
+  - {fileID: 1024434292}
   m_Father: {fileID: 1734839811}
-  m_RootOrder: 2
+  m_RootOrder: 1
 --- !u!1 &273526838
 GameObject:
   m_ObjectHideFlags: 0
@@ -1877,6 +1954,33 @@ Prefab:
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 5b0be34a1bdd14646bea4af5665ef78a, type: 2}
   m_IsPrefabParent: 0
+--- !u!1 &282846255
+GameObject:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  serializedVersion: 4
+  m_Component:
+  - 4: {fileID: 282846256}
+  m_Layer: 11
+  m_Name: SupineKnockdown
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &282846256
+Transform:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 282846255}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 749958381}
+  m_RootOrder: 0
 --- !u!1 &302025871
 GameObject:
   m_ObjectHideFlags: 0
@@ -2467,6 +2571,9 @@ MonoBehaviour:
   Startup: 9
   Active: 3
   Recovery: 18
+  isTechable: 1
+  hasKnockdownAttribute: 0
+  attackAttribute: 0
 --- !u!61 &355783777
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -3230,12 +3337,6 @@ SpriteRenderer:
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
---- !u!114 &428212586 stripped
-MonoBehaviour:
-  m_PrefabParentObject: {fileID: 11430506, guid: 631a53319fe23c94e9788cc66228b4c0,
-    type: 2}
-  m_PrefabInternal: {fileID: 350406345}
-  m_Script: {fileID: 708705254, guid: f5f67c52d1564df4a8936ccd202a3bd8, type: 3}
 --- !u!4 &439461115 stripped
 Transform:
   m_PrefabParentObject: {fileID: 431898, guid: 5b0be34a1bdd14646bea4af5665ef78a, type: 2}
@@ -3358,6 +3459,48 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   Actor: {fileID: 150007667}
   DamageObject: {fileID: 302025871}
+--- !u!1 &468359189
+GameObject:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  serializedVersion: 4
+  m_Component:
+  - 4: {fileID: 468359190}
+  - 61: {fileID: 468359191}
+  m_Layer: 18
+  m_Name: DashPiyoRunHitBox
+  m_TagString: Enemy/HitBox
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &468359190
+Transform:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 468359189}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 194713348}
+  m_RootOrder: 0
+--- !u!61 &468359191
+BoxCollider2D:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 468359189}
+  m_Enabled: 0
+  m_Density: 1
+  m_Material: {fileID: 0}
+  m_IsTrigger: 1
+  m_UsedByEffector: 0
+  m_Offset: {x: 0.025931358, y: 0.035722584}
+  serializedVersion: 2
+  m_Size: {x: 0.44900298, y: 0.43413657}
 --- !u!1 &477518368
 GameObject:
   m_ObjectHideFlags: 0
@@ -3394,6 +3537,63 @@ Transform:
   - {fileID: 931110322}
   m_Father: {fileID: 150007668}
   m_RootOrder: 2
+--- !u!1 &518688356
+GameObject:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  serializedVersion: 4
+  m_Component:
+  - 4: {fileID: 518688357}
+  - 61: {fileID: 518688358}
+  - 114: {fileID: 518688359}
+  m_Layer: 12
+  m_Name: DashPiyoDamage
+  m_TagString: Enemy
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &518688357
+Transform:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 518688356}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children:
+  - {fileID: 802244645}
+  m_Father: {fileID: 1545401991}
+  m_RootOrder: 0
+--- !u!61 &518688358
+BoxCollider2D:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 518688356}
+  m_Enabled: 0
+  m_Density: 1
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_UsedByEffector: 0
+  m_Offset: {x: -0.00363791, y: 0.0008560121}
+  serializedVersion: 2
+  m_Size: {x: 0.35225606, y: 0.3186044}
+--- !u!114 &518688359
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 518688356}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 66f5debaae12bd34ab570ff55bd06b49, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  DashPiyo: {fileID: 1024434289}
+  DashPiyoDamageHurtBox: {fileID: 802244644}
 --- !u!1 &525903627
 GameObject:
   m_ObjectHideFlags: 0
@@ -3451,10 +3651,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   FlyingPiyo: {fileID: 743129986}
   FlyingPiyoDamageHurtBox: {fileID: 1013882153}
---- !u!4 &529925492 stripped
-Transform:
-  m_PrefabParentObject: {fileID: 449658, guid: 5f98b9b4d0371fb438dc1ef5ce906a0a, type: 2}
-  m_PrefabInternal: {fileID: 1617371847}
 --- !u!1 &547338728
 GameObject:
   m_ObjectHideFlags: 0
@@ -3781,6 +3977,48 @@ Transform:
   - {fileID: 876059594}
   m_Father: {fileID: 85829389}
   m_RootOrder: 0
+--- !u!1 &600625266
+GameObject:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  serializedVersion: 4
+  m_Component:
+  - 4: {fileID: 600625267}
+  - 61: {fileID: 600625268}
+  m_Layer: 0
+  m_Name: DashPiyoRunDashTriggerBox
+  m_TagString: Enemy
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &600625267
+Transform:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 600625266}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 194713348}
+  m_RootOrder: 2
+--- !u!61 &600625268
+BoxCollider2D:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 600625266}
+  m_Enabled: 0
+  m_Density: 1
+  m_Material: {fileID: 0}
+  m_IsTrigger: 1
+  m_UsedByEffector: 0
+  m_Offset: {x: -1.2391596, y: 0.16955853}
+  serializedVersion: 2
+  m_Size: {x: 0.057870984, y: 0.66088367}
 --- !u!4 &612170138
 Transform:
   m_ObjectHideFlags: 0
@@ -4664,6 +4902,9 @@ MonoBehaviour:
   Startup: 4
   Active: 10
   Recovery: 30
+  isTechable: 1
+  hasKnockdownAttribute: 0
+  attackAttribute: 2
 --- !u!61 &747744270
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -4693,6 +4934,35 @@ CircleCollider2D:
   m_Offset: {x: 0, y: -0.27}
   serializedVersion: 2
   m_Radius: 0.132502
+--- !u!1 &749958380
+GameObject:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  serializedVersion: 4
+  m_Component:
+  - 4: {fileID: 749958381}
+  m_Layer: 11
+  m_Name: Knockdowns
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &749958381
+Transform:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 749958380}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children:
+  - {fileID: 282846256}
+  - {fileID: 2113717274}
+  m_Father: {fileID: 150007668}
+  m_RootOrder: 6
 --- !u!1 &752879769
 GameObject:
   m_ObjectHideFlags: 0
@@ -4918,6 +5188,9 @@ MonoBehaviour:
   hitStop: 13
   Startup: 9
   Active: 3
+  isTechable: 1
+  hasKnockdownAttribute: 0
+  attackAttribute: 1
 --- !u!61 &782293147
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -5079,6 +5352,62 @@ BoxCollider2D:
   m_Offset: {x: 0, y: 0}
   serializedVersion: 2
   m_Size: {x: 0.4, y: 0.4}
+--- !u!1 &802244644
+GameObject:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  serializedVersion: 4
+  m_Component:
+  - 4: {fileID: 802244645}
+  - 61: {fileID: 802244647}
+  - 114: {fileID: 802244646}
+  m_Layer: 12
+  m_Name: DashPiyoDamageHurtBox
+  m_TagString: Enemy/HurtBox
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &802244645
+Transform:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 802244644}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 518688357}
+  m_RootOrder: 0
+--- !u!114 &802244646
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 802244644}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d0b46e87f58ac9a45a1bde6538366fe2, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  Actor: {fileID: 1024434289}
+  DamageObject: {fileID: 518688356}
+--- !u!61 &802244647
+BoxCollider2D:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 802244644}
+  m_Enabled: 0
+  m_Density: 1
+  m_Material: {fileID: 0}
+  m_IsTrigger: 1
+  m_UsedByEffector: 0
+  m_Offset: {x: 0.009075999, y: 0.018151999}
+  serializedVersion: 2
+  m_Size: {x: 0.4191382, y: 0.4191389}
 --- !u!1001 &810594435
 Prefab:
   m_ObjectHideFlags: 0
@@ -5595,6 +5924,9 @@ MonoBehaviour:
   hitStop: 15
   Startup: 3
   Active: 4
+  isTechable: 1
+  hasKnockdownAttribute: 0
+  attackAttribute: 1
 --- !u!61 &901744538
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -5849,6 +6181,33 @@ Prefab:
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 75343d6a1ea04014999c100f8fc4fe87, type: 2}
   m_IsPrefabParent: 0
+--- !u!1 &962639518
+GameObject:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  serializedVersion: 4
+  m_Component:
+  - 4: {fileID: 962639519}
+  m_Layer: 11
+  m_Name: StandingUpFromSupineKnockdown
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &962639519
+Transform:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 962639518}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 1830976757}
+  m_RootOrder: 0
 --- !u!1 &978643163
 GameObject:
   m_ObjectHideFlags: 0
@@ -6493,7 +6852,6 @@ GameObject:
   m_Component:
   - 4: {fileID: 1823874521}
   - 212: {fileID: 1010449275}
-  - 58: {fileID: 1010449274}
   - 50: {fileID: 1010449273}
   - 95: {fileID: 1010449271}
   - 114: {fileID: 1010449268}
@@ -6566,21 +6924,6 @@ Rigidbody2D:
   m_SleepingMode: 1
   m_CollisionDetection: 0
   m_Constraints: 4
---- !u!58 &1010449274
-CircleCollider2D:
-  m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 5855204, guid: f9e7cd8f54ed8df4f94016c5205ae20b,
-    type: 2}
-  m_PrefabInternal: {fileID: 0}
-  m_GameObject: {fileID: 1010449266}
-  m_Enabled: 1
-  m_Density: 1
-  m_Material: {fileID: 0}
-  m_IsTrigger: 0
-  m_UsedByEffector: 0
-  m_Offset: {x: 0, y: 0}
-  serializedVersion: 2
-  m_Radius: 0.17
 --- !u!212 &1010449275
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -6612,6 +6955,75 @@ SpriteRenderer:
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
+--- !u!1 &1011380037
+GameObject:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  serializedVersion: 4
+  m_Component:
+  - 4: {fileID: 1011380038}
+  - 61: {fileID: 1011380039}
+  - 114: {fileID: 1011380040}
+  m_Layer: 12
+  m_Name: DashPiyoDash
+  m_TagString: Enemy
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &1011380038
+Transform:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1011380037}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children:
+  - {fileID: 2123226503}
+  - {fileID: 1263658557}
+  m_Father: {fileID: 1321964384}
+  m_RootOrder: 1
+--- !u!61 &1011380039
+BoxCollider2D:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1011380037}
+  m_Enabled: 0
+  m_Density: 1
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_UsedByEffector: 0
+  m_Offset: {x: -0.00363791, y: 0.0008560121}
+  serializedVersion: 2
+  m_Size: {x: 0.35225606, y: 0.3186044}
+--- !u!114 &1011380040
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1011380037}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0158ca01cdfaddd48a5ae0a8b5a7b335, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  DashPiyo: {fileID: 1024434289}
+  DashPiyoRunHitBox: {fileID: 468359189}
+  DashPiyoRunHurtBox: {fileID: 1607398870}
+  Speed: 5
+  damageValue: 1
+  hitRecovery: 13
+  hitStop: 8
+  startup: 4
+  active: 30
+  recovery: 5
+  isTechable: 0
+  hasKnockdownAttribute: 1
+  attackAttribute: 0
 --- !u!1 &1013882153
 GameObject:
   m_ObjectHideFlags: 0
@@ -6743,6 +7155,128 @@ SpriteRenderer:
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
+--- !u!1 &1024434289
+GameObject:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  serializedVersion: 4
+  m_Component:
+  - 4: {fileID: 1024434292}
+  - 212: {fileID: 1024434291}
+  - 95: {fileID: 1024434290}
+  - 50: {fileID: 1024434293}
+  - 114: {fileID: 1024434295}
+  - 114: {fileID: 1024434294}
+  m_Layer: 12
+  m_Name: DashPiyo
+  m_TagString: Enemy
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!95 &1024434290
+Animator:
+  serializedVersion: 3
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1024434289}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: 7b42e5274523ef24a9edcc6533df8952, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+--- !u!212 &1024434291
+SpriteRenderer:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1024434289}
+  m_Enabled: 1
+  m_CastShadows: 0
+  m_ReceiveShadows: 0
+  m_Materials:
+  - {fileID: 10754, guid: 0000000000000000e000000000000000, type: 0}
+  m_SubsetIndices: 
+  m_StaticBatchRoot: {fileID: 0}
+  m_UseLightProbes: 0
+  m_ReflectionProbeUsage: 0
+  m_ProbeAnchor: {fileID: 0}
+  m_ScaleInLightmap: 1
+  m_PreserveUVs: 0
+  m_IgnoreNormalsForChartDetection: 0
+  m_ImportantGI: 0
+  m_MinimumChartSize: 4
+  m_AutoUVMaxDistance: 0.5
+  m_AutoUVMaxAngle: 89
+  m_LightmapParameters: {fileID: 0}
+  m_SortingLayerID: 0
+  m_SortingOrder: 0
+  m_Sprite: {fileID: 21300000, guid: 09f01f912a6fa364c8dcb4ee18c8ba46, type: 3}
+  m_Color: {r: 1, g: 1, b: 1, a: 1}
+  m_FlipX: 0
+  m_FlipY: 0
+--- !u!4 &1024434292
+Transform:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1024434289}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: -0.3, y: 0.64, z: -1}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children:
+  - {fileID: 1321964384}
+  - {fileID: 1545401991}
+  m_Father: {fileID: 268908513}
+  m_RootOrder: 2
+--- !u!50 &1024434293
+Rigidbody2D:
+  serializedVersion: 2
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1024434289}
+  m_UseAutoMass: 0
+  m_Mass: 1
+  m_LinearDrag: 0
+  m_AngularDrag: 0.05
+  m_GravityScale: 1
+  m_IsKinematic: 0
+  m_Interpolate: 0
+  m_SleepingMode: 1
+  m_CollisionDetection: 0
+  m_Constraints: 4
+--- !u!114 &1024434294
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1024434289}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d07239b7acb4e334ea35bd34277eacc4, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  Hp:
+    value: 5
+--- !u!114 &1024434295
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1024434289}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b2d268209ac37274c92f4f606dcc4f04, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &1031319409
 GameObject:
   m_ObjectHideFlags: 0
@@ -6795,6 +7329,9 @@ MonoBehaviour:
   Startup: 10
   Active: 10
   Recovery: 19
+  isTechable: 1
+  hasKnockdownAttribute: 1
+  attackAttribute: 0
 --- !u!61 &1031319412
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -7518,6 +8055,33 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   Actor: {fileID: 150007667}
   DamageObject: {fileID: 1726887277}
+--- !u!1 &1164248556
+GameObject:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  serializedVersion: 4
+  m_Component:
+  - 4: {fileID: 1164248557}
+  m_Layer: 11
+  m_Name: StandingUpFromProneKnockdown (1)
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &1164248557
+Transform:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1164248556}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 1830976757}
+  m_RootOrder: 1
 --- !u!1 &1169188513
 GameObject:
   m_ObjectHideFlags: 0
@@ -7570,6 +8134,9 @@ MonoBehaviour:
   Startup: 4
   Active: 4
   Recovery: 10
+  isTechable: 1
+  hasKnockdownAttribute: 0
+  attackAttribute: 0
 --- !u!61 &1169188516
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -7915,6 +8482,62 @@ BoxCollider2D:
   m_Offset: {x: 0, y: 0}
   serializedVersion: 2
   m_Size: {x: 0.4, y: 0.4}
+--- !u!1 &1263658556
+GameObject:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  serializedVersion: 4
+  m_Component:
+  - 4: {fileID: 1263658557}
+  - 61: {fileID: 1263658559}
+  - 114: {fileID: 1263658558}
+  m_Layer: 13
+  m_Name: DashPiyoDashHurtBox
+  m_TagString: Enemy/HurtBox
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &1263658557
+Transform:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1263658556}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 1011380038}
+  m_RootOrder: 1
+--- !u!114 &1263658558
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1263658556}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d0b46e87f58ac9a45a1bde6538366fe2, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  Actor: {fileID: 1024434289}
+  DamageObject: {fileID: 518688356}
+--- !u!61 &1263658559
+BoxCollider2D:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1263658556}
+  m_Enabled: 0
+  m_Density: 1
+  m_Material: {fileID: 0}
+  m_IsTrigger: 1
+  m_UsedByEffector: 0
+  m_Offset: {x: 0.009075999, y: 0.018151999}
+  serializedVersion: 2
+  m_Size: {x: 0.4191382, y: 0.4191389}
 --- !u!1001 &1265922275
 Prefab:
   m_ObjectHideFlags: 0
@@ -8178,6 +8801,36 @@ SpriteRenderer:
 Transform:
   m_PrefabParentObject: {fileID: 444812, guid: d693c3cba9489f8438dd2a1f1424d597, type: 2}
   m_PrefabInternal: {fileID: 1813777302}
+--- !u!1 &1321964383
+GameObject:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  serializedVersion: 4
+  m_Component:
+  - 4: {fileID: 1321964384}
+  m_Layer: 12
+  m_Name: DashPiyoBasics
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &1321964384
+Transform:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1321964383}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children:
+  - {fileID: 194713348}
+  - {fileID: 1011380038}
+  - {fileID: 1889695987}
+  m_Father: {fileID: 1024434292}
+  m_RootOrder: 0
 --- !u!4 &1336481676 stripped
 Transform:
   m_PrefabParentObject: {fileID: 418598, guid: 22cec0eebabc04d4db2ca1654ceef887, type: 2}
@@ -8692,6 +9345,33 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   MaxSpeed: 6
+--- !u!1 &1439890088
+GameObject:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  serializedVersion: 4
+  m_Component:
+  - 4: {fileID: 1439890089}
+  m_Layer: 12
+  m_Name: DashPiyoTurnWallCheck
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &1439890089
+Transform:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1439890088}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: -0.2, y: 0.120000005, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 1889695987}
+  m_RootOrder: 0
 --- !u!1 &1454653986
 GameObject:
   m_ObjectHideFlags: 0
@@ -8986,6 +9666,9 @@ MonoBehaviour:
   hitStop: 10
   Startup: 7
   Active: 2
+  isTechable: 1
+  hasKnockdownAttribute: 0
+  attackAttribute: 1
 --- !u!61 &1479609536
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -9130,6 +9813,9 @@ MonoBehaviour:
   Startup: 11
   Active: 3
   Recovery: 21
+  isTechable: 1
+  hasKnockdownAttribute: 0
+  attackAttribute: 2
 --- !u!61 &1501029341
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -9269,6 +9955,34 @@ SpriteRenderer:
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
+--- !u!1 &1545401990
+GameObject:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  serializedVersion: 4
+  m_Component:
+  - 4: {fileID: 1545401991}
+  m_Layer: 12
+  m_Name: DashPiyoDamages
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &1545401991
+Transform:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1545401990}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children:
+  - {fileID: 518688357}
+  m_Father: {fileID: 1024434292}
+  m_RootOrder: 1
 --- !u!1 &1545942317
 GameObject:
   m_ObjectHideFlags: 0
@@ -9494,6 +10208,62 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   Actor: {fileID: 150007667}
   DamageObject: {fileID: 306827548}
+--- !u!1 &1607398870
+GameObject:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  serializedVersion: 4
+  m_Component:
+  - 4: {fileID: 1607398871}
+  - 61: {fileID: 1607398873}
+  - 114: {fileID: 1607398872}
+  m_Layer: 13
+  m_Name: DashPiyoRunHurtBox
+  m_TagString: Enemy/HurtBox
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &1607398871
+Transform:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1607398870}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 194713348}
+  m_RootOrder: 1
+--- !u!114 &1607398872
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1607398870}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d0b46e87f58ac9a45a1bde6538366fe2, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  Actor: {fileID: 1024434289}
+  DamageObject: {fileID: 518688356}
+--- !u!61 &1607398873
+BoxCollider2D:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1607398870}
+  m_Enabled: 0
+  m_Density: 1
+  m_Material: {fileID: 0}
+  m_IsTrigger: 1
+  m_UsedByEffector: 0
+  m_Offset: {x: 0.009075999, y: 0.018151999}
+  serializedVersion: 2
+  m_Size: {x: 0.4191382, y: 0.4191389}
 --- !u!1001 &1611175273
 Prefab:
   m_ObjectHideFlags: 0
@@ -9543,76 +10313,6 @@ Prefab:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 22cec0eebabc04d4db2ca1654ceef887, type: 2}
-  m_IsPrefabParent: 0
---- !u!1001 &1617371847
-Prefab:
-  m_ObjectHideFlags: 0
-  serializedVersion: 2
-  m_Modification:
-    m_TransformParent: {fileID: 1734839811}
-    m_Modifications:
-    - target: {fileID: 449658, guid: 5f98b9b4d0371fb438dc1ef5ce906a0a, type: 2}
-      propertyPath: m_LocalPosition.x
-      value: 3.42
-      objectReference: {fileID: 0}
-    - target: {fileID: 449658, guid: 5f98b9b4d0371fb438dc1ef5ce906a0a, type: 2}
-      propertyPath: m_LocalPosition.y
-      value: 1.53
-      objectReference: {fileID: 0}
-    - target: {fileID: 449658, guid: 5f98b9b4d0371fb438dc1ef5ce906a0a, type: 2}
-      propertyPath: m_LocalPosition.z
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 449658, guid: 5f98b9b4d0371fb438dc1ef5ce906a0a, type: 2}
-      propertyPath: m_LocalRotation.x
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 449658, guid: 5f98b9b4d0371fb438dc1ef5ce906a0a, type: 2}
-      propertyPath: m_LocalRotation.y
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 449658, guid: 5f98b9b4d0371fb438dc1ef5ce906a0a, type: 2}
-      propertyPath: m_LocalRotation.z
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 449658, guid: 5f98b9b4d0371fb438dc1ef5ce906a0a, type: 2}
-      propertyPath: m_LocalRotation.w
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 449658, guid: 5f98b9b4d0371fb438dc1ef5ce906a0a, type: 2}
-      propertyPath: m_RootOrder
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 11455928, guid: 5f98b9b4d0371fb438dc1ef5ce906a0a, type: 2}
-      propertyPath: Text1
-      value: 
-      objectReference: {fileID: 1982675711}
-    - target: {fileID: 11455928, guid: 5f98b9b4d0371fb438dc1ef5ce906a0a, type: 2}
-      propertyPath: Text2
-      value: 
-      objectReference: {fileID: 428212586}
-    - target: {fileID: 140048, guid: 5f98b9b4d0371fb438dc1ef5ce906a0a, type: 2}
-      propertyPath: m_IsActive
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 5066910, guid: 5f98b9b4d0371fb438dc1ef5ce906a0a, type: 2}
-      propertyPath: m_GravityScale
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 11491554, guid: 5f98b9b4d0371fb438dc1ef5ce906a0a, type: 2}
-      propertyPath: JumpForce
-      value: 650
-      objectReference: {fileID: 0}
-    - target: {fileID: 5859830, guid: 5f98b9b4d0371fb438dc1ef5ce906a0a, type: 2}
-      propertyPath: m_Enabled
-      value: 1
-      objectReference: {fileID: 0}
-    m_RemovedComponents:
-    - {fileID: 11467178, guid: 5f98b9b4d0371fb438dc1ef5ce906a0a, type: 2}
-    - {fileID: 11429140, guid: 5f98b9b4d0371fb438dc1ef5ce906a0a, type: 2}
-    - {fileID: 11446852, guid: 5f98b9b4d0371fb438dc1ef5ce906a0a, type: 2}
-    - {fileID: 11473240, guid: 5f98b9b4d0371fb438dc1ef5ce906a0a, type: 2}
-  m_ParentPrefab: {fileID: 100100000, guid: 5f98b9b4d0371fb438dc1ef5ce906a0a, type: 2}
   m_IsPrefabParent: 0
 --- !u!4 &1621274936 stripped
 Transform:
@@ -10190,7 +10890,6 @@ Transform:
   m_LocalPosition: {x: 0, y: 0, z: 1}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
-  - {fileID: 529925492}
   - {fileID: 150007668}
   - {fileID: 268908513}
   m_Father: {fileID: 2074393010}
@@ -10495,6 +11194,9 @@ MonoBehaviour:
   Startup: 9
   Active: 2
   Recovery: 17
+  isTechable: 1
+  hasKnockdownAttribute: 0
+  attackAttribute: 2
 --- !u!61 &1783782033
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -10850,6 +11552,35 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   MaxSpeed: 6
   Force: 50
+--- !u!1 &1830976756
+GameObject:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  serializedVersion: 4
+  m_Component:
+  - 4: {fileID: 1830976757}
+  m_Layer: 11
+  m_Name: StandingUps
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &1830976757
+Transform:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1830976756}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children:
+  - {fileID: 962639519}
+  - {fileID: 1164248557}
+  m_Father: {fileID: 150007668}
+  m_RootOrder: 7
 --- !u!1 &1850485326
 GameObject:
   m_ObjectHideFlags: 0
@@ -11117,6 +11848,48 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   Actor: {fileID: 150007667}
   DamageObject: {fileID: 1726887277}
+--- !u!1 &1889695986
+GameObject:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  serializedVersion: 4
+  m_Component:
+  - 4: {fileID: 1889695987}
+  - 114: {fileID: 1889695988}
+  m_Layer: 12
+  m_Name: DashPiyoTurn
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &1889695987
+Transform:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1889695986}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children:
+  - {fileID: 1439890089}
+  m_Father: {fileID: 1321964384}
+  m_RootOrder: 2
+--- !u!114 &1889695988
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1889695986}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 660cb42b5d8c65f4ba63b500414fdbab, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  DashPiyo: {fileID: 1024434289}
+  WallCheck: {fileID: 1439890088}
 --- !u!1 &1890744635
 GameObject:
   m_ObjectHideFlags: 0
@@ -11469,12 +12242,6 @@ Transform:
   - {fileID: 302025872}
   m_Father: {fileID: 150007668}
   m_RootOrder: 5
---- !u!114 &1982675711 stripped
-MonoBehaviour:
-  m_PrefabParentObject: {fileID: 11430998, guid: 631a53319fe23c94e9788cc66228b4c0,
-    type: 2}
-  m_PrefabInternal: {fileID: 350406345}
-  m_Script: {fileID: 708705254, guid: f5f67c52d1564df4a8936ccd202a3bd8, type: 3}
 --- !u!1 &2006736284
 GameObject:
   m_ObjectHideFlags: 0
@@ -11603,11 +12370,11 @@ Prefab:
     m_Modifications:
     - target: {fileID: 472794, guid: 7e4733219325f204ab5d78daadf39d8f, type: 2}
       propertyPath: m_LocalPosition.x
-      value: 2.63
+      value: 2.6
       objectReference: {fileID: 0}
     - target: {fileID: 472794, guid: 7e4733219325f204ab5d78daadf39d8f, type: 2}
       propertyPath: m_LocalPosition.y
-      value: 0.8
+      value: 2.17
       objectReference: {fileID: 0}
     - target: {fileID: 472794, guid: 7e4733219325f204ab5d78daadf39d8f, type: 2}
       propertyPath: m_LocalPosition.z
@@ -11655,7 +12422,7 @@ Transform:
   m_PrefabInternal: {fileID: 2023739791}
   m_GameObject: {fileID: 207761959}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 2.63, y: 0.8, z: 0}
+  m_LocalPosition: {x: 2.6, y: 2.17, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 843478760}
@@ -11950,6 +12717,75 @@ SpriteRenderer:
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
+--- !u!1 &2113717273
+GameObject:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  serializedVersion: 4
+  m_Component:
+  - 4: {fileID: 2113717274}
+  m_Layer: 11
+  m_Name: ProneKnockdown
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &2113717274
+Transform:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 2113717273}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 749958381}
+  m_RootOrder: 1
+--- !u!1 &2123226502
+GameObject:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  serializedVersion: 4
+  m_Component:
+  - 4: {fileID: 2123226503}
+  - 61: {fileID: 2123226504}
+  m_Layer: 18
+  m_Name: DashPiyoDashHitBox
+  m_TagString: Enemy/HitBox
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &2123226503
+Transform:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 2123226502}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 1011380038}
+  m_RootOrder: 0
+--- !u!61 &2123226504
+BoxCollider2D:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 2123226502}
+  m_Enabled: 0
+  m_Density: 1
+  m_Material: {fileID: 0}
+  m_IsTrigger: 1
+  m_UsedByEffector: 0
+  m_Offset: {x: 0.025931358, y: 0.035722584}
+  serializedVersion: 2
+  m_Size: {x: 0.44900298, y: 0.43413657}
 --- !u!1 &2123435719
 GameObject:
   m_ObjectHideFlags: 0

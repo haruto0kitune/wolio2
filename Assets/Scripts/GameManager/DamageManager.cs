@@ -23,11 +23,11 @@ public class DamageManager : MonoBehaviour
         
     }
 
-    public void ApplyDamage(int damageValue, int recovery, int hitStop, bool isTechable = false)
+    public void ApplyDamage(int damageValue, int recovery, int hitStop, bool isTechable, bool hasKnockdownAttribute, AttackAttribute attackAttribute)
     {
         if(DamageComponent != null)
         {
-            DamageComponent.Damage(damageValue, recovery, hitStop, isTechable);
+            DamageComponent.Damage(damageValue, recovery, hitStop, isTechable, hasKnockdownAttribute, attackAttribute);
         }
         else
         {

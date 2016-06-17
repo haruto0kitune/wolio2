@@ -127,6 +127,28 @@ namespace Wolio.Actor.Player.Basics
                     Animator.SetBool("IsStandingDamage", true);
                 });
             #endregion
+            #region Stand->SupineKnockdown
+            ObservableStateMachineTrigger
+                .OnStateUpdateAsObservable()
+                .Where(x => x.StateInfo.IsName("Base Layer.Stand"))
+                .Where(x => PlayerState.WasSupineKnockdownAttacked.Value)
+                .Subscribe(_ =>
+                {
+                    Animator.SetBool("IsStanding", false);
+                    Animator.SetBool("IsSupineKnockdown", true);
+                });
+            #endregion
+            #region Stand->ProneKnockdown
+            ObservableStateMachineTrigger
+                .OnStateUpdateAsObservable()
+                .Where(x => x.StateInfo.IsName("Base Layer.Stand"))
+                .Where(x => PlayerState.WasProneKnockdownAttacked.Value)
+                .Subscribe(_ =>
+                {
+                    Animator.SetBool("IsStanding", false);
+                    Animator.SetBool("IsProneKnockdown", true);
+                });
+            #endregion
 
             //Collision
             this.ObserveEveryValueChanged(x => Animator.GetBool("IsStanding"))

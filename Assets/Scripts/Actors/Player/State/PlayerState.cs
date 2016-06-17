@@ -70,6 +70,12 @@ namespace Wolio.Actor.Player
         public ReactiveProperty<bool> IsAirTech;
         public ReactiveProperty<bool> canAirTech;
         public ReactiveProperty<bool> canTurn;
+        public ReactiveProperty<bool> IsSupineKnockdown;
+        public ReactiveProperty<bool> IsProneKnockdown;
+        public ReactiveProperty<bool> IsStandingUpFromSupineKnockdown;
+        public ReactiveProperty<bool> IsStandingUpFromProneKnockdown;
+        public ReactiveProperty<bool> WasSupineKnockdownAttacked;
+        public ReactiveProperty<bool> WasProneKnockdownAttacked;
 
         void Awake()
         {
@@ -243,6 +249,21 @@ namespace Wolio.Actor.Player
                                                          IsJumping.Value ||
                                                          IsCreeping.Value))
                           .ToReactiveProperty();
+
+            IsSupineKnockdown = this.ObserveEveryValueChanged(x => Animator.GetBool("IsSupineKnockdown"))
+                                    .ToReactiveProperty();
+
+            IsProneKnockdown = this.ObserveEveryValueChanged(x => Animator.GetBool("IsProneKnockdown"))
+                                   .ToReactiveProperty();
+
+            IsStandingUpFromSupineKnockdown = this.ObserveEveryValueChanged(x => Animator.GetBool("IsStandingUpFromSupineKnockdown"))
+                                                  .ToReactiveProperty();
+
+            IsStandingUpFromProneKnockdown = this.ObserveEveryValueChanged(x => Animator.GetBool("IsStandingUpFromProneKnockdown"))
+                                                 .ToReactiveProperty();
+
+            WasSupineKnockdownAttacked = new ReactiveProperty<bool>();
+            WasProneKnockdownAttacked = new ReactiveProperty<bool>();
         }
 
         void Start()

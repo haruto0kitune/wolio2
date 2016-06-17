@@ -28,6 +28,12 @@ namespace Wolio.Actor.Enemy.Piyo.Basics
         int hitRecovery;
         [SerializeField]
         int hitStop;
+        [SerializeField]
+        bool isTechable;
+        [SerializeField]
+        bool hasKnockdownAttribute;
+        [SerializeField]
+        AttackAttribute attackAttribute;
 
         void Awake()
         {
@@ -85,7 +91,7 @@ namespace Wolio.Actor.Enemy.Piyo.Basics
                 .ThrottleFirstFrame(30)
                 .Subscribe(_ =>
                 {
-                    _.gameObject.GetComponent<DamageManager>().ApplyDamage(damageValue, hitRecovery, hitStop);
+                    _.gameObject.GetComponent<DamageManager>().ApplyDamage(damageValue, hitRecovery, hitStop, isTechable, hasKnockdownAttribute, attackAttribute);
                     HitBox.enabled = false;
                 });
         }
