@@ -18,6 +18,7 @@ namespace Wolio.Actor.Enemy.DashPiyo
         public ReactiveProperty<bool> FacingRight;
         public ReactiveProperty<float> Direction;
         public ReactiveProperty<bool> WasAttacked { get; set; }
+        public ReactiveProperty<bool> WasKnockdownAttributeAttacked { get; set; }
 
         void Awake()
         {
@@ -32,6 +33,7 @@ namespace Wolio.Actor.Enemy.DashPiyo
             FacingRight = SpriteRenderer.ObserveEveryValueChanged(x => x.flipX).ToReactiveProperty();
             Direction = FacingRight.Select(x => x ? 1f : -1f).ToReactiveProperty(-1f);
             WasAttacked = new ReactiveProperty<bool>();
+            WasKnockdownAttributeAttacked = new ReactiveProperty<bool>();
         }
 
         void Start()

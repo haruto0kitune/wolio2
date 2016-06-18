@@ -137,6 +137,7 @@ MonoBehaviour:
   isTechable: 1
   hasKnockdownAttribute: 0
   attackAttribute: 1
+  knockdownAttribute: 0
 --- !u!58 &1460071
 CircleCollider2D:
   m_ObjectHideFlags: 0
@@ -349,7 +350,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   Actor: {fileID: 1734839810}
-  DamageObject: {fileID: 302025871}
+  DamageObject: {fileID: 1356547612}
+  SupineDamageObject: {fileID: 1356547612}
+  ProneDamageObject: {fileID: 1933318782}
 --- !u!1 &57592882
 GameObject:
   m_ObjectHideFlags: 0
@@ -452,6 +455,64 @@ Transform:
   - {fileID: 723504207}
   m_Father: {fileID: 2074393010}
   m_RootOrder: 2
+--- !u!1 &89639533
+GameObject:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  serializedVersion: 4
+  m_Component:
+  - 4: {fileID: 89639534}
+  - 61: {fileID: 89639536}
+  - 114: {fileID: 89639535}
+  m_Layer: 11
+  m_Name: ProneJumpingDamageHurtBox
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &89639534
+Transform:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 89639533}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 1933318783}
+  m_RootOrder: 0
+--- !u!114 &89639535
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 89639533}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d0b46e87f58ac9a45a1bde6538366fe2, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  Actor: {fileID: 150007667}
+  DamageObject: {fileID: 1933318782}
+  SupineDamageObject: {fileID: 1356547612}
+  ProneDamageObject: {fileID: 1933318782}
+--- !u!61 &89639536
+BoxCollider2D:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 89639533}
+  m_Enabled: 0
+  m_Density: 1
+  m_Material: {fileID: 0}
+  m_IsTrigger: 1
+  m_UsedByEffector: 0
+  m_Offset: {x: 0.0011405945, y: -0.005906582}
+  serializedVersion: 2
+  m_Size: {x: 0.307244, y: 0.84717065}
 --- !u!1 &129510089
 GameObject:
   m_ObjectHideFlags: 0
@@ -768,6 +829,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   Actor: {fileID: 150007667}
   DamageObject: {fileID: 306827548}
+  SupineDamageObject: {fileID: 1356547612}
+  ProneDamageObject: {fileID: 1933318782}
 --- !u!1001 &164418016
 Prefab:
   m_ObjectHideFlags: 0
@@ -982,6 +1045,7 @@ MonoBehaviour:
   isTechable: 1
   hasKnockdownAttribute: 0
   attackAttribute: 2
+  knockdownAttribute: 0
 --- !u!1001 &187099275
 Prefab:
   m_ObjectHideFlags: 0
@@ -1143,6 +1207,7 @@ MonoBehaviour:
   isTechable: 1
   hasKnockdownAttribute: 0
   attackAttribute: 2
+  knockdownAttribute: 0
 --- !u!1 &207761959
 GameObject:
   m_ObjectHideFlags: 0
@@ -1304,6 +1369,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   Actor: {fileID: 150007667}
   DamageObject: {fileID: 306827548}
+  SupineDamageObject: {fileID: 1356547612}
+  ProneDamageObject: {fileID: 1933318782}
 --- !u!1 &217475498
 GameObject:
   m_ObjectHideFlags: 0
@@ -1962,6 +2029,8 @@ GameObject:
   serializedVersion: 4
   m_Component:
   - 4: {fileID: 282846256}
+  - 114: {fileID: 282846257}
+  - 61: {fileID: 282846258}
   m_Layer: 11
   m_Name: SupineKnockdown
   m_TagString: Untagged
@@ -1981,63 +2050,33 @@ Transform:
   m_Children: []
   m_Father: {fileID: 749958381}
   m_RootOrder: 0
---- !u!1 &302025871
-GameObject:
-  m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 0}
-  serializedVersion: 4
-  m_Component:
-  - 4: {fileID: 302025872}
-  - 61: {fileID: 302025873}
-  - 114: {fileID: 302025874}
-  m_Layer: 11
-  m_Name: JumpingDamage
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!4 &302025872
-Transform:
-  m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 0}
-  m_GameObject: {fileID: 302025871}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_Children:
-  - {fileID: 453977872}
-  m_Father: {fileID: 1981431411}
-  m_RootOrder: 2
---- !u!61 &302025873
-BoxCollider2D:
-  m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 0}
-  m_GameObject: {fileID: 302025871}
-  m_Enabled: 0
-  m_Density: 1
-  m_Material: {fileID: 6200000, guid: c203c2bf2e10fc24482abaf8a2164a45, type: 2}
-  m_IsTrigger: 0
-  m_UsedByEffector: 0
-  m_Offset: {x: 0.0011405945, y: 0.002524376}
-  serializedVersion: 2
-  m_Size: {x: 0.2600313, y: 0.80333036}
---- !u!114 &302025874
+--- !u!114 &282846257
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
-  m_GameObject: {fileID: 302025871}
+  m_GameObject: {fileID: 282846255}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 68c488328cd8869428ae89328663998e, type: 3}
+  m_Script: {fileID: 11500000, guid: ba9590b50afc0b6419a23815a17e2eb7, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   Player: {fileID: 150007667}
-  PlayerJumpingDamageHurtBox: {fileID: 453977871}
+  knockdownRecovery: 10
+--- !u!61 &282846258
+BoxCollider2D:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 282846255}
+  m_Enabled: 0
+  m_Density: 1
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_UsedByEffector: 0
+  m_Offset: {x: -0.1664087, y: -0.2863665}
+  serializedVersion: 2
+  m_Size: {x: 0.6020749, y: 0.2052152}
 --- !u!1 &306827548
 GameObject:
   m_ObjectHideFlags: 0
@@ -2574,6 +2613,7 @@ MonoBehaviour:
   isTechable: 1
   hasKnockdownAttribute: 0
   attackAttribute: 0
+  knockdownAttribute: 0
 --- !u!61 &355783777
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -3337,6 +3377,64 @@ SpriteRenderer:
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
+--- !u!1 &414731503
+GameObject:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  serializedVersion: 4
+  m_Component:
+  - 4: {fileID: 414731504}
+  - 61: {fileID: 414731506}
+  - 114: {fileID: 414731505}
+  m_Layer: 11
+  m_Name: SupineJumpingDamageHurtBox
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &414731504
+Transform:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 414731503}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 1356547613}
+  m_RootOrder: 0
+--- !u!114 &414731505
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 414731503}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d0b46e87f58ac9a45a1bde6538366fe2, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  Actor: {fileID: 150007667}
+  DamageObject: {fileID: 1356547612}
+  SupineDamageObject: {fileID: 1356547612}
+  ProneDamageObject: {fileID: 1933318782}
+--- !u!61 &414731506
+BoxCollider2D:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 414731503}
+  m_Enabled: 0
+  m_Density: 1
+  m_Material: {fileID: 0}
+  m_IsTrigger: 1
+  m_UsedByEffector: 0
+  m_Offset: {x: 0.0011405945, y: -0.005906582}
+  serializedVersion: 2
+  m_Size: {x: 0.307244, y: 0.84717065}
 --- !u!4 &439461115 stripped
 Transform:
   m_PrefabParentObject: {fileID: 431898, guid: 5b0be34a1bdd14646bea4af5665ef78a, type: 2}
@@ -3403,62 +3501,6 @@ Transform:
 Transform:
   m_PrefabParentObject: {fileID: 410892, guid: 549d8c40cd3ad684285585fa42bbecde, type: 2}
   m_PrefabInternal: {fileID: 2029700094}
---- !u!1 &453977871
-GameObject:
-  m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 0}
-  serializedVersion: 4
-  m_Component:
-  - 4: {fileID: 453977872}
-  - 61: {fileID: 453977873}
-  - 114: {fileID: 453977874}
-  m_Layer: 11
-  m_Name: JumpingDamageHurtBox
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!4 &453977872
-Transform:
-  m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 0}
-  m_GameObject: {fileID: 453977871}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_Children: []
-  m_Father: {fileID: 302025872}
-  m_RootOrder: 0
---- !u!61 &453977873
-BoxCollider2D:
-  m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 0}
-  m_GameObject: {fileID: 453977871}
-  m_Enabled: 0
-  m_Density: 1
-  m_Material: {fileID: 0}
-  m_IsTrigger: 1
-  m_UsedByEffector: 0
-  m_Offset: {x: 0.0011405945, y: -0.005906582}
-  serializedVersion: 2
-  m_Size: {x: 0.307244, y: 0.84717065}
---- !u!114 &453977874
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 0}
-  m_GameObject: {fileID: 453977871}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: d0b46e87f58ac9a45a1bde6538366fe2, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  Actor: {fileID: 150007667}
-  DamageObject: {fileID: 302025871}
 --- !u!1 &468359189
 GameObject:
   m_ObjectHideFlags: 0
@@ -3941,7 +3983,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   Actor: {fileID: 150007667}
-  DamageObject: {fileID: 302025871}
+  DamageObject: {fileID: 1356547612}
+  SupineDamageObject: {fileID: 1356547612}
+  ProneDamageObject: {fileID: 1933318782}
 --- !u!1 &593775930
 GameObject:
   m_ObjectHideFlags: 0
@@ -4406,6 +4450,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   Actor: {fileID: 150007667}
   DamageObject: {fileID: 1726887277}
+  SupineDamageObject: {fileID: 1356547612}
+  ProneDamageObject: {fileID: 1933318782}
 --- !u!1 &678259231
 GameObject:
   m_ObjectHideFlags: 0
@@ -4543,6 +4589,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   Actor: {fileID: 150007667}
   DamageObject: {fileID: 1726887277}
+  SupineDamageObject: {fileID: 1356547612}
+  ProneDamageObject: {fileID: 1933318782}
 --- !u!1001 &712808365
 Prefab:
   m_ObjectHideFlags: 0
@@ -4649,6 +4697,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   Actor: {fileID: 150007667}
   DamageObject: {fileID: 306827548}
+  SupineDamageObject: {fileID: 1356547612}
+  ProneDamageObject: {fileID: 1933318782}
 --- !u!1001 &717846796
 Prefab:
   m_ObjectHideFlags: 0
@@ -4905,6 +4955,7 @@ MonoBehaviour:
   isTechable: 1
   hasKnockdownAttribute: 0
   attackAttribute: 2
+  knockdownAttribute: 0
 --- !u!61 &747744270
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -5191,6 +5242,7 @@ MonoBehaviour:
   isTechable: 1
   hasKnockdownAttribute: 0
   attackAttribute: 1
+  knockdownAttribute: 0
 --- !u!61 &782293147
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -5394,6 +5446,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   Actor: {fileID: 1024434289}
   DamageObject: {fileID: 518688356}
+  SupineDamageObject: {fileID: 0}
+  ProneDamageObject: {fileID: 0}
 --- !u!61 &802244647
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -5873,6 +5927,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   Actor: {fileID: 150007667}
   DamageObject: {fileID: 306827548}
+  SupineDamageObject: {fileID: 1356547612}
+  ProneDamageObject: {fileID: 1933318782}
 --- !u!1 &901744535
 GameObject:
   m_ObjectHideFlags: 0
@@ -5927,6 +5983,7 @@ MonoBehaviour:
   isTechable: 1
   hasKnockdownAttribute: 0
   attackAttribute: 1
+  knockdownAttribute: 0
 --- !u!61 &901744538
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -5984,6 +6041,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   Actor: {fileID: 1010449266}
   DamageObject: {fileID: 1802650177}
+  SupineDamageObject: {fileID: 0}
+  ProneDamageObject: {fileID: 0}
 --- !u!61 &909391134
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -6189,6 +6248,8 @@ GameObject:
   serializedVersion: 4
   m_Component:
   - 4: {fileID: 962639519}
+  - 114: {fileID: 962639520}
+  - 61: {fileID: 962639521}
   m_Layer: 11
   m_Name: StandingUpFromSupineKnockdown
   m_TagString: Untagged
@@ -6208,6 +6269,33 @@ Transform:
   m_Children: []
   m_Father: {fileID: 1830976757}
   m_RootOrder: 0
+--- !u!114 &962639520
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 962639518}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8d94e3b5475b09b478d02b8cec62e64a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  Player: {fileID: 150007667}
+  knockdownRecovery: 10
+--- !u!61 &962639521
+BoxCollider2D:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 962639518}
+  m_Enabled: 0
+  m_Density: 1
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_UsedByEffector: 0
+  m_Offset: {x: -0.1664087, y: -0.2863665}
+  serializedVersion: 2
+  m_Size: {x: 0.6020749, y: 0.2052152}
 --- !u!1 &978643163
 GameObject:
   m_ObjectHideFlags: 0
@@ -6263,7 +6351,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   Actor: {fileID: 150007667}
-  DamageObject: {fileID: 302025871}
+  DamageObject: {fileID: 1356547612}
+  SupineDamageObject: {fileID: 1356547612}
+  ProneDamageObject: {fileID: 1933318782}
 --- !u!1 &979355561
 GameObject:
   m_ObjectHideFlags: 0
@@ -6641,7 +6731,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   Actor: {fileID: 150007667}
-  DamageObject: {fileID: 302025871}
+  DamageObject: {fileID: 1356547612}
+  SupineDamageObject: {fileID: 1356547612}
+  ProneDamageObject: {fileID: 1933318782}
 --- !u!1 &1002533103
 GameObject:
   m_ObjectHideFlags: 0
@@ -7024,6 +7116,7 @@ MonoBehaviour:
   isTechable: 0
   hasKnockdownAttribute: 1
   attackAttribute: 0
+  knockdownAttribute: 1
 --- !u!1 &1013882153
 GameObject:
   m_ObjectHideFlags: 0
@@ -7066,6 +7159,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   Actor: {fileID: 743129986}
   DamageObject: {fileID: 525903627}
+  SupineDamageObject: {fileID: 0}
+  ProneDamageObject: {fileID: 0}
 --- !u!61 &1013882156
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -7332,6 +7427,7 @@ MonoBehaviour:
   isTechable: 1
   hasKnockdownAttribute: 1
   attackAttribute: 0
+  knockdownAttribute: 0
 --- !u!61 &1031319412
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -8055,6 +8151,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   Actor: {fileID: 150007667}
   DamageObject: {fileID: 1726887277}
+  SupineDamageObject: {fileID: 1356547612}
+  ProneDamageObject: {fileID: 1933318782}
 --- !u!1 &1164248556
 GameObject:
   m_ObjectHideFlags: 0
@@ -8063,6 +8161,8 @@ GameObject:
   serializedVersion: 4
   m_Component:
   - 4: {fileID: 1164248557}
+  - 114: {fileID: 1164248558}
+  - 61: {fileID: 1164248559}
   m_Layer: 11
   m_Name: StandingUpFromProneKnockdown (1)
   m_TagString: Untagged
@@ -8082,6 +8182,33 @@ Transform:
   m_Children: []
   m_Father: {fileID: 1830976757}
   m_RootOrder: 1
+--- !u!114 &1164248558
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1164248556}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 66ee0abfa5281344897fd48a48ce8fe6, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  Player: {fileID: 150007667}
+  knockdownRecovery: 10
+--- !u!61 &1164248559
+BoxCollider2D:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1164248556}
+  m_Enabled: 0
+  m_Density: 1
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_UsedByEffector: 0
+  m_Offset: {x: -0.1664087, y: -0.2863665}
+  serializedVersion: 2
+  m_Size: {x: 0.6020749, y: 0.2052152}
 --- !u!1 &1169188513
 GameObject:
   m_ObjectHideFlags: 0
@@ -8137,6 +8264,7 @@ MonoBehaviour:
   isTechable: 1
   hasKnockdownAttribute: 0
   attackAttribute: 0
+  knockdownAttribute: 0
 --- !u!61 &1169188516
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -8252,6 +8380,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   Actor: {fileID: 1010449266}
   DamageObject: {fileID: 1802650177}
+  SupineDamageObject: {fileID: 0}
+  ProneDamageObject: {fileID: 0}
 --- !u!61 &1182445730
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -8524,6 +8654,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   Actor: {fileID: 1024434289}
   DamageObject: {fileID: 518688356}
+  SupineDamageObject: {fileID: 0}
+  ProneDamageObject: {fileID: 0}
 --- !u!61 &1263658559
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -8885,6 +9017,63 @@ Prefab:
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 22cec0eebabc04d4db2ca1654ceef887, type: 2}
   m_IsPrefabParent: 0
+--- !u!1 &1356547612
+GameObject:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  serializedVersion: 4
+  m_Component:
+  - 4: {fileID: 1356547613}
+  - 61: {fileID: 1356547614}
+  - 114: {fileID: 1356547615}
+  m_Layer: 11
+  m_Name: SupineJumpingDamage
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &1356547613
+Transform:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1356547612}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children:
+  - {fileID: 414731504}
+  m_Father: {fileID: 1981431411}
+  m_RootOrder: 2
+--- !u!61 &1356547614
+BoxCollider2D:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1356547612}
+  m_Enabled: 0
+  m_Density: 1
+  m_Material: {fileID: 6200000, guid: c203c2bf2e10fc24482abaf8a2164a45, type: 2}
+  m_IsTrigger: 0
+  m_UsedByEffector: 0
+  m_Offset: {x: 0.0011405945, y: 0.002524376}
+  serializedVersion: 2
+  m_Size: {x: 0.2600313, y: 0.80333036}
+--- !u!114 &1356547615
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1356547612}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 01ad5d5f47a0e054cbb080a01075b26a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  Player: {fileID: 150007667}
+  PlayerSupineJumpingDamageHurtBox: {fileID: 414731503}
 --- !u!1001 &1371414854
 Prefab:
   m_ObjectHideFlags: 0
@@ -9615,6 +9804,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   Actor: {fileID: 150007667}
   DamageObject: {fileID: 306827548}
+  SupineDamageObject: {fileID: 1356547612}
+  ProneDamageObject: {fileID: 1933318782}
 --- !u!1 &1479609533
 GameObject:
   m_ObjectHideFlags: 0
@@ -9669,6 +9860,7 @@ MonoBehaviour:
   isTechable: 1
   hasKnockdownAttribute: 0
   attackAttribute: 1
+  knockdownAttribute: 0
 --- !u!61 &1479609536
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -9816,6 +10008,7 @@ MonoBehaviour:
   isTechable: 1
   hasKnockdownAttribute: 0
   attackAttribute: 2
+  knockdownAttribute: 0
 --- !u!61 &1501029341
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -10039,6 +10232,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   Actor: {fileID: 150007667}
   DamageObject: {fileID: 1726887277}
+  SupineDamageObject: {fileID: 1356547612}
+  ProneDamageObject: {fileID: 1933318782}
 --- !u!1 &1577426797
 GameObject:
   m_ObjectHideFlags: 0
@@ -10208,6 +10403,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   Actor: {fileID: 150007667}
   DamageObject: {fileID: 306827548}
+  SupineDamageObject: {fileID: 1356547612}
+  ProneDamageObject: {fileID: 1933318782}
 --- !u!1 &1607398870
 GameObject:
   m_ObjectHideFlags: 0
@@ -10250,6 +10447,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   Actor: {fileID: 1024434289}
   DamageObject: {fileID: 518688356}
+  SupineDamageObject: {fileID: 0}
+  ProneDamageObject: {fileID: 0}
 --- !u!61 &1607398873
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -11081,6 +11280,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   Actor: {fileID: 150007667}
   DamageObject: {fileID: 1726887277}
+  SupineDamageObject: {fileID: 1356547612}
+  ProneDamageObject: {fileID: 1933318782}
 --- !u!1 &1776473512
 GameObject:
   m_ObjectHideFlags: 0
@@ -11197,6 +11398,7 @@ MonoBehaviour:
   isTechable: 1
   hasKnockdownAttribute: 0
   attackAttribute: 2
+  knockdownAttribute: 0
 --- !u!61 &1783782033
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -11848,6 +12050,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   Actor: {fileID: 150007667}
   DamageObject: {fileID: 1726887277}
+  SupineDamageObject: {fileID: 1356547612}
+  ProneDamageObject: {fileID: 1933318782}
 --- !u!1 &1889695986
 GameObject:
   m_ObjectHideFlags: 0
@@ -12061,6 +12265,63 @@ Prefab:
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 75343d6a1ea04014999c100f8fc4fe87, type: 2}
   m_IsPrefabParent: 0
+--- !u!1 &1933318782
+GameObject:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  serializedVersion: 4
+  m_Component:
+  - 4: {fileID: 1933318783}
+  - 61: {fileID: 1933318784}
+  - 114: {fileID: 1933318785}
+  m_Layer: 11
+  m_Name: ProneJumpingDamage
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &1933318783
+Transform:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1933318782}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children:
+  - {fileID: 89639534}
+  m_Father: {fileID: 1981431411}
+  m_RootOrder: 3
+--- !u!61 &1933318784
+BoxCollider2D:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1933318782}
+  m_Enabled: 0
+  m_Density: 1
+  m_Material: {fileID: 6200000, guid: c203c2bf2e10fc24482abaf8a2164a45, type: 2}
+  m_IsTrigger: 0
+  m_UsedByEffector: 0
+  m_Offset: {x: 0.0011405945, y: 0.002524376}
+  serializedVersion: 2
+  m_Size: {x: 0.2600313, y: 0.80333036}
+--- !u!114 &1933318785
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1933318782}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c09d70e7742abee4ab5a5c908594a3da, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  Player: {fileID: 150007667}
+  PlayerProneJumpingDamageHurtBox: {fileID: 89639533}
 --- !u!1 &1934545355
 GameObject:
   m_ObjectHideFlags: 0
@@ -12239,7 +12500,8 @@ Transform:
   m_Children:
   - {fileID: 1726887278}
   - {fileID: 306827549}
-  - {fileID: 302025872}
+  - {fileID: 1356547613}
+  - {fileID: 1933318783}
   m_Father: {fileID: 150007668}
   m_RootOrder: 5
 --- !u!1 &2006736284
@@ -12361,6 +12623,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   Actor: {fileID: 743129986}
   DamageObject: {fileID: 525903627}
+  SupineDamageObject: {fileID: 0}
+  ProneDamageObject: {fileID: 0}
 --- !u!1001 &2023739791
 Prefab:
   m_ObjectHideFlags: 0
@@ -12725,6 +12989,8 @@ GameObject:
   serializedVersion: 4
   m_Component:
   - 4: {fileID: 2113717274}
+  - 114: {fileID: 2113717275}
+  - 61: {fileID: 2113717276}
   m_Layer: 11
   m_Name: ProneKnockdown
   m_TagString: Untagged
@@ -12744,6 +13010,33 @@ Transform:
   m_Children: []
   m_Father: {fileID: 749958381}
   m_RootOrder: 1
+--- !u!114 &2113717275
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 2113717273}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e1c02633a073e3f4fb5974d9d80a8c7b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  Player: {fileID: 150007667}
+  knockdownRecovery: 10
+--- !u!61 &2113717276
+BoxCollider2D:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 2113717273}
+  m_Enabled: 0
+  m_Density: 1
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_UsedByEffector: 0
+  m_Offset: {x: -0.1664087, y: -0.2863665}
+  serializedVersion: 2
+  m_Size: {x: 0.6020749, y: 0.2052152}
 --- !u!1 &2123226502
 GameObject:
   m_ObjectHideFlags: 0

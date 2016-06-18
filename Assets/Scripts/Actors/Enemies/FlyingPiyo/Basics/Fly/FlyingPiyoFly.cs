@@ -34,6 +34,8 @@ namespace Wolio.Actor.Enemy.FlyingPiyo.Basics
         bool hasKnockdownAttribute;
         [SerializeField]
         AttackAttribute attackAttribute;
+        [SerializeField]
+        KnockdownAttribute knockdownAttribute;
 
         void Awake()
         {
@@ -83,7 +85,7 @@ namespace Wolio.Actor.Enemy.FlyingPiyo.Basics
                 .ThrottleFirstFrame(hitRecovery)
                 .Subscribe(_ =>
                 {
-                    _.gameObject.GetComponent<DamageManager>().ApplyDamage(damageValue, hitRecovery, hitStop, isTechable, hasKnockdownAttribute, attackAttribute);
+                    _.gameObject.GetComponent<DamageManager>().ApplyDamage(damageValue, hitRecovery, hitStop, isTechable, hasKnockdownAttribute, attackAttribute, knockdownAttribute);
                 });
         }
 

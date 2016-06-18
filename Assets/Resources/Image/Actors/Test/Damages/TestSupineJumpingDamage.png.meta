@@ -1,17 +1,13 @@
 fileFormatVersion: 2
-guid: 23e7d0d58480e6c419f919ab892f0a9e
-timeCreated: 1466217671
+guid: 7300ff26cc0a8de4ab443d648ca7e907
+timeCreated: 1466199247
 licenseType: Free
 TextureImporter:
   fileIDToRecycleName:
-    21300000: TestSupineKnockdown_0
-    21300002: TestSupineKnockdown_1
-    21300004: TestSupineKnockdown_2
-    21300006: TestSupineKnockdown_3
-    21300008: TestSupineKnockdown_4
-    21300010: TestSupineKnockdown_5
-    21300012: TestSupineKnockdown_6
-    21300014: TestSupineKnockdown_7
+    21300000: TestSupineJumpingDamage_0
+    21300002: TestSupineJumpingDamage_1
+    21300004: TestSupineJumpingDamage_2
+    21300006: TestSupineJumpingDamage_3
   serializedVersion: 2
   mipmaps:
     mipMapMode: 0
@@ -58,7 +54,7 @@ TextureImporter:
   buildTargetSettings: []
   spriteSheet:
     sprites:
-    - name: TestSupineKnockdown_0
+    - name: TestSupineJumpingDamage_0
       rect:
         serializedVersion: 2
         x: 0
@@ -69,13 +65,19 @@ TextureImporter:
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline:
-      - - {x: -38, y: -1}
-        - {x: -38, y: -40}
-        - {x: 29, y: -40}
-        - {x: 40, y: -37}
-        - {x: 40, y: -10}
-        - {x: 28, y: -1}
-    - name: TestSupineKnockdown_1
+      - - {x: 11, y: 26}
+        - {x: 0, y: 36}
+        - {x: -20, y: 36}
+        - {x: -24, y: 28}
+        - {x: -24, y: -4}
+        - {x: -15, y: -30}
+        - {x: -9, y: -33}
+        - {x: -2, y: -33}
+        - {x: 5, y: -32}
+        - {x: 15, y: -26}
+        - {x: 21, y: -5}
+        - {x: 21, y: 9}
+    - name: TestSupineJumpingDamage_1
       rect:
         serializedVersion: 2
         x: 80
@@ -86,17 +88,16 @@ TextureImporter:
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline:
-      - - {x: 21, y: -2}
-        - {x: 14, y: -3}
-        - {x: -19, y: -18}
-        - {x: -37, y: -27}
-        - {x: -37, y: -38}
-        - {x: -21, y: -40}
-        - {x: 30, y: -40}
-        - {x: 40, y: -30}
-        - {x: 40, y: -7}
-        - {x: 33, y: -2}
-    - name: TestSupineKnockdown_2
+      - - {x: -3, y: 40}
+        - {x: -9, y: 30}
+        - {x: -34, y: -11}
+        - {x: -34, y: -34}
+        - {x: -26, y: -39}
+        - {x: -1, y: -39}
+        - {x: 27, y: 0}
+        - {x: 27, y: 39}
+        - {x: 22, y: 40}
+    - name: TestSupineJumpingDamage_2
       rect:
         serializedVersion: 2
         x: 160
@@ -107,13 +108,22 @@ TextureImporter:
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline:
-      - - {x: -40, y: -8}
-        - {x: -40, y: -39}
-        - {x: -37, y: -40}
-        - {x: 38, y: -40}
-        - {x: 40, y: -39}
-        - {x: 40, y: -8}
-    - name: TestSupineKnockdown_3
+      - - {x: 15, y: 25}
+        - {x: 7, y: 14}
+        - {x: 8, y: 7}
+        - {x: -1, y: 18}
+        - {x: -4, y: 20}
+        - {x: -10, y: 25}
+        - {x: -32, y: 25}
+        - {x: -34, y: 23}
+        - {x: -40, y: 7}
+        - {x: -40, y: -4}
+        - {x: -27, y: -15}
+        - {x: 21, y: -15}
+        - {x: 40, y: -1}
+        - {x: 40, y: 17}
+        - {x: 33, y: 25}
+    - name: TestSupineJumpingDamage_3
       rect:
         serializedVersion: 2
         x: 240
@@ -124,32 +134,19 @@ TextureImporter:
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline:
-      - - {x: -13, y: -13}
-        - {x: -40, y: -27}
-        - {x: -40, y: -40}
-        - {x: 35, y: -40}
-        - {x: 40, y: -37}
+      - - {x: -40, y: 11}
+        - {x: -40, y: 10}
+        - {x: -33, y: -9}
+        - {x: -29, y: -13}
+        - {x: -37, y: -6}
+        - {x: -40, y: -7}
+        - {x: -40, y: -12}
+        - {x: -37, y: -17}
+        - {x: -25, y: -30}
+        - {x: 5, y: -30}
+        - {x: 37, y: -24}
         - {x: 40, y: -19}
-        - {x: 33, y: -13}
-    - name: TestSupineKnockdown_4
-      rect:
-        serializedVersion: 2
-        x: 320
-        y: 0
-        width: 80
-        height: 80
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline:
-      - - {x: 3, y: -13}
-        - {x: -18, y: -19}
-        - {x: -40, y: -29}
-        - {x: -40, y: -40}
-        - {x: 35, y: -40}
-        - {x: 40, y: -37}
-        - {x: 40, y: -19}
-        - {x: 33, y: -13}
+        - {x: 40, y: 11}
     outline: []
   spritePackingTag: 
   userData: 

@@ -5,7 +5,7 @@ using UniRx.Triggers;
 
 namespace Wolio.Actor.Player
 {
-    public class PlayerProneKnockdown : MonoBehaviour
+    public class PlayerStandingUpFromSupineKnockdown : MonoBehaviour
     {
         [SerializeField]
         GameObject Player;
@@ -31,37 +31,37 @@ namespace Wolio.Actor.Player
         void Start()
         {
             //Animation
-            #region EnterProneKnockdown
+            #region EnterStandingUpFromSupineKnockdown
             ObservableStateMachineTrigger
                 .OnStateEnterAsObservable()
-                .Where(x => x.StateInfo.IsName("Base Layer.ProneKnockdown"))
-                .Subscribe(_ => coroutineStore = StartCoroutine(ProneKnockdownCoroutine()));
+                .Where(x => x.StateInfo.IsName("Base Layer.StandUpFromSupineKnockdown"))
+                .Subscribe(_ => coroutineStore = StartCoroutine(StandingUpFromSupineKnockdownCoroutine()));
 
             #endregion
-            #region ProneKnockdown->StandingUpFromProneKnockdown
+            #region StandingUpFromSupineKnockdown->Stand
             ObservableStateMachineTrigger
                 .OnStateUpdateAsObservable()
-                .Where(x => x.StateInfo.IsName("Base Layer.ProneKnockdown"))
+                .Where(x => x.StateInfo.IsName("Base Layer.StandUpFromSupineKnockdown"))
                 .Where(x => isFinished)
                 .Subscribe(_ =>
                 {
-                    Animator.SetBool("IsStandingUpFromProneKnockdown", true);
-                    Animator.SetBool("IsProneKnockdown", false);
+                    Animator.SetBool("IsStandingUpFromSupineKnockdown", false);
+                    Animator.SetBool("IsStanding", true);
                     isFinished = false;
                 });
             #endregion
 
             //Collision
-            this.ObserveEveryValueChanged(x => Animator.GetBool("IsProneKnockdown"))
+            this.ObserveEveryValueChanged(x => Animator.GetBool("IsStandingUpFromSupineKnockdown"))
                 .Where(x => x)
                 .Subscribe(_ => BoxCollider2D.enabled = true);
 
-            this.ObserveEveryValueChanged(x => Animator.GetBool("IsProneKnockdown"))
+            this.ObserveEveryValueChanged(x => Animator.GetBool("IsStandingUpFromSupineKnockdown"))
                 .Where(x => !x)
                 .Subscribe(_ => BoxCollider2D.enabled = false);
         }
 
-        IEnumerator ProneKnockdownCoroutine()
+        IEnumerator StandingUpFromSupineKnockdownCoroutine()
         {
             // Recovery
             for (int i = 0; i < knockdownRecovery; i++)

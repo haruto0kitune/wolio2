@@ -55,7 +55,6 @@ namespace Wolio.Actor.Player
         public ReactiveProperty<bool> canJumpingGuard;
         public ReactiveProperty<bool> IsStandingDamage;
         public ReactiveProperty<bool> IsCrouchingDamage;
-        public ReactiveProperty<bool> IsJumpingDamage;
         public ReactiveProperty<bool> IsStandingHitBack;
         public ReactiveProperty<bool> IsCrouchingHitBack;
         public ReactiveProperty<bool> IsJumpingHitBack;
@@ -74,8 +73,9 @@ namespace Wolio.Actor.Player
         public ReactiveProperty<bool> IsProneKnockdown;
         public ReactiveProperty<bool> IsStandingUpFromSupineKnockdown;
         public ReactiveProperty<bool> IsStandingUpFromProneKnockdown;
-        public ReactiveProperty<bool> WasSupineKnockdownAttacked;
-        public ReactiveProperty<bool> WasProneKnockdownAttacked;
+        public ReactiveProperty<bool> WasSupineAttributeAttacked;
+        public ReactiveProperty<bool> WasProneAttributeAttacked;
+        public ReactiveProperty<bool> WasKnockdownAttributeAttacked { get; set; }
 
         void Awake()
         {
@@ -220,9 +220,6 @@ namespace Wolio.Actor.Player
             IsCrouchingDamage = this.ObserveEveryValueChanged(x => Animator.GetBool("IsCrouchingDamage"))
                                     .ToReactiveProperty();
 
-            IsJumpingDamage = this.ObserveEveryValueChanged(x => Animator.GetBool("IsJumpingDamage"))
-                                  .ToReactiveProperty();
-
             IsStandingHitBack = new ReactiveProperty<bool>();
             IsCrouchingHitBack = new ReactiveProperty<bool>();
             IsJumpingHitBack = new ReactiveProperty<bool>();
@@ -262,8 +259,9 @@ namespace Wolio.Actor.Player
             IsStandingUpFromProneKnockdown = this.ObserveEveryValueChanged(x => Animator.GetBool("IsStandingUpFromProneKnockdown"))
                                                  .ToReactiveProperty();
 
-            WasSupineKnockdownAttacked = new ReactiveProperty<bool>();
-            WasProneKnockdownAttacked = new ReactiveProperty<bool>();
+            WasSupineAttributeAttacked = new ReactiveProperty<bool>();
+            WasProneAttributeAttacked = new ReactiveProperty<bool>();
+            WasKnockdownAttributeAttacked = new ReactiveProperty<bool>();
         }
 
         void Start()

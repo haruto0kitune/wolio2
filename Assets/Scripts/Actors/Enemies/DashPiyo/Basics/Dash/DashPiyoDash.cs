@@ -40,6 +40,8 @@ namespace Wolio.Actor.Enemy.DashPiyo
         bool hasKnockdownAttribute;
         [SerializeField]
         AttackAttribute attackAttribute;
+        [SerializeField]
+        KnockdownAttribute knockdownAttribute;
         bool isFinished;
         bool hasHit;
         Coroutine coroutineStore;
@@ -115,7 +117,7 @@ namespace Wolio.Actor.Enemy.DashPiyo
                 .ThrottleFirstFrame(30)
                 .Subscribe(_ =>
                 {
-                    _.gameObject.GetComponent<DamageManager>().ApplyDamage(damageValue, hitRecovery, hitStop, isTechable, hasKnockdownAttribute, attackAttribute);
+                    _.gameObject.GetComponent<DamageManager>().ApplyDamage(damageValue, hitRecovery, hitStop, isTechable, hasKnockdownAttribute, attackAttribute, knockdownAttribute);
                     HitBox.enabled = false;
                     hasHit = true;
                 });

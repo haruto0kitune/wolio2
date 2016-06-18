@@ -7,3 +7,9 @@ public enum AttackAttribute
     overhead,
     high
 }
+
+public enum KnockdownAttribute
+{
+    supineKnockdown,
+    proneKnockdown
+}

@@ -5,12 +5,12 @@ using UniRx.Triggers;
 
 namespace Wolio.Actor.Player.Damages
 {
-    public class PlayerCrouchingDamage : MonoBehaviour, IDamage
+    public class PlayerSupineJumpingDamage : MonoBehaviour, IDamage
     {
         [SerializeField]
         GameObject Player;
         [SerializeField]
-        GameObject PlayerCrouchingDamageHurtBox;
+        GameObject PlayerSupineJumpingDamageHurtBox;
         Animator Animator;
         ObservableStateMachineTrigger ObservableStateMachineTrigger;
         PlayerState PlayerState;
@@ -18,11 +18,11 @@ namespace Wolio.Actor.Player.Damages
         Rigidbody2D PlayerRigidbody2D;
         Key Key;
         BoxCollider2D BoxCollider2D;
-        BoxCollider2D PlayerCrouchingDamageHurtBoxTrigger;
+        BoxCollider2D PlayerSupineJumpingDamageHurtBoxTrigger;
         bool wasAttackedDuringDamage = false;
         int knockBackFrame;
         Coroutine damageCoroutineStore;
-        
+
         void Awake()
         {
             Animator = Player.GetComponent<Animator>();
@@ -32,21 +32,33 @@ namespace Wolio.Actor.Player.Damages
             PlayerRigidbody2D = Player.GetComponent<Rigidbody2D>();
             Key = Player.GetComponent<Key>();
             BoxCollider2D = GetComponent<BoxCollider2D>();
-            PlayerCrouchingDamageHurtBoxTrigger = PlayerCrouchingDamageHurtBox.GetComponent<BoxCollider2D>();
+            PlayerSupineJumpingDamageHurtBoxTrigger = PlayerSupineJumpingDamageHurtBox.GetComponent<BoxCollider2D>();
         }
 
         void Start()
         {
             // Animation
-            #region CrouchingDamage->Crouch
+            #region SupineJumpingDamage->AirTech
             ObservableStateMachineTrigger
                 .OnStateUpdateAsObservable()
-                .Where(x => x.StateInfo.IsName("Base Layer.CrouchingDamage"))
-                .Where(x => !PlayerState.WasAttacked.Value)
+                .Where(x => x.StateInfo.IsName("Base Layer.SupineJumpingDamage"))
+                .Where(x => PlayerState.canAirTech.Value)
+                .Where(x => Key.Z)
                 .Subscribe(_ =>
                 {
-                    Animator.SetBool("IsCrouching", true);
-                    Animator.SetBool("IsCrouchingDamage", false);
+                    Animator.SetBool("IsAirTech", true);
+                    Animator.SetBool("IsSupineJumpingDamage", false);
+                });
+            #endregion
+            #region SupineJumpingDamage->SupineKnockdown
+            ObservableStateMachineTrigger
+                .OnStateUpdateAsObservable()
+                .Where(x => x.StateInfo.IsName("Base Layer.SupineJumpingDamage"))
+                .Where(x => PlayerState.IsGrounded.Value)
+                .Subscribe(_ =>
+                {
+                    Animator.SetBool("IsSupineKnockdown", true);
+                    Animator.SetBool("IsSupineJumpingDamage", false);
                 });
             #endregion
         }
@@ -70,15 +82,18 @@ namespace Wolio.Actor.Player.Damages
         {
             // StartUp
             BoxCollider2D.enabled = true;
-            PlayerCrouchingDamageHurtBoxTrigger.enabled = true;
-            Key.IsAvailable.Value = false;
+            PlayerSupineJumpingDamageHurtBoxTrigger.enabled = true;
             PlayerState.WasAttacked.Value = true;
+            PlayerState.WasSupineAttributeAttacked.Value = true;
+            PlayerState.WasKnockdownAttributeAttacked.Value = hasKnockdownAttribute;
+            PlayerState.canAirTech.Value = false;
 
             // Apply Damage
             Status.Hp.Value -= damageValue;
 
             // HitStop
-            var x = 1;
+            var x = 0.1f;
+            PlayerRigidbody2D.isKinematic = true;
 
             for (int i = 0; i < hitStop; i++)
             {
@@ -87,16 +102,33 @@ namespace Wolio.Actor.Player.Damages
                 yield return null;
             }
 
+            PlayerRigidbody2D.isKinematic = false;
+
             // Knockback
-            for (int i = 0;i < recovery; i++)
+            var Vector = Utility.PolarToRectangular2D(75, 7);
+
+            if (PlayerState.FacingRight.Value)
             {
-                if (PlayerState.FacingRight.Value)
+                PlayerRigidbody2D.velocity = new Vector2(Vector.x * -1, Vector.y);
+            }
+            else
+            {
+                PlayerRigidbody2D.velocity = new Vector2(Vector.x, Vector.y);
+            }
+
+            for (int i = 0; i < recovery; i++)
+            {
+                yield return null;
+            }
+
+            // AirTechable Time
+            PlayerState.canAirTech.Value = true;
+
+            while (!Key.Z)
+            {
+                if (PlayerState.IsGrounded.Value)
                 {
-                    PlayerRigidbody2D.velocity = new Vector2(-1f, 0);
-                }
-                else
-                {
-                    PlayerRigidbody2D.velocity = new Vector2(1f, 0);
+                    break;
                 }
 
                 yield return null;
@@ -105,15 +137,16 @@ namespace Wolio.Actor.Player.Damages
             // Finish
             //
             // When transtion to next state, collider enabled is off.
-            // if not, PlayerCrouchingDamage becomes strange motion.
+            // if not, PlayerSupineJumpingDamage becomes strange motion.
             PlayerState.WasAttacked.Value = false;
+            PlayerState.WasSupineAttributeAttacked.Value = false;
+            PlayerState.WasKnockdownAttributeAttacked.Value = false;
             wasAttackedDuringDamage = false;
 
             yield return null;
-            
+
             BoxCollider2D.enabled = false;
-            PlayerCrouchingDamageHurtBoxTrigger.enabled = false;
-            Key.IsAvailable.Value = true;
+            PlayerSupineJumpingDamageHurtBoxTrigger.enabled = false;
         }
     }
 }

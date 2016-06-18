@@ -120,33 +120,34 @@ namespace Wolio.Actor.Player.Basics
             ObservableStateMachineTrigger
                 .OnStateUpdateAsObservable()
                 .Where(x => x.StateInfo.IsName("Base Layer.Stand"))
-                .Where(x => PlayerState.WasAttacked.Value)
+                .Where(x => PlayerState.WasAttacked.Value && !PlayerState.WasKnockdownAttributeAttacked.Value)
                 .Subscribe(_ =>
                 {
                     Animator.SetBool("IsStanding", false);
                     Animator.SetBool("IsStandingDamage", true);
                 });
             #endregion
-            #region Stand->SupineKnockdown
+            #region Stand->SupineJumpingDamage
             ObservableStateMachineTrigger
                 .OnStateUpdateAsObservable()
                 .Where(x => x.StateInfo.IsName("Base Layer.Stand"))
-                .Where(x => PlayerState.WasSupineKnockdownAttacked.Value)
+                .Where(x => PlayerState.WasSupineAttributeAttacked.Value && PlayerState.WasKnockdownAttributeAttacked.Value)
                 .Subscribe(_ =>
                 {
                     Animator.SetBool("IsStanding", false);
-                    Animator.SetBool("IsSupineKnockdown", true);
+                    Animator.SetBool("IsSupineJumpingDamage", true);
                 });
             #endregion
-            #region Stand->ProneKnockdown
+            #region Stand->ProneJumpingDamage
             ObservableStateMachineTrigger
                 .OnStateUpdateAsObservable()
                 .Where(x => x.StateInfo.IsName("Base Layer.Stand"))
-                .Where(x => PlayerState.WasProneKnockdownAttacked.Value)
+                .Where(x => PlayerState.WasProneAttributeAttacked.Value && PlayerState.WasKnockdownAttributeAttacked.Value)
                 .Subscribe(_ =>
                 {
+                    Debug.Log("Stand->ProneJumpingDamage");
                     Animator.SetBool("IsStanding", false);
-                    Animator.SetBool("IsProneKnockdown", true);
+                    Animator.SetBool("IsProneJumpingDamage", true);
                 });
             #endregion
 

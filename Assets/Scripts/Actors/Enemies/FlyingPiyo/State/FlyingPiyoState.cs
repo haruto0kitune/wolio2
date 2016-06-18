@@ -16,6 +16,7 @@ public class FlyingPiyoState : MonoBehaviour, IState
     public ReactiveProperty<float> Direction;
     public ReactiveProperty<bool> IsAttacking;
     public ReactiveProperty<bool> WasAttacked { get; set; }
+    public ReactiveProperty<bool> WasKnockdownAttributeAttacked { get; set; }
 
     void Awake()
     {
@@ -30,6 +31,7 @@ public class FlyingPiyoState : MonoBehaviour, IState
         Direction = FacingRight.Select(x => x ? 1f : -1f).ToReactiveProperty(-1f);
         IsAttacking = new ReactiveProperty<bool>();
         WasAttacked = new ReactiveProperty<bool>();
+        WasKnockdownAttributeAttacked = new ReactiveProperty<bool>();
     }
 
     void Start()
