@@ -150,6 +150,8 @@ namespace Wolio.Actor.Player.Basics
                     Animator.SetBool("IsProneJumpingDamage", true);
                 });
             #endregion
+            #region Stand->FireballMotion
+            #endregion
 
             //Collision
             this.ObserveEveryValueChanged(x => Animator.GetBool("IsStanding"))
