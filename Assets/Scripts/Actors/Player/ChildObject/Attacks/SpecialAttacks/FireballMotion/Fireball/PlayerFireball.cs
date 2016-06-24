@@ -7,6 +7,7 @@ public class PlayerFireball : MonoBehaviour
 {
     [SerializeField]
     float speed;
+    [SerializeField]
     float direction;
     Rigidbody2D Rigidbody2D;
 
@@ -21,8 +22,9 @@ public class PlayerFireball : MonoBehaviour
             .Subscribe(_ => Move(speed, direction));
     }
 
-    public void Initialize(float direction)
+    public void Initialize(float speed, float direction)
     {
+        this.speed = speed;
         this.direction = direction;
     }
 

@@ -151,6 +151,9 @@ namespace Wolio.Actor.Player.Basics
                 });
             #endregion
             #region Stand->FireballMotion
+            //ObservableStateMachineTrigger
+            //    .OnStateUpdateAsObservable()
+            //    .Where(x => x.StateInfo.IsName("Base Layer.Stand"))
             #endregion
 
             //Collision
