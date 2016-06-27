@@ -1,5 +1,7 @@
 ﻿using UnityEngine;
+using System;
 using System.Collections;
+using System.Collections.Generic;
 
 public static class Utility
 {
@@ -39,8 +41,29 @@ public static class Utility
     public static Vector2 RectangularToPolar2D(float x, float y)
     {
         var r = Mathf.Sqrt(Mathf.Pow(x, 2) + Mathf.Pow(y, 2));
-        var Theta = Mathf.Atan2(y, x) * Mathf.Rad2Deg; 
+        var Theta = Mathf.Atan2(y, x) * Mathf.Rad2Deg;
 
         return new Vector2(r, Theta);
+    }
+
+    /// <summary>
+    /// Compress adjacently repeated parameter  
+    /// </summary>
+    /// <typeparam name="T">Type</typeparam>
+    /// <param name="seq">Sequence</param>
+    /// <returns>Returns the sequence compressed adjacently repeated parameter</returns>
+    public static IEnumerable<T> DistinctAdjacently<T>(this IEnumerable<T> seq)
+    {
+        T prev = default(T);
+
+        foreach (var x in seq)
+        {
+            if (prev == null || !prev.Equals(x))
+            {
+                yield return x;
+            }
+
+            prev = x;
+        }
     }
 }

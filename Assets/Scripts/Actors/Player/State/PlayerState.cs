@@ -1,5 +1,6 @@
 ﻿using UnityEngine;
 using System.Collections;
+using System.Linq;
 using UniRx;
 using UniRx.Triggers;
 using UnityEngine.UI;
@@ -15,6 +16,7 @@ namespace Wolio.Actor.Player
         private Rigidbody2D Rigidbody2D;
         private Animator Animator;
         private Status Status;
+        private Key Key;
 
         public ReactiveProperty<bool> IsDead;
         public ReactiveProperty<bool> IsGrounded;
@@ -76,6 +78,7 @@ namespace Wolio.Actor.Player
         public ReactiveProperty<bool> WasSupineAttributeAttacked;
         public ReactiveProperty<bool> WasProneAttributeAttacked;
         public ReactiveProperty<bool> WasKnockdownAttributeAttacked { get; set; }
+        public ReactiveProperty<bool> hasInputedFireballMotionCommand;
 
         void Awake()
         {
@@ -86,6 +89,7 @@ namespace Wolio.Actor.Player
             Rigidbody2D = GetComponent<Rigidbody2D>();
             Animator = GetComponent<Animator>();
             Status = GetComponent<Status>();
+            Key = GetComponent<Key>();
 
             IsGrounded = this.ObserveEveryValueChanged(x => (bool)Physics2D.Linecast(GroundCheck.position, GroundCheck.position, PlayerConfig.WhatIsGround))
                              .ToReactiveProperty();
@@ -262,6 +266,10 @@ namespace Wolio.Actor.Player
             WasSupineAttributeAttacked = new ReactiveProperty<bool>();
             WasProneAttributeAttacked = new ReactiveProperty<bool>();
             WasKnockdownAttributeAttacked = new ReactiveProperty<bool>();
+
+            hasInputedFireballMotionCommand = this.ObserveEveryValueChanged(x => System.Text.RegularExpressions.Regex.IsMatch(string.Concat(Key.inputHistory.ToArray().Reverse().Distinct().ToArray()), "26Z")
+                                                                              || System.Text.RegularExpressions.Regex.IsMatch(string.Concat(Key.inputHistory.ToArray().Reverse().Distinct().ToArray()), "24Z"))
+                                                  .ToReactiveProperty();
         }
 
         void Start()

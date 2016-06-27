@@ -26,13 +26,16 @@ namespace Wolio.Actor.Player
         public ReactiveProperty<bool> IsAvailable;
 
         public Stack<string> inputHistory;
+        [SerializeField]
+        private int inputHistoryLength;
+
 
         private void Awake()
         {
             Horizontal = new ReactiveProperty<float>();
             Vertical = new ReactiveProperty<float>();
             IsAvailable = new ReactiveProperty<bool>(true);
-            inputHistory = new Stack<string>(16);
+            inputHistory = new Stack<string>(inputHistoryLength);
         }
 
         private void Start()
@@ -47,32 +50,47 @@ namespace Wolio.Actor.Player
                 .Subscribe(_ => Horizontal.Value = CrossPlatformInputManager.GetAxisRaw("Horizontal"));
 
             this.UpdateAsObservable()
-                .Subscribe(_ => 
-                {
-                    if(Horizontal.Value == -1)
-                    {
-                        inputHistory.Push("left");
-                    }
-                    else if(Horizontal.Value == 1)
-                    {
-                        inputHistory.Push("right");
-                    }
-                });
-
-            this.UpdateAsObservable()
                 .Where(x => IsAvailable.Value)
                 .Subscribe(_ => Vertical.Value = CrossPlatformInputManager.GetAxisRaw("Vertical"));
 
             this.UpdateAsObservable()
                 .Subscribe(_ => 
                 {
-                    if(Vertical.Value == -1)
+                    if(Horizontal.Value == -1 && Vertical.Value == -1)
                     {
-                        inputHistory.Push("down");
+                        inputHistory.Push("1");
                     }
-                    else if(Vertical.Value == 1)
+                    else if(Horizontal.Value == 1 && Vertical.Value == -1)
                     {
-                        inputHistory.Push("up");
+                        inputHistory.Push("3");
+                    }
+                    else if(Horizontal.Value == -1 && Vertical.Value == 1)
+                    {
+                        inputHistory.Push("7");
+                    }
+                    else if(Horizontal.Value == 1 && Vertical.Value == 1)
+                    {
+                        inputHistory.Push("9");
+                    }
+                    else if(Horizontal.Value == -1 && Vertical.Value == 0)
+                    {
+                        inputHistory.Push("4");
+                    }
+                    else if(Horizontal.Value == 1 && Vertical.Value == 0)
+                    {
+                        inputHistory.Push("6");
+                    }
+                    else if(Horizontal.Value == 0 && Vertical.Value == -1)
+                    {
+                        inputHistory.Push("2");
+                    }
+                    else if(Horizontal.Value == 0 && Vertical.Value == 1)
+                    {
+                        inputHistory.Push("8");
+                    }
+                    else
+                    {
+                        inputHistory.Push("5");
                     }
                 });
 
@@ -132,31 +150,14 @@ namespace Wolio.Actor.Player
                 .Where(x => IsAvailable.Value)
                 .Subscribe(_ => Space = CrossPlatformInputManager.GetButton("Space"));
 
-            this.UpdateAsObservable()
-                .Where(x => inputHistory.Count != 0)
-                .Where(x => Input.GetButtonDown("Space"))
-                .Subscribe(_ => Debug.Log(inputHistory.Pop()));
-
             this.ObserveEveryValueChanged(x => inputHistory.Count)
-                .Subscribe(_ => Debug.Log("Count: " + inputHistory.Count));
-
-            this.LateUpdateAsObservable()
-                .Where(x => inputHistory.Count > 15)
+                .Where(x => inputHistory.Count > inputHistoryLength)
                 .Subscribe(_ =>
                 {
-                    var tempStack = new Stack<string>(15);
-
-                    for (int i = 0; i < 15; i++)
-                    {
-                        tempStack.Push(inputHistory.Pop());
-                    }
-
-                    inputHistory.Clear();
-
-                    for (int i = 0; i < 15; i++)
-                    {
-                        inputHistory.Push(tempStack.Pop());
-                    }
+                    var cache = inputHistory.ToList();
+                    cache.RemoveRange(inputHistoryLength, inputHistory.Count - inputHistoryLength);
+                    cache.Reverse();
+                    inputHistory = new Stack<string>(cache);
                 });
         }
     }

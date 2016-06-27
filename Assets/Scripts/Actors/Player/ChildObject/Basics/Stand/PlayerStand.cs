@@ -73,7 +73,9 @@ namespace Wolio.Actor.Player.Basics
                 .OnStateUpdateAsObservable()
                 .Where(x => x.StateInfo.IsName("Base Layer.Stand"))
                 .Where(x => PlayerState.canStandingLightAttack.Value)
+                .Where(x => !PlayerState.hasInputedFireballMotionCommand.Value)
                 .Where(x => Key.Z)
+                .Do(x => Debug.Log("SLA"))
                 .Subscribe(_ =>
                 {
                     Animator.SetBool("IsStanding", false);
@@ -145,15 +147,20 @@ namespace Wolio.Actor.Player.Basics
                 .Where(x => PlayerState.WasProneAttributeAttacked.Value && PlayerState.WasKnockdownAttributeAttacked.Value)
                 .Subscribe(_ =>
                 {
-                    Debug.Log("Stand->ProneJumpingDamage");
                     Animator.SetBool("IsStanding", false);
                     Animator.SetBool("IsProneJumpingDamage", true);
                 });
             #endregion
             #region Stand->FireballMotion
-            //ObservableStateMachineTrigger
-            //    .OnStateUpdateAsObservable()
-            //    .Where(x => x.StateInfo.IsName("Base Layer.Stand"))
+            ObservableStateMachineTrigger
+                .OnStateUpdateAsObservable()
+                .Where(x => x.StateInfo.IsName("Base Layer.Stand"))
+                .Where(x => PlayerState.hasInputedFireballMotionCommand.Value)
+                .Subscribe(_ =>
+                {
+                    Animator.SetBool("IsStanding", false);
+                    Animator.SetBool("IsFireballMotion", true);
+                });
             #endregion
 
             //Collision
