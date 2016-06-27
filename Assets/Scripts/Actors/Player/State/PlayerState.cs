@@ -268,7 +268,9 @@ namespace Wolio.Actor.Player
             WasKnockdownAttributeAttacked = new ReactiveProperty<bool>();
 
             hasInputedFireballMotionCommand = this.ObserveEveryValueChanged(x => System.Text.RegularExpressions.Regex.IsMatch(string.Concat(Key.inputHistory.ToArray().Reverse().Distinct().ToArray()), "26Z")
-                                                                              || System.Text.RegularExpressions.Regex.IsMatch(string.Concat(Key.inputHistory.ToArray().Reverse().Distinct().ToArray()), "24Z"))
+                                                                              || System.Text.RegularExpressions.Regex.IsMatch(string.Concat(Key.inputHistory.ToArray().Reverse().Distinct().ToArray()), "24Z")
+                                                                              || System.Text.RegularExpressions.Regex.IsMatch(string.Concat(Key.inputHistory.ToArray().Reverse().Distinct().ToArray()), "236Z")
+                                                                              || System.Text.RegularExpressions.Regex.IsMatch(string.Concat(Key.inputHistory.ToArray().Reverse().Distinct().ToArray()), "214Z"))
                                                   .ToReactiveProperty();
         }
 

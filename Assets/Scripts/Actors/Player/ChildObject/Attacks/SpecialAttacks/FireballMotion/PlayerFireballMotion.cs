@@ -74,26 +74,28 @@ namespace Wolio.Actor.Player.Attacks.SpecialAttacks
             }
 
             FireballStore = Instantiate(Fireball);
+            FireballStore.transform.parent = transform;
 
             if(PlayerState.FacingRight.Value)
             {
-                FireballStore.GetComponent<PlayerFireball>().Initialize(transform.position, 2, 1);
+                FireballStore.GetComponent<PlayerFireball>().Initialize(new Vector2(transform.position.x + 0.33f, transform.position.y), 2, 1);
             }
             else
             {
-                FireballStore.GetComponent<PlayerFireball>().Initialize(transform.position, 2, -1);
+                FireballStore.GetComponent<PlayerFireball>().Initialize(new Vector2(transform.position.x - 0.33f, transform.position.y), 2, -1);
             }
 
+            FireballStore.transform.parent = null;
             // Recovery
             for (int i = 0; i < recovery; i++)
             {
+                if (i == recovery - 1) hasFinished = true;
                 yield return null;
             }
 
             BoxCollider2D.enabled = false;
             CircleCollider2D.enabled = false;
             HurtBoxTrigger.enabled = false;
-            hasFinished = true;
         }
     }
 }
