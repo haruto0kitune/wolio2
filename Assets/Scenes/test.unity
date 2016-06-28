@@ -615,7 +615,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   Player: {fileID: 150007667}
   Fireball: {fileID: 152842, guid: d4814f04f90eef043bc858de8d366b6e, type: 2}
-  HurtBox: {fileID: 1292045512}
+  FireballMotionHurtBox: {fileID: 1292045512}
   startup: 10
   recovery: 10
 --- !u!1 &129510089
@@ -2633,7 +2633,7 @@ GameObject:
   - 61: {fileID: 353311432}
   m_Layer: 8
   m_Name: FragileBlock (12)
-  m_TagString: Untagged
+  m_TagString: FragileBlock
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -2947,7 +2947,7 @@ GameObject:
   - 61: {fileID: 360855772}
   m_Layer: 8
   m_Name: FragileBlock (2)
-  m_TagString: Untagged
+  m_TagString: FragileBlock
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -3251,7 +3251,7 @@ GameObject:
   - 61: {fileID: 400947004}
   m_Layer: 8
   m_Name: FragileBlock (11)
-  m_TagString: Untagged
+  m_TagString: FragileBlock
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -3377,148 +3377,10 @@ SpriteRenderer:
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
---- !u!1 &410765030
-GameObject:
-  m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 115808, guid: 083b64ac24a951349a31c470287d0d4e, type: 2}
-  m_PrefabInternal: {fileID: 0}
-  serializedVersion: 4
-  m_Component:
-  - 4: {fileID: 410765031}
-  - 212: {fileID: 410765037}
-  - 95: {fileID: 410765036}
-  - 50: {fileID: 410765035}
-  - 61: {fileID: 410765034}
-  - 114: {fileID: 410765033}
-  - 61: {fileID: 410765032}
-  m_Layer: 8
-  m_Name: FragileBlock (7)
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!4 &410765031
+--- !u!4 &410765031 stripped
 Transform:
-  m_ObjectHideFlags: 0
   m_PrefabParentObject: {fileID: 422892, guid: 083b64ac24a951349a31c470287d0d4e, type: 2}
-  m_PrefabInternal: {fileID: 0}
-  m_GameObject: {fileID: 410765030}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 3.008, y: -1.256, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_Children: []
-  m_Father: {fileID: 678259232}
-  m_RootOrder: 7
---- !u!61 &410765032
-BoxCollider2D:
-  m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 6125886, guid: 083b64ac24a951349a31c470287d0d4e,
-    type: 2}
-  m_PrefabInternal: {fileID: 0}
-  m_GameObject: {fileID: 410765030}
-  m_Enabled: 1
-  m_Density: 1
-  m_Material: {fileID: 0}
-  m_IsTrigger: 0
-  m_UsedByEffector: 0
-  m_Offset: {x: 0, y: 0}
-  serializedVersion: 2
-  m_Size: {x: 0.4, y: 0.4}
---- !u!114 &410765033
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 11414986, guid: 083b64ac24a951349a31c470287d0d4e,
-    type: 2}
-  m_PrefabInternal: {fileID: 0}
-  m_GameObject: {fileID: 410765030}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 6b745fff1adb9b64488e217c20dd13d9, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
---- !u!61 &410765034
-BoxCollider2D:
-  m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 6192568, guid: 083b64ac24a951349a31c470287d0d4e,
-    type: 2}
-  m_PrefabInternal: {fileID: 0}
-  m_GameObject: {fileID: 410765030}
-  m_Enabled: 1
-  m_Density: 1
-  m_Material: {fileID: 0}
-  m_IsTrigger: 1
-  m_UsedByEffector: 0
-  m_Offset: {x: 0, y: 0}
-  serializedVersion: 2
-  m_Size: {x: 0.4, y: 0.4}
---- !u!50 &410765035
-Rigidbody2D:
-  serializedVersion: 2
-  m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 5022642, guid: 083b64ac24a951349a31c470287d0d4e,
-    type: 2}
-  m_PrefabInternal: {fileID: 0}
-  m_GameObject: {fileID: 410765030}
-  m_UseAutoMass: 0
-  m_Mass: 1
-  m_LinearDrag: 0
-  m_AngularDrag: 0.05
-  m_GravityScale: 1
-  m_IsKinematic: 1
-  m_Interpolate: 0
-  m_SleepingMode: 1
-  m_CollisionDetection: 0
-  m_Constraints: 4
---- !u!95 &410765036
-Animator:
-  serializedVersion: 3
-  m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 9548078, guid: 083b64ac24a951349a31c470287d0d4e,
-    type: 2}
-  m_PrefabInternal: {fileID: 0}
-  m_GameObject: {fileID: 410765030}
-  m_Enabled: 1
-  m_Avatar: {fileID: 0}
-  m_Controller: {fileID: 9100000, guid: ed3da7aeb760e5e4998369d092f434f9, type: 2}
-  m_CullingMode: 0
-  m_UpdateMode: 0
-  m_ApplyRootMotion: 0
-  m_LinearVelocityBlending: 0
-  m_WarningMessage: 
-  m_HasTransformHierarchy: 1
-  m_AllowConstantClipSamplingOptimization: 1
---- !u!212 &410765037
-SpriteRenderer:
-  m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 21247110, guid: 083b64ac24a951349a31c470287d0d4e,
-    type: 2}
-  m_PrefabInternal: {fileID: 0}
-  m_GameObject: {fileID: 410765030}
-  m_Enabled: 1
-  m_CastShadows: 0
-  m_ReceiveShadows: 0
-  m_Materials:
-  - {fileID: 10754, guid: 0000000000000000e000000000000000, type: 0}
-  m_SubsetIndices: 
-  m_StaticBatchRoot: {fileID: 0}
-  m_UseLightProbes: 0
-  m_ReflectionProbeUsage: 0
-  m_ProbeAnchor: {fileID: 0}
-  m_ScaleInLightmap: 1
-  m_PreserveUVs: 0
-  m_IgnoreNormalsForChartDetection: 0
-  m_ImportantGI: 0
-  m_MinimumChartSize: 4
-  m_AutoUVMaxDistance: 0.5
-  m_AutoUVMaxAngle: 89
-  m_LightmapParameters: {fileID: 0}
-  m_SortingLayerID: 0
-  m_SortingOrder: 0
-  m_Sprite: {fileID: 21300000, guid: 3cc73aed8191a7f4794245ea1973b9fb, type: 3}
-  m_Color: {r: 1, g: 1, b: 1, a: 1}
-  m_FlipX: 0
-  m_FlipY: 0
+  m_PrefabInternal: {fileID: 413919017}
 --- !u!1 &411626246
 GameObject:
   m_ObjectHideFlags: 0
@@ -3578,6 +3440,52 @@ SpriteRenderer:
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
+--- !u!1001 &413919017
+Prefab:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    m_TransformParent: {fileID: 678259232}
+    m_Modifications:
+    - target: {fileID: 422892, guid: 083b64ac24a951349a31c470287d0d4e, type: 2}
+      propertyPath: m_LocalPosition.x
+      value: 3.008
+      objectReference: {fileID: 0}
+    - target: {fileID: 422892, guid: 083b64ac24a951349a31c470287d0d4e, type: 2}
+      propertyPath: m_LocalPosition.y
+      value: -1.256
+      objectReference: {fileID: 0}
+    - target: {fileID: 422892, guid: 083b64ac24a951349a31c470287d0d4e, type: 2}
+      propertyPath: m_LocalPosition.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 422892, guid: 083b64ac24a951349a31c470287d0d4e, type: 2}
+      propertyPath: m_LocalRotation.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 422892, guid: 083b64ac24a951349a31c470287d0d4e, type: 2}
+      propertyPath: m_LocalRotation.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 422892, guid: 083b64ac24a951349a31c470287d0d4e, type: 2}
+      propertyPath: m_LocalRotation.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 422892, guid: 083b64ac24a951349a31c470287d0d4e, type: 2}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 422892, guid: 083b64ac24a951349a31c470287d0d4e, type: 2}
+      propertyPath: m_RootOrder
+      value: 7
+      objectReference: {fileID: 0}
+    - target: {fileID: 115808, guid: 083b64ac24a951349a31c470287d0d4e, type: 2}
+      propertyPath: m_Name
+      value: FragileBlock (7)
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+  m_ParentPrefab: {fileID: 100100000, guid: 083b64ac24a951349a31c470287d0d4e, type: 2}
+  m_IsPrefabParent: 0
 --- !u!1 &414731503
 GameObject:
   m_ObjectHideFlags: 0
@@ -3910,7 +3818,7 @@ GameObject:
   - 61: {fileID: 547338730}
   m_Layer: 8
   m_Name: FragileBlock (8)
-  m_TagString: Untagged
+  m_TagString: FragileBlock
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -4261,9 +4169,9 @@ BoxCollider2D:
   m_Material: {fileID: 0}
   m_IsTrigger: 1
   m_UsedByEffector: 0
-  m_Offset: {x: -1.2391596, y: 0.16955853}
+  m_Offset: {x: -0.81156653, y: -0.020732045}
   serializedVersion: 2
-  m_Size: {x: 0.057870984, y: 0.66088367}
+  m_Size: {x: 0.9130612, y: 0.28030252}
 --- !u!4 &612170138
 Transform:
   m_ObjectHideFlags: 0
@@ -4296,7 +4204,7 @@ GameObject:
   - 61: {fileID: 627075808}
   m_Layer: 8
   m_Name: FragileBlock (13)
-  m_TagString: Untagged
+  m_TagString: FragileBlock
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -4469,7 +4377,7 @@ GameObject:
   - 61: {fileID: 670743959}
   m_Layer: 8
   m_Name: FragileBlock
-  m_TagString: Untagged
+  m_TagString: FragileBlock
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -5331,7 +5239,7 @@ GameObject:
   - 61: {fileID: 752879771}
   m_Layer: 8
   m_Name: FragileBlock (6)
-  m_TagString: Untagged
+  m_TagString: FragileBlock
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -5911,7 +5819,7 @@ GameObject:
   - 61: {fileID: 819353564}
   m_Layer: 8
   m_Name: FragileBlock (15)
-  m_TagString: Untagged
+  m_TagString: FragileBlock
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -7109,7 +7017,7 @@ GameObject:
   - 61: {fileID: 1002533105}
   m_Layer: 8
   m_Name: FragileBlock (5)
-  m_TagString: Untagged
+  m_TagString: FragileBlock
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -8040,7 +7948,7 @@ GameObject:
   - 61: {fileID: 1082136367}
   m_Layer: 8
   m_Name: FragileBlock (1)
-  m_TagString: Untagged
+  m_TagString: FragileBlock
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -9262,7 +9170,7 @@ GameObject:
   - 61: {fileID: 1294680995}
   m_Layer: 8
   m_Name: FragileBlock (9)
-  m_TagString: Untagged
+  m_TagString: FragileBlock
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -9599,7 +9507,7 @@ GameObject:
   - 61: {fileID: 1394986768}
   m_Layer: 8
   m_Name: FragileBlock (3)
-  m_TagString: Untagged
+  m_TagString: FragileBlock
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -11292,7 +11200,7 @@ GameObject:
   - 61: {fileID: 1716313736}
   m_Layer: 8
   m_Name: FragileBlock (4)
-  m_TagString: Untagged
+  m_TagString: FragileBlock
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -11947,7 +11855,7 @@ GameObject:
   - 61: {fileID: 1799086724}
   m_Layer: 8
   m_Name: FragileBlock (10)
-  m_TagString: Untagged
+  m_TagString: FragileBlock
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0

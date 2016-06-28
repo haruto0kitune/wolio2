@@ -45,6 +45,7 @@ TagManager:
   - HurtBox/StandingHurtBox
   - HurtBox/CrouchingHurtBox
   - HurtBox/JumpingHurtBox
+  - FragileBlock
   layers:
   - Default
   - TransparentFX

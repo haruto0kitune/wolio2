@@ -18,14 +18,15 @@ namespace Wolio.Actor.Player.Attacks.SpecialAttacks
         CircleCollider2D CircleCollider2D;
         PlayerState PlayerState;
         [SerializeField]
-        GameObject HurtBox;
-        BoxCollider2D HurtBoxTrigger;
+        GameObject FireballMotionHurtBox;
+        BoxCollider2D HurtBox;
         bool hasFinished;
         Coroutine coroutineStore;
         [SerializeField]
         int startup;
         [SerializeField]
         int recovery;
+        bool wasCanceled;
 
         void Awake()
         {
@@ -34,7 +35,7 @@ namespace Wolio.Actor.Player.Attacks.SpecialAttacks
             BoxCollider2D = GetComponent<BoxCollider2D>();
             CircleCollider2D = GetComponent<CircleCollider2D>();
             PlayerState = Player.GetComponent<PlayerState>();
-            HurtBoxTrigger = HurtBox.GetComponent<BoxCollider2D>();
+            HurtBox = FireballMotionHurtBox.GetComponent<BoxCollider2D>();
         }
 
         void Start()
@@ -70,6 +71,37 @@ namespace Wolio.Actor.Player.Attacks.SpecialAttacks
                     Animator.SetBool("IsStandingDamage", true);
                 });
             #endregion
+            #region FireballMotion->SupineJumpingDamage
+            ObservableStateMachineTrigger
+                .OnStateUpdateAsObservable()
+                .Where(x => x.StateInfo.IsName("Base Layer.FireballMotion"))
+                .Where(x => PlayerState.WasSupineAttributeAttacked.Value && PlayerState.WasKnockdownAttributeAttacked.Value)
+                .Subscribe(_ =>
+                {
+                    Animator.SetBool("IsFireballMotion", false);
+                    Animator.SetBool("IsSupineJumpingDamage", true);
+                });
+            #endregion
+            #region FireballMotion->ProneJumpingDamage
+            ObservableStateMachineTrigger
+                .OnStateUpdateAsObservable()
+                .Where(x => x.StateInfo.IsName("Base Layer.FireballMotion"))
+                .Where(x => PlayerState.WasProneAttributeAttacked.Value && PlayerState.WasKnockdownAttributeAttacked.Value)
+                .Subscribe(_ =>
+                {
+                    Animator.SetBool("IsFireballMotion", false);
+                    Animator.SetBool("IsProneJumpingDamage", true);
+                });
+            #endregion
+            
+            // Collision
+            this.ObserveEveryValueChanged(x => wasCanceled)
+                .Where(x => x)
+                .Subscribe(_ => Cancel());
+
+            this.ObserveEveryValueChanged(x => PlayerState.WasAttacked.Value)
+                .Where(x => PlayerState.IsFireballMotion.Value)
+                .Subscribe(_ => wasCanceled = _);
         }
 
         IEnumerator FireballMotionCoroutine()
@@ -77,7 +109,7 @@ namespace Wolio.Actor.Player.Attacks.SpecialAttacks
             // Startup
             BoxCollider2D.enabled = true;
             CircleCollider2D.enabled = true;
-            HurtBoxTrigger.enabled = true;
+            HurtBox.enabled = true;
 
             while (Animator.GetCurrentAnimatorStateInfo(Animator.GetLayerIndex("Base Layer")).normalizedTime <= 1.0f)
             {
@@ -106,7 +138,19 @@ namespace Wolio.Actor.Player.Attacks.SpecialAttacks
 
             BoxCollider2D.enabled = false;
             CircleCollider2D.enabled = false;
-            HurtBoxTrigger.enabled = false;
+            HurtBox.enabled = false;
+        }
+
+        void Cancel()
+        {
+            StopCoroutine(coroutineStore);
+
+            // Collision disable
+            BoxCollider2D.enabled = false;
+            CircleCollider2D.enabled = false;
+            HurtBox.enabled = false;
+            
+            wasCanceled = false;
         }
     }
 }

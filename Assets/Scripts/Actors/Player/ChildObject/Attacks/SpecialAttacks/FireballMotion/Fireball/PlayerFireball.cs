@@ -53,6 +53,13 @@ public class PlayerFireball : MonoBehaviour
         // Destroy
         this.OnBecameInvisibleAsObservable()
             .Subscribe(_ => Destroy(this.gameObject));
+
+        this.OnTriggerEnter2DAsObservable()
+            .Where(x => x.gameObject.tag != "Player"
+                     && x.gameObject.tag == "Hard Platform"
+                     || x.gameObject.tag == "Wall"
+                     || x.gameObject.tag == "FragailBlock")
+            .Subscribe(_ => Destroy(this.gameObject));
     }
 
     public void Initialize(Vector2 position, float speed, float direction)
