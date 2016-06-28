@@ -35,6 +35,7 @@ namespace Wolio.Actor.Player
         public ReactiveProperty<bool> canStandingLightAttack;
         public ReactiveProperty<bool> IsStandingMiddleAttack;
         public ReactiveProperty<bool> canStandingMiddleAttack;
+        public ReactiveProperty<bool> hitStandingMiddleAttack;
         public ReactiveProperty<bool> IsStandingHighAttack;
         public ReactiveProperty<bool> canStandingHighAttack;
         public ReactiveProperty<bool> IsCrouchingLightAttack;
@@ -79,6 +80,17 @@ namespace Wolio.Actor.Player
         public ReactiveProperty<bool> WasProneAttributeAttacked;
         public ReactiveProperty<bool> WasKnockdownAttributeAttacked { get; set; }
         public ReactiveProperty<bool> hasInputedFireballMotionCommand;
+        public ReactiveProperty<bool> hasInputedDragonPunch;
+        public ReactiveProperty<bool> hasInputedHurricaneKick;
+        public ReactiveProperty<bool> IsThrow;
+        public ReactiveProperty<bool> canThrow;
+        public ReactiveProperty<bool> IsFireballMotion;
+        public ReactiveProperty<bool> canFireballMotion;
+        public ReactiveProperty<bool> IsDragonPunch;
+        public ReactiveProperty<bool> canDragonPunch;
+        public ReactiveProperty<bool> IsHurricaneKick;
+        public ReactiveProperty<bool> canHurricaneKick;
+    
 
         void Awake()
         {
@@ -91,9 +103,9 @@ namespace Wolio.Actor.Player
             Status = GetComponent<Status>();
             Key = GetComponent<Key>();
 
-            IsGrounded = this.ObserveEveryValueChanged(x => (bool)Physics2D.Linecast(GroundCheck.position, GroundCheck.position, PlayerConfig.WhatIsGround))
+            IsGrounded = this.ObserveEveryValueChanged(x => (bool)Physics2D.Linecast(GroundCheck.position, new Vector2(GroundCheck.position.x, GroundCheck.position.y - 0.05f), PlayerConfig.WhatIsGround))
                              .ToReactiveProperty();
-            
+
             IsDead = Status.Hp
                            .Select(x => x <= 0)
                            .ToReactiveProperty();
@@ -105,7 +117,7 @@ namespace Wolio.Actor.Player
 
             canJump = this.ObserveEveryValueChanged(x => (IsStanding.Value || 
                                                           IsRunning.Value ||
-                                                          IsStandingMiddleAttack.Value) &&
+                                                          (IsStandingMiddleAttack.Value && hitStandingMiddleAttack.Value)) &&
                                                           IsGrounded.Value).ToReactiveProperty();
             
             IsStanding = this.ObserveEveryValueChanged(x => Animator.GetBool("IsStanding"))
@@ -143,7 +155,9 @@ namespace Wolio.Actor.Player
                                                                          IsStandingLightAttack.Value || 
                                                                          IsCrouchingLightAttack.Value)
                                           .ToReactiveProperty();
-            
+
+            hitStandingMiddleAttack = new ReactiveProperty<bool>();
+
             IsStandingHighAttack = this.ObserveEveryValueChanged(x => Animator.GetBool("IsStandingHighAttack"))
                                        .ToReactiveProperty();
 
@@ -267,11 +281,68 @@ namespace Wolio.Actor.Player
             WasProneAttributeAttacked = new ReactiveProperty<bool>();
             WasKnockdownAttributeAttacked = new ReactiveProperty<bool>();
 
+            IsThrow = this.ObserveEveryValueChanged(x => Animator.GetBool("IsThrow"))
+                                   .ToReactiveProperty();
+
+            canThrow = this.ObserveEveryValueChanged(x => IsStanding.Value)
+                           .ToReactiveProperty();
+
+            IsFireballMotion = this.ObserveEveryValueChanged(x => Animator.GetBool("IsFireballMotion"))
+                                   .ToReactiveProperty();
+
+            canFireballMotion = this.ObserveEveryValueChanged(x => IsStanding.Value
+                                                                || IsRunning.Value
+                                                                || IsStandingLightAttack.Value
+                                                                || IsStandingMiddleAttack.Value
+                                                                || IsStandingHighAttack.Value
+                                                                || IsCrouchingLightAttack.Value
+                                                                || IsCrouchingMiddleAttack.Value
+                                                                || IsCrouchingHighAttack.Value)
+                                    .ToReactiveProperty();
+
+            IsDragonPunch = this.ObserveEveryValueChanged(x => Animator.GetBool("IsDragonPunch"))
+                                   .ToReactiveProperty();
+
+
+            canDragonPunch = this.ObserveEveryValueChanged(x => IsStanding.Value
+                                                             || IsCrouching.Value
+                                                             || IsRunning.Value
+                                                             || IsStandingLightAttack.Value
+                                                             || IsStandingMiddleAttack.Value
+                                                             || IsStandingHighAttack.Value
+                                                             || IsCrouchingLightAttack.Value
+                                                             || IsCrouchingMiddleAttack.Value
+                                                             || IsCrouchingHighAttack.Value)
+                                 .ToReactiveProperty();
+
+
+            IsHurricaneKick = this.ObserveEveryValueChanged(x => Animator.GetBool("IsHurricaneKick"))
+                                   .ToReactiveProperty();
+
+            canHurricaneKick = this.ObserveEveryValueChanged(x => IsStanding.Value
+                                                               || IsCrouching.Value
+                                                               || IsRunning.Value
+                                                               || IsStandingLightAttack.Value
+                                                               || IsStandingMiddleAttack.Value
+                                                               || IsStandingHighAttack.Value
+                                                               || IsCrouchingLightAttack.Value
+                                                               || IsCrouchingMiddleAttack.Value
+                                                               || IsCrouchingHighAttack.Value)
+                                   .ToReactiveProperty();
+
+
             hasInputedFireballMotionCommand = this.ObserveEveryValueChanged(x => System.Text.RegularExpressions.Regex.IsMatch(string.Concat(Key.inputHistory.ToArray().Reverse().Distinct().ToArray()), "26Z")
                                                                               || System.Text.RegularExpressions.Regex.IsMatch(string.Concat(Key.inputHistory.ToArray().Reverse().Distinct().ToArray()), "24Z")
                                                                               || System.Text.RegularExpressions.Regex.IsMatch(string.Concat(Key.inputHistory.ToArray().Reverse().Distinct().ToArray()), "236Z")
                                                                               || System.Text.RegularExpressions.Regex.IsMatch(string.Concat(Key.inputHistory.ToArray().Reverse().Distinct().ToArray()), "214Z"))
                                                   .ToReactiveProperty();
+
+            hasInputedDragonPunch = this.ObserveEveryValueChanged(x => System.Text.RegularExpressions.Regex.IsMatch(string.Concat(Key.inputHistory.ToArray().Reverse().Distinct().ToArray()), "623Z")
+                                                                    || System.Text.RegularExpressions.Regex.IsMatch(string.Concat(Key.inputHistory.ToArray().Reverse().Distinct().ToArray()), "421Z"))
+                                        .ToReactiveProperty();
+
+            hasInputedHurricaneKick = this.ObserveEveryValueChanged(x => System.Text.RegularExpressions.Regex.IsMatch(string.Concat(Key.inputHistory.ToArray().Reverse().Distinct().ToArray()), "252Z"))
+                                          .ToReactiveProperty();
         }
 
         void Start()

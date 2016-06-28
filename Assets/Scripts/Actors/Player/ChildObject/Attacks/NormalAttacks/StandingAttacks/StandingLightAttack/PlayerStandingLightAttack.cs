@@ -195,7 +195,22 @@ namespace Wolio.Actor.Player.Attacks.NormalAttacks.StandingAttacks
                     wasCanceled = true;
                 });
             #endregion
-
+            #region StandingLightAttack->FireballMotion
+            ObservableStateMachineTrigger
+                .OnStateUpdateAsObservable()
+                .Where(x => x.StateInfo.IsName("Base Layer.StandingLightAttack"))
+                .Where(x => PlayerState.canFireballMotion.Value)
+                .Where(x => isCancelable)
+                .Where(x => PlayerState.hasInputedFireballMotionCommand.Value)
+                .Subscribe(_ =>
+                {
+                    Animator.SetBool("IsStandingLightAttack", false);
+                    Animator.SetBool("IsFireballMotion", true);
+                    isCancelable = false;
+                    StopCoroutine(coroutineStore);
+                    wasCanceled = true;
+                });
+            #endregion
             // Collision
             this.ObserveEveryValueChanged(x => Animator.GetBool("IsStandingLightAttack"))
                 .Where(x => x)

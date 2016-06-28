@@ -103,6 +103,22 @@ namespace Wolio.Actor.Player.Attacks.NormalAttacks.CrouchingAttacks
                     wasFinished = false;
                 });
             #endregion
+            #region CrouchingHighAttack->FireballMotion
+            ObservableStateMachineTrigger
+                .OnStateUpdateAsObservable()
+                .Where(x => x.StateInfo.IsName("Base Layer.CrouchingHighAttack"))
+                .Where(x => PlayerState.canFireballMotion.Value)
+                .Where(x => isCancelable)
+                .Where(x => PlayerState.hasInputedFireballMotionCommand.Value)
+                .Subscribe(_ =>
+                {
+                    Animator.SetBool("IsCrouchingHighAttack", false);
+                    Animator.SetBool("IsFireballMotion", true);
+                    isCancelable = false;
+                    StopCoroutine(coroutineStore);
+                    wasCanceled = true;
+                });
+            #endregion
 
             //Collision
             this.ObserveEveryValueChanged(x => Animator.GetBool("IsCrouchingHighAttack"))

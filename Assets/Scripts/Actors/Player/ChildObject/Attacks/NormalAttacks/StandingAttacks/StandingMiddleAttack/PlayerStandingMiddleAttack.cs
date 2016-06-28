@@ -129,6 +129,22 @@ namespace Wolio.Actor.Player.Attacks.NormalAttacks.StandingAttacks
                     wasCanceled = true;
                 });
             #endregion
+            #region StandingMiddleAttack->FireballMotion
+            ObservableStateMachineTrigger
+                .OnStateUpdateAsObservable()
+                .Where(x => x.StateInfo.IsName("Base Layer.StandingMiddleAttack"))
+                .Where(x => PlayerState.canFireballMotion.Value)
+                .Where(x => isCancelable)
+                .Where(x => PlayerState.hasInputedFireballMotionCommand.Value)
+                .Subscribe(_ =>
+                {
+                    Animator.SetBool("IsStandingMiddleAttack", false);
+                    Animator.SetBool("IsFireballMotion", true);
+                    isCancelable = false;
+                    StopCoroutine(coroutineStore);
+                    wasCanceled = true;
+                });
+            #endregion
 
             // Collision
             this.ObserveEveryValueChanged(x => Animator.GetBool("IsStandingMiddleAttack"))
@@ -147,6 +163,7 @@ namespace Wolio.Actor.Player.Attacks.NormalAttacks.StandingAttacks
                     _.gameObject.GetComponent<DamageManager>().ApplyDamage(damageValue, hitRecovery, hitStop, isTechable, hasKnockdownAttribute, attackAttribute, knockdownAttribute);
                     HitBox.enabled = false;
                     isCancelable = true;
+                    PlayerState.hitStandingMiddleAttack.Value = true;
                 });
         }
 
@@ -189,6 +206,7 @@ namespace Wolio.Actor.Player.Attacks.NormalAttacks.StandingAttacks
             CircleCollider2D.enabled = false;
             HurtBox.enabled = false;
             isCancelable = false;
+            PlayerState.hitStandingMiddleAttack.Value = false;
             #endregion
         }
 
@@ -202,6 +220,7 @@ namespace Wolio.Actor.Player.Attacks.NormalAttacks.StandingAttacks
             HurtBox.enabled = false;
             
             wasCanceled = false;
+            PlayerState.hitStandingMiddleAttack.Value = false;
         }
     }
 }

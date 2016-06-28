@@ -59,6 +59,17 @@ namespace Wolio.Actor.Player.Attacks.SpecialAttacks
                     PlayerState.hasInputedFireballMotionCommand.Value = false;
                 });
             #endregion
+            #region FireballMotion->StandingDamage
+            ObservableStateMachineTrigger
+                .OnStateUpdateAsObservable()
+                .Where(x => x.StateInfo.IsName("Base Layer.FireballMotion"))
+                .Where(x => PlayerState.WasAttacked.Value && !PlayerState.WasKnockdownAttributeAttacked.Value)
+                .Subscribe(_ =>
+                {
+                    Animator.SetBool("IsFireballMotion", false);
+                    Animator.SetBool("IsStandingDamage", true);
+                });
+            #endregion
         }
 
         IEnumerator FireballMotionCoroutine()

@@ -193,6 +193,22 @@ namespace Wolio.Actor.Player.Attacks.NormalAttacks.CrouchingAttacks
                     wasCanceled = true;
                 });
             #endregion
+            #region CrouchingLightAttack->FireballMotion
+            ObservableStateMachineTrigger
+                .OnStateUpdateAsObservable()
+                .Where(x => x.StateInfo.IsName("Base Layer.CrouchingLightAttack"))
+                .Where(x => PlayerState.canFireballMotion.Value)
+                .Where(x => isCancelable)
+                .Where(x => PlayerState.hasInputedFireballMotionCommand.Value)
+                .Subscribe(_ =>
+                {
+                    Animator.SetBool("IsCrouchingLightAttack", false);
+                    Animator.SetBool("IsFireballMotion", true);
+                    isCancelable = false;
+                    StopCoroutine(coroutineStore);
+                    wasCanceled = true;
+                });
+            #endregion
 
             // Collision
             this.ObserveEveryValueChanged(x => Animator.GetBool("IsCrouchingLightAttack"))

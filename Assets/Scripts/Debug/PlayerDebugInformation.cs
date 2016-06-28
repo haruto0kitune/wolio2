@@ -29,6 +29,8 @@ namespace Wolio
         private Text Text5;
         [SerializeField]
         private Text Text6;
+        [SerializeField]
+        private Text Text7;
 
         void Awake()
         {
@@ -45,6 +47,7 @@ namespace Wolio
             this.ObserveEveryValueChanged(x => Rigidbody2D.velocity.y).SubscribeToText(Text4);
             PlayerState.IsCrouching.SubscribeToText(Text5);
             Status.Hp.SubscribeToText(Text6);
+            PlayerState.IsGrounded.SubscribeToText(Text7);
         }
     }
 }
