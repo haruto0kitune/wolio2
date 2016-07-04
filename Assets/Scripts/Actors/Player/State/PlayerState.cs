@@ -80,8 +80,8 @@ namespace Wolio.Actor.Player
         public ReactiveProperty<bool> WasProneAttributeAttacked;
         public ReactiveProperty<bool> WasKnockdownAttributeAttacked { get; set; }
         public ReactiveProperty<bool> hasInputedFireballMotionCommand;
-        public ReactiveProperty<bool> hasInputedDragonPunch;
-        public ReactiveProperty<bool> hasInputedHurricaneKick;
+        public ReactiveProperty<bool> hasInputedDragonPunchCommand;
+        public ReactiveProperty<bool> hasInputedHurricaneKickCommand;
         public ReactiveProperty<bool> IsThrow;
         public ReactiveProperty<bool> canThrow;
         public ReactiveProperty<bool> IsFireballMotion;
@@ -337,11 +337,11 @@ namespace Wolio.Actor.Player
                                                                               || System.Text.RegularExpressions.Regex.IsMatch(string.Concat(Key.inputHistory.ToArray().Reverse().Distinct().ToArray()), "214Z"))
                                                   .ToReactiveProperty();
 
-            hasInputedDragonPunch = this.ObserveEveryValueChanged(x => System.Text.RegularExpressions.Regex.IsMatch(string.Concat(Key.inputHistory.ToArray().Reverse().Distinct().ToArray()), "623Z")
+            hasInputedDragonPunchCommand = this.ObserveEveryValueChanged(x => System.Text.RegularExpressions.Regex.IsMatch(string.Concat(Key.inputHistory.ToArray().Reverse().Distinct().ToArray()), "623Z")
                                                                     || System.Text.RegularExpressions.Regex.IsMatch(string.Concat(Key.inputHistory.ToArray().Reverse().Distinct().ToArray()), "421Z"))
                                         .ToReactiveProperty();
 
-            hasInputedHurricaneKick = this.ObserveEveryValueChanged(x => System.Text.RegularExpressions.Regex.IsMatch(string.Concat(Key.inputHistory.ToArray().Reverse().Distinct().ToArray()), "252Z"))
+            hasInputedHurricaneKickCommand = this.ObserveEveryValueChanged(x => System.Text.RegularExpressions.Regex.IsMatch(string.Concat(Key.inputHistory.ToArray().Reverse().Distinct().ToArray()), "252Z"))
                                           .ToReactiveProperty();
         }
 

@@ -4906,6 +4906,7 @@ GameObject:
   - 4: {fileID: 742031527}
   - 61: {fileID: 742031529}
   - 58: {fileID: 742031528}
+  - 114: {fileID: 742031530}
   m_Layer: 11
   m_Name: DragonPunch
   m_TagString: Untagged
@@ -4924,6 +4925,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 744818476}
+  - {fileID: 2067837618}
   m_Father: {fileID: 42242097}
   m_RootOrder: 1
 --- !u!58 &742031528
@@ -4954,6 +4956,30 @@ BoxCollider2D:
   m_Offset: {x: 0.0011405945, y: 0.06326544}
   serializedVersion: 2
   m_Size: {x: 0.2600313, y: 0.681848}
+--- !u!114 &742031530
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 742031526}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ea485a80f058ca64c94d5e907c4f3647, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  Player: {fileID: 150007667}
+  DragonPunchHitBox: {fileID: 744818475}
+  DragonPunchHurtBox: {fileID: 2067837617}
+  startup: 4
+  active: 12
+  recovery: 0
+  damageValue: 1
+  hitRecovery: 20
+  hitStop: 10
+  isTechable: 1
+  hasKnockdownAttribute: 0
+  attackAttribute: 2
+  knockdownAttribute: 0
 --- !u!1 &743129986
 GameObject:
   m_ObjectHideFlags: 0
@@ -13162,6 +13188,64 @@ Prefab:
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 549d8c40cd3ad684285585fa42bbecde, type: 2}
   m_IsPrefabParent: 0
+--- !u!1 &2067837617
+GameObject:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  serializedVersion: 4
+  m_Component:
+  - 4: {fileID: 2067837618}
+  - 61: {fileID: 2067837620}
+  - 114: {fileID: 2067837619}
+  m_Layer: 11
+  m_Name: DragonPunchHurtBox
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &2067837618
+Transform:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 2067837617}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 742031527}
+  m_RootOrder: 1
+--- !u!114 &2067837619
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 2067837617}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d0b46e87f58ac9a45a1bde6538366fe2, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  Actor: {fileID: 150007667}
+  DamageObject: {fileID: 1356547612}
+  SupineDamageObject: {fileID: 1356547612}
+  ProneDamageObject: {fileID: 1933318782}
+--- !u!61 &2067837620
+BoxCollider2D:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 2067837617}
+  m_Enabled: 0
+  m_Density: 1
+  m_Material: {fileID: 0}
+  m_IsTrigger: 1
+  m_UsedByEffector: 0
+  m_Offset: {x: -0.001159668, y: 0.001155019}
+  serializedVersion: 2
+  m_Size: {x: 0.3198412, y: 0.8520763}
 --- !u!1 &2074393009
 GameObject:
   m_ObjectHideFlags: 0

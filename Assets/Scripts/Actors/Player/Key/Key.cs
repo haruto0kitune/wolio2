@@ -159,6 +159,9 @@ namespace Wolio.Actor.Player
                     cache.Reverse();
                     inputHistory = new Stack<string>(cache);
                 });
+
+            //this.ObserveEveryValueChanged(x => inputHistory.Count)
+            //    .Subscribe(_ => Debug.Log(string.Concat(inputHistory.ToArray().Reverse().Distinct().ToArray())));
         }
     }
 }

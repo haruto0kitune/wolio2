@@ -42,6 +42,17 @@ namespace Wolio.Actor.Player.Basics
                     Animator.SetBool("IsCreeping", false);
                 });
             #endregion
+            #region Creep->Run
+            ObservableStateMachineTrigger
+                .OnStateUpdateAsObservable()
+                .Where(x => x.StateInfo.IsName("Base Layer.Creep"))
+                .Where(x => Key.Horizontal.Value != 0 && Key.Vertical.Value == 0)
+                .Subscribe(_ =>
+                {
+                    Animator.SetBool("IsRunning", true);
+                    Animator.SetBool("IsCreeping", false);
+                });
+            #endregion
             #region Creep->Crouch 
             ObservableStateMachineTrigger
                 .OnStateUpdateAsObservable()
@@ -49,11 +60,32 @@ namespace Wolio.Actor.Player.Basics
                 .Where(x => Key.Horizontal.Value == 0 && Key.Vertical.Value == -1)
                 .Subscribe(_ =>
                 {
+                    Debug.Log("Creep->Crouch");
                     Animator.SetBool("IsCrouching", true);
                     Animator.SetBool("IsCreeping", false);
                 });
             #endregion
-            
+            #region Creep->DragonPunch
+            ObservableStateMachineTrigger
+                .OnStateUpdateAsObservable()
+                .Where(x => x.StateInfo.IsName("Base Layer.Creep"))
+                .Where(x => PlayerState.hasInputedDragonPunchCommand.Value)
+                .Subscribe(_ =>
+                {
+                    Debug.Log("Creep->DragonPunch");
+                    Animator.SetBool("IsCreeping", false);
+                    Animator.SetBool("IsDragonPunch", true);
+                });
+            #endregion
+
+            PlayerState.IsCrouching
+                .Where(x => x)
+                .Subscribe(x => Debug.Log("IsCrouching: true"));
+
+            PlayerState.IsCreeping
+                .Where(x => x)
+                .Subscribe(x => Debug.Log("IsCreeping: true"));
+
             //Motion
             this.FixedUpdateAsObservable()
                 .Where(x => PlayerState.canCreep.Value)
