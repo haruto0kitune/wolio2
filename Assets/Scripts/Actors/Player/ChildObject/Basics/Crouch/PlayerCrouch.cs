@@ -112,17 +112,6 @@ namespace Wolio.Actor.Player.Basics
                     Animator.SetBool("IsCrouchingDamage", true);
                 });
             #endregion
-            //#region Crouch->DragonPunch
-            //ObservableStateMachineTrigger
-            //    .OnStateUpdateAsObservable()
-            //    .Where(x => x.StateInfo.IsName("Base Layer.Crouch"))
-            //    .Where(x => PlayerState.hasInputedDragonPunchCommand.Value)
-            //    .Subscribe(_ =>
-            //    {
-            //        Animator.SetBool("IsCrouch", false);
-            //        Animator.SetBool("IsDragonPunch", true);
-            //    });
-            //#endregion
 
             //Collision
             this.ObserveEveryValueChanged(x => Animator.GetBool("IsCrouching"))

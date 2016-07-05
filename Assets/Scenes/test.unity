@@ -4907,9 +4907,9 @@ GameObject:
   - 61: {fileID: 742031529}
   - 58: {fileID: 742031528}
   - 114: {fileID: 742031530}
-  m_Layer: 11
+  m_Layer: 17
   m_Name: DragonPunch
-  m_TagString: Untagged
+  m_TagString: AttackLevel/3
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -5101,9 +5101,9 @@ GameObject:
   m_Component:
   - 4: {fileID: 744818476}
   - 61: {fileID: 744818477}
-  m_Layer: 11
+  m_Layer: 14
   m_Name: DragonPunchHitBox
-  m_TagString: Untagged
+  m_TagString: HitBox
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -13198,9 +13198,9 @@ GameObject:
   - 4: {fileID: 2067837618}
   - 61: {fileID: 2067837620}
   - 114: {fileID: 2067837619}
-  m_Layer: 11
+  m_Layer: 24
   m_Name: DragonPunchHurtBox
-  m_TagString: Untagged
+  m_TagString: HurtBox
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0

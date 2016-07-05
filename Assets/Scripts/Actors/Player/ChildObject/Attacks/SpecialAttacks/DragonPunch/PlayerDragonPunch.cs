@@ -112,6 +112,11 @@ namespace Wolio.Actor.Player.Attacks.SpecialAttacks
             this.ObserveEveryValueChanged(x => PlayerState.WasAttacked.Value)
                 .Where(x => PlayerState.IsDragonPunch.Value)
                 .Subscribe(_ => wasCanceled = _);
+
+            this.UpdateAsObservable()
+                .Where(x => !gameObject.activeSelf)
+                .Subscribe(x => Debug.Log("DragonPunch Active: " + gameObject.activeSelf));
+
             
             // Damage
             DragonPunchHitBox.OnTriggerEnter2DAsObservable()
