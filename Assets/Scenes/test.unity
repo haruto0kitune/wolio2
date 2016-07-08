@@ -257,9 +257,9 @@ Transform:
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
-  - {fileID: 115119008}
-  - {fileID: 742031527}
-  - {fileID: 1455663862}
+  - {fileID: 1201511269}
+  - {fileID: 1228433701}
+  - {fileID: 226139025}
   m_Father: {fileID: 1966504324}
   m_RootOrder: 1
 --- !u!1 &45478397
@@ -555,7 +555,7 @@ GameObject:
   - 58: {fileID: 115119009}
   - 114: {fileID: 115119011}
   m_Layer: 11
-  m_Name: FireballMotion
+  m_Name: LightFireballMotion
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -572,7 +572,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 1292045513}
-  m_Father: {fileID: 42242097}
+  m_Father: {fileID: 1201511269}
   m_RootOrder: 0
 --- !u!58 &115119009
 CircleCollider2D:
@@ -618,6 +618,7 @@ MonoBehaviour:
   FireballMotionHurtBox: {fileID: 1292045512}
   startup: 10
   recovery: 10
+  FireballSpeed: 2
 --- !u!1 &129510089
 GameObject:
   m_ObjectHideFlags: 0
@@ -1643,6 +1644,34 @@ SpriteRenderer:
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
+--- !u!1 &226139024
+GameObject:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  serializedVersion: 4
+  m_Component:
+  - 4: {fileID: 226139025}
+  m_Layer: 11
+  m_Name: HurricaneKicks
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &226139025
+Transform:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 226139024}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children:
+  - {fileID: 1455663862}
+  m_Father: {fileID: 42242097}
+  m_RootOrder: 2
 --- !u!1 &231261342
 GameObject:
   m_ObjectHideFlags: 0
@@ -3217,6 +3246,82 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d59cf038eef76084ea6ef8a91dae2847, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!1 &385837301
+GameObject:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  serializedVersion: 4
+  m_Component:
+  - 4: {fileID: 385837302}
+  - 61: {fileID: 385837305}
+  - 58: {fileID: 385837304}
+  - 114: {fileID: 385837303}
+  m_Layer: 11
+  m_Name: MiddleFireballMotion
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &385837302
+Transform:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 385837301}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children:
+  - {fileID: 1314871557}
+  m_Father: {fileID: 1201511269}
+  m_RootOrder: 1
+--- !u!114 &385837303
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 385837301}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b6a6f9cccef92b44f858af3d945bc88a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  Player: {fileID: 150007667}
+  Fireball: {fileID: 152842, guid: d4814f04f90eef043bc858de8d366b6e, type: 2}
+  FireballMotionHurtBox: {fileID: 1314871556}
+  startup: 10
+  recovery: 13
+  FireballSpeed: 4
+--- !u!58 &385837304
+CircleCollider2D:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 385837301}
+  m_Enabled: 0
+  m_Density: 1
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_UsedByEffector: 0
+  m_Offset: {x: 0, y: -0.27}
+  serializedVersion: 2
+  m_Radius: 0.13250196
+--- !u!61 &385837305
+BoxCollider2D:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 385837301}
+  m_Enabled: 0
+  m_Density: 1
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_UsedByEffector: 0
+  m_Offset: {x: 0.0011405945, y: 0.06326544}
+  serializedVersion: 2
+  m_Size: {x: 0.2600313, y: 0.681848}
 --- !u!1 &387905924 stripped
 GameObject:
   m_PrefabParentObject: {fileID: 191522, guid: 631a53319fe23c94e9788cc66228b4c0, type: 2}
@@ -3802,6 +3907,90 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   FlyingPiyo: {fileID: 743129986}
   FlyingPiyoDamageHurtBox: {fileID: 1013882153}
+--- !u!1 &545198330
+GameObject:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  serializedVersion: 4
+  m_Component:
+  - 4: {fileID: 545198331}
+  - 61: {fileID: 545198334}
+  - 58: {fileID: 545198333}
+  - 114: {fileID: 545198332}
+  m_Layer: 0
+  m_Name: MiddleDragonPunch
+  m_TagString: AttackLevel/3
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &545198331
+Transform:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 545198330}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children:
+  - {fileID: 600868376}
+  - {fileID: 1831386130}
+  m_Father: {fileID: 1228433701}
+  m_RootOrder: 1
+--- !u!114 &545198332
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 545198330}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2456b66ef99e6394d83e3746d758d73a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  Player: {fileID: 150007667}
+  DragonPunchHitBox: {fileID: 600868375}
+  DragonPunchHurtBox: {fileID: 1831386129}
+  startup: 4
+  active: 16
+  recovery: 0
+  damageValue: 1
+  hitRecovery: 12
+  hitStop: 13
+  isTechable: 1
+  hasKnockdownAttribute: 0
+  attackAttribute: 2
+  knockdownAttribute: 0
+--- !u!58 &545198333
+CircleCollider2D:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 545198330}
+  m_Enabled: 0
+  m_Density: 1
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_UsedByEffector: 0
+  m_Offset: {x: 0, y: -0.27}
+  serializedVersion: 2
+  m_Radius: 0.13250196
+--- !u!61 &545198334
+BoxCollider2D:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 545198330}
+  m_Enabled: 0
+  m_Density: 1
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_UsedByEffector: 0
+  m_Offset: {x: 0.0011405945, y: 0.06326544}
+  serializedVersion: 2
+  m_Size: {x: 0.2600313, y: 0.681848}
 --- !u!1 &547338728
 GameObject:
   m_ObjectHideFlags: 0
@@ -4172,6 +4361,48 @@ BoxCollider2D:
   m_Offset: {x: -0.81156653, y: -0.020732045}
   serializedVersion: 2
   m_Size: {x: 0.9130612, y: 0.28030252}
+--- !u!1 &600868375
+GameObject:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  serializedVersion: 4
+  m_Component:
+  - 4: {fileID: 600868376}
+  - 61: {fileID: 600868377}
+  m_Layer: 14
+  m_Name: MiddleDragonPunchHitBox
+  m_TagString: HitBox
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &600868376
+Transform:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 600868375}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 545198331}
+  m_RootOrder: 0
+--- !u!61 &600868377
+BoxCollider2D:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 600868375}
+  m_Enabled: 0
+  m_Density: 1
+  m_Material: {fileID: 0}
+  m_IsTrigger: 1
+  m_UsedByEffector: 0
+  m_Offset: {x: -0.10678208, y: 0.16957724}
+  serializedVersion: 2
+  m_Size: {x: 0.16016251, y: 0.56587136}
 --- !u!4 &612170138
 Transform:
   m_ObjectHideFlags: 0
@@ -4907,8 +5138,8 @@ GameObject:
   - 61: {fileID: 742031529}
   - 58: {fileID: 742031528}
   - 114: {fileID: 742031530}
-  m_Layer: 17
-  m_Name: DragonPunch
+  m_Layer: 0
+  m_Name: LightDragonPunch
   m_TagString: AttackLevel/3
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -4926,8 +5157,8 @@ Transform:
   m_Children:
   - {fileID: 744818476}
   - {fileID: 2067837618}
-  m_Father: {fileID: 42242097}
-  m_RootOrder: 1
+  m_Father: {fileID: 1228433701}
+  m_RootOrder: 0
 --- !u!58 &742031528
 CircleCollider2D:
   m_ObjectHideFlags: 0
@@ -4974,7 +5205,7 @@ MonoBehaviour:
   active: 12
   recovery: 0
   damageValue: 1
-  hitRecovery: 20
+  hitRecovery: 10
   hitStop: 10
   isTechable: 1
   hasKnockdownAttribute: 0
@@ -5102,7 +5333,7 @@ GameObject:
   - 4: {fileID: 744818476}
   - 61: {fileID: 744818477}
   m_Layer: 14
-  m_Name: DragonPunchHitBox
+  m_Name: LightDragonPunchHitBox
   m_TagString: HitBox
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -5402,7 +5633,7 @@ GameObject:
   - 61: {fileID: 758496607}
   - 114: {fileID: 758496606}
   m_Layer: 11
-  m_Name: HurricaneKickHurtBox
+  m_Name: LightHurricaneKickHurtBox
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -6362,6 +6593,64 @@ Transform:
   m_Children: []
   m_Father: {fileID: 1109348981}
   m_RootOrder: 0
+--- !u!1 &918487346
+GameObject:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  serializedVersion: 4
+  m_Component:
+  - 4: {fileID: 918487347}
+  - 61: {fileID: 918487349}
+  - 114: {fileID: 918487348}
+  m_Layer: 24
+  m_Name: HighDragonPunchHurtBox
+  m_TagString: HurtBox
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &918487347
+Transform:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 918487346}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 1254450302}
+  m_RootOrder: 1
+--- !u!114 &918487348
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 918487346}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d0b46e87f58ac9a45a1bde6538366fe2, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  Actor: {fileID: 150007667}
+  DamageObject: {fileID: 1356547612}
+  SupineDamageObject: {fileID: 1356547612}
+  ProneDamageObject: {fileID: 1933318782}
+--- !u!61 &918487349
+BoxCollider2D:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 918487346}
+  m_Enabled: 0
+  m_Density: 1
+  m_Material: {fileID: 0}
+  m_IsTrigger: 1
+  m_UsedByEffector: 0
+  m_Offset: {x: -0.001159668, y: 0.001155019}
+  serializedVersion: 2
+  m_Size: {x: 0.3198412, y: 0.8520763}
 --- !u!1001 &922933579
 Prefab:
   m_ObjectHideFlags: 0
@@ -8322,6 +8611,64 @@ BoxCollider2D:
 Transform:
   m_PrefabParentObject: {fileID: 418598, guid: 22cec0eebabc04d4db2ca1654ceef887, type: 2}
   m_PrefabInternal: {fileID: 187099275}
+--- !u!1 &1106800132
+GameObject:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  serializedVersion: 4
+  m_Component:
+  - 4: {fileID: 1106800133}
+  - 61: {fileID: 1106800135}
+  - 114: {fileID: 1106800134}
+  m_Layer: 24
+  m_Name: HighFireballMotionHurtBox
+  m_TagString: HurtBox
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &1106800133
+Transform:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1106800132}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 1771604511}
+  m_RootOrder: 0
+--- !u!114 &1106800134
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1106800132}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d0b46e87f58ac9a45a1bde6538366fe2, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  Actor: {fileID: 150007667}
+  DamageObject: {fileID: 1726887277}
+  SupineDamageObject: {fileID: 1356547612}
+  ProneDamageObject: {fileID: 1933318782}
+--- !u!61 &1106800135
+BoxCollider2D:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1106800132}
+  m_Enabled: 0
+  m_Density: 1
+  m_Material: {fileID: 0}
+  m_IsTrigger: 1
+  m_UsedByEffector: 0
+  m_Offset: {x: -0.001159668, y: 0.001155019}
+  serializedVersion: 2
+  m_Size: {x: 0.3198412, y: 0.8520763}
 --- !u!4 &1107368468 stripped
 Transform:
   m_PrefabParentObject: {fileID: 418598, guid: 22cec0eebabc04d4db2ca1654ceef887, type: 2}
@@ -8736,6 +9083,36 @@ Transform:
 Transform:
   m_PrefabParentObject: {fileID: 418598, guid: 22cec0eebabc04d4db2ca1654ceef887, type: 2}
   m_PrefabInternal: {fileID: 1673355876}
+--- !u!1 &1201511268
+GameObject:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  serializedVersion: 4
+  m_Component:
+  - 4: {fileID: 1201511269}
+  m_Layer: 11
+  m_Name: FireballMotions
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &1201511269
+Transform:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1201511268}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children:
+  - {fileID: 115119008}
+  - {fileID: 385837302}
+  - {fileID: 1771604511}
+  m_Father: {fileID: 42242097}
+  m_RootOrder: 0
 --- !u!4 &1202744011 stripped
 Transform:
   m_PrefabParentObject: {fileID: 455670, guid: 75343d6a1ea04014999c100f8fc4fe87, type: 2}
@@ -8832,6 +9209,36 @@ Transform:
   - {fileID: 1202744011}
   m_Father: {fileID: 723504207}
   m_RootOrder: 10
+--- !u!1 &1228433700
+GameObject:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  serializedVersion: 4
+  m_Component:
+  - 4: {fileID: 1228433701}
+  m_Layer: 11
+  m_Name: DragonPunches
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &1228433701
+Transform:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1228433700}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children:
+  - {fileID: 742031527}
+  - {fileID: 545198331}
+  - {fileID: 1254450302}
+  m_Father: {fileID: 42242097}
+  m_RootOrder: 1
 --- !u!1 &1238592465
 GameObject:
   m_ObjectHideFlags: 0
@@ -8915,7 +9322,7 @@ GameObject:
   - 4: {fileID: 1238696361}
   - 61: {fileID: 1238696362}
   m_Layer: 11
-  m_Name: HurricaneKickHitBox
+  m_Name: LightHurricaneKickHitBox
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -8947,6 +9354,90 @@ BoxCollider2D:
   m_Offset: {x: 0.012416005, y: -0.110699475}
   serializedVersion: 2
   m_Size: {x: 0.7013867, y: 0.17928278}
+--- !u!1 &1254450301
+GameObject:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  serializedVersion: 4
+  m_Component:
+  - 4: {fileID: 1254450302}
+  - 61: {fileID: 1254450305}
+  - 58: {fileID: 1254450304}
+  - 114: {fileID: 1254450303}
+  m_Layer: 0
+  m_Name: HighDragonPunch
+  m_TagString: AttackLevel/3
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &1254450302
+Transform:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1254450301}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children:
+  - {fileID: 1285154490}
+  - {fileID: 918487347}
+  m_Father: {fileID: 1228433701}
+  m_RootOrder: 2
+--- !u!114 &1254450303
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1254450301}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ba79fc7952190e246b1374e1930c3df9, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  Player: {fileID: 150007667}
+  DragonPunchHitBox: {fileID: 1285154489}
+  DragonPunchHurtBox: {fileID: 918487346}
+  startup: 4
+  active: 20
+  recovery: 0
+  damageValue: 1
+  hitRecovery: 15
+  hitStop: 16
+  isTechable: 1
+  hasKnockdownAttribute: 0
+  attackAttribute: 2
+  knockdownAttribute: 0
+--- !u!58 &1254450304
+CircleCollider2D:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1254450301}
+  m_Enabled: 0
+  m_Density: 1
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_UsedByEffector: 0
+  m_Offset: {x: 0, y: -0.27}
+  serializedVersion: 2
+  m_Radius: 0.13250196
+--- !u!61 &1254450305
+BoxCollider2D:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1254450301}
+  m_Enabled: 0
+  m_Density: 1
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_UsedByEffector: 0
+  m_Offset: {x: 0.0011405945, y: 0.06326544}
+  serializedVersion: 2
+  m_Size: {x: 0.2600313, y: 0.681848}
 --- !u!1 &1263658556
 GameObject:
   m_ObjectHideFlags: 0
@@ -9122,6 +9613,48 @@ Transform:
   - {fileID: 1499879014}
   m_Father: {fileID: 1109348981}
   m_RootOrder: 4
+--- !u!1 &1285154489
+GameObject:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  serializedVersion: 4
+  m_Component:
+  - 4: {fileID: 1285154490}
+  - 61: {fileID: 1285154491}
+  m_Layer: 14
+  m_Name: HighDragonPunchHitBox
+  m_TagString: HitBox
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &1285154490
+Transform:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1285154489}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 1254450302}
+  m_RootOrder: 0
+--- !u!61 &1285154491
+BoxCollider2D:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1285154489}
+  m_Enabled: 0
+  m_Density: 1
+  m_Material: {fileID: 0}
+  m_IsTrigger: 1
+  m_UsedByEffector: 0
+  m_Offset: {x: -0.10678208, y: 0.16957724}
+  serializedVersion: 2
+  m_Size: {x: 0.16016251, y: 0.56587136}
 --- !u!1 &1292045512
 GameObject:
   m_ObjectHideFlags: 0
@@ -9133,7 +9666,7 @@ GameObject:
   - 61: {fileID: 1292045515}
   - 114: {fileID: 1292045514}
   m_Layer: 24
-  m_Name: FireballMotionHurtBox
+  m_Name: LightFireballMotionHurtBox
   m_TagString: HurtBox
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -9326,6 +9859,64 @@ SpriteRenderer:
 Transform:
   m_PrefabParentObject: {fileID: 444812, guid: d693c3cba9489f8438dd2a1f1424d597, type: 2}
   m_PrefabInternal: {fileID: 1813777302}
+--- !u!1 &1314871556
+GameObject:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  serializedVersion: 4
+  m_Component:
+  - 4: {fileID: 1314871557}
+  - 61: {fileID: 1314871559}
+  - 114: {fileID: 1314871558}
+  m_Layer: 24
+  m_Name: MiddleFireballMotionHurtBox
+  m_TagString: HurtBox
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &1314871557
+Transform:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1314871556}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 385837302}
+  m_RootOrder: 0
+--- !u!114 &1314871558
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1314871556}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d0b46e87f58ac9a45a1bde6538366fe2, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  Actor: {fileID: 150007667}
+  DamageObject: {fileID: 1726887277}
+  SupineDamageObject: {fileID: 1356547612}
+  ProneDamageObject: {fileID: 1933318782}
+--- !u!61 &1314871559
+BoxCollider2D:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1314871556}
+  m_Enabled: 0
+  m_Density: 1
+  m_Material: {fileID: 0}
+  m_IsTrigger: 1
+  m_UsedByEffector: 0
+  m_Offset: {x: -0.001159668, y: 0.001155019}
+  serializedVersion: 2
+  m_Size: {x: 0.3198412, y: 0.8520763}
 --- !u!1 &1321964383
 GameObject:
   m_ObjectHideFlags: 0
@@ -10039,7 +10630,7 @@ GameObject:
   - 4: {fileID: 1455663862}
   - 61: {fileID: 1455663863}
   m_Layer: 11
-  m_Name: HurricaneKick
+  m_Name: LightHurricaneKick
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -10057,8 +10648,8 @@ Transform:
   m_Children:
   - {fileID: 1238696361}
   - {fileID: 758496605}
-  m_Father: {fileID: 42242097}
-  m_RootOrder: 2
+  m_Father: {fileID: 226139025}
+  m_RootOrder: 0
 --- !u!61 &1455663863
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -11661,6 +12252,82 @@ BoxCollider2D:
   m_Offset: {x: 0.0011405945, y: 0.002524376}
   serializedVersion: 2
   m_Size: {x: 0.2600313, y: 0.80333036}
+--- !u!1 &1771604510
+GameObject:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  serializedVersion: 4
+  m_Component:
+  - 4: {fileID: 1771604511}
+  - 61: {fileID: 1771604514}
+  - 58: {fileID: 1771604513}
+  - 114: {fileID: 1771604512}
+  m_Layer: 11
+  m_Name: HighFireballMotion
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &1771604511
+Transform:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1771604510}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children:
+  - {fileID: 1106800133}
+  m_Father: {fileID: 1201511269}
+  m_RootOrder: 2
+--- !u!114 &1771604512
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1771604510}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e4761c34f34ba9b468a0816e655d261d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  Player: {fileID: 150007667}
+  Fireball: {fileID: 152842, guid: d4814f04f90eef043bc858de8d366b6e, type: 2}
+  FireballMotionHurtBox: {fileID: 1106800132}
+  startup: 10
+  recovery: 16
+  FireballSpeed: 6
+--- !u!58 &1771604513
+CircleCollider2D:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1771604510}
+  m_Enabled: 0
+  m_Density: 1
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_UsedByEffector: 0
+  m_Offset: {x: 0, y: -0.27}
+  serializedVersion: 2
+  m_Radius: 0.13250196
+--- !u!61 &1771604514
+BoxCollider2D:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1771604510}
+  m_Enabled: 0
+  m_Density: 1
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_UsedByEffector: 0
+  m_Offset: {x: 0.0011405945, y: 0.06326544}
+  serializedVersion: 2
+  m_Size: {x: 0.2600313, y: 0.681848}
 --- !u!1 &1773800776
 GameObject:
   m_ObjectHideFlags: 0
@@ -12220,6 +12887,64 @@ Transform:
   - {fileID: 1164248557}
   m_Father: {fileID: 150007668}
   m_RootOrder: 7
+--- !u!1 &1831386129
+GameObject:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  serializedVersion: 4
+  m_Component:
+  - 4: {fileID: 1831386130}
+  - 61: {fileID: 1831386132}
+  - 114: {fileID: 1831386131}
+  m_Layer: 24
+  m_Name: MiddleDragonPunchHurtBox
+  m_TagString: HurtBox
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &1831386130
+Transform:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1831386129}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 545198331}
+  m_RootOrder: 1
+--- !u!114 &1831386131
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1831386129}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d0b46e87f58ac9a45a1bde6538366fe2, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  Actor: {fileID: 150007667}
+  DamageObject: {fileID: 1356547612}
+  SupineDamageObject: {fileID: 1356547612}
+  ProneDamageObject: {fileID: 1933318782}
+--- !u!61 &1831386132
+BoxCollider2D:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1831386129}
+  m_Enabled: 0
+  m_Density: 1
+  m_Material: {fileID: 0}
+  m_IsTrigger: 1
+  m_UsedByEffector: 0
+  m_Offset: {x: -0.001159668, y: 0.001155019}
+  serializedVersion: 2
+  m_Size: {x: 0.3198412, y: 0.8520763}
 --- !u!1 &1850485326
 GameObject:
   m_ObjectHideFlags: 0
@@ -13199,7 +13924,7 @@ GameObject:
   - 61: {fileID: 2067837620}
   - 114: {fileID: 2067837619}
   m_Layer: 24
-  m_Name: DragonPunchHurtBox
+  m_Name: LightDragonPunchHurtBox
   m_TagString: HurtBox
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0

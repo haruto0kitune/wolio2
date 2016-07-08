@@ -79,9 +79,15 @@ namespace Wolio.Actor.Player
         public ReactiveProperty<bool> WasSupineAttributeAttacked;
         public ReactiveProperty<bool> WasProneAttributeAttacked;
         public ReactiveProperty<bool> WasKnockdownAttributeAttacked { get; set; }
-        public ReactiveProperty<bool> hasInputedFireballMotionCommand;
-        public ReactiveProperty<bool> hasInputedDragonPunchCommand;
-        public ReactiveProperty<bool> hasInputedHurricaneKickCommand;
+        public ReactiveProperty<bool> hasInputedLightFireballMotionCommand;
+        public ReactiveProperty<bool> hasInputedMiddleFireballMotionCommand;
+        public ReactiveProperty<bool> hasInputedHighFireballMotionCommand;
+        public ReactiveProperty<bool> hasInputedLightDragonPunchCommand;
+        public ReactiveProperty<bool> hasInputedMiddleDragonPunchCommand;
+        public ReactiveProperty<bool> hasInputedHighDragonPunchCommand;
+        public ReactiveProperty<bool> hasInputedLightHurricaneKickCommand;
+        public ReactiveProperty<bool> hasInputedMiddleHurricaneKickCommand;
+        public ReactiveProperty<bool> hasInputedHighHurricaneKickCommand;
         public ReactiveProperty<bool> IsThrow;
         public ReactiveProperty<bool> canThrow;
         public ReactiveProperty<bool> IsFireballMotion;
@@ -287,7 +293,7 @@ namespace Wolio.Actor.Player
             canThrow = this.ObserveEveryValueChanged(x => IsStanding.Value)
                            .ToReactiveProperty();
 
-            IsFireballMotion = this.ObserveEveryValueChanged(x => Animator.GetBool("IsFireballMotion"))
+            IsFireballMotion = this.ObserveEveryValueChanged(x => Animator.GetBool("IsLightFireballMotion"))
                                    .ToReactiveProperty();
 
             canFireballMotion = this.ObserveEveryValueChanged(x => IsStanding.Value
@@ -300,7 +306,7 @@ namespace Wolio.Actor.Player
                                                                 || IsCrouchingHighAttack.Value)
                                     .ToReactiveProperty();
 
-            IsDragonPunch = this.ObserveEveryValueChanged(x => Animator.GetBool("IsDragonPunch"))
+            IsDragonPunch = this.ObserveEveryValueChanged(x => Animator.GetBool("IsLightDragonPunch"))
                                    .ToReactiveProperty();
 
 
@@ -316,7 +322,7 @@ namespace Wolio.Actor.Player
                                  .ToReactiveProperty();
 
 
-            IsHurricaneKick = this.ObserveEveryValueChanged(x => Animator.GetBool("IsHurricaneKick"))
+            IsHurricaneKick = this.ObserveEveryValueChanged(x => Animator.GetBool("IsLightHurricaneKick"))
                                    .ToReactiveProperty();
 
             canHurricaneKick = this.ObserveEveryValueChanged(x => IsStanding.Value
@@ -331,17 +337,43 @@ namespace Wolio.Actor.Player
                                    .ToReactiveProperty();
 
 
-            hasInputedFireballMotionCommand = this.ObserveEveryValueChanged(x => System.Text.RegularExpressions.Regex.IsMatch(string.Concat(Key.inputHistory.ToArray().Reverse().Distinct().ToArray()), "26Z")
-                                                                              || System.Text.RegularExpressions.Regex.IsMatch(string.Concat(Key.inputHistory.ToArray().Reverse().Distinct().ToArray()), "24Z")
-                                                                              || System.Text.RegularExpressions.Regex.IsMatch(string.Concat(Key.inputHistory.ToArray().Reverse().Distinct().ToArray()), "236Z")
-                                                                              || System.Text.RegularExpressions.Regex.IsMatch(string.Concat(Key.inputHistory.ToArray().Reverse().Distinct().ToArray()), "214Z"))
+            hasInputedLightFireballMotionCommand = this.ObserveEveryValueChanged(x => System.Text.RegularExpressions.Regex.IsMatch(string.Concat(Key.inputHistory.ToArray().Reverse().Distinct().ToArray()), "26Z")
+                                                                                   || System.Text.RegularExpressions.Regex.IsMatch(string.Concat(Key.inputHistory.ToArray().Reverse().Distinct().ToArray()), "24Z")
+                                                                                   || System.Text.RegularExpressions.Regex.IsMatch(string.Concat(Key.inputHistory.ToArray().Reverse().Distinct().ToArray()), "236Z")
+                                                                                   || System.Text.RegularExpressions.Regex.IsMatch(string.Concat(Key.inputHistory.ToArray().Reverse().Distinct().ToArray()), "214Z"))
                                                   .ToReactiveProperty();
 
-            hasInputedDragonPunchCommand = this.ObserveEveryValueChanged(x => System.Text.RegularExpressions.Regex.IsMatch(string.Concat(Key.inputHistory.ToArray().Reverse().Distinct().ToArray()), "623Z")
-                                                                    || System.Text.RegularExpressions.Regex.IsMatch(string.Concat(Key.inputHistory.ToArray().Reverse().Distinct().ToArray()), "421Z"))
+            hasInputedMiddleFireballMotionCommand = this.ObserveEveryValueChanged(x => System.Text.RegularExpressions.Regex.IsMatch(string.Concat(Key.inputHistory.ToArray().Reverse().Distinct().ToArray()), "26X")
+                                                                                    || System.Text.RegularExpressions.Regex.IsMatch(string.Concat(Key.inputHistory.ToArray().Reverse().Distinct().ToArray()), "24X")
+                                                                                    || System.Text.RegularExpressions.Regex.IsMatch(string.Concat(Key.inputHistory.ToArray().Reverse().Distinct().ToArray()), "236X")
+                                                                                    || System.Text.RegularExpressions.Regex.IsMatch(string.Concat(Key.inputHistory.ToArray().Reverse().Distinct().ToArray()), "214X"))
+                                                  .ToReactiveProperty();
+
+            hasInputedHighFireballMotionCommand = this.ObserveEveryValueChanged(x => System.Text.RegularExpressions.Regex.IsMatch(string.Concat(Key.inputHistory.ToArray().Reverse().Distinct().ToArray()), "26C")
+                                                                                  || System.Text.RegularExpressions.Regex.IsMatch(string.Concat(Key.inputHistory.ToArray().Reverse().Distinct().ToArray()), "24C")
+                                                                                  || System.Text.RegularExpressions.Regex.IsMatch(string.Concat(Key.inputHistory.ToArray().Reverse().Distinct().ToArray()), "236C")
+                                                                                  || System.Text.RegularExpressions.Regex.IsMatch(string.Concat(Key.inputHistory.ToArray().Reverse().Distinct().ToArray()), "214C"))
+                                                  .ToReactiveProperty();
+
+            hasInputedLightDragonPunchCommand = this.ObserveEveryValueChanged(x => System.Text.RegularExpressions.Regex.IsMatch(string.Concat(Key.inputHistory.ToArray().Reverse().Distinct().ToArray()), "623Z")
+                                                                                || System.Text.RegularExpressions.Regex.IsMatch(string.Concat(Key.inputHistory.ToArray().Reverse().Distinct().ToArray()), "421Z"))
                                         .ToReactiveProperty();
 
-            hasInputedHurricaneKickCommand = this.ObserveEveryValueChanged(x => System.Text.RegularExpressions.Regex.IsMatch(string.Concat(Key.inputHistory.ToArray().Reverse().Distinct().ToArray()), "252Z"))
+            hasInputedMiddleDragonPunchCommand = this.ObserveEveryValueChanged(x => System.Text.RegularExpressions.Regex.IsMatch(string.Concat(Key.inputHistory.ToArray().Reverse().Distinct().ToArray()), "623X")
+                                                                                 || System.Text.RegularExpressions.Regex.IsMatch(string.Concat(Key.inputHistory.ToArray().Reverse().Distinct().ToArray()), "421X"))
+                                        .ToReactiveProperty();
+
+            hasInputedHighDragonPunchCommand = this.ObserveEveryValueChanged(x => System.Text.RegularExpressions.Regex.IsMatch(string.Concat(Key.inputHistory.ToArray().Reverse().Distinct().ToArray()), "623C")
+                                                                               || System.Text.RegularExpressions.Regex.IsMatch(string.Concat(Key.inputHistory.ToArray().Reverse().Distinct().ToArray()), "421C"))
+                                        .ToReactiveProperty();
+
+            hasInputedLightHurricaneKickCommand = this.ObserveEveryValueChanged(x => System.Text.RegularExpressions.Regex.IsMatch(string.Concat(Key.inputHistory.ToArray().Reverse().Distinct().ToArray()), "252Z"))
+                                          .ToReactiveProperty();
+
+            hasInputedMiddleHurricaneKickCommand = this.ObserveEveryValueChanged(x => System.Text.RegularExpressions.Regex.IsMatch(string.Concat(Key.inputHistory.ToArray().Reverse().Distinct().ToArray()), "252X"))
+                                          .ToReactiveProperty();
+
+            hasInputedHighHurricaneKickCommand = this.ObserveEveryValueChanged(x => System.Text.RegularExpressions.Regex.IsMatch(string.Concat(Key.inputHistory.ToArray().Reverse().Distinct().ToArray()), "252C"))
                                           .ToReactiveProperty();
         }
 

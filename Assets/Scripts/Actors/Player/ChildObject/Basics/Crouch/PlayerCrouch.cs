@@ -60,7 +60,7 @@ namespace Wolio.Actor.Player.Basics
                 .OnStateUpdateAsObservable()
                 .Where(x => x.StateInfo.IsName("Base Layer.Crouch"))
                 .Where(x => PlayerState.canCrouchingLightAttack.Value)
-                .Where(x => !PlayerState.hasInputedDragonPunchCommand.Value)
+                .Where(x => !PlayerState.hasInputedLightDragonPunchCommand.Value)
                 .Where(x => Key.Z)
                 .Subscribe(_ =>
                 {

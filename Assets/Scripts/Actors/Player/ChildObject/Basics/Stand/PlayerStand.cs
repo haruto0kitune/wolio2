@@ -73,7 +73,7 @@ namespace Wolio.Actor.Player.Basics
                 .OnStateUpdateAsObservable()
                 .Where(x => x.StateInfo.IsName("Base Layer.Stand"))
                 .Where(x => PlayerState.canStandingLightAttack.Value)
-                .Where(x => !PlayerState.hasInputedFireballMotionCommand.Value)
+                .Where(x => !PlayerState.hasInputedLightFireballMotionCommand.Value)
                 .Where(x => Key.Z)
                 .Do(x => Debug.Log("SLA"))
                 .Subscribe(_ =>
@@ -151,15 +151,37 @@ namespace Wolio.Actor.Player.Basics
                     Animator.SetBool("IsProneJumpingDamage", true);
                 });
             #endregion
-            #region Stand->FireballMotion
+            #region Stand->LightFireballMotion
             ObservableStateMachineTrigger
                 .OnStateUpdateAsObservable()
                 .Where(x => x.StateInfo.IsName("Base Layer.Stand"))
-                .Where(x => PlayerState.hasInputedFireballMotionCommand.Value)
+                .Where(x => PlayerState.hasInputedLightFireballMotionCommand.Value)
                 .Subscribe(_ =>
                 {
                     Animator.SetBool("IsStanding", false);
-                    Animator.SetBool("IsFireballMotion", true);
+                    Animator.SetBool("IsLightFireballMotion", true);
+                });
+            #endregion
+            #region Stand->MiddleFireballMotion
+            ObservableStateMachineTrigger
+                .OnStateUpdateAsObservable()
+                .Where(x => x.StateInfo.IsName("Base Layer.Stand"))
+                .Where(x => PlayerState.hasInputedMiddleFireballMotionCommand.Value)
+                .Subscribe(_ =>
+                {
+                    Animator.SetBool("IsStanding", false);
+                    Animator.SetBool("IsMiddleFireballMotion", true);
+                });
+            #endregion
+            #region Stand->HighFireballMotion
+            ObservableStateMachineTrigger
+                .OnStateUpdateAsObservable()
+                .Where(x => x.StateInfo.IsName("Base Layer.Stand"))
+                .Where(x => PlayerState.hasInputedHighFireballMotionCommand.Value)
+                .Subscribe(_ =>
+                {
+                    Animator.SetBool("IsStanding", false);
+                    Animator.SetBool("IsHighFireballMotion", true);
                 });
             #endregion
 

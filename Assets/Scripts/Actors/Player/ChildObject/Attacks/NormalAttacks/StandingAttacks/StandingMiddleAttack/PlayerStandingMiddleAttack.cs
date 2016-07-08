@@ -129,17 +129,97 @@ namespace Wolio.Actor.Player.Attacks.NormalAttacks.StandingAttacks
                     wasCanceled = true;
                 });
             #endregion
-            #region StandingMiddleAttack->FireballMotion
+            #region StandingMiddleAttack->LightFireballMotion
             ObservableStateMachineTrigger
                 .OnStateUpdateAsObservable()
                 .Where(x => x.StateInfo.IsName("Base Layer.StandingMiddleAttack"))
                 .Where(x => PlayerState.canFireballMotion.Value)
                 .Where(x => isCancelable)
-                .Where(x => PlayerState.hasInputedFireballMotionCommand.Value)
+                .Where(x => PlayerState.hasInputedLightFireballMotionCommand.Value)
                 .Subscribe(_ =>
                 {
                     Animator.SetBool("IsStandingMiddleAttack", false);
-                    Animator.SetBool("IsFireballMotion", true);
+                    Animator.SetBool("IsLightFireballMotion", true);
+                    isCancelable = false;
+                    StopCoroutine(coroutineStore);
+                    wasCanceled = true;
+                });
+            #endregion
+            #region StandingMiddleAttack->MiddleFireballMotion
+            ObservableStateMachineTrigger
+                .OnStateUpdateAsObservable()
+                .Where(x => x.StateInfo.IsName("Base Layer.StandingMiddleAttack"))
+                .Where(x => PlayerState.canFireballMotion.Value)
+                .Where(x => isCancelable)
+                .Where(x => PlayerState.hasInputedMiddleFireballMotionCommand.Value)
+                .Subscribe(_ =>
+                {
+                    Animator.SetBool("IsStandingMiddleAttack", false);
+                    Animator.SetBool("IsMiddleFireballMotion", true);
+                    isCancelable = false;
+                    StopCoroutine(coroutineStore);
+                    wasCanceled = true;
+                });
+            #endregion
+            #region StandingMiddleAttack->HighFireballMotion
+            ObservableStateMachineTrigger
+                .OnStateUpdateAsObservable()
+                .Where(x => x.StateInfo.IsName("Base Layer.StandingMiddleAttack"))
+                .Where(x => PlayerState.canFireballMotion.Value)
+                .Where(x => isCancelable)
+                .Where(x => PlayerState.hasInputedHighFireballMotionCommand.Value)
+                .Subscribe(_ =>
+                {
+                    Animator.SetBool("IsStandingMiddleAttack", false);
+                    Animator.SetBool("IsHighFireballMotion", true);
+                    isCancelable = false;
+                    StopCoroutine(coroutineStore);
+                    wasCanceled = true;
+                });
+            #endregion
+            #region StandingMiddleAttack->LightDragonPunch
+            ObservableStateMachineTrigger
+                .OnStateUpdateAsObservable()
+                .Where(x => x.StateInfo.IsName("Base Layer.StandingMiddleAttack"))
+                .Where(x => PlayerState.canFireballMotion.Value)
+                .Where(x => isCancelable)
+                .Where(x => PlayerState.hasInputedLightDragonPunchCommand.Value)
+                .Subscribe(_ =>
+                {
+                    Animator.SetBool("IsStandingMiddleAttack", false);
+                    Animator.SetBool("IsLightDragonPunch", true);
+                    isCancelable = false;
+                    StopCoroutine(coroutineStore);
+                    wasCanceled = true;
+                });
+            #endregion
+            #region StandingMiddleAttack->MiddleDragonPunch
+            ObservableStateMachineTrigger
+                .OnStateUpdateAsObservable()
+                .Where(x => x.StateInfo.IsName("Base Layer.StandingMiddleAttack"))
+                .Where(x => PlayerState.canFireballMotion.Value)
+                .Where(x => isCancelable)
+                .Where(x => PlayerState.hasInputedMiddleDragonPunchCommand.Value)
+                .Subscribe(_ =>
+                {
+                    Animator.SetBool("IsStandingMiddleAttack", false);
+                    Animator.SetBool("IsMiddleDragonPunch", true);
+                    isCancelable = false;
+                    StopCoroutine(coroutineStore);
+                    wasCanceled = true;
+                });
+            #endregion
+            #region StandingMiddleAttack->HighDragonPunch
+            ObservableStateMachineTrigger
+                .OnStateUpdateAsObservable()
+                .Where(x => x.StateInfo.IsName("Base Layer.StandingMiddleAttack"))
+                .Where(x => PlayerState.canFireballMotion.Value)
+                .Where(x => isCancelable)
+                .Where(x => PlayerState.hasInputedHighDragonPunchCommand.Value)
+                .Subscribe(_ =>
+                {
+                    Animator.SetBool("IsStandingMiddleAttack", false);
+                    Animator.SetBool("IsHighDragonPunch", true);
                     isCancelable = false;
                     StopCoroutine(coroutineStore);
                     wasCanceled = true;

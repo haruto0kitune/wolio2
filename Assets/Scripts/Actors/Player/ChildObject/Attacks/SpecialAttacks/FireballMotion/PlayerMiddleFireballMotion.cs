@@ -5,164 +5,141 @@ using UniRx.Triggers;
 
 namespace Wolio.Actor.Player.Attacks.SpecialAttacks
 {
-    public class PlayerDragonPunch : MonoBehaviour
+    public class PlayerMiddleFireballMotion : MonoBehaviour
     {
         [SerializeField]
         GameObject Player;
-        Rigidbody2D Rigidbody2D;
+        [SerializeField]
+        GameObject Fireball;
+        GameObject FireballStore;
         Animator Animator;
         ObservableStateMachineTrigger ObservableStateMachineTrigger;
         BoxCollider2D BoxCollider2D;
         CircleCollider2D CircleCollider2D;
         PlayerState PlayerState;
         [SerializeField]
-        GameObject DragonPunchHitBox;
-        BoxCollider2D HitBox;
-        [SerializeField]
-        GameObject DragonPunchHurtBox;
+        GameObject FireballMotionHurtBox;
         BoxCollider2D HurtBox;
         bool hasFinished;
         Coroutine coroutineStore;
         [SerializeField]
         int startup;
         [SerializeField]
-        int active;
-        [SerializeField]
         int recovery;
         [SerializeField]
-        int damageValue;
-        [SerializeField]
-        int hitRecovery;
-        [SerializeField]
-        int hitStop;
-        [SerializeField]
-        bool isTechable;
-        [SerializeField]
-        bool hasKnockdownAttribute;
-        [SerializeField]
-        AttackAttribute attackAttribute;
-        [SerializeField]
-        KnockdownAttribute knockdownAttribute;
-
+        float FireballSpeed;
         bool wasCanceled;
 
         void Awake()
         {
-            Rigidbody2D = Player.GetComponent<Rigidbody2D>();
             Animator = Player.GetComponent<Animator>();
             ObservableStateMachineTrigger = Animator.GetBehaviour<ObservableStateMachineTrigger>();
             BoxCollider2D = GetComponent<BoxCollider2D>();
             CircleCollider2D = GetComponent<CircleCollider2D>();
             PlayerState = Player.GetComponent<PlayerState>();
-            HitBox = DragonPunchHitBox.GetComponent<BoxCollider2D>();
-            HurtBox = DragonPunchHurtBox.GetComponent<BoxCollider2D>();
+            HurtBox = FireballMotionHurtBox.GetComponent<BoxCollider2D>();
         }
 
         void Start()
         {
             // Animation
-            #region EnterDragonPunch
+            #region EnterFireballMotion
             ObservableStateMachineTrigger
                 .OnStateEnterAsObservable()
-                .Where(x => x.StateInfo.IsName("Base Layer.DragonPunch"))
-                .Do(x => Debug.Log("Enter DragonPunch"))
-                .Subscribe(_ => coroutineStore = StartCoroutine(DragonPunchCoroutine()));
+                .Where(x => x.StateInfo.IsName("Base Layer.MiddleFireballMotion"))
+                .Subscribe(_ => coroutineStore = StartCoroutine(FireballMotionCoroutine()));
             #endregion
-            #region DragonPunch->Stand
+            #region FireballMotion->Stand
             ObservableStateMachineTrigger
                 .OnStateUpdateAsObservable()
-                .Where(x => x.StateInfo.IsName("Base Layer.DragonPunch"))
-                .Where(x => hasFinished && PlayerState.IsGrounded.Value)
+                .Where(x => x.StateInfo.IsName("Base Layer.MiddleFireballMotion"))
+                .Where(x => hasFinished)
                 .Subscribe(_ =>
                 {
-                    Animator.SetBool("IsDragonPunch", false);
+                    Animator.SetBool("IsMiddleFireballMotion", false);
                     Animator.SetBool("IsStanding", true);
                     hasFinished = false;
-                    PlayerState.hasInputedDragonPunchCommand.Value = false;
+                    PlayerState.hasInputedMiddleFireballMotionCommand.Value = false;
                 });
             #endregion
-            #region DragonPunch->SupineJumpingDamage
+            #region FireballMotion->StandingDamage
             ObservableStateMachineTrigger
                 .OnStateUpdateAsObservable()
-                .Where(x => x.StateInfo.IsName("Base Layer.DragonPunch"))
+                .Where(x => x.StateInfo.IsName("Base Layer.MiddleFireballMotion"))
+                .Where(x => PlayerState.WasAttacked.Value && !PlayerState.WasKnockdownAttributeAttacked.Value)
+                .Subscribe(_ =>
+                {
+                    Animator.SetBool("IsMiddleFireballMotion", false);
+                    Animator.SetBool("IsStandingDamage", true);
+                });
+            #endregion
+            #region FireballMotion->SupineJumpingDamage
+            ObservableStateMachineTrigger
+                .OnStateUpdateAsObservable()
+                .Where(x => x.StateInfo.IsName("Base Layer.MiddleFireballMotion"))
                 .Where(x => PlayerState.WasSupineAttributeAttacked.Value && PlayerState.WasKnockdownAttributeAttacked.Value)
                 .Subscribe(_ =>
                 {
-                    Animator.SetBool("IsDragonPunch", false);
+                    Animator.SetBool("IsMiddleFireballMotion", false);
                     Animator.SetBool("IsSupineJumpingDamage", true);
                 });
             #endregion
-            #region DragonPunch->ProneJumpingDamage
+            #region FireballMotion->ProneJumpingDamage
             ObservableStateMachineTrigger
                 .OnStateUpdateAsObservable()
-                .Where(x => x.StateInfo.IsName("Base Layer.DragonPunch"))
+                .Where(x => x.StateInfo.IsName("Base Layer.MiddleFireballMotion"))
                 .Where(x => PlayerState.WasProneAttributeAttacked.Value && PlayerState.WasKnockdownAttributeAttacked.Value)
                 .Subscribe(_ =>
                 {
-                    Animator.SetBool("IsDragonPunch", false);
+                    Animator.SetBool("IsMiddleFireballMotion", false);
                     Animator.SetBool("IsProneJumpingDamage", true);
                 });
             #endregion
-
+            
             // Collision
             this.ObserveEveryValueChanged(x => wasCanceled)
                 .Where(x => x)
                 .Subscribe(_ => Cancel());
 
             this.ObserveEveryValueChanged(x => PlayerState.WasAttacked.Value)
-                .Where(x => PlayerState.IsDragonPunch.Value)
+                .Where(x => PlayerState.IsFireballMotion.Value)
                 .Subscribe(_ => wasCanceled = _);
-
-            this.UpdateAsObservable()
-                .Where(x => !gameObject.activeSelf)
-                .Subscribe(x => Debug.Log("DragonPunch Active: " + gameObject.activeSelf));
-
-            
-            // Damage
-            DragonPunchHitBox.OnTriggerEnter2DAsObservable()
-                .Where(x => x.gameObject.tag == "Enemy/HurtBox")
-                .Subscribe(_ =>
-                {
-                    _.gameObject.GetComponent<DamageManager>().ApplyDamage(damageValue, hitRecovery, hitStop, isTechable, hasKnockdownAttribute, attackAttribute, knockdownAttribute);
-                    HitBox.enabled = false;
-                    Destroy(this.gameObject);
-                });
-
         }
 
-        IEnumerator DragonPunchCoroutine()
+        IEnumerator FireballMotionCoroutine()
         {
-            Debug.Log("DragonPunch");
             // Startup
             BoxCollider2D.enabled = true;
             CircleCollider2D.enabled = true;
-            HitBox.enabled = true;
+            HurtBox.enabled = true;
 
-            for (int i = 0; i < startup; i++)
+            while (Animator.GetCurrentAnimatorStateInfo(Animator.GetLayerIndex("Base Layer")).normalizedTime <= 1.0f)
             {
                 yield return null;
             }
 
-            // Active
-            Rigidbody2D.velocity = new Vector2(0, 10f);
+            FireballStore = Instantiate(Fireball);
+            FireballStore.transform.parent = transform;
 
-            for (int i = 0; i < active; i++)
+            if(PlayerState.FacingRight.Value)
             {
-                yield return null;
+                FireballStore.GetComponent<PlayerFireball>().Initialize(new Vector2(transform.position.x + 0.33f, transform.position.y), FireballSpeed, 1);
+            }
+            else
+            {
+                FireballStore.GetComponent<PlayerFireball>().Initialize(new Vector2(transform.position.x - 0.33f, transform.position.y), FireballSpeed, -1);
             }
 
+            FireballStore.transform.parent = null;
             // Recovery
-            while(!PlayerState.IsGrounded.Value)
+            for (int i = 0; i < recovery; i++)
             {
+                if (i == recovery - 1) hasFinished = true;
                 yield return null;
             }
-
-            hasFinished = true;
-            yield return null;
 
             BoxCollider2D.enabled = false;
             CircleCollider2D.enabled = false;
-            HitBox.enabled = false;
             HurtBox.enabled = false;
         }
 
@@ -174,7 +151,7 @@ namespace Wolio.Actor.Player.Attacks.SpecialAttacks
             BoxCollider2D.enabled = false;
             CircleCollider2D.enabled = false;
             HurtBox.enabled = false;
-
+            
             wasCanceled = false;
         }
     }

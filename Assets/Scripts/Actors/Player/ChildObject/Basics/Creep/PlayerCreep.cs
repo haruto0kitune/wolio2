@@ -65,16 +65,40 @@ namespace Wolio.Actor.Player.Basics
                     Animator.SetBool("IsCreeping", false);
                 });
             #endregion
-            #region Creep->DragonPunch
+            #region Creep->LightDragonPunch
             ObservableStateMachineTrigger
                 .OnStateUpdateAsObservable()
                 .Where(x => x.StateInfo.IsName("Base Layer.Creep"))
-                .Where(x => PlayerState.hasInputedDragonPunchCommand.Value)
+                .Where(x => PlayerState.hasInputedLightDragonPunchCommand.Value)
                 .Subscribe(_ =>
                 {
                     Debug.Log("Creep->DragonPunch");
                     Animator.SetBool("IsCreeping", false);
-                    Animator.SetBool("IsDragonPunch", true);
+                    Animator.SetBool("IsLightDragonPunch", true);
+                });
+            #endregion
+            #region Creep->MiddleDragonPunch
+            ObservableStateMachineTrigger
+                .OnStateUpdateAsObservable()
+                .Where(x => x.StateInfo.IsName("Base Layer.Creep"))
+                .Where(x => PlayerState.hasInputedMiddleDragonPunchCommand.Value)
+                .Subscribe(_ =>
+                {
+                    Debug.Log("Creep->DragonPunch");
+                    Animator.SetBool("IsCreeping", false);
+                    Animator.SetBool("IsMiddleDragonPunch", true);
+                });
+            #endregion
+            #region Creep->HighDragonPunch
+            ObservableStateMachineTrigger
+                .OnStateUpdateAsObservable()
+                .Where(x => x.StateInfo.IsName("Base Layer.Creep"))
+                .Where(x => PlayerState.hasInputedHighDragonPunchCommand.Value)
+                .Subscribe(_ =>
+                {
+                    Debug.Log("Creep->DragonPunch");
+                    Animator.SetBool("IsCreeping", false);
+                    Animator.SetBool("IsHighDragonPunch", true);
                 });
             #endregion
 
