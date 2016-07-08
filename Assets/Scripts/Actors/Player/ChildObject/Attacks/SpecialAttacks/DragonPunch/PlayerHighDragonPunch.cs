@@ -131,6 +131,7 @@ namespace Wolio.Actor.Player.Attacks.SpecialAttacks
 
         IEnumerator HighDragonPunchCoroutine()
         {
+            Animator.speed = 1f;
             Debug.Log("DragonPunch");
             // Startup
             BoxCollider2D.enabled = true;
@@ -145,16 +146,16 @@ namespace Wolio.Actor.Player.Attacks.SpecialAttacks
             // Active
             if (PlayerState.FacingRight.Value)
             {
-                Rigidbody2D.velocity = new Vector2(5f, 14f);
+                Rigidbody2D.velocity = new Vector2(3f, 10f);
             }
             else
             {
-                Rigidbody2D.velocity = new Vector2(-5f, 14f);
+                Rigidbody2D.velocity = new Vector2(-3f, 10f);
             }
 
             for (int i = 0; i < active; i++)
             {
-                if (active - 6 <= i) Rigidbody2D.velocity = new Vector2(0, Rigidbody2D.velocity.y);
+                if (active - 15 <= i) Rigidbody2D.velocity = new Vector2(0, Rigidbody2D.velocity.y);
                 yield return null;
             }
 
