@@ -367,7 +367,7 @@ namespace Wolio.Actor.Player
                                                                                || System.Text.RegularExpressions.Regex.IsMatch(string.Concat(Key.inputHistory.ToArray().Reverse().Distinct().ToArray()), "421C"))
                                         .ToReactiveProperty();
 
-            hasInputedLightHurricaneKickCommand = this.ObserveEveryValueChanged(x => System.Text.RegularExpressions.Regex.IsMatch(string.Concat(Key.inputHistory.ToArray().Reverse().Distinct().ToArray()), "252Z"))
+            hasInputedLightHurricaneKickCommand = this.ObserveEveryValueChanged(x => System.Text.RegularExpressions.Regex.IsMatch(string.Concat(Key.inputHistory.ToArray().Reverse().DistinctAdjacently().ToArray()), "252Z"))
                                           .ToReactiveProperty();
 
             hasInputedMiddleHurricaneKickCommand = this.ObserveEveryValueChanged(x => System.Text.RegularExpressions.Regex.IsMatch(string.Concat(Key.inputHistory.ToArray().Reverse().Distinct().ToArray()), "252X"))
@@ -375,6 +375,13 @@ namespace Wolio.Actor.Player
 
             hasInputedHighHurricaneKickCommand = this.ObserveEveryValueChanged(x => System.Text.RegularExpressions.Regex.IsMatch(string.Concat(Key.inputHistory.ToArray().Reverse().Distinct().ToArray()), "252C"))
                                           .ToReactiveProperty();
+
+            //this.UpdateAsObservable()
+            //    .Subscribe(_ => Debug.Log(string.Concat(Key.inputHistory.ToArray().Reverse().DistinctAdjacently().ToArray())));
+
+            //this.UpdateAsObservable()
+            //    .Subscribe(_ => Debug.Log("HurricaneCommand: " + (System.Text.RegularExpressions.Regex.IsMatch(string.Concat(Key.inputHistory.ToArray().Reverse().DistinctAdjacently().ToArray()), "252Z")
+            //                                                   || System.Text.RegularExpressions.Regex.IsMatch(string.Concat(Key.inputHistory.ToArray().Reverse().DistinctAdjacently().ToArray()), "5252Z"))));
         }
 
         void Start()
