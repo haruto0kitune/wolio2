@@ -61,14 +61,14 @@ namespace Wolio.Actor.Player.Attacks.SpecialAttacks
         void Start()
         {
             // Animation
-            #region EnterHurricaneKick
+            #region EnterLightHurricaneKick
             ObservableStateMachineTrigger
                 .OnStateEnterAsObservable()
                 .Where(x => x.StateInfo.IsName("Base Layer.LightHurricaneKick"))
                 .Do(x => Debug.Log("Enter HurricaneKick"))
                 .Subscribe(_ => coroutineStore = StartCoroutine(LightHurricaneKickCoroutine()));
             #endregion
-            #region HurricaneKick->Stand
+            #region LightHurricaneKick->Stand
             ObservableStateMachineTrigger
                 .OnStateUpdateAsObservable()
                 .Where(x => x.StateInfo.IsName("Base Layer.LightHurricaneKick"))
@@ -81,7 +81,7 @@ namespace Wolio.Actor.Player.Attacks.SpecialAttacks
                     PlayerState.hasInputedLightHurricaneKickCommand.Value = false;
                 });
             #endregion
-            #region HurricaneKick->SupineJumpingDamage
+            #region LightHurricaneKick->SupineJumpingDamage
             ObservableStateMachineTrigger
                 .OnStateUpdateAsObservable()
                 .Where(x => x.StateInfo.IsName("Base Layer.LightHurricaneKick"))
@@ -92,7 +92,7 @@ namespace Wolio.Actor.Player.Attacks.SpecialAttacks
                     Animator.SetBool("IsSupineJumpingDamage", true);
                 });
             #endregion
-            #region HurricaneKick->ProneJumpingDamage
+            #region LightHurricaneKick->ProneJumpingDamage
             ObservableStateMachineTrigger
                 .OnStateUpdateAsObservable()
                 .Where(x => x.StateInfo.IsName("Base Layer.LightHurricaneKick"))

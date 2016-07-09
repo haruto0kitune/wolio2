@@ -199,6 +199,30 @@ namespace Wolio.Actor.Player.Basics
                     Animator.SetBool("IsLightHurricaneKick", true);
                 });
             #endregion
+            #region Stand->MiddleHurricaneKick
+            ObservableStateMachineTrigger
+                .OnStateUpdateAsObservable()
+                .Where(x => x.StateInfo.IsName("Base Layer.Stand"))
+                .Where(x => PlayerState.canHurricaneKick.Value)
+                .Where(x => PlayerState.hasInputedMiddleHurricaneKickCommand.Value)
+                .Subscribe(_ =>
+                {
+                    Animator.SetBool("IsStanding", false);
+                    Animator.SetBool("IsMiddleHurricaneKick", true);
+                });
+            #endregion
+            #region Stand->HighHurricaneKick
+            ObservableStateMachineTrigger
+                .OnStateUpdateAsObservable()
+                .Where(x => x.StateInfo.IsName("Base Layer.Stand"))
+                .Where(x => PlayerState.canHurricaneKick.Value)
+                .Where(x => PlayerState.hasInputedHighHurricaneKickCommand.Value)
+                .Subscribe(_ =>
+                {
+                    Animator.SetBool("IsStanding", false);
+                    Animator.SetBool("IsHighHurricaneKick", true);
+                });
+            #endregion
 
             //Collision
             this.ObserveEveryValueChanged(x => Animator.GetBool("IsStanding"))
