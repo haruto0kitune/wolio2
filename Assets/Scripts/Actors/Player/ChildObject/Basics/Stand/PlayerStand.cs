@@ -155,6 +155,7 @@ namespace Wolio.Actor.Player.Basics
             ObservableStateMachineTrigger
                 .OnStateUpdateAsObservable()
                 .Where(x => x.StateInfo.IsName("Base Layer.Stand"))
+                .Where(x => PlayerState.canFireballMotion.Value)
                 .Where(x => PlayerState.hasInputedLightFireballMotionCommand.Value)
                 .Subscribe(_ =>
                 {
@@ -166,6 +167,7 @@ namespace Wolio.Actor.Player.Basics
             ObservableStateMachineTrigger
                 .OnStateUpdateAsObservable()
                 .Where(x => x.StateInfo.IsName("Base Layer.Stand"))
+                .Where(x => PlayerState.canFireballMotion.Value)
                 .Where(x => PlayerState.hasInputedMiddleFireballMotionCommand.Value)
                 .Subscribe(_ =>
                 {
@@ -177,6 +179,7 @@ namespace Wolio.Actor.Player.Basics
             ObservableStateMachineTrigger
                 .OnStateUpdateAsObservable()
                 .Where(x => x.StateInfo.IsName("Base Layer.Stand"))
+                .Where(x => PlayerState.canFireballMotion.Value)
                 .Where(x => PlayerState.hasInputedHighFireballMotionCommand.Value)
                 .Subscribe(_ =>
                 {
@@ -188,6 +191,7 @@ namespace Wolio.Actor.Player.Basics
             ObservableStateMachineTrigger
                 .OnStateUpdateAsObservable()
                 .Where(x => x.StateInfo.IsName("Base Layer.Stand"))
+                .Where(x => PlayerState.canHurricaneKick.Value)
                 .Where(x => PlayerState.hasInputedLightHurricaneKickCommand.Value)
                 .Subscribe(_ =>
                 {
@@ -195,9 +199,6 @@ namespace Wolio.Actor.Player.Basics
                     Animator.SetBool("IsLightHurricaneKick", true);
                 });
             #endregion
-            PlayerState.hasInputedLightHurricaneKickCommand
-                .Where(x => x)
-                .Subscribe(_ => Debug.Log("HurricaneKickCommand:" + _));
 
             //Collision
             this.ObserveEveryValueChanged(x => Animator.GetBool("IsStanding"))

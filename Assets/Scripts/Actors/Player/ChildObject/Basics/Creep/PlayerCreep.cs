@@ -69,6 +69,7 @@ namespace Wolio.Actor.Player.Basics
             ObservableStateMachineTrigger
                 .OnStateUpdateAsObservable()
                 .Where(x => x.StateInfo.IsName("Base Layer.Creep"))
+                .Where(x => PlayerState.canDragonPunch.Value)
                 .Where(x => PlayerState.hasInputedLightDragonPunchCommand.Value)
                 .Subscribe(_ =>
                 {
@@ -81,6 +82,7 @@ namespace Wolio.Actor.Player.Basics
             ObservableStateMachineTrigger
                 .OnStateUpdateAsObservable()
                 .Where(x => x.StateInfo.IsName("Base Layer.Creep"))
+                .Where(x => PlayerState.canDragonPunch.Value)
                 .Where(x => PlayerState.hasInputedMiddleDragonPunchCommand.Value)
                 .Subscribe(_ =>
                 {
@@ -93,22 +95,14 @@ namespace Wolio.Actor.Player.Basics
             ObservableStateMachineTrigger
                 .OnStateUpdateAsObservable()
                 .Where(x => x.StateInfo.IsName("Base Layer.Creep"))
+                .Where(x => PlayerState.canDragonPunch.Value)
                 .Where(x => PlayerState.hasInputedHighDragonPunchCommand.Value)
                 .Subscribe(_ =>
                 {
-                    Debug.Log("Creep->DragonPunch");
                     Animator.SetBool("IsCreeping", false);
                     Animator.SetBool("IsHighDragonPunch", true);
                 });
             #endregion
-
-            PlayerState.IsCrouching
-                .Where(x => x)
-                .Subscribe(x => Debug.Log("IsCrouching: true"));
-
-            PlayerState.IsCreeping
-                .Where(x => x)
-                .Subscribe(x => Debug.Log("IsCreeping: true"));
 
             //Motion
             this.FixedUpdateAsObservable()

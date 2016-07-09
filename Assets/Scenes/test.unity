@@ -10630,6 +10630,7 @@ GameObject:
   - 4: {fileID: 1455663862}
   - 61: {fileID: 1455663863}
   - 114: {fileID: 1455663864}
+  - 58: {fileID: 1455663865}
   m_Layer: 11
   m_Name: LightHurricaneKick
   m_TagString: Untagged
@@ -10680,7 +10681,7 @@ MonoBehaviour:
   HurricaneKickHitBox: {fileID: 1238696360}
   HurricaneKickHurtBox: {fileID: 758496604}
   startup: 4
-  active: 10
+  active: 2
   recovery: 4
   damageValue: 1
   hitRecovery: 6
@@ -10689,6 +10690,20 @@ MonoBehaviour:
   hasKnockdownAttribute: 0
   attackAttribute: 2
   knockdownAttribute: 0
+--- !u!58 &1455663865
+CircleCollider2D:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1455663861}
+  m_Enabled: 0
+  m_Density: 1
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_UsedByEffector: 0
+  m_Offset: {x: 0, y: -0.27}
+  serializedVersion: 2
+  m_Radius: 0.13250196
 --- !u!1 &1462787019
 GameObject:
   m_ObjectHideFlags: 0

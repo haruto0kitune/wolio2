@@ -112,6 +112,18 @@ namespace Wolio.Actor.Player.Basics
                     Animator.SetBool("IsCrouchingDamage", true);
                 });
             #endregion
+            #region Crouch->LightHurricaneKick
+            ObservableStateMachineTrigger
+                .OnStateUpdateAsObservable()
+                .Where(x => x.StateInfo.IsName("Base Layer.Crouch"))
+                .Where(x => PlayerState.canHurricaneKick.Value)
+                .Where(x => PlayerState.hasInputedLightHurricaneKickCommand.Value)
+                .Subscribe(_ =>
+                {
+                    Animator.SetBool("IsCrouching", false);
+                    Animator.SetBool("IsLightHurricaneKick", true);
+                });
+            #endregion
 
             //Collision
             this.ObserveEveryValueChanged(x => Animator.GetBool("IsCrouching"))

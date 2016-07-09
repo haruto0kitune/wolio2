@@ -13,6 +13,7 @@ namespace Wolio.Actor.Player.Attacks.SpecialAttacks
         Animator Animator;
         ObservableStateMachineTrigger ObservableStateMachineTrigger;
         BoxCollider2D BoxCollider2D;
+        CircleCollider2D CircleCollider2D;
         PlayerState PlayerState;
         [SerializeField]
         GameObject HurricaneKickHitBox;
@@ -51,6 +52,7 @@ namespace Wolio.Actor.Player.Attacks.SpecialAttacks
             Animator = Player.GetComponent<Animator>();
             ObservableStateMachineTrigger = Animator.GetBehaviour<ObservableStateMachineTrigger>();
             BoxCollider2D = GetComponent<BoxCollider2D>();
+            CircleCollider2D = GetComponent<CircleCollider2D>();
             PlayerState = Player.GetComponent<PlayerState>();
             HitBox = HurricaneKickHitBox.GetComponent<BoxCollider2D>();
             HurtBox = HurricaneKickHurtBox.GetComponent<BoxCollider2D>();
@@ -114,7 +116,6 @@ namespace Wolio.Actor.Player.Attacks.SpecialAttacks
             this.UpdateAsObservable()
                 .Where(x => !gameObject.activeSelf)
                 .Subscribe(x => Debug.Log("HurricaneKick Active: " + gameObject.activeSelf));
-
             
             // Damage
             HurricaneKickHitBox.OnTriggerEnter2DAsObservable()
@@ -132,31 +133,57 @@ namespace Wolio.Actor.Player.Attacks.SpecialAttacks
             // Startup
             Animator.speed = 1f;
             BoxCollider2D.enabled = true;
+            CircleCollider2D.enabled = true;
             HitBox.enabled = true;
+
+            var gracityScaleStore = Rigidbody2D.gravityScale;
+            Rigidbody2D.gravityScale = 0f;
 
             for (int i = 0; i < startup; i++)
             {
+                if (i < 2)
+                {
+                    if (PlayerState.FacingRight.Value)
+                    {
+                        Rigidbody2D.velocity = new Vector2(3f, 2f);
+                    }
+                    else
+                    {
+                        Rigidbody2D.velocity = new Vector2(-3f, 2f);
+                    }
+                }
+                else
+                {
+                    if (PlayerState.FacingRight.Value)
+                    {
+                        Rigidbody2D.velocity = new Vector2(3f, 0f);
+                    }
+                    else
+                    {
+                        Rigidbody2D.velocity = new Vector2(-3f, 0f);
+                    }
+                }
+
                 yield return null;
             }
 
             // Active
-            Rigidbody2D.isKinematic = true;
-
-            if (PlayerState.FacingRight.Value)
-            {
-                Rigidbody2D.velocity = new Vector2(3f, 0f);
-            }
-            else
-            {
-                Rigidbody2D.velocity = new Vector2(-3f, 0f);
-            }
-
+                
             for (int i = 0; i < active; i++)
             {
+                if (PlayerState.FacingRight.Value)
+                {
+                    Rigidbody2D.velocity = new Vector2(3f, 0f);
+                }
+                else
+                {
+                    Rigidbody2D.velocity = new Vector2(-3f, 0f);
+                }
+
                 yield return null;
             }
 
-            Rigidbody2D.isKinematic = false;
+            Rigidbody2D.gravityScale = gracityScaleStore;
 
             // Recovery
             for (int i = 0; i < recovery; i++)
@@ -168,6 +195,7 @@ namespace Wolio.Actor.Player.Attacks.SpecialAttacks
             yield return null;
 
             BoxCollider2D.enabled = false;
+            CircleCollider2D.enabled = false;
             HitBox.enabled = false;
             HurtBox.enabled = false;
         }
@@ -178,6 +206,7 @@ namespace Wolio.Actor.Player.Attacks.SpecialAttacks
 
             // Collision disable
             BoxCollider2D.enabled = false;
+            CircleCollider2D.enabled = false;
             HurtBox.enabled = false;
 
             wasCanceled = false;
