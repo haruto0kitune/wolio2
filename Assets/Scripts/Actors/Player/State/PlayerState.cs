@@ -88,8 +88,10 @@ namespace Wolio.Actor.Player
         public ReactiveProperty<bool> hasInputedLightHurricaneKickCommand;
         public ReactiveProperty<bool> hasInputedMiddleHurricaneKickCommand;
         public ReactiveProperty<bool> hasInputedHighHurricaneKickCommand;
-        public ReactiveProperty<bool> IsThrow;
-        public ReactiveProperty<bool> canThrow;
+        public ReactiveProperty<bool> hasInputedGrabCommand;
+        public ReactiveProperty<bool> IsGrabbing;
+        public ReactiveProperty<bool> canGrab;
+        public ReactiveProperty<bool> IsThrowing;
         public ReactiveProperty<bool> IsFireballMotion;
         public ReactiveProperty<bool> canFireballMotion;
         public ReactiveProperty<bool> IsDragonPunch;
@@ -287,11 +289,15 @@ namespace Wolio.Actor.Player
             WasProneAttributeAttacked = new ReactiveProperty<bool>();
             WasKnockdownAttributeAttacked = new ReactiveProperty<bool>();
 
-            IsThrow = this.ObserveEveryValueChanged(x => Animator.GetBool("IsThrow"))
-                                   .ToReactiveProperty();
+            IsGrabbing = this.ObserveEveryValueChanged(x => Animator.GetBool("IsGrabbing"))
+                             .ToReactiveProperty();
 
-            canThrow = this.ObserveEveryValueChanged(x => IsStanding.Value)
-                           .ToReactiveProperty();
+            canGrab = this.ObserveEveryValueChanged(x => IsStanding.Value
+                                                      || IsRunning.Value)
+                          .ToReactiveProperty();
+
+            IsThrowing = this.ObserveEveryValueChanged(x => Animator.GetBool("IsThrowing"))
+                             .ToReactiveProperty();
 
             IsFireballMotion = this.ObserveEveryValueChanged(x => Animator.GetBool("IsLightFireballMotion"))
                                    .ToReactiveProperty();
@@ -378,6 +384,10 @@ namespace Wolio.Actor.Player
             hasInputedHighHurricaneKickCommand = this.ObserveEveryValueChanged(x => System.Text.RegularExpressions.Regex.IsMatch(string.Concat(Key.inputHistory.ToArray().Reverse().Distinct().ToArray()), "252C")
                                                                                  || System.Text.RegularExpressions.Regex.IsMatch(string.Concat(Key.inputHistory.ToArray().Reverse().DistinctAdjacently().ToArray()), "2525C"))
                                           .ToReactiveProperty();
+
+            hasInputedGrabCommand = this.ObserveEveryValueChanged(x => System.Text.RegularExpressions.Regex.IsMatch(string.Concat(Key.inputHistory.ToArray().Reverse().Distinct().ToArray()), "56C")
+                                                                    || System.Text.RegularExpressions.Regex.IsMatch(string.Concat(Key.inputHistory.ToArray().Reverse().Distinct().ToArray()), "54C"))
+                                        .ToReactiveProperty();
 
             this.UpdateAsObservable()
                 .Subscribe(_ => Debug.Log(string.Concat(Key.inputHistory.ToArray().Reverse().DistinctAdjacently().ToArray())));

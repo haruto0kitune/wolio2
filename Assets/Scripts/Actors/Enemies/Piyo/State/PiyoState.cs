@@ -3,7 +3,7 @@ using System.Collections;
 using UniRx;
 using UniRx.Triggers;
 
-public class PiyoState : MonoBehaviour
+public class PiyoState : MonoBehaviour, IState
 {
     private Animator Animator;
     private SpriteRenderer SpriteRenderer;

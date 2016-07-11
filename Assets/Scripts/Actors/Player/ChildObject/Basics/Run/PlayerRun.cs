@@ -58,6 +58,7 @@ namespace Wolio.Actor.Player.Basics
 
             //Motion
             this.FixedUpdateAsObservable()
+                .Where(x => !PlayerState.hasInputedGrabCommand.Value)
                 .Where(x => PlayerState.canRun.Value)
                 .Subscribe(_ => this.Run(Key.Horizontal.Value, MaxSpeed));
 
@@ -67,8 +68,8 @@ namespace Wolio.Actor.Player.Basics
                 .Subscribe(_ =>
                 {
                     BoxCollider2D.enabled = true;
-                    HurtBox.enabled = true;
                     CircleCollider2D.enabled = true;
+                    HurtBox.enabled = true;
                 });
 
             this.ObserveEveryValueChanged(x => Animator.GetBool("IsRunning"))
@@ -76,8 +77,8 @@ namespace Wolio.Actor.Player.Basics
                 .Subscribe(_ =>
                 {
                     BoxCollider2D.enabled = false;
-                    HurtBox.enabled = false;
                     CircleCollider2D.enabled = false;
+                    HurtBox.enabled = false;
                 });
         }
 

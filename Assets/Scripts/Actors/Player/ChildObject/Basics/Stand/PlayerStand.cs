@@ -7,25 +7,29 @@ namespace Wolio.Actor.Player.Basics
 {
     public class PlayerStand : MonoBehaviour
     {
+        [SerializeField]
+        GameObject Player;
         Animator Animator;
         ObservableStateMachineTrigger ObservableStateMachineTrigger;
         PlayerState PlayerState;
         Rigidbody2D PlayerRigidbody2D;
         Key Key;
         BoxCollider2D BoxCollider2D;
-        BoxCollider2D HurtBox;
         CircleCollider2D CircleCollider2D;
+        [SerializeField]
+        GameObject StandHurtBox;
+        BoxCollider2D HurtBox;
 
         void Awake()
         {
-            Animator = GameObject.Find("Test").GetComponent<Animator>();
+            Animator = Player.GetComponent<Animator>();
             ObservableStateMachineTrigger = Animator.GetBehaviour<ObservableStateMachineTrigger>();
-            PlayerState = GameObject.Find("Test").GetComponent<PlayerState>();
-            PlayerRigidbody2D = GameObject.Find("Test").GetComponent<Rigidbody2D>();
-            Key = GameObject.Find("Test").GetComponent<Key>();
+            PlayerState = Player.GetComponent<PlayerState>();
+            PlayerRigidbody2D = Player.GetComponent<Rigidbody2D>();
+            Key = Player.GetComponent<Key>();
             BoxCollider2D = GetComponent<BoxCollider2D>();
-            HurtBox = GameObject.Find("StandHurtBox").GetComponent<BoxCollider2D>();
             CircleCollider2D = GetComponent<CircleCollider2D>();
+            HurtBox = StandHurtBox.GetComponent<BoxCollider2D>();
         }
 
         void Start()
@@ -35,6 +39,7 @@ namespace Wolio.Actor.Player.Basics
             ObservableStateMachineTrigger
                 .OnStateUpdateAsObservable()
                 .Where(x => x.StateInfo.IsName("Base Layer.Stand"))
+                .Where(x => !PlayerState.hasInputedGrabCommand.Value)
                 .Where(x => PlayerState.canRun.Value)
                 .Where(x => Key.Horizontal.Value != 0 && Key.Vertical.Value == 0)
                 .Subscribe(_ =>
@@ -98,6 +103,7 @@ namespace Wolio.Actor.Player.Basics
             ObservableStateMachineTrigger
                 .OnStateUpdateAsObservable()
                 .Where(x => x.StateInfo.IsName("Base Layer.Stand"))
+                .Where(x => !PlayerState.hasInputedGrabCommand.Value)
                 .Where(x => PlayerState.canStandingHighAttack.Value)
                 .Where(x => Key.C)
                 .Subscribe(_ =>
@@ -223,6 +229,18 @@ namespace Wolio.Actor.Player.Basics
                     Animator.SetBool("IsHighHurricaneKick", true);
                 });
             #endregion
+            #region Stand->Grab
+            ObservableStateMachineTrigger
+                .OnStateUpdateAsObservable()
+                .Where(x => x.StateInfo.IsName("Base Layer.Stand"))
+                .Where(x => PlayerState.canGrab.Value)
+                .Where(x => Key.Horizontal.Value != 0 && Key.C)
+                .Subscribe(_ =>
+                {
+                    Animator.SetBool("IsStanding", false);
+                    Animator.SetBool("IsGrabbing", true);
+                });
+            #endregion
 
             //Collision
             this.ObserveEveryValueChanged(x => Animator.GetBool("IsStanding"))
@@ -230,8 +248,8 @@ namespace Wolio.Actor.Player.Basics
                 .Subscribe(_ =>
                 {
                     BoxCollider2D.enabled = true;
-                    HurtBox.enabled = true;
                     CircleCollider2D.enabled = true;
+                    HurtBox.enabled = true;
                 });
 
             this.ObserveEveryValueChanged(x => Animator.GetBool("IsStanding"))
@@ -239,8 +257,8 @@ namespace Wolio.Actor.Player.Basics
                 .Subscribe(_ =>
                 {
                     BoxCollider2D.enabled = false;
-                    HurtBox.enabled = false;
                     CircleCollider2D.enabled = false;
+                    HurtBox.enabled = false;
                 });
         }
     }

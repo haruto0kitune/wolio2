@@ -6,8 +6,7 @@ using UniRx.Triggers;
 
 public class DamageManager : MonoBehaviour
 {
-    [SerializeField]
-    GameObject Actor;
+    public GameObject Actor;
     IState State;
     [SerializeField]
     GameObject DamageObject;
