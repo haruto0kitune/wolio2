@@ -113,7 +113,45 @@ namespace Wolio.Actor.Player.Basics
                     Animator.SetBool("IsProneJumpingDamage", true);
                 });
             #endregion
-            
+            #region Jump->DoubleJump
+            ObservableStateMachineTrigger
+                .OnStateUpdateAsObservable()
+                .Where(x => x.StateInfo.IsName("Base Layer.Jump"))
+                .Where(x => PlayerState.canDoubleJump.Value)
+                .Where(x => !PlayerState.hasDoubleJumped.Value)
+                .Where(x => PlayerRigidbody2D.velocity.y < 2)
+                .Where(x => Key.Vertical.Value == 1)
+                .Subscribe(_ =>
+                {
+                    Animator.SetBool("IsJumping", false);
+                    Animator.SetBool("IsDoubleJumping", true);
+                });
+            #endregion
+            #region Jump->Fall
+            ObservableStateMachineTrigger
+                .OnStateUpdateAsObservable()
+                .Where(x => x.StateInfo.IsName("Base Layer.Jump"))
+                .Where(x => PlayerRigidbody2D.velocity.y < 0)
+                .Subscribe(_ =>
+                {
+                    Animator.SetBool("IsJumping", false);
+                    Animator.SetBool("IsFalling", true);
+                });
+            #endregion
+            #region Jump->AirDash
+            ObservableStateMachineTrigger
+                .OnStateUpdateAsObservable()
+                .Where(x => x.StateInfo.IsName("Base Layer.Jump"))
+                .Where(x => PlayerState.canAirDash.Value)
+                .Where(x => !PlayerState.hasAirDashed.Value)
+                .Where(x => PlayerState.hasInputedAirDashCommand.Value)
+                .Subscribe(_ =>
+                {
+                    Animator.SetBool("IsJumping", false);
+                    Animator.SetBool("IsAirDashing", true);
+                });
+            #endregion
+
             //Motion
             this.FixedUpdateAsObservable()
                 .Where(x => PlayerState.canJump.Value)

@@ -102,7 +102,15 @@ namespace Wolio.Actor.Player
         public ReactiveProperty<bool> canDragonPunch;
         public ReactiveProperty<bool> IsHurricaneKick;
         public ReactiveProperty<bool> canHurricaneKick;
-    
+        public ReactiveProperty<bool> IsFalling; 
+        public ReactiveProperty<bool> canFall; 
+        public ReactiveProperty<bool> IsLanding;
+        public ReactiveProperty<bool> canLand;
+        public ReactiveProperty<bool> IsAirDashing;
+        public ReactiveProperty<bool> canAirDash;
+        public ReactiveProperty<bool> hasInputedAirDashCommand;
+        public ReactiveProperty<bool> hasAirDashed;
+        public ReactiveProperty<bool> IsSkipingLanding;
 
         void Awake()
         {
@@ -137,8 +145,9 @@ namespace Wolio.Actor.Player
 
             hasDoubleJumped = IsGrounded.Where(x => x).Select(x => !x).ToReactiveProperty();
 
-            canDoubleJump = this.ObserveEveryValueChanged(x => IsJumping.Value &&
-                                                               !hasDoubleJumped.Value)
+            canDoubleJump = this.ObserveEveryValueChanged(x => (IsJumping.Value
+                                                            || IsFalling.Value)
+                                                            && !hasDoubleJumped.Value)
                                 .ToReactiveProperty();
 
             hasInputedDoubleJumpCommand = this.ObserveEveryValueChanged(x => System.Text.RegularExpressions.Regex.IsMatch(string.Concat(Key.inputHistory.ToArray().Reverse().Distinct().ToArray()), "58")
@@ -223,13 +232,17 @@ namespace Wolio.Actor.Player
             IsJumpingLightAttack = this.ObserveEveryValueChanged(x => Animator.GetBool("IsJumpingLightAttack"))
                                        .ToReactiveProperty();
 
-            canJumpingLightAttack = this.ObserveEveryValueChanged(x => IsJumping.Value || IsJumpingLightAttack.Value)
+            canJumpingLightAttack = this.ObserveEveryValueChanged(x => IsJumping.Value
+                                                                    || IsJumpingLightAttack.Value
+                                                                    || IsAirDashing.Value)
                                         .ToReactiveProperty();
 
             IsJumpingMiddleAttack = this.ObserveEveryValueChanged(x => Animator.GetBool("IsJumpingMiddleAttack"))
                                         .ToReactiveProperty();
 
-            canJumpingMiddleAttack = this.ObserveEveryValueChanged(x => IsJumping.Value || IsJumpingLightAttack.Value)
+            canJumpingMiddleAttack = this.ObserveEveryValueChanged(x => IsJumping.Value 
+                                                                     || IsJumpingLightAttack.Value
+                                                                     || IsAirDashing.Value)
                                          .ToReactiveProperty();
 
             IsJumpingHighAttack = this.ObserveEveryValueChanged(x => Animator.GetBool("IsJumpingHighAttack"))
@@ -237,7 +250,8 @@ namespace Wolio.Actor.Player
 
             canJumpingHighAttack = this.ObserveEveryValueChanged(x => IsJumping.Value ||
                                                                       IsJumpingLightAttack.Value ||
-                                                                      IsJumpingMiddleAttack.Value)
+                                                                      IsJumpingMiddleAttack.Value ||
+                                                                      IsAirDashing.Value)
                                        .ToReactiveProperty();
 
             IsStandingGuard = this.ObserveEveryValueChanged(x => Animator.GetBool("IsStandingGuard"))
@@ -407,8 +421,42 @@ namespace Wolio.Actor.Player
                                                                     || System.Text.RegularExpressions.Regex.IsMatch(string.Concat(Key.inputHistory.ToArray().Reverse().Distinct().ToArray()), "54C"))
                                         .ToReactiveProperty();
 
-            this.UpdateAsObservable()
-                .Subscribe(_ => Debug.Log(string.Concat(Key.inputHistory.ToArray().Reverse().DistinctAdjacently().ToArray())));
+            IsFalling = this.ObserveEveryValueChanged(x => Animator.GetBool("IsFalling"))
+                            .ToReactiveProperty();
+
+            canFall = this.ObserveEveryValueChanged(x => IsJumping.Value || IsDoubleJumping.Value)
+                          .ToReactiveProperty();
+
+            IsLanding = this.ObserveEveryValueChanged(x => Animator.GetBool("IsLanding"))
+                            .ToReactiveProperty();
+
+            canLand = this.ObserveEveryValueChanged(x => IsJumping.Value
+                                                      || IsDoubleJumping.Value
+                                                      || IsFalling.Value)
+                          .ToReactiveProperty();
+
+            IsAirDashing = this.ObserveEveryValueChanged(x => Animator.GetBool("IsAirDashing"))
+                               .ToReactiveProperty();
+
+            canAirDash = this.ObserveEveryValueChanged(x => IsJumping.Value
+                                                         || IsDoubleJumping.Value
+                                                         || IsFalling.Value)
+                             .ToReactiveProperty();
+
+            hasInputedAirDashCommand = this.ObserveEveryValueChanged(x => System.Text.RegularExpressions.Regex.IsMatch(string.Concat(Key.inputHistory.ToArray().Reverse().DistinctAdjacently().ToArray()), "5656")
+                                                                       || System.Text.RegularExpressions.Regex.IsMatch(string.Concat(Key.inputHistory.ToArray().Reverse().DistinctAdjacently().ToArray()), "5454"))
+                                           .ToReactiveProperty();
+
+            //hasAirDashed = IsGrounded.Where(x => x).Select(x => !x).ToReactiveProperty();
+            hasAirDashed = IsStanding.Where(x => x).Select(x => !x).ToReactiveProperty();
+
+            hasAirDashed.Subscribe(_ => Debug.Log("hasAirDashed: " + _));
+
+            IsSkipingLanding = new ReactiveProperty<bool>();
+
+
+            //this.UpdateAsObservable()
+            //    .Subscribe(_ => Debug.Log(string.Concat(Key.inputHistory.ToArray().Reverse().DistinctAdjacently().ToArray())));
 
             //this.UpdateAsObservable()
             //    .Subscribe(_ => Debug.Log("HurricaneCommand: " + (System.Text.RegularExpressions.Regex.IsMatch(string.Concat(Key.inputHistory.ToArray().Reverse().DistinctAdjacently().ToArray()), "252Z")
@@ -443,6 +491,9 @@ namespace Wolio.Actor.Player
 
             // When Player land, velocity reset.
             IsGrounded.Where(x => x).Subscribe(_ => Rigidbody2D.velocity = Vector2.zero);
+
+            // GroundCheck position
+            //IsAirDashing.Where(x => x).Subscribe(_ => GroundCheck.localPosition = new Vector2(GroundCheck.localPosition.x, -0.159f));
         }
     }
 }

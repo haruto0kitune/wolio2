@@ -118,6 +118,30 @@ namespace Wolio.Actor.Player.Basics
                     Animator.SetBool("IsProneJumpingDamage", true);
                 });
             #endregion
+            #region DoubleJump->Fall
+            ObservableStateMachineTrigger
+                .OnStateUpdateAsObservable()
+                .Where(x => x.StateInfo.IsName("Base Layer.DoubleJump"))
+                .Where(x => ActorRigidbody2D.velocity.y < 0)
+                .Subscribe(_ =>
+                {
+                    Animator.SetBool("IsDoubleJumping", false);
+                    Animator.SetBool("IsFalling", true);
+                });
+            #endregion
+            #region DoubleJump->AirDash
+            ObservableStateMachineTrigger
+                .OnStateUpdateAsObservable()
+                .Where(x => x.StateInfo.IsName("Base Layer.DoubleJump"))
+                .Where(x => PlayerState.canAirDash.Value)
+                .Where(x => !PlayerState.hasAirDashed.Value)
+                .Where(x => PlayerState.hasInputedAirDashCommand.Value)
+                .Subscribe(_ =>
+                {
+                    Animator.SetBool("IsDoubleJumping", false);
+                    Animator.SetBool("IsAirDashing", true);
+                });
+            #endregion
 
             // Motion
             this.FixedUpdateAsObservable()
@@ -144,7 +168,6 @@ namespace Wolio.Actor.Player.Basics
                     BoxCollider2D.enabled = false;
                     HurtBox.enabled = false;
                 });
-
         }
 
         IEnumerator DoubleJump()
@@ -154,7 +177,7 @@ namespace Wolio.Actor.Player.Basics
             yield return null;
 
             // Jump
-            ActorRigidbody2D.velocity = new Vector2(ActorRigidbody2D.velocity.x, DoubleJumpForce);
+            ActorRigidbody2D.velocity = new Vector2(6 * Key.Horizontal.Value, DoubleJumpForce);
             PlayerState.hasDoubleJumped.Value = true;
             coroutineStore = null;
         }
