@@ -25,6 +25,10 @@ namespace Wolio.Actor.Player
         public ReactiveProperty<bool> canRun;
         public ReactiveProperty<bool> IsJumping;
         public ReactiveProperty<bool> canJump;
+        public ReactiveProperty<bool> IsDoubleJumping;
+        public ReactiveProperty<bool> hasDoubleJumped;
+        public ReactiveProperty<bool> canDoubleJump;
+        public ReactiveProperty<bool> hasInputedDoubleJumpCommand;
         public ReactiveProperty<bool> IsStanding;
         public ReactiveProperty<bool> IsCrouching;
         public ReactiveProperty<bool> canCrouch;
@@ -127,7 +131,21 @@ namespace Wolio.Actor.Player
                                                           IsRunning.Value ||
                                                           (IsStandingMiddleAttack.Value && hitStandingMiddleAttack.Value)) &&
                                                           IsGrounded.Value).ToReactiveProperty();
-            
+
+            IsDoubleJumping = this.ObserveEveryValueChanged(x => Animator.GetBool("IsDoubleJumping"))
+                                  .ToReactiveProperty();
+
+            hasDoubleJumped = IsGrounded.Where(x => x).Select(x => !x).ToReactiveProperty();
+
+            canDoubleJump = this.ObserveEveryValueChanged(x => IsJumping.Value &&
+                                                               !hasDoubleJumped.Value)
+                                .ToReactiveProperty();
+
+            hasInputedDoubleJumpCommand = this.ObserveEveryValueChanged(x => System.Text.RegularExpressions.Regex.IsMatch(string.Concat(Key.inputHistory.ToArray().Reverse().Distinct().ToArray()), "58")
+                                                                          || System.Text.RegularExpressions.Regex.IsMatch(string.Concat(Key.inputHistory.ToArray().Reverse().Distinct().ToArray()), "57")
+                                                                          || System.Text.RegularExpressions.Regex.IsMatch(string.Concat(Key.inputHistory.ToArray().Reverse().Distinct().ToArray()), "59"))
+                                              .ToReactiveProperty();
+
             IsStanding = this.ObserveEveryValueChanged(x => Animator.GetBool("IsStanding"))
                              .ToReactiveProperty();
 

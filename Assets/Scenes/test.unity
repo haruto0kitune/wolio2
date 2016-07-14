@@ -3938,6 +3938,7 @@ Transform:
   - {fileID: 1825857048}
   - {fileID: 1909665277}
   - {fileID: 931110322}
+  - {fileID: 976548585}
   m_Father: {fileID: 150007668}
   m_RootOrder: 2
 --- !u!1 &516842414
@@ -7211,6 +7212,64 @@ BoxCollider2D:
   m_Offset: {x: -0.1664087, y: -0.2863665}
   serializedVersion: 2
   m_Size: {x: 0.6020749, y: 0.2052152}
+--- !u!1 &976548584
+GameObject:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  serializedVersion: 4
+  m_Component:
+  - 4: {fileID: 976548585}
+  - 114: {fileID: 976548587}
+  - 61: {fileID: 976548586}
+  m_Layer: 11
+  m_Name: DoubleJump
+  m_TagString: Player
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &976548585
+Transform:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 976548584}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children:
+  - {fileID: 1263106257}
+  m_Father: {fileID: 477518369}
+  m_RootOrder: 9
+--- !u!61 &976548586
+BoxCollider2D:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 976548584}
+  m_Enabled: 0
+  m_Density: 1
+  m_Material: {fileID: 6200000, guid: c203c2bf2e10fc24482abaf8a2164a45, type: 2}
+  m_IsTrigger: 0
+  m_UsedByEffector: 0
+  m_Offset: {x: 0.0011405945, y: 0.002524376}
+  serializedVersion: 2
+  m_Size: {x: 0.2600313, y: 0.80333036}
+--- !u!114 &976548587
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 976548584}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 27949c6ace1aada40b03c888093eb68c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  Actor: {fileID: 150007667}
+  PlayerDoubleJumpHurtBox: {fileID: 1263106256}
+  DoubleJumpForce: 10
 --- !u!1 &978643163
 GameObject:
   m_ObjectHideFlags: 0
@@ -9871,6 +9930,64 @@ BoxCollider2D:
   m_Offset: {x: 0.0011405945, y: 0.06326544}
   serializedVersion: 2
   m_Size: {x: 0.2600313, y: 0.681848}
+--- !u!1 &1263106256
+GameObject:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  serializedVersion: 4
+  m_Component:
+  - 4: {fileID: 1263106257}
+  - 61: {fileID: 1263106259}
+  - 114: {fileID: 1263106258}
+  m_Layer: 24
+  m_Name: JumpHurtBox
+  m_TagString: HurtBox
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &1263106257
+Transform:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1263106256}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 976548585}
+  m_RootOrder: 0
+--- !u!114 &1263106258
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1263106256}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d0b46e87f58ac9a45a1bde6538366fe2, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  Actor: {fileID: 150007667}
+  DamageObject: {fileID: 1356547612}
+  SupineDamageObject: {fileID: 1356547612}
+  ProneDamageObject: {fileID: 1933318782}
+--- !u!61 &1263106259
+BoxCollider2D:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1263106256}
+  m_Enabled: 0
+  m_Density: 1
+  m_Material: {fileID: 0}
+  m_IsTrigger: 1
+  m_UsedByEffector: 0
+  m_Offset: {x: 0.0011405945, y: -0.005906582}
+  serializedVersion: 2
+  m_Size: {x: 0.307244, y: 0.84717065}
 --- !u!1 &1263658556
 GameObject:
   m_ObjectHideFlags: 0

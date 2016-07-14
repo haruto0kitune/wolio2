@@ -241,6 +241,20 @@ namespace Wolio.Actor.Player.Basics
                     Animator.SetBool("IsGrabbing", true);
                 });
             #endregion
+            #region Stand->DoubleJump
+            ObservableStateMachineTrigger
+                .OnStateUpdateAsObservable()
+                .Where(x => x.StateInfo.IsName("Base Layer.Stand"))
+                .Where(x => PlayerState.canDoubleJump.Value)
+                .Where(x => !PlayerState.hasDoubleJumped.Value)
+                .Where(x => PlayerRigidbody2D.velocity.y < 2)
+                .Where(x => Key.Vertical.Value == 1)
+                .Subscribe(_ =>
+                {
+                    Animator.SetBool("IsStanding", false);
+                    Animator.SetBool("IsDoubleJumping", true);
+                });
+            #endregion
 
             //Collision
             this.ObserveEveryValueChanged(x => Animator.GetBool("IsStanding"))
