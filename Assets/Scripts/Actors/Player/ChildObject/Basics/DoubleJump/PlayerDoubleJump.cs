@@ -145,11 +145,14 @@ namespace Wolio.Actor.Player.Basics
 
             // Motion
             this.FixedUpdateAsObservable()
+                .Where(x => !PlayerState.IsWallKickJumping.Value)
+                .Where(x => !PlayerState.canWallKickJumping.Value)
                 .Where(x => PlayerState.canDoubleJump.Value)
-                .Where(x => !PlayerState.hasDoubleJumped.Value)
-                .Where(x => Key.Vertical.Value == 1)
                 .Where(x => ActorRigidbody2D.velocity.y < 2)
                 .Where(x => coroutineStore == null)
+                .Where(x => Key.Vertical.Value == 1)
+                .Where(x => Key.up.Value)
+                .Do(x => Debug.Log("DoubleJump"))
                 .Subscribe(_ => coroutineStore = StartCoroutine(DoubleJump()));
 
             //Collision
@@ -172,13 +175,14 @@ namespace Wolio.Actor.Player.Basics
 
         IEnumerator DoubleJump()
         {
+            PlayerState.hasDoubleJumped.Value = true;
+
             // Reset velocity
             ActorRigidbody2D.velocity = Vector2.zero;
             yield return null;
 
             // Jump
             ActorRigidbody2D.velocity = new Vector2(6 * Key.Horizontal.Value, DoubleJumpForce);
-            PlayerState.hasDoubleJumped.Value = true;
             coroutineStore = null;
         }
     }

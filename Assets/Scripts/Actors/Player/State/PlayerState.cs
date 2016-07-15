@@ -1,4 +1,5 @@
 ﻿using UnityEngine;
+using System;
 using System.Collections;
 using System.Linq;
 using UniRx;
@@ -18,6 +19,9 @@ namespace Wolio.Actor.Player
         private Status Status;
         private Key Key;
 
+        public ControlMode controlMode;
+        public ReactiveProperty<bool> IsActionMode;
+        public ReactiveProperty<bool> IsFightingMode;
         public ReactiveProperty<bool> IsDead;
         public ReactiveProperty<bool> IsGrounded;
         public ReactiveProperty<bool> IsDashing;
@@ -132,18 +136,27 @@ namespace Wolio.Actor.Player
 
             IsDashing = new ReactiveProperty<bool>();
 
+
+            IsStanding = this.ObserveEveryValueChanged(x => Animator.GetBool("IsStanding"))
+                             .ToReactiveProperty();
+
+            IsRunning = this.ObserveEveryValueChanged(x => Animator.GetBool("IsRunning"))
+                            .ToReactiveProperty();
+
+            canRun = this.ObserveEveryValueChanged(x => (IsStanding.Value || IsRunning.Value) && IsGrounded.Value).ToReactiveProperty();
+
             IsJumping = this.ObserveEveryValueChanged(x => Animator.GetBool("IsJumping"))
                             .ToReactiveProperty();
 
             canJump = this.ObserveEveryValueChanged(x => (IsStanding.Value || 
                                                           IsRunning.Value ||
-                                                          (IsStandingMiddleAttack.Value && hitStandingMiddleAttack.Value)) &&
-                                                          IsGrounded.Value).ToReactiveProperty();
+                                                          (IsStandingMiddleAttack.Value && hitStandingMiddleAttack.Value)))
+                          .ToReactiveProperty();
 
             IsDoubleJumping = this.ObserveEveryValueChanged(x => Animator.GetBool("IsDoubleJumping"))
                                   .ToReactiveProperty();
 
-            hasDoubleJumped = IsGrounded.Where(x => x).Select(x => !x).ToReactiveProperty();
+            hasDoubleJumped = IsStanding.Where(x => x).Select(x => !x).ToReactiveProperty();
 
             canDoubleJump = this.ObserveEveryValueChanged(x => (IsJumping.Value
                                                             || IsFalling.Value)
@@ -154,14 +167,6 @@ namespace Wolio.Actor.Player
                                                                           || System.Text.RegularExpressions.Regex.IsMatch(string.Concat(Key.inputHistory.ToArray().Reverse().Distinct().ToArray()), "57")
                                                                           || System.Text.RegularExpressions.Regex.IsMatch(string.Concat(Key.inputHistory.ToArray().Reverse().Distinct().ToArray()), "59"))
                                               .ToReactiveProperty();
-
-            IsStanding = this.ObserveEveryValueChanged(x => Animator.GetBool("IsStanding"))
-                             .ToReactiveProperty();
-
-            IsRunning = this.ObserveEveryValueChanged(x => Animator.GetBool("IsRunning"))
-                            .ToReactiveProperty();
-
-            canRun = this.ObserveEveryValueChanged(x => (IsStanding.Value || IsRunning.Value) && IsGrounded.Value).ToReactiveProperty();
 
             IsCrouching = this.ObserveEveryValueChanged(x => Animator.GetBool("IsCrouching"))
                               .ToReactiveProperty();
@@ -234,7 +239,9 @@ namespace Wolio.Actor.Player
 
             canJumpingLightAttack = this.ObserveEveryValueChanged(x => IsJumping.Value
                                                                     || IsJumpingLightAttack.Value
-                                                                    || IsAirDashing.Value)
+                                                                    || IsAirDashing.Value
+                                                                    || IsDoubleJumping.Value
+                                                                    || IsFalling.Value)
                                         .ToReactiveProperty();
 
             IsJumpingMiddleAttack = this.ObserveEveryValueChanged(x => Animator.GetBool("IsJumpingMiddleAttack"))
@@ -242,7 +249,9 @@ namespace Wolio.Actor.Player
 
             canJumpingMiddleAttack = this.ObserveEveryValueChanged(x => IsJumping.Value 
                                                                      || IsJumpingLightAttack.Value
-                                                                     || IsAirDashing.Value)
+                                                                     || IsAirDashing.Value
+                                                                     || IsDoubleJumping.Value
+                                                                     || IsFalling.Value)
                                          .ToReactiveProperty();
 
             IsJumpingHighAttack = this.ObserveEveryValueChanged(x => Animator.GetBool("IsJumpingHighAttack"))
@@ -251,7 +260,9 @@ namespace Wolio.Actor.Player
             canJumpingHighAttack = this.ObserveEveryValueChanged(x => IsJumping.Value ||
                                                                       IsJumpingLightAttack.Value ||
                                                                       IsJumpingMiddleAttack.Value ||
-                                                                      IsAirDashing.Value)
+                                                                      IsAirDashing.Value ||
+                                                                      IsDoubleJumping.Value ||
+                                                                      IsFalling.Value)
                                        .ToReactiveProperty();
 
             IsStandingGuard = this.ObserveEveryValueChanged(x => Animator.GetBool("IsStandingGuard"))
@@ -285,6 +296,8 @@ namespace Wolio.Actor.Player
             IsCrouchingGuardBack = new ReactiveProperty<bool>();
             IsJumpingGuardBack = new ReactiveProperty<bool>();
             IsWallKickJumping = new ReactiveProperty<bool>();
+
+            canWallKickJumping = new ReactiveProperty<bool>();
 
             FacingRight = SpriteRenderer.ObserveEveryValueChanged(x => x.flipX)
                                         .ToReactiveProperty();
@@ -447,13 +460,11 @@ namespace Wolio.Actor.Player
                                                                        || System.Text.RegularExpressions.Regex.IsMatch(string.Concat(Key.inputHistory.ToArray().Reverse().DistinctAdjacently().ToArray()), "5454"))
                                            .ToReactiveProperty();
 
-            //hasAirDashed = IsGrounded.Where(x => x).Select(x => !x).ToReactiveProperty();
             hasAirDashed = IsStanding.Where(x => x).Select(x => !x).ToReactiveProperty();
 
             hasAirDashed.Subscribe(_ => Debug.Log("hasAirDashed: " + _));
 
             IsSkipingLanding = new ReactiveProperty<bool>();
-
 
             //this.UpdateAsObservable()
             //    .Subscribe(_ => Debug.Log(string.Concat(Key.inputHistory.ToArray().Reverse().DistinctAdjacently().ToArray())));

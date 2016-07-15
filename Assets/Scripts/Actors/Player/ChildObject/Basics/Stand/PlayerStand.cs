@@ -47,7 +47,6 @@ namespace Wolio.Actor.Player.Basics
                     Animator.SetBool("IsStanding", false);
                     Animator.SetBool("IsRunning", true);
                 });
-
             #endregion
             #region Stand->Jump
             ObservableStateMachineTrigger
@@ -239,6 +238,17 @@ namespace Wolio.Actor.Player.Basics
                 {
                     Animator.SetBool("IsStanding", false);
                     Animator.SetBool("IsGrabbing", true);
+                });
+            #endregion
+            #region Stand->Fall
+            ObservableStateMachineTrigger
+                .OnStateUpdateAsObservable()
+                .Where(x => x.StateInfo.IsName("Base Layer.Stand"))
+                .Where(x => !PlayerState.IsGrounded.Value)
+                .Subscribe(_ =>
+                {
+                    Animator.SetBool("IsStanding", false);
+                    Animator.SetBool("IsFalling", true);
                 });
             #endregion
 

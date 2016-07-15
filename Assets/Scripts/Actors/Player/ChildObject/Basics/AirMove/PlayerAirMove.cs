@@ -25,14 +25,12 @@ namespace Wolio.Actor.Player.Basics
         void Start()
         {
             //Motion
-            #region AirMove
             this.FixedUpdateAsObservable()
                 .Where(x => PlayerState.IsJumping.Value)
                 .Where(x => !PlayerState.IsGrounded.Value)
                 .Where(x => !PlayerState.IsWallKickJumping.Value)
                 .Where(x => Key.Horizontal.Value != 0)
                 .Subscribe(_ => this.AirMove(Key.Horizontal.Value));
-            #endregion
         }
 
         public void AirMove(float Horizontal)

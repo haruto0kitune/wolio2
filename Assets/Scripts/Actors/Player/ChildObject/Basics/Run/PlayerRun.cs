@@ -55,6 +55,17 @@ namespace Wolio.Actor.Player.Basics
                     Animator.SetBool("IsJumping", true);
                 });
             #endregion
+            #region Run->Fall
+            ObservableStateMachineTrigger
+                .OnStateUpdateAsObservable()
+                .Where(x => x.StateInfo.IsName("Base Layer.Run"))
+                .Where(x => !PlayerState.IsGrounded.Value)
+                .Subscribe(_ =>
+                {
+                    Animator.SetBool("IsRunning", false);
+                    Animator.SetBool("IsFalling", true);
+                });
+            #endregion
 
             //Motion
             this.FixedUpdateAsObservable()

@@ -7,25 +7,35 @@ namespace Wolio.Actor.Player.Basics
 {
     public class PlayerCreep : MonoBehaviour
     {
+        [SerializeField]
+        GameObject Actor;
         Animator Animator;
         ObservableStateMachineTrigger ObservableStateMachineTrigger;
         PlayerState PlayerState;
         Rigidbody2D PlayerRigidbody2D;
         Key Key;
         BoxCollider2D BoxCollider2D;
+        [SerializeField]
+        GameObject CreepHurtBox;
         BoxCollider2D HurtBox;
         [SerializeField]
+        GameObject CreepCeilingCheckBox;
+        BoxCollider2D CeilingCheckBox;
+        [SerializeField]
         float Speed;
+        bool canTransition;
 
         void Awake()
         {
-            Animator = GameObject.Find("Test").GetComponent<Animator>();
+            Animator = Actor.GetComponent<Animator>();
             ObservableStateMachineTrigger = Animator.GetBehaviour<ObservableStateMachineTrigger>();
-            PlayerState = GameObject.Find("Test").GetComponent<PlayerState>();
-            PlayerRigidbody2D = GameObject.Find("Test").GetComponent<Rigidbody2D>();
-            Key = GameObject.Find("Test").GetComponent<Key>();
+            PlayerState = Actor.GetComponent<PlayerState>();
+            PlayerRigidbody2D = Actor.GetComponent<Rigidbody2D>();
+            Key = Actor.GetComponent<Key>();
             BoxCollider2D = GetComponent<BoxCollider2D>();
-            HurtBox = GameObject.Find("CreepHurtBox").GetComponent<BoxCollider2D>();
+            HurtBox = CreepHurtBox.GetComponent<BoxCollider2D>();
+            CeilingCheckBox = CreepCeilingCheckBox.GetComponent<BoxCollider2D>();
+            canTransition = true;
         }
 
         void Start()
@@ -35,6 +45,7 @@ namespace Wolio.Actor.Player.Basics
             ObservableStateMachineTrigger
                 .OnStateUpdateAsObservable()
                 .Where(x => x.StateInfo.IsName("Base Layer.Creep"))
+                .Where(x => canTransition)
                 .Where(x => Key.Horizontal.Value == 0 && Key.Vertical.Value == 0)
                 .Subscribe(_ =>
                 {
@@ -46,6 +57,7 @@ namespace Wolio.Actor.Player.Basics
             ObservableStateMachineTrigger
                 .OnStateUpdateAsObservable()
                 .Where(x => x.StateInfo.IsName("Base Layer.Creep"))
+                .Where(x => canTransition)
                 .Where(x => Key.Horizontal.Value != 0 && Key.Vertical.Value == 0)
                 .Subscribe(_ =>
                 {
@@ -57,6 +69,7 @@ namespace Wolio.Actor.Player.Basics
             ObservableStateMachineTrigger
                 .OnStateUpdateAsObservable()
                 .Where(x => x.StateInfo.IsName("Base Layer.Creep"))
+                .Where(x => canTransition)
                 .Where(x => Key.Horizontal.Value == 0 && Key.Vertical.Value == -1)
                 .Subscribe(_ =>
                 {
@@ -110,6 +123,11 @@ namespace Wolio.Actor.Player.Basics
                 .Where(x => Key.Horizontal.Value != 0 && Key.Vertical.Value == -1)
                 .Subscribe(_ => this.Creep(Key.Horizontal.Value, Speed));
 
+            this.FixedUpdateAsObservable()
+                .Where(x => !canTransition)
+                .Where(x => Key.Horizontal.Value == 0)
+                .Subscribe(_ => this.Creep(Key.Horizontal.Value, Speed));
+
             //Collision
             this.ObserveEveryValueChanged(x => Animator.GetBool("IsCreeping"))
                 .Where(x => x)
@@ -117,6 +135,7 @@ namespace Wolio.Actor.Player.Basics
                 {
                     BoxCollider2D.enabled = true;
                     HurtBox.enabled = true;
+                    CeilingCheckBox.enabled = true;
                 });
 
             this.ObserveEveryValueChanged(x => Animator.GetBool("IsCreeping"))
@@ -125,8 +144,22 @@ namespace Wolio.Actor.Player.Basics
                 {
                     BoxCollider2D.enabled = false;
                     HurtBox.enabled = false;
+                    CeilingCheckBox.enabled = false;
                     PlayerRigidbody2D.velocity = Vector2.zero;
                 });
+
+            // Trigger
+            CeilingCheckBox.OnTriggerStay2DAsObservable()
+                .Where(x => x.gameObject.tag == "Field"
+                         || x.gameObject.tag == "Hard Platform"
+                         || x.gameObject.tag == "Wall")
+                .Subscribe(_ => canTransition = false);
+
+            CeilingCheckBox.OnTriggerExit2DAsObservable()
+                .Where(x => x.gameObject.tag == "Field"
+                         || x.gameObject.tag == "Hard Platform"
+                         || x.gameObject.tag == "Wall")
+                .Subscribe(_ => canTransition = true);
         }
 
         public void Creep(float Horizontal, float CreepSpeed)

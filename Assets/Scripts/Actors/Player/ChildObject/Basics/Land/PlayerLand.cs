@@ -83,6 +83,19 @@ namespace Wolio.Actor.Player.Basics
                     Animator.SetBool("IsProneJumpingDamage", true);
                 });
             #endregion
+            #region Land->Jump
+            ObservableStateMachineTrigger
+                .OnStateUpdateAsObservable()
+                .Where(x => x.StateInfo.IsName("Base Layer.Land"))
+                .Where(x => hasFinished)
+                .Where(x => PlayerState.canJump.Value)
+                .Where(x => Key.Vertical.Value == 1)
+                .Subscribe(_ =>
+                {
+                    Animator.SetBool("IsLanding", false);
+                    Animator.SetBool("IsJumping", true);
+                });
+            #endregion
 
             // Motion
             ObservableStateMachineTrigger

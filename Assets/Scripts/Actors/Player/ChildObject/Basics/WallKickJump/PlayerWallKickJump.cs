@@ -34,13 +34,27 @@ namespace Wolio.Actor.Player.Basics
 
         void Start()
         {
-            //Motion
-            this.OnTriggerStay2DAsObservable()
-                .Where(x => x.gameObject.layer == LayerMask.NameToLayer("Field"))
+            // Motion
+            this.FixedUpdateAsObservable()
+                .Where(x => PlayerState.canWallKickJumping.Value)
                 .DistinctUntilChanged(x => Key.Vertical.Value)
                 .Where(x => PlayerState.IsInTheAir.Value)
                 .Where(x => Key.Vertical.Value == 1f)
                 .Subscribe(_ => StartCoroutine(WallKickJump(Angle, JumpForce)));
+
+            // Flag
+            this.OnTriggerEnter2DAsObservable()
+                .Where(x => x.gameObject.layer == LayerMask.NameToLayer("Field"))
+                .Subscribe(_ => PlayerState.canWallKickJumping.Value = true);
+
+            this.OnTriggerExit2DAsObservable()
+                .Where(x => x.gameObject.layer == LayerMask.NameToLayer("Field"))
+                .Subscribe(_ => PlayerState.canWallKickJumping.Value = false);
+
+            // Flag
+            //this.ObserveEveryValueChanged(x => PlayerRigidbody2D.velocity.y)
+            //    .Where(x => x < 2)
+            //    .Subscribe(_ => PlayerState.IsWallKickJumping.Value = false);
         }
 
         public IEnumerator WallKickJump(int Angle, float Radius)

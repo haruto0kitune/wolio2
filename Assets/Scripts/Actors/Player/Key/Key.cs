@@ -13,6 +13,11 @@ namespace Wolio.Actor.Player
         public ReactiveProperty<float> Horizontal;
         public ReactiveProperty<float> Vertical;
 
+        public ReactiveProperty<bool> up;
+        public ReactiveProperty<bool> down;
+        public ReactiveProperty<bool> left;
+        public ReactiveProperty<bool> right;
+
         public bool A;
         public bool S;
         public bool D;
@@ -36,6 +41,10 @@ namespace Wolio.Actor.Player
             Vertical = new ReactiveProperty<float>();
             IsAvailable = new ReactiveProperty<bool>(true);
             inputHistory = new Stack<string>(inputHistoryLength);
+            up = new ReactiveProperty<bool>();
+            down = new ReactiveProperty<bool>();
+            left = new ReactiveProperty<bool>();
+            right = new ReactiveProperty<bool>();
         }
 
         private void Start()
@@ -45,6 +54,22 @@ namespace Wolio.Actor.Player
 
         private void UpdateAsObservables()
         {
+            this.UpdateAsObservable()
+                .Where(x => IsAvailable.Value)
+                .Subscribe(_ => up.Value = Input.GetButtonDown("up"));
+
+            this.UpdateAsObservable()
+                .Where(x => IsAvailable.Value)
+                .Subscribe(_ => down.Value = Input.GetButtonDown("down"));
+
+            this.UpdateAsObservable()
+                .Where(x => IsAvailable.Value)
+                .Subscribe(_ => left.Value = Input.GetButtonDown("left"));
+
+            this.UpdateAsObservable()
+                .Where(x => IsAvailable.Value)
+                .Subscribe(_ => right.Value = Input.GetButtonDown("right"));
+
             this.UpdateAsObservable()
                 .Where(x => IsAvailable.Value)
                 .Subscribe(_ => Horizontal.Value = CrossPlatformInputManager.GetAxisRaw("Horizontal"));

@@ -144,9 +144,12 @@ namespace Wolio.Actor.Player.Basics
             ObservableStateMachineTrigger
                 .OnStateUpdateAsObservable()
                 .Where(x => x.StateInfo.IsName("Base Layer.Fall"))
+                .Where(x => !PlayerState.IsWallKickJumping.Value)
+                .Where(x => !PlayerState.canWallKickJumping.Value)
                 .Where(x => PlayerState.canDoubleJump.Value)
-                .Where(x => !PlayerState.hasDoubleJumped.Value)
+                .Where(x => ActorRigidbody2D.velocity.y < 2)
                 .Where(x => Key.Vertical.Value == 1)
+                .Where(x => Key.up.Value)
                 .Subscribe(_ =>
                 {
                     Animator.SetBool("IsFalling", false);
