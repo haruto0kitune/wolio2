@@ -462,7 +462,7 @@ namespace Wolio.Actor.Player
 
             hasAirDashed = IsStanding.Where(x => x).Select(x => !x).ToReactiveProperty();
 
-            hasAirDashed.Subscribe(_ => Debug.Log("hasAirDashed: " + _));
+            //hasAirDashed.Subscribe(_ => Debug.Log("hasAirDashed: " + _));
 
             IsSkipingLanding = new ReactiveProperty<bool>();
 

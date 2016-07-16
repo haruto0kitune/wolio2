@@ -92,6 +92,17 @@ namespace Wolio.Actor.Player.Attacks.NormalAttacks.JumpingAttacks
                     wasCanceled = true;
                 });
             #endregion
+            #region JumpingMiddleAttack->Land
+            ObservableStateMachineTrigger
+                .OnStateUpdateAsObservable()
+                .Where(x => x.StateInfo.IsName("Base Layer.JumpingMiddleAttack"))
+                .Where(x => PlayerState.IsGrounded.Value)
+                .Subscribe(_ =>
+                {
+                    Animator.SetBool("IsJumpingMiddleAttack", false);
+                    Animator.SetBool("IsLanding", true);
+                });
+            #endregion
 
             // Collision
             this.ObserveEveryValueChanged(x => Animator.GetBool("IsJumpingMiddleAttack"))

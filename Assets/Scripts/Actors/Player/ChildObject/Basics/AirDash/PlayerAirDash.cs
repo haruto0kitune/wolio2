@@ -47,9 +47,9 @@ namespace Wolio.Actor.Player.Basics
                 .Where(x => hasFinished)
                 .Subscribe(_ =>
                 {
-                    //Debug.Log("AirDash->Fall:hasAirDashed " + PlayerState.hasAirDashed.Value);
                     Animator.SetBool("IsAirDashing", false);
                     Animator.SetBool("IsFalling", true);
+                    hasFinished = false;
                 });
             #endregion
             #region AirDash->Stand
@@ -62,6 +62,7 @@ namespace Wolio.Actor.Player.Basics
                 {
                     Animator.SetBool("IsAirDashing", false);
                     Animator.SetBool("IsStanding", true);
+                    hasFinished = false;
                 });
             #endregion
             #region AirDash->JumpingLightAttack
@@ -74,6 +75,7 @@ namespace Wolio.Actor.Player.Basics
                 {
                     Animator.SetBool("IsAirDashing", false);
                     Animator.SetBool("IsJumpingLightAttack", true);
+                    hasFinished = false;
                 });
             #endregion
             #region AirDash->JumpingMiddleAttack
@@ -86,6 +88,7 @@ namespace Wolio.Actor.Player.Basics
                 {
                     Animator.SetBool("IsAirDashing", false);
                     Animator.SetBool("IsJumpingMiddleAttack", true);
+                    hasFinished = false;
                 });
             #endregion
             #region AirDash->JumpingHighAttack
@@ -98,6 +101,7 @@ namespace Wolio.Actor.Player.Basics
                 {
                     Animator.SetBool("IsAirDashing", false);
                     Animator.SetBool("IsJumpingHighAttack", true);
+                    hasFinished = false;
                 });
             #endregion
             #region AirDash->SupineJumpingDamage
@@ -109,6 +113,7 @@ namespace Wolio.Actor.Player.Basics
                 {
                     Animator.SetBool("IsAirDashing", false);
                     Animator.SetBool("IsSupineJumpingDamage", true);
+                    hasFinished = false;
                 });
             #endregion
             #region AirDash->ProneJumpingDamage
@@ -120,15 +125,19 @@ namespace Wolio.Actor.Player.Basics
                 {
                     Animator.SetBool("IsAirDashing", false);
                     Animator.SetBool("IsProneJumpingDamage", true);
+                    hasFinished = false;
                 });
             #endregion
 
             // Motion
-            this.FixedUpdateAsObservable()
-                .Where(x => PlayerState.canAirDash.Value)
-                .Where(x => !PlayerState.hasAirDashed.Value)
-                .Where(x => PlayerState.hasInputedAirDashCommand.Value)
-                .Subscribe(_ => coroutineStore = StartCoroutine(AirDash()));
+            ObservableStateMachineTrigger
+                .OnStateEnterAsObservable()
+                .Where(x => x.StateInfo.IsName("Base Layer.AirDash"))
+                .Subscribe(_ =>
+                {
+                    hasFinished = false;
+                    coroutineStore = StartCoroutine(AirDash());
+                });
 
             // Collision
             this.ObserveEveryValueChanged(x => Animator.GetBool("IsAirDashing"))
@@ -147,12 +156,6 @@ namespace Wolio.Actor.Player.Basics
                     HurtBox.enabled = false;
                 });
 
-            // hasFinished
-            ObservableStateMachineTrigger
-                .OnStateExitAsObservable()
-                .Where(x => x.StateInfo.IsName("Base Layer.AirDash"))
-                .Subscribe(_ => hasFinished = false);
-
             // Cancel
             this.ObserveEveryValueChanged(x => wasCanceled)
                 .Where(x => x)
@@ -168,7 +171,6 @@ namespace Wolio.Actor.Player.Basics
             PlayerState.hasAirDashed.Value = true;
             ActorRigidbody2D.constraints = RigidbodyConstraints2D.FreezePositionY | RigidbodyConstraints2D.FreezeRotation;
             
-
             for (int i = 0; i < recovery; i++)
             {
                 if (PlayerState.FacingRight.Value)
@@ -194,6 +196,8 @@ namespace Wolio.Actor.Player.Basics
             // Collision disable
             BoxCollider2D.enabled = false;
             HurtBox.enabled = false;
+            hasFinished = true;
+            ActorRigidbody2D.constraints = RigidbodyConstraints2D.FreezeRotation;
 
             wasCanceled = false;
         }

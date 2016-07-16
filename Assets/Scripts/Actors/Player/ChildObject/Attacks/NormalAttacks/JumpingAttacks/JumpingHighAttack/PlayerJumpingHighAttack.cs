@@ -77,6 +77,17 @@ namespace Wolio.Actor.Player.Attacks.NormalAttacks.JumpingAttacks
                     wasFinished = false;
                 });
             #endregion
+            #region JumpingHighAttack->Land
+            ObservableStateMachineTrigger
+                .OnStateUpdateAsObservable()
+                .Where(x => x.StateInfo.IsName("Base Layer.JumpingHighAttack"))
+                .Where(x => PlayerState.IsGrounded.Value)
+                .Subscribe(_ =>
+                {
+                    Animator.SetBool("IsJumpingHighAttack", false);
+                    Animator.SetBool("IsLanding", true);
+                });
+            #endregion
 
             // Collision
             this.ObserveEveryValueChanged(x => Animator.GetBool("IsJumpingHighAttack"))

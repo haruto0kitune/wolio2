@@ -133,6 +133,7 @@ namespace Wolio.Actor.Player.Basics
             ObservableStateMachineTrigger
                 .OnStateUpdateAsObservable()
                 .Where(x => x.StateInfo.IsName("Base Layer.Jump"))
+                .Where(x => !PlayerState.hasInputedAirDashCommand.Value)
                 .Where(x => PlayerRigidbody2D.velocity.y < 0)
                 .Subscribe(_ =>
                 {
