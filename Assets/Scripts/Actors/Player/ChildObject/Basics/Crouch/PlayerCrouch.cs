@@ -72,6 +72,7 @@ namespace Wolio.Actor.Player.Basics
             ObservableStateMachineTrigger
                 .OnStateUpdateAsObservable()
                 .Where(x => x.StateInfo.IsName("Base Layer.Crouch"))
+                .Where(x => PlayerState.canCrouchingMiddleAttack.Value)
                 .Where(x => Key.X)
                 .Subscribe(_ =>
                 {
@@ -83,6 +84,7 @@ namespace Wolio.Actor.Player.Basics
             ObservableStateMachineTrigger
                 .OnStateUpdateAsObservable()
                 .Where(x => x.StateInfo.IsName("Base Layer.Crouch"))
+                .Where(x => PlayerState.canCrouchingHighAttack.Value)
                 .Where(x => Key.C)
                 .Subscribe(_ =>
                 {
@@ -94,6 +96,7 @@ namespace Wolio.Actor.Player.Basics
             ObservableStateMachineTrigger
                 .OnStateUpdateAsObservable()
                 .Where(x => x.StateInfo.IsName("Base Layer.Crouch"))
+                .Where(x => PlayerState.canCrouchingGuard.Value)
                 .Where(x => Key.LeftShift && (Key.Vertical.Value == -1))
                 .Subscribe(_ =>
                 {

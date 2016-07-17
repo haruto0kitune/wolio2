@@ -5,7 +5,7 @@ using UniRx.Triggers;
 
 namespace Wolio.Actor.Player.Basics
 {
-    public class PlayerDoubleJump : MonoBehaviour
+    public class PlayerFightingModeDoubleJump : MonoBehaviour
     {
         [SerializeField]
         GameObject Actor;
@@ -39,106 +39,106 @@ namespace Wolio.Actor.Player.Basics
             #region DoubleJump->Stand
             ObservableStateMachineTrigger
                 .OnStateUpdateAsObservable()
-                .Where(x => x.StateInfo.IsName("Base Layer.DoubleJump"))
+                .Where(x => x.StateInfo.IsName("Base Layer.FightingModeDoubleJump"))
                 .Where(x => PlayerState.IsGrounded.Value)
                 .Subscribe(_ =>
                 {
                     Animator.SetBool("IsStanding", true);
-                    Animator.SetBool("IsDoubleJumping", false);
+                    Animator.SetBool("IsFightingModeDoubleJumping", false);
                 });
             #endregion
             #region DoubleJump->JumpingLightAttack
             ObservableStateMachineTrigger
                 .OnStateUpdateAsObservable()
-                .Where(x => x.StateInfo.IsName("Base Layer.DoubleJump"))
-                .Where(x => PlayerState.canJumpingLightAttack.Value)
+                .Where(x => x.StateInfo.IsName("Base Layer.FightingModeDoubleJump"))
+                .Where(x => PlayerState.canFightingModeJumpingLightAttack.Value)
                 .Where(x => Key.Z)
                 .Subscribe(_ =>
                 {
-                    Animator.SetBool("IsDoubleJumping", false);
-                    Animator.SetBool("IsJumpingLightAttack", true);
+                    Animator.SetBool("IsFightingModeDoubleJumping", false);
+                    Animator.SetBool("IsFightingModeJumpingLightAttack", true);
                 });
             #endregion
             #region DoubleJump->JumpingMiddleAttack
             ObservableStateMachineTrigger
                 .OnStateUpdateAsObservable()
-                .Where(x => x.StateInfo.IsName("Base Layer.DoubleJump"))
-                .Where(x => PlayerState.canJumpingMiddleAttack.Value)
+                .Where(x => x.StateInfo.IsName("Base Layer.FightingModeDoubleJump"))
+                .Where(x => PlayerState.canFightingModeJumpingMiddleAttack.Value)
                 .Where(x => Key.X)
                 .Subscribe(_ =>
                 {
-                    Animator.SetBool("IsDoubleJumping", false);
-                    Animator.SetBool("IsJumpingMiddleAttack", true);
+                    Animator.SetBool("IsFightingModeDoubleJumping", false);
+                    Animator.SetBool("IsFightingModeJumpingMiddleAttack", true);
                 });
             #endregion
             #region DoubleJump->JumpingHighAttack
             ObservableStateMachineTrigger
                 .OnStateUpdateAsObservable()
-                .Where(x => x.StateInfo.IsName("Base Layer.DoubleJump"))
-                .Where(x => PlayerState.canJumpingHighAttack.Value)
+                .Where(x => x.StateInfo.IsName("Base Layer.FightingModeDoubleJump"))
+                .Where(x => PlayerState.canFightingModeJumpingHighAttack.Value)
                 .Where(x => Key.C)
                 .Subscribe(_ =>
                 {
-                    Animator.SetBool("IsDoubleJumping", false);
-                    Animator.SetBool("IsJumpingHighAttack", true);
+                    Animator.SetBool("IsFightingModeDoubleJumping", false);
+                    Animator.SetBool("IsFightingModeJumpingHighAttack", true);
                 });
             #endregion
             #region DoubleJump->JumpingGuard
             ObservableStateMachineTrigger
                 .OnStateUpdateAsObservable()
-                .Where(x => x.StateInfo.IsName("Base Layer.DoubleJump"))
-                .Where(x => PlayerState.canJumpingGuard.Value)
+                .Where(x => x.StateInfo.IsName("Base Layer.FightingModeDoubleJump"))
+                .Where(x => PlayerState.canFightingModeJumpingGuard.Value)
                 .Where(x => !PlayerState.IsGrounded.Value)
                 .Where(x => Key.LeftShift)
                 .Subscribe(_ =>
                 {
-                    Animator.SetBool("IsDoubleJumping", false);
-                    Animator.SetBool("IsJumpingGuard", true);
+                    Animator.SetBool("IsFightingModeDoubleJumping", false);
+                    Animator.SetBool("IsFightingModeJumpingGuard", true);
                 });
             #endregion
             #region DoubleJump->SupineJumpingDamage
             ObservableStateMachineTrigger
                 .OnStateUpdateAsObservable()
-                .Where(x => x.StateInfo.IsName("Base Layer.DoubleJump"))
+                .Where(x => x.StateInfo.IsName("Base Layer.FightingModeDoubleJump"))
                 .Where(x => PlayerState.WasSupineAttributeAttacked.Value)
                 .Subscribe(_ =>
                 {
-                    Animator.SetBool("IsDoubleJumping", false);
+                    Animator.SetBool("IsFightingModeDoubleJumping", false);
                     Animator.SetBool("IsSupineJumpingDamage", true);
                 });
             #endregion
             #region DoubleJump->ProneJumpingDamage
             ObservableStateMachineTrigger
                 .OnStateUpdateAsObservable()
-                .Where(x => x.StateInfo.IsName("Base Layer.DoubleJump"))
+                .Where(x => x.StateInfo.IsName("Base Layer.FightingModeDoubleJump"))
                 .Where(x => PlayerState.WasProneAttributeAttacked.Value)
                 .Subscribe(_ =>
                 {
-                    Animator.SetBool("IsDoubleJumping", false);
+                    Animator.SetBool("IsFightingModeDoubleJumping", false);
                     Animator.SetBool("IsProneJumpingDamage", true);
                 });
             #endregion
             #region DoubleJump->Fall
             ObservableStateMachineTrigger
                 .OnStateUpdateAsObservable()
-                .Where(x => x.StateInfo.IsName("Base Layer.DoubleJump"))
+                .Where(x => x.StateInfo.IsName("Base Layer.FightingModeDoubleJump"))
                 .Where(x => ActorRigidbody2D.velocity.y < 0)
                 .Subscribe(_ =>
                 {
-                    Animator.SetBool("IsDoubleJumping", false);
+                    Animator.SetBool("IsFightingModeDoubleJumping", false);
                     Animator.SetBool("IsFalling", true);
                 });
             #endregion
             #region DoubleJump->AirDash
             ObservableStateMachineTrigger
                 .OnStateUpdateAsObservable()
-                .Where(x => x.StateInfo.IsName("Base Layer.DoubleJump"))
+                .Where(x => x.StateInfo.IsName("Base Layer.FightingModeDoubleJump"))
                 .Where(x => PlayerState.canAirDash.Value)
                 .Where(x => !PlayerState.hasAirDashed.Value)
                 .Where(x => PlayerState.hasInputedAirDashCommand.Value)
                 .Subscribe(_ =>
                 {
-                    Animator.SetBool("IsDoubleJumping", false);
+                    Animator.SetBool("IsFightingModeDoubleJumping", false);
                     Animator.SetBool("IsAirDashing", true);
                 });
             #endregion
@@ -147,7 +147,7 @@ namespace Wolio.Actor.Player.Basics
             this.FixedUpdateAsObservable()
                 .Where(x => !PlayerState.IsWallKickJumping.Value)
                 .Where(x => !PlayerState.canWallKickJumping.Value)
-                .Where(x => PlayerState.canDoubleJump.Value)
+                .Where(x => PlayerState.canFightingModeDoubleJump.Value)
                 .Where(x => ActorRigidbody2D.velocity.y < 2)
                 .Where(x => coroutineStore == null)
                 .Where(x => Key.Vertical.Value == 1)
@@ -156,7 +156,7 @@ namespace Wolio.Actor.Player.Basics
                 .Subscribe(_ => coroutineStore = StartCoroutine(DoubleJump()));
 
             //Collision
-            this.ObserveEveryValueChanged(x => Animator.GetBool("IsDoubleJumping"))
+            this.ObserveEveryValueChanged(x => Animator.GetBool("IsFightingModeDoubleJumping"))
                 .Where(x => x)
                 .Subscribe(_ =>
                 {
@@ -164,7 +164,7 @@ namespace Wolio.Actor.Player.Basics
                     HurtBox.enabled = true;
                 });
 
-            this.ObserveEveryValueChanged(x => Animator.GetBool("IsDoubleJumping"))
+            this.ObserveEveryValueChanged(x => Animator.GetBool("IsFightingModeDoubleJumping"))
                 .Where(x => !x)
                 .Subscribe(_ =>
                 {
@@ -175,7 +175,7 @@ namespace Wolio.Actor.Player.Basics
 
         IEnumerator DoubleJump()
         {
-            PlayerState.hasDoubleJumped.Value = true;
+            PlayerState.hasFightingModeDoubleJumped.Value = true;
 
             // Reset velocity
             ActorRigidbody2D.velocity = Vector2.zero;

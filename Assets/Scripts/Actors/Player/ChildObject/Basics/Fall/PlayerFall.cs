@@ -62,36 +62,36 @@ namespace Wolio.Actor.Player.Basics
             ObservableStateMachineTrigger
                 .OnStateUpdateAsObservable()
                 .Where(x => x.StateInfo.IsName("Base Layer.Fall"))
-                .Where(x => PlayerState.canJumpingLightAttack.Value)
+                .Where(x => PlayerState.canFightingModeJumpingLightAttack.Value)
                 .Where(x => Key.Z)
                 .Subscribe(_ =>
                 {
                     Animator.SetBool("IsFalling", false);
-                    Animator.SetBool("IsJumpingLightAttack", true);
+                    Animator.SetBool("IsFightingModeJumpingLightAttack", true);
                 });
             #endregion
             #region Fall->JumpingMiddleAttack
             ObservableStateMachineTrigger
                 .OnStateUpdateAsObservable()
                 .Where(x => x.StateInfo.IsName("Base Layer.Fall"))
-                .Where(x => PlayerState.canJumpingMiddleAttack.Value)
+                .Where(x => PlayerState.canFightingModeJumpingMiddleAttack.Value)
                 .Where(x => Key.X)
                 .Subscribe(_ =>
                 {
                     Animator.SetBool("IsFalling", false);
-                    Animator.SetBool("IsJumpingMiddleAttack", true);
+                    Animator.SetBool("IsFightingModeJumpingMiddleAttack", true);
                 });
             #endregion
             #region Fall->JumpingHighAttack
             ObservableStateMachineTrigger
                 .OnStateUpdateAsObservable()
                 .Where(x => x.StateInfo.IsName("Base Layer.Fall"))
-                .Where(x => PlayerState.canJumpingHighAttack.Value)
+                .Where(x => PlayerState.canFightingModeJumpingHighAttack.Value)
                 .Where(x => Key.C)
                 .Subscribe(_ =>
                 {
                     Animator.SetBool("IsFalling", false);
-                    Animator.SetBool("IsJumpingHighAttack", true);
+                    Animator.SetBool("IsFightingModeJumpingHighAttack", true);
                 });
             #endregion
             #region Fall->SupineJumpingDamage
@@ -120,19 +120,20 @@ namespace Wolio.Actor.Player.Basics
             ObservableStateMachineTrigger
                 .OnStateUpdateAsObservable()
                 .Where(x => x.StateInfo.IsName("Base Layer.Fall"))
-                .Where(x => PlayerState.canJumpingGuard.Value)
+                .Where(x => PlayerState.canFightingModeJumpingGuard.Value)
                 .Where(x => !PlayerState.IsGrounded.Value)
                 .Where(x => Key.LeftShift)
                 .Subscribe(_ =>
                 {
                     Animator.SetBool("IsFalling", false);
-                    Animator.SetBool("IsJumpingGuard", true);
+                    Animator.SetBool("IsFightingModeJumpingGuard", true);
                 });
             #endregion
             #region Fall->Land
             ObservableStateMachineTrigger
                 .OnStateUpdateAsObservable()
                 .Where(x => x.StateInfo.IsName("Base Layer.Fall"))
+                .Where(x => !PlayerState.IsSkipingLanding.Value)
                 .Where(x => PlayerState.IsGrounded.Value)
                 .Subscribe(_ =>
                 {
@@ -146,14 +147,14 @@ namespace Wolio.Actor.Player.Basics
                 .Where(x => x.StateInfo.IsName("Base Layer.Fall"))
                 .Where(x => !PlayerState.IsWallKickJumping.Value)
                 .Where(x => !PlayerState.canWallKickJumping.Value)
-                .Where(x => PlayerState.canDoubleJump.Value)
+                .Where(x => PlayerState.canFightingModeDoubleJump.Value)
                 .Where(x => ActorRigidbody2D.velocity.y < 2)
                 .Where(x => Key.Vertical.Value == 1)
                 .Where(x => Key.up.Value)
                 .Subscribe(_ =>
                 {
                     Animator.SetBool("IsFalling", false);
-                    Animator.SetBool("IsDoubleJumping", true);
+                    Animator.SetBool("IsFightingModeDoubleJumping", true);
                 });
             #endregion
             #region Fall->AirDash

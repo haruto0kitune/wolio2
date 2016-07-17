@@ -5,7 +5,7 @@ using UniRx.Triggers;
 
 namespace Wolio.Actor.Player.Guards
 {
-    public class PlayerJumpingGuard : MonoBehaviour
+    public class PlayerFightingModeJumpingGuard : MonoBehaviour
     {
         Animator Animator;
         ObservableStateMachineTrigger ObservableStateMachineTrigger;
@@ -36,8 +36,8 @@ namespace Wolio.Actor.Player.Guards
                 .Where(x => !Key.LeftShift)
                 .Subscribe(_ =>
                 {
-                    Animator.SetBool("IsJumping", true);
-                    Animator.SetBool("IsJumpingGuard", false);
+                    Animator.SetBool("IsFightingModeJumping", true);
+                    Animator.SetBool("IsFightingModeJumpingGuard", false);
                 });
             #endregion
             #region JumpingGuard->Stand
@@ -48,12 +48,12 @@ namespace Wolio.Actor.Player.Guards
                 .Subscribe(_ =>
                 {
                     Animator.SetBool("IsStanding", true);
-                    Animator.SetBool("IsJumpingGuard", false);
+                    Animator.SetBool("IsFightingModeJumpingGuard", false);
                 });
             #endregion
 
             //Collision
-            this.ObserveEveryValueChanged(x => Animator.GetBool("IsJumpingGuard"))
+            this.ObserveEveryValueChanged(x => Animator.GetBool("IsFightingModeJumpingGuard"))
                 .Where(x => x)
                 .Subscribe(_ => StartCoroutine(JumpingGuard()));
 
@@ -67,7 +67,7 @@ namespace Wolio.Actor.Player.Guards
             BoxCollider2D.enabled = true;
             HurtBox.enabled = true;
 
-            while (PlayerState.IsJumpingGuard.Value)
+            while (PlayerState.IsFightingModeJumpingGuard.Value)
             {
                 yield return null;
             }

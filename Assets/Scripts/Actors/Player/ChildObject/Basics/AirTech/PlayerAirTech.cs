@@ -37,7 +37,7 @@ namespace Wolio.Actor.Player.Basics
                 .Subscribe(_ =>
                 {
                     Animator.SetBool("IsAirTech", false);
-                    Animator.SetBool("IsJumping", true);
+                    Animator.SetBool("IsFightingModeJumping", true);
                 });
             #endregion
 

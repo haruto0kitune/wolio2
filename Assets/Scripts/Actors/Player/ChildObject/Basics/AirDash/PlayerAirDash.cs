@@ -69,12 +69,12 @@ namespace Wolio.Actor.Player.Basics
             ObservableStateMachineTrigger
                 .OnStateUpdateAsObservable()
                 .Where(x => x.StateInfo.IsName("Base Layer.AirDash"))
-                .Where(x => PlayerState.canJumpingLightAttack.Value)
+                .Where(x => PlayerState.canFightingModeJumpingLightAttack.Value)
                 .Where(x => Key.Z)
                 .Subscribe(_ =>
                 {
                     Animator.SetBool("IsAirDashing", false);
-                    Animator.SetBool("IsJumpingLightAttack", true);
+                    Animator.SetBool("IsFightingModeJumpingLightAttack", true);
                     hasFinished = false;
                 });
             #endregion
@@ -82,12 +82,12 @@ namespace Wolio.Actor.Player.Basics
             ObservableStateMachineTrigger
                 .OnStateUpdateAsObservable()
                 .Where(x => x.StateInfo.IsName("Base Layer.AirDash"))
-                .Where(x => PlayerState.canJumpingMiddleAttack.Value)
+                .Where(x => PlayerState.canFightingModeJumpingMiddleAttack.Value)
                 .Where(x => Key.X)
                 .Subscribe(_ =>
                 {
                     Animator.SetBool("IsAirDashing", false);
-                    Animator.SetBool("IsJumpingMiddleAttack", true);
+                    Animator.SetBool("IsFightingModeJumpingMiddleAttack", true);
                     hasFinished = false;
                 });
             #endregion
@@ -95,12 +95,12 @@ namespace Wolio.Actor.Player.Basics
             ObservableStateMachineTrigger
                 .OnStateUpdateAsObservable()
                 .Where(x => x.StateInfo.IsName("Base Layer.AirDash"))
-                .Where(x => PlayerState.canJumpingHighAttack.Value)
+                .Where(x => PlayerState.canFightingModeJumpingHighAttack.Value)
                 .Where(x => Key.C)
                 .Subscribe(_ =>
                 {
                     Animator.SetBool("IsAirDashing", false);
-                    Animator.SetBool("IsJumpingHighAttack", true);
+                    Animator.SetBool("IsFightingModeJumpingHighAttack", true);
                     hasFinished = false;
                 });
             #endregion

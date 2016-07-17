@@ -85,13 +85,13 @@ namespace Wolio.Actor.Player.Attacks.NormalAttacks.StandingAttacks
             ObservableStateMachineTrigger
                 .OnStateUpdateAsObservable()
                 .Where(x => x.StateInfo.IsName("Base Layer.StandingMiddleAttack"))
-                .Where(x => PlayerState.canJump.Value)
+                .Where(x => PlayerState.canFightingModeJump.Value)
                 .Where(x => isCancelable)
                 .Where(x => Key.Vertical.Value == 1f)
                 .Subscribe(_ =>
                 {
                     Animator.SetBool("IsStandingMiddleAttack", false);
-                    Animator.SetBool("IsJumping", true);
+                    Animator.SetBool("IsFightingModeJumping", true);
                     isCancelable = false;
                     StopCoroutine(coroutineStore);
                     wasCanceled = true;

@@ -99,7 +99,7 @@ namespace Wolio.Actor.Player.Attacks.NormalAttacks.CrouchingAttacks
                 .Subscribe(_ =>
                 {
                     Animator.SetBool("IsCrouchingMiddleAttack", false);
-                    Animator.SetBool("IsJumping", true);
+                    Animator.SetBool("IsFightingModeJumping", true);
                     wasFinished = false;
                 });
             #endregion

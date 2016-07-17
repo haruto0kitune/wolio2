@@ -48,16 +48,28 @@ namespace Wolio.Actor.Player.Basics
                     Animator.SetBool("IsRunning", true);
                 });
             #endregion
-            #region Stand->Jump
+            #region Stand->ActionModeJump
             ObservableStateMachineTrigger
                 .OnStateUpdateAsObservable()
                 .Where(x => x.StateInfo.IsName("Base Layer.Stand"))
-                .Where(x => PlayerState.canJump.Value)
+                .Where(x => PlayerState.canActionModeJump.Value)
                 .Where(x => Key.Vertical.Value == 1)
                 .Subscribe(_ =>
                 {
                     Animator.SetBool("IsStanding", false);
-                    Animator.SetBool("IsJumping", true);
+                    Animator.SetBool("IsActionModeJumping", true);
+                });
+            #endregion
+            #region Stand->FightingModeJump
+            ObservableStateMachineTrigger
+                .OnStateUpdateAsObservable()
+                .Where(x => x.StateInfo.IsName("Base Layer.Stand"))
+                .Where(x => PlayerState.canFightingModeJump.Value)
+                .Where(x => Key.Vertical.Value == 1)
+                .Subscribe(_ =>
+                {
+                    Animator.SetBool("IsStanding", false);
+                    Animator.SetBool("IsFightingModeJumping", true);
                 });
             #endregion
             #region Stand->Crouch
@@ -79,7 +91,6 @@ namespace Wolio.Actor.Player.Basics
                 .Where(x => PlayerState.canStandingLightAttack.Value)
                 .Where(x => !PlayerState.hasInputedLightFireballMotionCommand.Value)
                 .Where(x => Key.Z)
-                .Do(x => Debug.Log("SLA"))
                 .Subscribe(_ =>
                 {
                     Animator.SetBool("IsStanding", false);
@@ -244,6 +255,7 @@ namespace Wolio.Actor.Player.Basics
             ObservableStateMachineTrigger
                 .OnStateUpdateAsObservable()
                 .Where(x => x.StateInfo.IsName("Base Layer.Stand"))
+                .Where(x => !PlayerState.IsActionModeJumping.Value)
                 .Where(x => !PlayerState.IsGrounded.Value)
                 .Subscribe(_ =>
                 {

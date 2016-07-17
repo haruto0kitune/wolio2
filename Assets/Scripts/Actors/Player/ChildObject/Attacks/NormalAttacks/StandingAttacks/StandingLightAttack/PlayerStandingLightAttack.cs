@@ -94,7 +94,7 @@ namespace Wolio.Actor.Player.Attacks.NormalAttacks.StandingAttacks
                 .Subscribe(_ =>
                 {
                     Animator.SetBool("IsStandingLightAttack", false);
-                    Animator.SetBool("IsJumping", true);
+                    Animator.SetBool("IsFightingModeJumping", true);
                     isCancelable = false;
                     StopCoroutine(coroutineStore);
                     wasCanceled = true;

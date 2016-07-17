@@ -21,9 +21,11 @@ namespace Wolio.Actor.Player
         public bool A;
         public bool S;
         public bool D;
+        public bool F;
         public bool Z;
         public bool X;
         public bool C;
+        public bool V;
         public bool LeftShift;
 
         public bool Space;
@@ -145,6 +147,14 @@ namespace Wolio.Actor.Player
 
             this.UpdateAsObservable()
                 .Where(x => IsAvailable.Value)
+                .Subscribe(_ => F = CrossPlatformInputManager.GetButtonDown("F"));
+
+            this.UpdateAsObservable()
+                .Where(x => F)
+                .Subscribe(_ => inputHistory.Push("F"));
+
+            this.UpdateAsObservable()
+                .Where(x => IsAvailable.Value)
                 .Subscribe(_ => Z = CrossPlatformInputManager.GetButtonDown("Z"));
 
             this.UpdateAsObservable()
@@ -166,6 +176,14 @@ namespace Wolio.Actor.Player
             this.UpdateAsObservable()
                 .Where(x => C)
                 .Subscribe(_ => inputHistory.Push("C"));
+
+            this.UpdateAsObservable()
+                .Where(x => IsAvailable.Value)
+                .Subscribe(_ => V = CrossPlatformInputManager.GetButtonDown("V"));
+
+            this.UpdateAsObservable()
+                .Where(x => V)
+                .Subscribe(_ => inputHistory.Push("V"));
 
             this.UpdateAsObservable()
                 .Where(x => IsAvailable.Value)

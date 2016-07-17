@@ -101,7 +101,7 @@ namespace Wolio.Actor.Player.Attacks.NormalAttacks.StandingAttacks
                 .Subscribe(_ =>
                 {
                     Animator.SetBool("IsStandingHighAttack", false);
-                    Animator.SetBool("IsJumping", true);
+                    Animator.SetBool("IsFightingModeJumping", true);
                     wasFinished = false;
                 });
             #endregion

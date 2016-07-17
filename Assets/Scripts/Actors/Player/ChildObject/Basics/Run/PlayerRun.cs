@@ -7,12 +7,16 @@ namespace Wolio.Actor.Player.Basics
 {
     public class PlayerRun : MonoBehaviour
     {
+        [SerializeField]
+        GameObject Actor;
         Animator Animator;
         ObservableStateMachineTrigger ObservableStateMachineTrigger;
         PlayerState PlayerState;
         Rigidbody2D PlayerRigidbody2D;
         Key Key;
         BoxCollider2D BoxCollider2D;
+        [SerializeField]
+        GameObject PlayerRunHurtBox;
         BoxCollider2D HurtBox;
         CircleCollider2D CircleCollider2D;
         [SerializeField]
@@ -20,13 +24,13 @@ namespace Wolio.Actor.Player.Basics
 
         void Awake()
         {
-            Animator = GameObject.Find("Test").GetComponent<Animator>();
+            Animator = Actor.GetComponent<Animator>();
             ObservableStateMachineTrigger = Animator.GetBehaviour<ObservableStateMachineTrigger>();
-            PlayerState = GameObject.Find("Test").GetComponent<PlayerState>();
-            PlayerRigidbody2D = GameObject.Find("Test").GetComponent<Rigidbody2D>();
-            Key = GameObject.Find("Test").GetComponent<Key>();
+            PlayerState = Actor.GetComponent<PlayerState>();
+            PlayerRigidbody2D = Actor.GetComponent<Rigidbody2D>();
+            Key = Actor.GetComponent<Key>();
             BoxCollider2D = GetComponent<BoxCollider2D>();
-            HurtBox = GameObject.Find("RunHurtBox").GetComponent<BoxCollider2D>();
+            HurtBox = PlayerRunHurtBox.GetComponent<BoxCollider2D>();
             CircleCollider2D = GetComponent<CircleCollider2D>();
         }
 
@@ -44,15 +48,28 @@ namespace Wolio.Actor.Player.Basics
                     Animator.SetBool("IsRunning", false);
                 });
             #endregion
-            #region Run->Jump
+            #region Run->ActionModeJump
             ObservableStateMachineTrigger
                 .OnStateUpdateAsObservable()
                 .Where(x => x.StateInfo.IsName("Base Layer.Run"))
+                .Where(x => PlayerState.canActionModeJump.Value)
                 .Where(x => Key.Vertical.Value == 1)
                 .Subscribe(_ =>
                 {
                     Animator.SetBool("IsRunning", false);
-                    Animator.SetBool("IsJumping", true);
+                    Animator.SetBool("IsActionModeJumping", true);
+                });
+            #endregion
+            #region Run->FightingModeJump
+            ObservableStateMachineTrigger
+                .OnStateUpdateAsObservable()
+                .Where(x => x.StateInfo.IsName("Base Layer.Run"))
+                .Where(x => PlayerState.canFightingModeJump.Value)
+                .Where(x => Key.Vertical.Value == 1)
+                .Subscribe(_ =>
+                {
+                    Animator.SetBool("IsRunning", false);
+                    Animator.SetBool("IsFightingModeJumping", true);
                 });
             #endregion
             #region Run->Fall

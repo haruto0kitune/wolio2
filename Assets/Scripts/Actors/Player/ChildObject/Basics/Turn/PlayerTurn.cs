@@ -8,6 +8,7 @@ namespace Wolio.Actor.Player.Basics
 {
     public class PlayerTurn : MonoBehaviour
     {
+        [SerializeField]
         GameObject Player;
         Animator Animator;
         Key Key;
@@ -18,7 +19,6 @@ namespace Wolio.Actor.Player.Basics
 
         void Awake()
         {
-            Player = GameObject.Find("Test");
             Animator = Player.GetComponent<Animator>();
             Key = Player.GetComponent<Key>();
             PlayerState = Player.GetComponent<PlayerState>();

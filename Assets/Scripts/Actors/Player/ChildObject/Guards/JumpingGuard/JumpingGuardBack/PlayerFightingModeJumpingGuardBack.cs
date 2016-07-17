@@ -5,7 +5,7 @@ using UniRx.Triggers;
 
 namespace Wolio.Actor.Player.KnockBacks.GuardBacks
 {
-    public class PlayerJumpingGuardBack : MonoBehaviour
+    public class PlayerFightingModeJumpingGuardBack : MonoBehaviour
     {
         PlayerState PlayerState;
         Rigidbody2D Rigidbody2D;
@@ -21,15 +21,15 @@ namespace Wolio.Actor.Player.KnockBacks.GuardBacks
         void Start()
         {
             transform.parent.OnTriggerEnter2DAsObservable()
-                .Where(x => PlayerState.IsJumpingGuard.Value)
-                .Where(x => !PlayerState.IsJumpingGuardBack.Value)
+                .Where(x => PlayerState.IsFightingModeJumpingGuard.Value)
+                .Where(x => !PlayerState.IsFightingModeJumpingGuardBack.Value)
                 .Where(x => x.gameObject.tag == "AttackLevel/1")
                 .Subscribe(_ => StartCoroutine(JumpingGuardBack()));
         }
 
         public IEnumerator JumpingGuardBack()
         {
-            PlayerState.IsJumpingGuardBack.Value = true;
+            PlayerState.IsFightingModeJumpingGuardBack.Value = true;
             BoxCollider2D.enabled = false;
 
             var VelocityStore = Rigidbody2D.velocity;
@@ -51,7 +51,7 @@ namespace Wolio.Actor.Player.KnockBacks.GuardBacks
             Physics2D.IgnoreLayerCollision(LayerMask.NameToLayer("Default"), LayerMask.NameToLayer("Default"), false);
             Rigidbody2D.velocity = VelocityStore;
             BoxCollider2D.enabled = true;
-            PlayerState.IsJumpingGuardBack.Value = false;
+            PlayerState.IsFightingModeJumpingGuardBack.Value = false;
         }
     }
 }

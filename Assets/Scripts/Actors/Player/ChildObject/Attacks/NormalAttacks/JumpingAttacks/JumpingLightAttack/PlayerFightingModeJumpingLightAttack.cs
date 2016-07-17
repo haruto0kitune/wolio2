@@ -5,7 +5,7 @@ using UniRx.Triggers;
 
 namespace Wolio.Actor.Player.Attacks.NormalAttacks.JumpingAttacks
 {
-    public class PlayerJumpingHighAttack : MonoBehaviour
+    public class PlayerFightingModeJumpingLightAttack : MonoBehaviour
     {
         [SerializeField]
         GameObject Player;
@@ -16,10 +16,10 @@ namespace Wolio.Actor.Player.Attacks.NormalAttacks.JumpingAttacks
         Key Key;
         BoxCollider2D BoxCollider2D;
         [SerializeField]
-        GameObject PlayerJumpingHighAttackHitBox;
+        GameObject PlayerFightingModeJumpingLightAttackHitBox;
         BoxCollider2D HitBox;
         [SerializeField]
-        GameObject PlayerJumpingHighAttackHurtBox;
+        GameObject PlayerFightingModeJumpingLightAttackHurtBox;
         BoxCollider2D HurtBox;
         [SerializeField]
         int damageValue;
@@ -52,45 +52,90 @@ namespace Wolio.Actor.Player.Attacks.NormalAttacks.JumpingAttacks
             PlayerRigidbody2D = Player.GetComponent<Rigidbody2D>();
             Key = Player.GetComponent<Key>();
             BoxCollider2D = GetComponent<BoxCollider2D>();
-            HitBox = PlayerJumpingHighAttackHitBox.GetComponent<BoxCollider2D>();
-            HurtBox = PlayerJumpingHighAttackHurtBox.GetComponent<BoxCollider2D>();
+            HitBox = PlayerFightingModeJumpingLightAttackHitBox.GetComponent<BoxCollider2D>();
+            HurtBox = PlayerFightingModeJumpingLightAttackHurtBox.GetComponent<BoxCollider2D>();
         }
 
         void Start()
         {
             // Animation
-            #region EnterJumpingHighAttack
+            #region EnterJumpingLightAttack
             ObservableStateMachineTrigger
                  .OnStateEnterAsObservable()
-                 .Where(x => x.StateInfo.IsName("Base Layer.JumpingHighAttack"))
+                 .Where(x => x.StateInfo.IsName("Base Layer.JumpingLightAttack"))
                  .Subscribe(_ => Animator.speed = 0);
             #endregion
-            #region JumpingHighAttack->Stand
+            #region JumpingLightAttack->Stand
             ObservableStateMachineTrigger
                 .OnStateUpdateAsObservable()
-                .Where(x => x.StateInfo.IsName("Base Layer.JumpingHighAttack"))
+                .Where(x => x.StateInfo.IsName("Base Layer.JumpingLightAttack"))
                 .Where(x => PlayerState.IsGrounded.Value)
                 .Subscribe(_ =>
                 {
-                    Animator.SetBool("IsJumpingHighAttack", false);
+                    Animator.SetBool("IsFightingModeJumpingLightAttack", false);
                     Animator.SetBool("IsStanding", true);
                     wasFinished = false;
                 });
             #endregion
-            #region JumpingHighAttack->Land
+            #region JumpingLightAttack->JumpingLightAttack
             ObservableStateMachineTrigger
                 .OnStateUpdateAsObservable()
-                .Where(x => x.StateInfo.IsName("Base Layer.JumpingHighAttack"))
+                .Where(x => x.StateInfo.IsName("Base Layer.JumpingLightAttack"))
+                .Where(x => PlayerState.canFightingModeJumpingLightAttack.Value)
+                .Where(x => isCancelable)
+                .Where(x => Key.Z)
+                .Subscribe(_ =>
+                {
+                    Animator.Play("JumpingLightAttack", Animator.GetLayerIndex("Base Layer"), 0.0f);
+                    isCancelable = false;
+                    StopCoroutine(coroutineStore);
+                    coroutineStore = StartCoroutine(Attack());
+                });
+            #endregion
+            #region JumpingLightAttack->JumpingMiddleAttack
+            ObservableStateMachineTrigger
+                .OnStateUpdateAsObservable()
+                .Where(x => x.StateInfo.IsName("Base Layer.JumpingLightAttack"))
+                .Where(x => isCancelable)
+                .Where(x => Key.X)
+                .Subscribe(_ =>
+                {
+                    Animator.SetBool("IsFightingModeJumpingLightAttack", false);
+                    Animator.SetBool("IsFightingModeJumpingMiddleAttack", true);
+                    isCancelable = false;
+                    StopCoroutine(coroutineStore);
+                    wasCanceled = true;
+                });
+            #endregion
+            #region JumpingLightAttack->JumpingHighAttack
+            ObservableStateMachineTrigger
+                .OnStateUpdateAsObservable()
+                .Where(x => x.StateInfo.IsName("Base Layer.JumpingLightAttack"))
+                .Where(x => isCancelable)
+                .Where(x => Key.C)
+                .Subscribe(_ =>
+                {
+                    Animator.SetBool("IsFightingModeJumpingLightAttack", false);
+                    Animator.SetBool("IsFightingModeJumpingHighAttack", true);
+                    isCancelable = false;
+                    StopCoroutine(coroutineStore);
+                    wasCanceled = true;
+                });
+            #endregion
+            #region JumpingLightAttack->Land
+            ObservableStateMachineTrigger
+                .OnStateUpdateAsObservable()
+                .Where(x => x.StateInfo.IsName("Base Layer.JumpingLightAttack"))
                 .Where(x => PlayerState.IsGrounded.Value)
                 .Subscribe(_ =>
                 {
-                    Animator.SetBool("IsJumpingHighAttack", false);
+                    Animator.SetBool("IsFightingModeJumpingLightAttack", false);
                     Animator.SetBool("IsLanding", true);
                 });
             #endregion
 
             // Collision
-            this.ObserveEveryValueChanged(x => Animator.GetBool("IsJumpingHighAttack"))
+            this.ObserveEveryValueChanged(x => Animator.GetBool("IsFightingModeJumpingLightAttack"))
                 .Where(x => x)
                 .Subscribe(_ => coroutineStore = StartCoroutine(Attack()));
 
@@ -99,7 +144,7 @@ namespace Wolio.Actor.Player.Attacks.NormalAttacks.JumpingAttacks
                 .Subscribe(_ => Cancel());
 
             // Damage
-            PlayerJumpingHighAttackHitBox.OnTriggerEnter2DAsObservable()
+            PlayerFightingModeJumpingLightAttackHitBox.OnTriggerEnter2DAsObservable()
                 .Where(x => x.gameObject.tag == "Enemy/HurtBox")
                 .Subscribe(_ =>
                 {

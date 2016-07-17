@@ -88,12 +88,12 @@ namespace Wolio.Actor.Player.Basics
                 .OnStateUpdateAsObservable()
                 .Where(x => x.StateInfo.IsName("Base Layer.Land"))
                 .Where(x => hasFinished)
-                .Where(x => PlayerState.canJump.Value)
+                .Where(x => PlayerState.canFightingModeJump.Value)
                 .Where(x => Key.Vertical.Value == 1)
                 .Subscribe(_ =>
                 {
                     Animator.SetBool("IsLanding", false);
-                    Animator.SetBool("IsJumping", true);
+                    Animator.SetBool("IsFightingModeJumping", true);
                 });
             #endregion
 

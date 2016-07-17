@@ -5,12 +5,12 @@ using UniRx.Triggers;
 
 namespace Wolio.Actor.Player.Damages
 {
-    public class PlayerJumpingDamage : MonoBehaviour, IDamage
+    public class PlayerFightingModeJumpingDamage : MonoBehaviour, IDamage
     {
         [SerializeField]
         GameObject Player;
         [SerializeField]
-        GameObject PlayerJumpingDamageHurtBox;
+        GameObject PlayerFightingModeJumpingDamageHurtBox;
         Animator Animator;
         ObservableStateMachineTrigger ObservableStateMachineTrigger;
         PlayerState PlayerState;
@@ -18,7 +18,7 @@ namespace Wolio.Actor.Player.Damages
         Rigidbody2D PlayerRigidbody2D;
         Key Key;
         BoxCollider2D BoxCollider2D;
-        BoxCollider2D PlayerJumpingDamageHurtBoxTrigger;
+        BoxCollider2D PlayerFightingModeJumpingDamageHurtBoxTrigger;
         bool wasAttackedDuringDamage = false;
         int knockBackFrame;
         Coroutine damageCoroutineStore;
@@ -32,7 +32,7 @@ namespace Wolio.Actor.Player.Damages
             PlayerRigidbody2D = Player.GetComponent<Rigidbody2D>();
             Key = Player.GetComponent<Key>();
             BoxCollider2D = GetComponent<BoxCollider2D>();
-            PlayerJumpingDamageHurtBoxTrigger = PlayerJumpingDamageHurtBox.GetComponent<BoxCollider2D>();
+            PlayerFightingModeJumpingDamageHurtBoxTrigger = PlayerFightingModeJumpingDamageHurtBox.GetComponent<BoxCollider2D>();
         }
 
         void Start()
@@ -47,7 +47,7 @@ namespace Wolio.Actor.Player.Damages
                 .Subscribe(_ =>
                 {
                     Animator.SetBool("IsAirTech", true);
-                    Animator.SetBool("IsJumpingDamage", false);
+                    Animator.SetBool("IsFightingModeJumpingDamage", false);
                 });
             #endregion
         }
@@ -71,7 +71,7 @@ namespace Wolio.Actor.Player.Damages
         {
             // StartUp
             BoxCollider2D.enabled = true;
-            PlayerJumpingDamageHurtBoxTrigger.enabled = true;
+            PlayerFightingModeJumpingDamageHurtBoxTrigger.enabled = true;
             PlayerState.WasAttacked.Value = true;
             PlayerState.canAirTech.Value = false;
 
@@ -124,14 +124,14 @@ namespace Wolio.Actor.Player.Damages
             // Finish
             //
             // When transtion to next state, collider enabled is off.
-            // if not, PlayerJumpingDamage becomes strange motion.
+            // if not, PlayerFightingModeJumpingDamage becomes strange motion.
             PlayerState.WasAttacked.Value = false;
             wasAttackedDuringDamage = false;
 
             yield return null;
             
             BoxCollider2D.enabled = false;
-            PlayerJumpingDamageHurtBoxTrigger.enabled = false;
+            PlayerFightingModeJumpingDamageHurtBoxTrigger.enabled = false;
         }
     }
 }

@@ -7,6 +7,8 @@ namespace Wolio.Actor.Player.Basics
 {
     public class PlayerAirMove : MonoBehaviour
     {
+        [SerializeField]
+        GameObject Actor;
         PlayerState PlayerState;
         Key Key;
         Rigidbody2D PlayerRigidbody2D;
@@ -17,16 +19,16 @@ namespace Wolio.Actor.Player.Basics
 
         void Awake()
         {
-            PlayerState = GameObject.Find("Test").GetComponent<PlayerState>();
-            Key = GameObject.Find("Test").GetComponent<Key>();
-            PlayerRigidbody2D = GameObject.Find("Test").GetComponent<Rigidbody2D>();
+            PlayerState = Actor.GetComponent<PlayerState>();
+            Key = Actor.GetComponent<Key>();
+            PlayerRigidbody2D = Actor.GetComponent<Rigidbody2D>();
         }
 
         void Start()
         {
             //Motion
             this.FixedUpdateAsObservable()
-                .Where(x => PlayerState.IsJumping.Value)
+                .Where(x => PlayerState.IsActionModeJumping.Value || (PlayerState.controlMode == ControlMode.ActionMode) && PlayerState.IsFalling.Value)
                 .Where(x => !PlayerState.IsGrounded.Value)
                 .Where(x => !PlayerState.IsWallKickJumping.Value)
                 .Where(x => Key.Horizontal.Value != 0)
