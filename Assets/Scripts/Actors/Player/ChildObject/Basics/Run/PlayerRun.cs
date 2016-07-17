@@ -112,7 +112,7 @@ namespace Wolio.Actor.Player.Basics
 
         public void Run(float Horizontal, float MaxSpeed)
         {
-            PlayerRigidbody2D.velocity = new Vector2(Horizontal * MaxSpeed, PlayerRigidbody2D.velocity.y);
+            PlayerRigidbody2D.velocity = new Vector2(Horizontal * /*MaxSpeed*/Parameter.GetPlayerParameter().PlayerBasics.Run.MaxSpeed, PlayerRigidbody2D.velocity.y);
         }
     }
 }

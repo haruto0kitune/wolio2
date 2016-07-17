@@ -1,0 +1,12 @@
+{
+        "PlayerBasics" : { 
+                     "Run" : {"MaxSpeed" : 6},
+                     "Creep" : {"Speed" : 3 }, 
+                     "ActionModeJump" : {"JumpForce" : 10},
+                     "FightingModeJump" : {"JumpForce" : 10},
+                     "AirMove" : {"MaxSpeed" : 6, "Force" : 85},
+                     "WallKickJump" : {"Angle" : 60, "JumpForce" : 13, "Recovery" : 3},
+                     "DoubleJump" : {"DoubleJumpForce" : 10},
+                     "AirDash" : {"Speed" : 6, "Recovery" : 10}
+        } 
+}

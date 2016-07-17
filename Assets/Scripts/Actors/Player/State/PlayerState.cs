@@ -118,6 +118,7 @@ namespace Wolio.Actor.Player
 
         void Awake()
         {
+            Debug.Log(Parameter.GetPlayerParameter().PlayerBasics.WallKickJump.Recovery);
             GroundCheck = transform.Find("GroundCheck");
             CeilingCheck = transform.Find("CeilingCheck");
             PlayerConfig = GetComponent<PlayerConfig>();
