@@ -37,15 +37,15 @@ namespace Wolio.Actor.Player.Basics
 
         public void AirMove(float Horizontal)
         {
-            PlayerRigidbody2D.AddForce(new Vector2(Force * Horizontal, 0f));
+            PlayerRigidbody2D.AddForce(new Vector2(/*Force*/Parameter.GetPlayerParameter().PlayerBasics.AirMove.Force * Horizontal, 0f));
 
-            if (PlayerRigidbody2D.velocity.x > MaxSpeed)
+            if (PlayerRigidbody2D.velocity.x > /*MaxSpeed*/Parameter.GetPlayerParameter().PlayerBasics.AirMove.MaxSpeed)
             {
-                PlayerRigidbody2D.velocity = new Vector2(MaxSpeed, PlayerRigidbody2D.velocity.y);
+                PlayerRigidbody2D.velocity = new Vector2(/*MaxSpeed*/Parameter.GetPlayerParameter().PlayerBasics.AirMove.MaxSpeed, PlayerRigidbody2D.velocity.y);
             }
-            else if(PlayerRigidbody2D.velocity.x < -MaxSpeed)
+            else if(PlayerRigidbody2D.velocity.x < /*-MaxSpeed*/-Parameter.GetPlayerParameter().PlayerBasics.AirMove.MaxSpeed)
             {
-                PlayerRigidbody2D.velocity = new Vector2(-MaxSpeed, PlayerRigidbody2D.velocity.y);
+                PlayerRigidbody2D.velocity = new Vector2(/*-MaxSpeed*/-Parameter.GetPlayerParameter().PlayerBasics.AirMove.MaxSpeed, PlayerRigidbody2D.velocity.y);
             }
         }
     }

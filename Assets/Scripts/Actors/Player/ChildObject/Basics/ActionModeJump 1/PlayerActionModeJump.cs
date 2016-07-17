@@ -109,7 +109,7 @@ namespace Wolio.Actor.Player.Basics
             this.FixedUpdateAsObservable()
                 .Where(x => enterActionModeJumpState)
                 .Do(x => enterActionModeJumpState = false)
-                .Subscribe(_ => this.Jump(JumpForce));
+                .Subscribe(_ => this.Jump(/*JumpForce*/Parameter.GetPlayerParameter().PlayerBasics.ActionModeJump.JumpForce));
 
             //Collision
             this.ObserveEveryValueChanged(x => Animator.GetBool("IsActionModeJumping"))

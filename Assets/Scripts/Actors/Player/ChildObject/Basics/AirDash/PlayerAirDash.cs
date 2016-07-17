@@ -171,15 +171,15 @@ namespace Wolio.Actor.Player.Basics
             PlayerState.hasAirDashed.Value = true;
             ActorRigidbody2D.constraints = RigidbodyConstraints2D.FreezePositionY | RigidbodyConstraints2D.FreezeRotation;
             
-            for (int i = 0; i < recovery; i++)
+            for (int i = 0; i < /*recovery*/Parameter.GetPlayerParameter().PlayerBasics.AirDash.Recovery; i++)
             {
                 if (PlayerState.FacingRight.Value)
                 {
-                    ActorRigidbody2D.velocity = new Vector2(speed, 0);
+                    ActorRigidbody2D.velocity = new Vector2(/*speed*/Parameter.GetPlayerParameter().PlayerBasics.AirDash.Speed, 0);
                 }
                 else
                 {
-                    ActorRigidbody2D.velocity = new Vector2(-speed, 0);
+                    ActorRigidbody2D.velocity = new Vector2(/*-speed*/-Parameter.GetPlayerParameter().PlayerBasics.AirDash.Speed, 0);
                 }
 
                 yield return null;

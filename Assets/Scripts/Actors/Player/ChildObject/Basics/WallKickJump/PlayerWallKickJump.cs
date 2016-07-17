@@ -40,7 +40,7 @@ namespace Wolio.Actor.Player.Basics
                 .DistinctUntilChanged(x => Key.Vertical.Value)
                 .Where(x => PlayerState.IsInTheAir.Value)
                 .Where(x => Key.Vertical.Value == 1f)
-                .Subscribe(_ => StartCoroutine(WallKickJump(Angle, JumpForce)));
+                .Subscribe(_ => StartCoroutine(WallKickJump(/*Angle*/Parameter.GetPlayerParameter().PlayerBasics.WallKickJump.Angle, /*JumpForce*/Parameter.GetPlayerParameter().PlayerBasics.WallKickJump.JumpForce)));
 
             // Flag
             this.OnTriggerEnter2DAsObservable()
@@ -96,7 +96,7 @@ namespace Wolio.Actor.Player.Basics
             PlayerRigidbody2D.velocity = Vector;
 
             // Recovery
-            for(var i = 0;i < Recovery; i++)
+            for (var i = 0; i < /*Recovery*/Parameter.GetPlayerParameter().PlayerBasics.WallKickJump.Recovery; i++)
             {
                 yield return null;
             }

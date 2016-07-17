@@ -1,7 +1,7 @@
 {
         "PlayerBasics" : { 
                      "Run" : {"MaxSpeed" : 6},
-                     "Creep" : {"Speed" : 3 }, 
+                     "Creep" : {"Speed" : 3}, 
                      "ActionModeJump" : {"JumpForce" : 10},
                      "FightingModeJump" : {"JumpForce" : 10},
                      "AirMove" : {"MaxSpeed" : 6, "Force" : 85},

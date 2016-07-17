@@ -152,7 +152,6 @@ namespace Wolio.Actor.Player.Basics
                 .Where(x => coroutineStore == null)
                 .Where(x => Key.Vertical.Value == 1)
                 .Where(x => Key.up.Value)
-                .Do(x => Debug.Log("DoubleJump"))
                 .Subscribe(_ => coroutineStore = StartCoroutine(DoubleJump()));
 
             //Collision
@@ -182,7 +181,7 @@ namespace Wolio.Actor.Player.Basics
             yield return null;
 
             // Jump
-            ActorRigidbody2D.velocity = new Vector2(6 * Key.Horizontal.Value, DoubleJumpForce);
+            ActorRigidbody2D.velocity = new Vector2(6 * Key.Horizontal.Value, /*DoubleJumpForce*/Parameter.GetPlayerParameter().PlayerBasics.DoubleJump.DoubleJumpForce);
             coroutineStore = null;
         }
     }

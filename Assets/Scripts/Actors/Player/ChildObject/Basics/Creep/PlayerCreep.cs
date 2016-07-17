@@ -121,12 +121,12 @@ namespace Wolio.Actor.Player.Basics
             this.FixedUpdateAsObservable()
                 .Where(x => PlayerState.canCreep.Value)
                 .Where(x => Key.Horizontal.Value != 0 && Key.Vertical.Value == -1)
-                .Subscribe(_ => this.Creep(Key.Horizontal.Value, Speed));
+                .Subscribe(_ => this.Creep(Key.Horizontal.Value, /*Speed*/Parameter.GetPlayerParameter().PlayerBasics.Creep.Speed));
 
             this.FixedUpdateAsObservable()
                 .Where(x => !canTransition)
                 .Where(x => Key.Horizontal.Value == 0)
-                .Subscribe(_ => this.Creep(Key.Horizontal.Value, Speed));
+                .Subscribe(_ => this.Creep(Key.Horizontal.Value, /*Speed*/Parameter.GetPlayerParameter().PlayerBasics.Creep.Speed));
 
             //Collision
             this.ObserveEveryValueChanged(x => Animator.GetBool("IsCreeping"))

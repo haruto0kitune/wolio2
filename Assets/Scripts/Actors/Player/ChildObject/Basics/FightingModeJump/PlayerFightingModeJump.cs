@@ -163,7 +163,7 @@ namespace Wolio.Actor.Player.Basics
             this.FixedUpdateAsObservable()
                 .Where(x => PlayerState.canFightingModeJump.Value)
                 .Where(x => Key.Vertical.Value == 1)
-                .Subscribe(_ => this.Jump(JumpForce));
+                .Subscribe(_ => this.Jump(/*JumpForce*/Parameter.GetPlayerParameter().PlayerBasics.FightingModeJump.JumpForce));
 
             //Collision
             this.ObserveEveryValueChanged(x => Animator.GetBool("IsFightingModeJumping"))
