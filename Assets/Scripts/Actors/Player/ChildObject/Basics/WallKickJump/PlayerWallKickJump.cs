@@ -44,11 +44,13 @@ namespace Wolio.Actor.Player.Basics
 
             // Flag
             this.OnTriggerEnter2DAsObservable()
-                .Where(x => x.gameObject.layer == LayerMask.NameToLayer("Field"))
+                .Where(x => x.gameObject.layer == LayerMask.NameToLayer("Field")
+                         || x.gameObject.layer == LayerMask.NameToLayer("Wall"))
                 .Subscribe(_ => PlayerState.canWallKickJumping.Value = true);
 
             this.OnTriggerExit2DAsObservable()
-                .Where(x => x.gameObject.layer == LayerMask.NameToLayer("Field"))
+                .Where(x => x.gameObject.layer == LayerMask.NameToLayer("Field")
+                         || x.gameObject.layer == LayerMask.NameToLayer("Wall"))
                 .Subscribe(_ => PlayerState.canWallKickJumping.Value = false);
 
             // Flag

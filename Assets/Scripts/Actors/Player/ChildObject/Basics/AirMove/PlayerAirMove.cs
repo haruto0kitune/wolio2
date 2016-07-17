@@ -39,9 +39,13 @@ namespace Wolio.Actor.Player.Basics
         {
             PlayerRigidbody2D.AddForce(new Vector2(Force * Horizontal, 0f));
 
-            if (PlayerRigidbody2D.velocity.x > MaxSpeed || PlayerRigidbody2D.velocity.x < -MaxSpeed)
+            if (PlayerRigidbody2D.velocity.x > MaxSpeed)
             {
-                PlayerRigidbody2D.velocity = new Vector2(MaxSpeed * Horizontal, PlayerRigidbody2D.velocity.y);
+                PlayerRigidbody2D.velocity = new Vector2(MaxSpeed, PlayerRigidbody2D.velocity.y);
+            }
+            else if(PlayerRigidbody2D.velocity.x < -MaxSpeed)
+            {
+                PlayerRigidbody2D.velocity = new Vector2(-MaxSpeed, PlayerRigidbody2D.velocity.y);
             }
         }
     }

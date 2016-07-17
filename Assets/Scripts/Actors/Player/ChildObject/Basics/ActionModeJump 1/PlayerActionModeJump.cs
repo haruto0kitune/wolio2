@@ -55,6 +55,18 @@ namespace Wolio.Actor.Player.Basics
                     enterActionModeJumpState = false;
                 });
             #endregion
+            #region ActionModeJump->Run
+            ObservableStateMachineTrigger
+                .OnStateUpdateAsObservable()
+                .Where(x => x.StateInfo.IsName("Base Layer.ActionModeJump"))
+                .Where(x => PlayerState.IsGrounded.Value && Key.Horizontal.Value != 0)
+                .Subscribe(_ =>
+                {
+                    Animator.SetBool("IsRunning", true);
+                    Animator.SetBool("IsActionModeJumping", false);
+                    enterActionModeJumpState = false;
+                });
+            #endregion
             #region ActionModeJump->SupineJumpingDamage
             ObservableStateMachineTrigger
                 .OnStateUpdateAsObservable()
