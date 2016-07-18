@@ -119,6 +119,7 @@ namespace Wolio.Actor.Player
         void Awake()
         {
             Debug.Log(Parameter.GetPlayerParameter().PlayerBasics.WallKickJump.Recovery);
+            Debug.Log(Parameter.GetPlayerParameter().PlayerBasics.ActionModeJump.Active);
             GroundCheck = transform.Find("GroundCheck");
             CeilingCheck = transform.Find("CeilingCheck");
             PlayerConfig = GetComponent<PlayerConfig>();
@@ -129,7 +130,7 @@ namespace Wolio.Actor.Player
             Key = GetComponent<Key>();
             controlMode = ControlMode.ActionMode;
  
-            IsGrounded = this.ObserveEveryValueChanged(x => (bool)Physics2D.Linecast(GroundCheck.position, new Vector2(GroundCheck.position.x, GroundCheck.position.y - 0.05f), PlayerConfig.WhatIsGround))
+            IsGrounded = this.ObserveEveryValueChanged(x => (bool)Physics2D.Linecast(GroundCheck.position, new Vector2(GroundCheck.position.x, GroundCheck.position.y - 0.03f), PlayerConfig.WhatIsGround))
                              .ToReactiveProperty();
 
             IsDead = Status.Hp
@@ -151,7 +152,8 @@ namespace Wolio.Actor.Player
                                       .ToReactiveProperty();
 
             canActionModeJump = this.ObserveEveryValueChanged(x => (IsStanding.Value || 
-                                                                   IsRunning.Value)  &&
+                                                                   IsRunning.Value   ||
+                                                                   IsActionModeJumping.Value)  &&
                                                                    (controlMode == ControlMode.ActionMode))
                                     .ToReactiveProperty();
 

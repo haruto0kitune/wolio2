@@ -33,6 +33,7 @@ public class Creep
 public class ActionModeJump
 {
     public float JumpForce;
+    public int Active;
 }
 
 [System.Serializable]

@@ -20,7 +20,11 @@ namespace Wolio.Actor.Player.Basics
         BoxCollider2D HurtBox;
         [SerializeField]
         float JumpForce;
+        [SerializeField]
+        int active;
         bool enterActionModeJumpState;
+        int frameCount;
+        bool canKeepOnJumping;
 
         void Awake()
         {
@@ -40,14 +44,15 @@ namespace Wolio.Actor.Player.Basics
             ObservableStateMachineTrigger
                 .OnStateEnterAsObservable()
                 .Where(x => x.StateInfo.IsName("Base Layer.ActionModeJump"))
+                .ThrottleFirstFrame(1)
                 .Subscribe(_ => enterActionModeJumpState = true);
-                //.Subscribe(_ => Jump(JumpForce));
             #endregion
             #region ActionModeJump->Stand
             ObservableStateMachineTrigger
                 .OnStateUpdateAsObservable()
                 .Where(x => x.StateInfo.IsName("Base Layer.ActionModeJump"))
                 .Where(x => PlayerState.IsGrounded.Value)
+                .Where(x => Key.Vertical.Value != 1)
                 .Subscribe(_ =>
                 {
                     Animator.SetBool("IsStanding", true);
@@ -60,6 +65,7 @@ namespace Wolio.Actor.Player.Basics
                 .OnStateUpdateAsObservable()
                 .Where(x => x.StateInfo.IsName("Base Layer.ActionModeJump"))
                 .Where(x => PlayerState.IsGrounded.Value && Key.Horizontal.Value != 0)
+                .Where(x => Key.Vertical.Value != 1)
                 .Subscribe(_ =>
                 {
                     Animator.SetBool("IsRunning", true);
@@ -96,7 +102,7 @@ namespace Wolio.Actor.Player.Basics
                 .OnStateUpdateAsObservable()
                 .Where(x => x.StateInfo.IsName("Base Layer.ActionModeJump"))
                 .Where(x => !PlayerState.hasInputedAirDashCommand.Value)
-                .Where(x => PlayerRigidbody2D.velocity.y < 0)
+                .Where(x => PlayerRigidbody2D.velocity.y < 0) /*|| (Key.Vertical.Value != 1 || frameCount == Parameter.GetPlayerParameter().PlayerBasics.ActionModeJump.Active))*/
                 .Subscribe(_ =>
                 {
                     Animator.SetBool("IsActionModeJumping", false);
@@ -107,9 +113,15 @@ namespace Wolio.Actor.Player.Basics
 
             //Motion
             this.FixedUpdateAsObservable()
-                .Where(x => enterActionModeJumpState)
+                .Where(x => PlayerState.IsActionModeJumping.Value)
+                .Where(x => enterActionModeJumpState
+                         || (Key.Vertical.Value == 1 && frameCount != /*active*/Parameter.GetPlayerParameter().PlayerBasics.ActionModeJump.Active))
+                         //|| (PlayerState.canActionModeJump.Value && (Key.Vertical.Value == 1 && frameCount != /*active*/Parameter.GetPlayerParameter().PlayerBasics.ActionModeJump.Active)))
                 .Do(x => enterActionModeJumpState = false)
-                .Subscribe(_ => this.Jump(/*JumpForce*/Parameter.GetPlayerParameter().PlayerBasics.ActionModeJump.JumpForce));
+                .Subscribe(_ =>
+                {
+                    this.Jump(/*JumpForce*/Parameter.GetPlayerParameter().PlayerBasics.ActionModeJump.JumpForce);
+                });
 
             //Collision
             this.ObserveEveryValueChanged(x => Animator.GetBool("IsActionModeJumping"))
@@ -127,6 +139,15 @@ namespace Wolio.Actor.Player.Basics
                     BoxCollider2D.enabled = false;
                     HurtBox.enabled = false;
                 });
+
+            // Flag
+            this.UpdateAsObservable()
+                .Where(x => frameCount < Parameter.GetPlayerParameter().PlayerBasics.ActionModeJump.Active)
+                .Subscribe(_ => frameCount++);
+
+            PlayerState.IsStanding
+                .Where(x => x)
+                .Subscribe(_ => frameCount = 0);
         }
 
         public void Jump(float JumpForce)
