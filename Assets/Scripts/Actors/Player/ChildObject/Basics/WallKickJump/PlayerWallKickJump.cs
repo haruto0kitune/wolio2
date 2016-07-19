@@ -7,6 +7,7 @@ namespace Wolio.Actor.Player.Basics
 {
     public class PlayerWallKickJump : MonoBehaviour
     {
+        [SerializeField]
         GameObject Player;
         PlayerState PlayerState;
         Key Key;
@@ -23,7 +24,6 @@ namespace Wolio.Actor.Player.Basics
 
         void Awake()
         {
-            Player = GameObject.Find("Test");
             PlayerState = Player.GetComponent<PlayerState>();
             Key = Player.GetComponent<Key>();
             PlayerRigidbody2D = Player.GetComponent<Rigidbody2D>();

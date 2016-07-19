@@ -25,6 +25,7 @@ namespace Wolio.Actor.Player.Basics
         bool enterActionModeJumpState;
         int frameCount;
         bool canKeepOnJumping;
+        Coroutine coroutineStore;
 
         void Awake()
         {
@@ -45,7 +46,8 @@ namespace Wolio.Actor.Player.Basics
                 .OnStateEnterAsObservable()
                 .Where(x => x.StateInfo.IsName("Base Layer.ActionModeJump"))
                 .ThrottleFirstFrame(1)
-                .Subscribe(_ => enterActionModeJumpState = true);
+                .Subscribe(_ => coroutineStore = StartCoroutine(Jump()));
+                //.Subscribe(_ => enterActionModeJumpState = true);
             #endregion
             #region ActionModeJump->Stand
             ObservableStateMachineTrigger
@@ -112,16 +114,16 @@ namespace Wolio.Actor.Player.Basics
             #endregion
 
             //Motion
-            this.FixedUpdateAsObservable()
-                .Where(x => PlayerState.IsActionModeJumping.Value)
-                .Where(x => enterActionModeJumpState
-                         || (Key.Vertical.Value == 1 && frameCount != /*active*/Parameter.GetPlayerParameter().PlayerBasics.ActionModeJump.Active))
-                         //|| (PlayerState.canActionModeJump.Value && (Key.Vertical.Value == 1 && frameCount != /*active*/Parameter.GetPlayerParameter().PlayerBasics.ActionModeJump.Active)))
-                .Do(x => enterActionModeJumpState = false)
-                .Subscribe(_ =>
-                {
-                    this.Jump(/*JumpForce*/Parameter.GetPlayerParameter().PlayerBasics.ActionModeJump.JumpForce);
-                });
+            //this.FixedUpdateAsObservable()
+            //    .Where(x => PlayerState.IsActionModeJumping.Value)
+            //    .Where(x => enterActionModeJumpState
+            //             || (Key.Vertical.Value == 1 && frameCount != /*active*/Parameter.GetPlayerParameter().PlayerBasics.ActionModeJump.Active))
+            //             //|| (PlayerState.canActionModeJump.Value && (Key.Vertical.Value == 1 && frameCount != /*active*/Parameter.GetPlayerParameter().PlayerBasics.ActionModeJump.Active)))
+            //    .Do(x => enterActionModeJumpState = false)
+            //    .Subscribe(_ =>
+            //    {
+            //        this.Jump(/*JumpForce*/Parameter.GetPlayerParameter().PlayerBasics.ActionModeJump.JumpForce);
+            //    });
 
             //Collision
             this.ObserveEveryValueChanged(x => Animator.GetBool("IsActionModeJumping"))
@@ -150,9 +152,21 @@ namespace Wolio.Actor.Player.Basics
                 .Subscribe(_ => frameCount = 0);
         }
 
-        public void Jump(float JumpForce)
+        //public void Jump(float JumpForce)
+        //{
+        //    PlayerRigidbody2D.velocity = new Vector2(PlayerRigidbody2D.velocity.x, JumpForce);
+        //}
+
+        public IEnumerator Jump()
         {
-            PlayerRigidbody2D.velocity = new Vector2(PlayerRigidbody2D.velocity.x, JumpForce);
+            PlayerRigidbody2D.velocity = new Vector2(PlayerRigidbody2D.velocity.x, /*JumpForce*/Parameter.GetPlayerParameter().PlayerBasics.ActionModeJump.JumpForce);
+            yield return new WaitForFixedUpdate();
+
+            for (int i = 0; (i < /*active*/Parameter.GetPlayerParameter().PlayerBasics.ActionModeJump.Active) && Key.Vertical.Value == 1; i++)
+            {
+                PlayerRigidbody2D.velocity = new Vector2(PlayerRigidbody2D.velocity.x, /*JumpForce*/Parameter.GetPlayerParameter().PlayerBasics.ActionModeJump.JumpForce);
+                yield return new WaitForFixedUpdate();
+            }
         }
     }
 }

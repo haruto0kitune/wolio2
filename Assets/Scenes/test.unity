@@ -5500,6 +5500,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 302ee27b24b3c024cb85ef1cb75ac5fd, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  Player: {fileID: 150007667}
   Angle: 60
   JumpForce: 13
   Recovery: 3
