@@ -3096,6 +3096,66 @@ Prefab:
 Transform:
   m_PrefabParentObject: {fileID: 444812, guid: d693c3cba9489f8438dd2a1f1424d597, type: 2}
   m_PrefabInternal: {fileID: 512084820}
+--- !u!1 &513551241
+GameObject:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 107098, guid: 1665c5ce479006740b4a051a2bb59dd1, type: 2}
+  m_PrefabInternal: {fileID: 0}
+  serializedVersion: 4
+  m_Component:
+  - 4: {fileID: 513551242}
+  - 61: {fileID: 513551244}
+  - 114: {fileID: 513551243}
+  m_Layer: 24
+  m_Name: WallKickJumpHurtBox
+  m_TagString: HurtBox
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &513551242
+Transform:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 457422, guid: 1665c5ce479006740b4a051a2bb59dd1, type: 2}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 513551241}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 903027556}
+  m_RootOrder: 0
+--- !u!114 &513551243
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 11459448, guid: 1665c5ce479006740b4a051a2bb59dd1,
+    type: 2}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 513551241}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d0b46e87f58ac9a45a1bde6538366fe2, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  Actor: {fileID: 150007667}
+  DamageObject: {fileID: 1048983992}
+  SupineDamageObject: {fileID: 1048983992}
+  ProneDamageObject: {fileID: 1540724919}
+--- !u!61 &513551244
+BoxCollider2D:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 6138580, guid: 1665c5ce479006740b4a051a2bb59dd1,
+    type: 2}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 513551241}
+  m_Enabled: 0
+  m_Density: 1
+  m_Material: {fileID: 0}
+  m_IsTrigger: 1
+  m_UsedByEffector: 0
+  m_Offset: {x: 0.0011405945, y: -0.005906582}
+  serializedVersion: 2
+  m_Size: {x: 0.307244, y: 0.84717065}
 --- !u!1 &519507977
 GameObject:
   m_ObjectHideFlags: 0
@@ -4085,6 +4145,48 @@ BoxCollider2D:
   m_Offset: {x: 0.0011405945, y: -0.005906582}
   serializedVersion: 2
   m_Size: {x: 0.307244, y: 0.84717065}
+--- !u!1 &663177081
+GameObject:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  serializedVersion: 4
+  m_Component:
+  - 4: {fileID: 663177082}
+  - 61: {fileID: 663177083}
+  m_Layer: 0
+  m_Name: WallKickJumpableCheckBox
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &663177082
+Transform:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 663177081}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 903027556}
+  m_RootOrder: 1
+--- !u!61 &663177083
+BoxCollider2D:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 663177081}
+  m_Enabled: 1
+  m_Density: 1
+  m_Material: {fileID: 0}
+  m_IsTrigger: 1
+  m_UsedByEffector: 0
+  m_Offset: {x: -0.1513677, y: -0.007385969}
+  serializedVersion: 2
+  m_Size: {x: 0.0037382245, y: 0.7247419}
 --- !u!1001 &677957792
 Prefab:
   m_ObjectHideFlags: 0
@@ -5470,24 +5572,25 @@ Transform:
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
-  m_Children: []
+  m_Children:
+  - {fileID: 513551242}
+  - {fileID: 663177082}
   m_Father: {fileID: 1830509912}
   m_RootOrder: 8
 --- !u!61 &903027557
 BoxCollider2D:
   m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 6110606, guid: 1665c5ce479006740b4a051a2bb59dd1,
-    type: 2}
+  m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 903027555}
-  m_Enabled: 1
+  m_Enabled: 0
   m_Density: 1
-  m_Material: {fileID: 0}
-  m_IsTrigger: 1
+  m_Material: {fileID: 6200000, guid: c203c2bf2e10fc24482abaf8a2164a45, type: 2}
+  m_IsTrigger: 0
   m_UsedByEffector: 0
-  m_Offset: {x: -0.1513677, y: -0.007385969}
+  m_Offset: {x: 0.0011405945, y: 0.002524376}
   serializedVersion: 2
-  m_Size: {x: 0.0037382245, y: 0.7247419}
+  m_Size: {x: 0.2600313, y: 0.80333036}
 --- !u!114 &903027558
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -5501,6 +5604,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   Player: {fileID: 150007667}
+  PlayerWallKickJumpHurtBox: {fileID: 513551241}
+  PlayerWallKickJumpableCheckBox: {fileID: 663177081}
   Angle: 60
   JumpForce: 13
   Recovery: 3

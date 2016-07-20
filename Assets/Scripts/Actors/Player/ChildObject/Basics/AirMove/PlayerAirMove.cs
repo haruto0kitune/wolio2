@@ -28,9 +28,9 @@ namespace Wolio.Actor.Player.Basics
         {
             //Motion
             this.FixedUpdateAsObservable()
-                .Where(x => PlayerState.IsActionModeJumping.Value || (PlayerState.controlMode == ControlMode.ActionMode) && PlayerState.IsFalling.Value)
+                .Where(x => (PlayerState.IsActionModeJumping.Value || PlayerState.IsWallKickJumping.Value || PlayerState.IsFalling.Value) && (PlayerState.controlMode == ControlMode.ActionMode)) 
                 .Where(x => !PlayerState.IsGrounded.Value)
-                .Where(x => !PlayerState.IsWallKickJumping.Value)
+                .Where(x => PlayerState.canAirMove.Value)
                 .Where(x => Key.Horizontal.Value != 0)
                 .Subscribe(_ => this.AirMove(Key.Horizontal.Value));
         }

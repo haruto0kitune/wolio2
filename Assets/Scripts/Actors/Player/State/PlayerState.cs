@@ -115,6 +115,7 @@ namespace Wolio.Actor.Player
         public ReactiveProperty<bool> hasInputedAirDashCommand;
         public ReactiveProperty<bool> hasAirDashed;
         public ReactiveProperty<bool> IsSkipingLanding;
+        public ReactiveProperty<bool> canAirMove;
 
         void Awake()
         {
@@ -327,7 +328,8 @@ namespace Wolio.Actor.Player
             IsStandingGuardBack = new ReactiveProperty<bool>();
             IsCrouchingGuardBack = new ReactiveProperty<bool>();
             IsFightingModeJumpingGuardBack = new ReactiveProperty<bool>();
-            IsWallKickJumping = new ReactiveProperty<bool>();
+            IsWallKickJumping = this.ObserveEveryValueChanged(x => Animator.GetBool("IsWallKickJumping"))
+                                    .ToReactiveProperty();
 
             canWallKickJumping = new ReactiveProperty<bool>();
 
@@ -347,6 +349,7 @@ namespace Wolio.Actor.Player
             canTurn = this.ObserveEveryValueChanged(x => (IsStanding.Value ||
                                                          IsRunning.Value ||
                                                          IsFightingModeJumping.Value ||
+                                                         IsWallKickJumping.Value ||
                                                          IsActionModeJumping.Value || 
                                                          (controlMode == ControlMode.ActionMode && IsFalling.Value) ||
                                                          IsCreeping.Value))
@@ -503,6 +506,12 @@ namespace Wolio.Actor.Player
 
             IsSkipingLanding = this.ObserveEveryValueChanged(x => controlMode == ControlMode.ActionMode)
                                    .ToReactiveProperty();
+
+            canAirMove = this.ObserveEveryValueChanged(x => IsActionModeJumping.Value
+                                                         || IsFalling.Value
+                                                         || IsWallKickJumping.Value)
+                             .ToReactiveProperty();
+
 
             //this.UpdateAsObservable()
             //    .Subscribe(_ => Debug.Log(string.Concat(Key.inputHistory.ToArray().Reverse().DistinctAdjacently().ToArray())));

@@ -166,9 +166,22 @@ namespace Wolio.Actor.Player.Basics
                 .Where(x => PlayerState.hasInputedAirDashCommand.Value)
                 .Subscribe(_ =>
                 {
-                    //Debug.Log("Fall->AirDash:hasAirDashed " + PlayerState.hasAirDashed.Value);
                     Animator.SetBool("IsFalling", false);
                     Animator.SetBool("IsAirDashing", true);
+                });
+            #endregion
+            #region Fall->WallKickJump
+            ObservableStateMachineTrigger
+                .OnStateUpdateAsObservable()
+                .Where(x => x.StateInfo.IsName("Base Layer.Fall"))
+                .Where(x => PlayerState.canWallKickJumping.Value)
+                .DistinctUntilChanged(x => Key.Vertical.Value)
+                .Where(x => PlayerState.IsInTheAir.Value)
+                .Where(x => Key.Vertical.Value == 1f)
+                .Subscribe(_ =>
+                {
+                    Animator.SetBool("IsFalling", false);
+                    Animator.SetBool("IsWallKickJumping", true);
                 });
             #endregion
 

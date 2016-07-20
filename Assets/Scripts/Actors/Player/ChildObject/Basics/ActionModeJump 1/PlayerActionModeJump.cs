@@ -112,6 +112,21 @@ namespace Wolio.Actor.Player.Basics
                     enterActionModeJumpState = false;
                 });
             #endregion
+            #region ActionModeJump->WallKickJump
+            ObservableStateMachineTrigger
+                .OnStateUpdateAsObservable()
+                .Where(x => x.StateInfo.IsName("Base Layer.ActionModeJump"))
+                .Where(x => PlayerState.canWallKickJumping.Value)
+                .DistinctUntilChanged(x => Key.Vertical.Value)
+                .Where(x => PlayerState.IsInTheAir.Value)
+                .Where(x => Key.Vertical.Value == 1f)
+                .Subscribe(_ =>
+                {
+                    Animator.SetBool("IsActionModeJumping", false);
+                    Animator.SetBool("IsWallKickJumping", true);
+                    enterActionModeJumpState = false;
+                });
+            #endregion
 
             //Motion
             //this.FixedUpdateAsObservable()
