@@ -109,6 +109,18 @@ namespace Wolio.Actor.Player.Basics
                     Animator.SetBool("IsFalling", true);
                 });
             #endregion
+            #region WallKickJump->WallKickJump
+            ObservableStateMachineTrigger
+                .OnStateUpdateAsObservable()
+                .Where(x => x.StateInfo.IsName("Base Layer.WallKickJump"))
+                .Where(x => PlayerState.canWallKickJumping.Value)
+                .Where(x => Key.Vertical.Value == 1f)
+                .Subscribe(_ =>
+                {
+                    Animator.Play("WallKickJump", Animator.GetLayerIndex("Base Layer"), 0.0f);
+                });
+            #endregion
+
 
             // Motion
 
